@@ -13,6 +13,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/simple-line-icons/css/simple-line-icons.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-awesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles.css">
+
+		<script type="text/javascript">
+			function confirmDialog() {
+				return confirm('Are you sure want to delete this record?')
+			}
+		</script>
 	</head>
 	<body class="sidebar-fixed header-fixed">
 		<div class="page-wrapper">
@@ -92,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
+								<a href="<?php echo site_url('admin'); ?>" class="nav-link">
 									<i class="icon icon-user"></i> Manage Admin
 								</a>
 							</li>
