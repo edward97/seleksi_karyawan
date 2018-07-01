@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-5">
-						<?php echo $this->session->flashdata('msg_login'); ?>
+						<?php echo $this->session->flashdata('msg'); ?>
 
 						<?php echo form_open('login/auth'); ?>
 							<div class="card p-4">
@@ -49,12 +49,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="card-footer">
 									<div class="row">
 										<div class="col-6">
-											<button type="submit" name="submit" value="1" class="btn btn-primary px-5">Login</button>
+											<button type="submit" name="submit" value="1" class="btn btn-success px-5">Login</button>
 										</div>
 
 										<div class="col-6">
-											<a href="#" class="btn btn-link">Forgot password?</a>
+											<a href="<?php echo site_url('register') ?>" class="btn btn-info px-5">Register</a>
 										</div>
+
+										<!-- <div class="col-6">
+											<a href="#" class="btn btn-link">Forgot password?</a>
+										</div> -->
 									</div>
 								</div>
 							</div>

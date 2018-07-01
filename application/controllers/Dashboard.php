@@ -16,10 +16,11 @@ class Dashboard extends CI_Controller
 	}
 
 	function index() {
-		$data['format'] = mdate('%d-%M-%Y %H:%i:%a', now('Asia/Jakarta'));
-		$data['judul'] = 'Dashboard';
+		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+			$data['judul'] = 'Dashboard';
+
 			$this->load->view('admin/v_header', $data);
 			$this->load->view('admin/v_dashboard');
 			$this->load->view('admin/v_footer');

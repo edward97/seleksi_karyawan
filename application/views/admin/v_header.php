@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<i class="fa fa-bars"></i>
 				</a>
 
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="<?php echo site_url('dashboard'); ?>">
 					<img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
 				</a>
 
@@ -36,24 +36,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</a>
 
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item d-md-down-none">
+					<!-- <li class="nav-item d-md-down-none">
 						<a href="#">
 							<i class="fa fa-bell"></i>
 							<span class="badge badge-pill badge-danger">5</span>
 						</a>
-					</li>
-
-					<li class="nav-item d-md-down-none">
-						<a href="#">
-							<i class="fa fa-envelope-open"></i>
-							<span class="badge badge-pill badge-danger">5</span>
-						</a>
-					</li>
+					</li> -->
 
 					<li class="nav-item dropdown">
 						<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							<img src="<?php echo base_url(); ?>assets/img/avatar-1.png" class="avatar avatar-sm" alt="logo">
-							<span class="small ml-1 d-md-down-none"><?php echo $this->session->userdata('ses_nm'); ?></span>
+							<span class="small ml-1 d-md-down-none"><?php echo $this->session->userdata('ses_nm')." | ".$format; ?></span>
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
@@ -122,14 +115,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<ul class="nav-dropdown-items">
 									<li class="nav-item">
-										<a href="#" class="nav-link">
-											<i class="icon icon-note"></i> Input Soal Ujian
+										<a href="<?php echo site_url('soal/list_online') ?>" class="nav-link">
+											<i class="icon icon-notebook"></i> Ujian Online
 										</a>
 									</li>
 
 									<li class="nav-item">
-										<a href="#" class="nav-link">
-											<i class="icon icon-list"></i> List Soal Ujian
+										<a href="<?php echo site_url('soal/list_f2f') ?>" class="nav-link">
+											<i class="icon icon-book-open"></i> Ujian Tatap Muka
 										</a>
 									</li>
 								</ul>
@@ -142,7 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
+								<a href="<?php echo site_url('setting'); ?>" class="nav-link">
 									<i class="icon icon-briefcase"></i> Abilites & Jobs
 								</a>
 							</li>
