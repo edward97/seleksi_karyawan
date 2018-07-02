@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/simple-line-icons/css/simple-line-icons.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-awesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles.css">
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/icheck-bootstrap.min.css">
 
 		<script type="text/javascript">
 			function confirmDialog() {
@@ -82,10 +83,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="sidebar">
 					<nav class="sidebar-nav">
 						<ul class="nav">
+							<?php $val = ''; if ($judul == 'Dashboard') {
+								$val = "active";
+							} ?>
+
 							<li class="nav-title">Navigation</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
+								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link <?php echo $val; ?>">
 									<i class="icon icon-calendar"></i> Open Session
 								</a>
 							</li>
@@ -129,7 +134,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
+								<a href="<?php echo site_url('kualifikasi'); ?>" class="nav-link">
 									<i class="icon icon-doc"></i> Kualifikasi
 								</a>
 							</li>
