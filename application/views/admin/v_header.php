@@ -83,14 +83,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="sidebar">
 					<nav class="sidebar-nav">
 						<ul class="nav">
-							<?php $val = ''; if ($judul == 'Dashboard') {
-								$val = "active";
-							} ?>
-
 							<li class="nav-title">Navigation</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link <?php echo $val; ?>">
+								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
 									<i class="icon icon-calendar"></i> Open Session
 								</a>
 							</li>

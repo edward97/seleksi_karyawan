@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 01, 2018 at 05:51 PM
+-- Generation Time: Jul 02, 2018 at 08:39 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.16
 
@@ -42,8 +42,13 @@ CREATE TABLE `ability` (
 INSERT INTO `ability` (`id_ability`, `nm_ability`, `created_at`, `updated_at`) VALUES
 (2, 'Algorithm', '2018-06-26 11:28:27', '2018-06-27 13:36:11'),
 (10, 'Coding C#', '2018-06-26 16:05:22', '2018-06-26 09:05:22'),
-(12, 'Matematika', '2018-06-27 16:48:20', '2018-06-27 09:48:20'),
-(17, 'Bahasa Inggris', '2018-06-30 21:01:51', '2018-06-30 14:01:51');
+(17, 'Bahasa Inggris - Aktif', '2018-06-30 21:01:51', '2018-07-02 18:30:25'),
+(18, 'Bahasa Inggris - Pasif', '2018-07-03 01:30:36', '2018-07-02 18:30:36'),
+(20, 'Matematika Dasar', '2018-07-03 01:31:09', '2018-07-02 18:31:09'),
+(21, 'Akuntansi Dasar', '2018-07-03 01:31:45', '2018-07-02 18:31:45'),
+(22, 'Mampu Bekerja dibawah Tekanan', '2018-07-03 01:31:57', '2018-07-02 18:31:57'),
+(23, 'Microsoft (Word, Excel, Powerpoint)', '2018-07-03 01:32:15', '2018-07-02 18:32:15'),
+(24, 'Coding Java', '2018-07-03 01:32:28', '2018-07-02 18:32:28');
 
 -- --------------------------------------------------------
 
@@ -116,7 +121,12 @@ INSERT INTO `job` (`id_job`, `nm_job`, `created_at`, `updated_at`) VALUES
 (1, 'IT - Support', '2018-06-26 11:44:51', '2018-06-26 04:44:51'),
 (2, 'IT - Programming', '2018-06-26 11:45:27', '2018-06-26 04:45:27'),
 (3, 'IT - Maintenance', '2018-06-26 11:45:41', '2018-06-26 04:45:41'),
-(6, 'IT - Testing', '2018-06-30 20:53:24', '2018-06-30 14:02:05');
+(6, 'IT - Testing', '2018-06-30 20:53:24', '2018-06-30 14:02:05'),
+(7, 'Akuntansi', '2018-07-03 01:19:02', '2018-07-02 18:19:02'),
+(8, 'Salesman', '2018-07-03 01:34:14', '2018-07-02 18:34:14'),
+(9, 'Manajer Operasional', '2018-07-03 01:34:23', '2018-07-02 18:34:23'),
+(10, 'Manajer Logistik', '2018-07-03 01:34:34', '2018-07-02 18:34:34'),
+(11, 'IT - Kepala Bagian Support', '2018-07-03 01:34:52', '2018-07-02 18:34:52');
 
 -- --------------------------------------------------------
 
@@ -209,6 +219,20 @@ CREATE TABLE `required_job` (
   `id_job` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `required_job`
+--
+
+INSERT INTO `required_job` (`id`, `created_at`, `updated_at`, `id_ability`, `id_job`) VALUES
+(10, '2018-07-03 01:27:13', '2018-07-02 18:27:13', 2, 7),
+(11, '2018-07-03 01:27:13', '2018-07-02 18:27:13', 12, 7),
+(12, '2018-07-03 01:27:13', '2018-07-02 18:27:13', 17, 7),
+(13, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 17, 7),
+(14, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 18, 7),
+(15, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 20, 7),
+(16, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 21, 7),
+(17, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 23, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -228,6 +252,97 @@ CREATE TABLE `selection_stage` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `standard_ability`
+--
+
+CREATE TABLE `standard_ability` (
+  `id` int(6) NOT NULL,
+  `kemampuan` int(3) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_age`
+--
+
+CREATE TABLE `standard_age` (
+  `id` int(6) NOT NULL,
+  `umur` int(6) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_buta_warna`
+--
+
+CREATE TABLE `standard_buta_warna` (
+  `id` int(6) NOT NULL,
+  `buta_warna` varchar(255) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_education`
+--
+
+CREATE TABLE `standard_education` (
+  `id` int(6) NOT NULL,
+  `pendidikan` varchar(255) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_experience`
+--
+
+CREATE TABLE `standard_experience` (
+  `id` int(6) NOT NULL,
+  `pengalaman` int(3) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_f2f`
+--
+
+CREATE TABLE `standard_f2f` (
+  `id` int(6) NOT NULL,
+  `nilai` float NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_online`
+--
+
+CREATE TABLE `standard_online` (
+  `id` int(6) NOT NULL,
+  `nilai` float NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `standard_qualification`
 --
 
@@ -235,6 +350,32 @@ CREATE TABLE `standard_qualification` (
   `id_std` int(6) NOT NULL,
   `nm_std` varchar(255) NOT NULL,
   `id_job` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_sikap`
+--
+
+CREATE TABLE `standard_sikap` (
+  `id` int(6) NOT NULL,
+  `nilai` varchar(255) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `standard_status`
+--
+
+CREATE TABLE `standard_status` (
+  `id` int(6) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -363,10 +504,64 @@ ALTER TABLE `selection_stage`
   ADD PRIMARY KEY (`id_stage`);
 
 --
+-- Indexes for table `standard_ability`
+--
+ALTER TABLE `standard_ability`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `standard_age`
+--
+ALTER TABLE `standard_age`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `standard_buta_warna`
+--
+ALTER TABLE `standard_buta_warna`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `standard_education`
+--
+ALTER TABLE `standard_education`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `standard_experience`
+--
+ALTER TABLE `standard_experience`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `standard_f2f`
+--
+ALTER TABLE `standard_f2f`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `standard_online`
+--
+ALTER TABLE `standard_online`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `standard_qualification`
 --
 ALTER TABLE `standard_qualification`
   ADD PRIMARY KEY (`id_std`);
+
+--
+-- Indexes for table `standard_sikap`
+--
+ALTER TABLE `standard_sikap`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `standard_status`
+--
+ALTER TABLE `standard_status`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -394,7 +589,7 @@ ALTER TABLE `users_detail`
 -- AUTO_INCREMENT for table `ability`
 --
 ALTER TABLE `ability`
-  MODIFY `id_ability` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_ability` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -412,7 +607,7 @@ ALTER TABLE `dataset`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `id_job` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_job` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `news`
@@ -436,7 +631,7 @@ ALTER TABLE `question_online`
 -- AUTO_INCREMENT for table `required_job`
 --
 ALTER TABLE `required_job`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `selection_stage`
@@ -445,28 +640,82 @@ ALTER TABLE `selection_stage`
   MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `standard_ability`
+--
+ALTER TABLE `standard_ability`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `standard_age`
+--
+ALTER TABLE `standard_age`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `standard_buta_warna`
+--
+ALTER TABLE `standard_buta_warna`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `standard_education`
+--
+ALTER TABLE `standard_education`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `standard_experience`
+--
+ALTER TABLE `standard_experience`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `standard_f2f`
+--
+ALTER TABLE `standard_f2f`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `standard_online`
+--
+ALTER TABLE `standard_online`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `standard_qualification`
 --
 ALTER TABLE `standard_qualification`
   MODIFY `id_std` int(6) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `standard_sikap`
+--
+ALTER TABLE `standard_sikap`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `standard_status`
+--
+ALTER TABLE `standard_status`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users_ability`
 --
 ALTER TABLE `users_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users_detail`
 --
 ALTER TABLE `users_detail`
-  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

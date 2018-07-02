@@ -48,6 +48,16 @@ class Register extends CI_Controller
 			redirect('register');
 		}
 		// print_r($target);
+		
+		// array 2D u/ simpan ability
+		$val = array();
+		foreach ($target['tar'] as $i) {
+			array_push($val, array(
+				'id' =>  null,
+				'id_ability' => $i,
+				'id_user' => $idInsert
+			));
+		}
 
 		$data_user = array(
 			'id_user' => null,
@@ -82,16 +92,6 @@ class Register extends CI_Controller
 			'hubungan_kerabat' => $hubungan_kerabat,
 			'id_user' => $idInsert
 		);
-
-		// array 2D u/ simpan ability
-		$val = array();
-		foreach ($target['tar'] as $i) {
-			array_push($val, array(
-				'id' =>  null,
-				'id_ability' => $i,
-				'id_user' => $idInsert
-			));
-		}
 
 		$this->user_model->add_user_detail('users_detail', $detail_user);
 		$this->user_model->add_user_ability('users_ability', $val);
