@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2018 at 08:39 PM
+-- Generation Time: Jul 03, 2018 at 07:27 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.16
 
@@ -73,9 +73,9 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`id_admin`, `nm_admin`, `email`, `password`, `level`, `status_partisipasi`, `keterangan`, `created_at`, `updated_at`) VALUES
-(6, 'ccdnkz', 'ccdnkz@mail.com', '856e22b06868660656e0e6fff975a8d9', 1, 1, 'Bagian Hura Hura', '2018-06-23 13:14:04', '2018-06-30 13:13:24'),
-(7, 'Edward', 'esj@mail.com', '5f0713b7c76ee9285a14984eeb332f43', 1, 1, 'IT - Support', '2018-06-27 16:26:07', '2018-06-30 13:13:55'),
-(13, 'Admin', 'admin@mail.com', '21232f297a57a5a743894a0e4a801fc3', 2, 1, 'Administrator', '2018-06-30 21:03:01', '2018-06-30 14:07:28'),
+(6, 'ccdnkz', 'ccdnkz@mail.com', '856e22b06868660656e0e6fff975a8d9', 1, 1, 'Bagian Hura Hura', '2018-06-23 13:14:04', '2018-07-03 17:24:44'),
+(7, 'Edward', 'esj@mail.com', '5f0713b7c76ee9285a14984eeb332f43', 1, 1, 'IT - Hiring', '2018-06-27 16:26:07', '2018-07-03 17:24:09'),
+(13, 'Admin', 'admin@mail.com', '21232f297a57a5a743894a0e4a801fc3', 2, 0, 'Administrator', '2018-06-30 21:03:01', '2018-07-03 15:13:04'),
 (14, 'Ryan', 'ryan@mail.com', '10c7ccc7a4f0aff03c915c485565b9da', 1, 1, 'Bagian Hired Job', '2018-06-30 21:59:08', '2018-06-30 14:59:08');
 
 -- --------------------------------------------------------
@@ -244,6 +244,8 @@ CREATE TABLE `selection_stage` (
   `nm_stage` varchar(255) NOT NULL,
   `start_stage` datetime DEFAULT NULL,
   `end_stage` datetime DEFAULT NULL,
+  `label_online` varchar(255) NOT NULL,
+  `label_f2f` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP

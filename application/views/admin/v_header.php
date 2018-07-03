@@ -86,7 +86,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<li class="nav-title">Navigation</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
+								<a href="<?php echo site_url('sesi'); ?>" class="nav-link">
 									<i class="icon icon-calendar"></i> Open Session
 								</a>
 							</li>

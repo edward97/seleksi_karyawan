@@ -5,12 +5,6 @@
 				<div class="card">
 					<div class="card-header bg-light">
 						Input Standar Kualifikasi
-
-						<div class="card-actions">
-							<a href="#" class="btn text-success" data-toggle="modal" data-target="#addAct">
-								<i class="fa fa-plus"></i> S-Kualifikasi
-							</a>
-						</div>
 					</div>
 						
 					<?php echo form_open('kualifikasi/save_act'); ?>
