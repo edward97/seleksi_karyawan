@@ -38,18 +38,16 @@ class Admin extends CI_Controller
 			$email = htmlspecialchars($this->input->post('email', TRUE), ENT_QUOTES);
 			$pass = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
 			$level = $this->input->post('level');
-			$status = $this->input->post('partisipasi');
-			$keterangan = $this->input->post('keterangan');
+			$profesi = $this->input->post('profesi');
 
 			if ($pass != '') {
 				$data = array(
 					'id_admin' => null,
 					'nm_admin' => $name,
 					'email' => $email,
+					'profesi' => $profesi,
 					'password' => md5($pass),
 					'level' => $level,
-					'status_partisipasi' => $status,
-					'keterangan' => $keterangan
 				);
 			}
 			else {
@@ -57,9 +55,8 @@ class Admin extends CI_Controller
 					'id_admin' => null,
 					'nm_admin' => $name,
 					'email' => $email,
-					'level' => $level,
-					'status_partisipasi' => $status,
-					'keterangan' => $keterangan
+					'profesi' => $profesi,
+					'level' => $level
 				);
 			}
 			
@@ -80,8 +77,7 @@ class Admin extends CI_Controller
 			$email = htmlspecialchars($this->input->post('email', TRUE), ENT_QUOTES);
 			$pass = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
 			$level = $this->input->post('level');
-			$status = $this->input->post('partisipasi');
-			$keterangan = $this->input->post('keterangan');
+			$profesi = $this->input->post('profesi');
 
 			if ($pass != '') {
 				$data = array(
@@ -89,8 +85,6 @@ class Admin extends CI_Controller
 					'email' => $email,
 					'password' => md5($pass),
 					'level' => $level,
-					'status_partisipasi' => $status,
-					'keterangan' => $keterangan
 				);
 			}
 			else {
@@ -98,8 +92,7 @@ class Admin extends CI_Controller
 					'nm_admin' => $name,
 					'email' => $email,
 					'level' => $level,
-					'status_partisipasi' => $status,
-					'keterangan' => $keterangan
+					'profesi' => $profesi
 				);
 			}
 			

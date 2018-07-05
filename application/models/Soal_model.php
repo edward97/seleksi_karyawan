@@ -13,11 +13,23 @@ class Soal_model extends CI_Model
 		return $this->db->get();
 	}
 
+	function tampil_online_label() {
+		$this->db->distinct();
+		$this->db->select('label');
+		return $this->db->get('question_online');
+	}
+
 	function tampil_f2f() {
 		$this->db->select('*');
 		$this->db->from('question_f2f');
 		$this->db->join('job', 'job.id_job = question_f2f.id_job', 'left');
 		return $this->db->get();
+	}
+
+	function tampil_f2f_label() {
+		$this->db->distinct();
+		$this->db->select('label');
+		return $this->db->get('question_f2f');
 	}
 
 	function add_online($table, $data){

@@ -7,7 +7,7 @@
 						Open Session
 					</div>
 						
-					<?php echo form_open('sesi/save_act'); ?>
+					<?php echo form_open('sesi/save_act_1'); ?>
 					<div class="card-body">
 						<!-- Divisi -->
 						<div class="row">
@@ -44,13 +44,13 @@
 										</thead>
 
 										<tbody>
-											<?php foreach ($a_admin as $i): ?>
+											<?php foreach ($temp_admin as $i): ?>
 											<tr>
-												<td><?php echo $i->id_admin ?></td>
+												<td><?php echo $i->id ?></td>
 												<td><?php echo $i->nm_admin ?></td>
 												<td><?php echo $i->keterangan ?></td>
 												<td>
-													<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('sesi/delete/'.$i->id_admin); ?>" onclick="return confirmDialog();">
+													<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('sesi/delete/'.$i->id); ?>" onclick="return confirmDialog();">
 														<i class="fa fa-trash-alt" aria-hidden="true"></i> Delete
 													</a>
 												</td>
@@ -82,6 +82,9 @@
 								<div class="form-group">
 									<select name="kualifikasi" id="kualifikasi" class="form-control" required>
 										<option selected>Choose...</option>
+										<?php foreach ($kualifikasi as $i): ?>
+											<option value="<?php echo $i->id_std; ?>"><?php echo $i->nm_std; ?></option>
+										<?php endforeach ?>
 									</select>
 								</div>
 							</div>
@@ -99,6 +102,9 @@
 								<div class="form-group">
 									<select name="ujian_online" id="ujian_online" class="form-control" required>
 										<option selected>Choose...</option>
+										<?php foreach ($s_online as $i): ?>
+											<option value="<?php echo $i->label; ?>"><?php echo $i->label; ?></option>
+										<?php endforeach ?>
 									</select>
 								</div>
 							</div>
@@ -116,6 +122,9 @@
 								<div class="form-group">
 									<select name="ujian_f2f" id="ujian_f2f" class="form-control" required>
 										<option selected>Choose...</option>
+										<?php foreach ($s_f2f as $i): ?>
+											<option value="<?php echo $i->label; ?>"><?php echo $i->label; ?></option>
+										<?php endforeach ?>
 									</select>
 								</div>
 							</div>
@@ -204,60 +213,12 @@
 								</div>
 							</div>
 						</div>
-
-						<div class="row">
-							<div class="col-md-9">
-								<div class="card">
-									<div class="card-header bg-light">
-										Pilih Sistem Penyeleksi
-									</div>
-
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label class="col-form-label require">Upload Data Pendukung</label>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="custom-file">
-													<input type="file" class="custom-file-input" name="data_pertama" id="data_pertama">
-													<label class="custom-file-label" for="data_pertama">Choose file</label>
-												</div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label class="col-form-label">Upload Karyawan Sesi Sebelumnya</label>
-												</div>
-											</div>
-
-											<div class="col-md-6">
-												<div class="custom-file">
-													<input type="file" class="custom-file-input" name="data_kedua" id="data_kedua">
-													<label class="custom-file-label" for="data_kedua">Choose file</label>
-												</div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-md-12 text-right">
-												<a href="#" class="btn btn-info">Generate</a>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 
 					<div class="card-footer bg-light text-right">
 						<div class="form-group">
 							<button type="submit" name="submit" value="save" class="btn btn-success">
-								<i class="far fa-save"></i> Save
+								<i class="far fa-save"></i> Next
 							</button>
 						</div>
 					</div>
@@ -300,17 +261,8 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="partisipasi" class="require">Status Partisipasi</label>
-								<input type="text" name="partisipasi" id="partisipasi" class="form-control" required>
-								<small class="form-text">[ 0 => Non-Active, 1 => Active ]</small>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-							<div class="form-group">
 								<label for="keterangan">Keterangan</label>
 								<input type="text" name="keterangan" id="keterangan" class="form-control" required>
-								<small class="form-text">[ HRD, Logistic, etc. ]</small>
 							</div>
 						</div>
 					</div>

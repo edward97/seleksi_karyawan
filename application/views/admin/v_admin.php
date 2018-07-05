@@ -23,9 +23,8 @@
 										<th>ID</th>
 										<th>Nama Admin</th>
 										<th>Email</th>
+										<th>Profesi</th>
 										<th>Level</th>
-										<th>Partisipasi</th>
-										<th>Keterangan</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -36,18 +35,16 @@
 										<td><?php echo $i->id_admin ?></td>
 										<td><?php echo $i->nm_admin ?></td>
 										<td><?php echo $i->email ?></td>
+										<td><?php echo $i->profesi ?></td>
 										<td><?php echo $i->level ?></td>
-										<td><?php echo $i->status_partisipasi ?></td>
-										<td><?php echo $i->keterangan ?></td>
 										<td>
 											<a
 												href="javascript:;" 
 												data-id="<?php echo $i->id_admin ?>" 
 												data-nama="<?php echo $i->nm_admin ?>" 
 												data-email="<?php echo $i->email ?>" 
+												data-profesi="<?php echo $i->profesi ?>" 
 												data-level="<?php echo $i->level ?>" 
-												data-partisipasi="<?php echo $i->status_partisipasi ?>" 
-												data-keterangan="<?php echo $i->keterangan ?>" 
 												data-toggle="modal" data-target="#editAct" 
 												class="btn btn-outline-info btn-sm">
 													<i class="fa fa-edit" aria-hidden="true"></i> Edit
@@ -123,17 +120,8 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="partisipasi" class="require">Status Partisipasi</label>
-								<input type="text" name="partisipasi" id="partisipasi" class="form-control" required>
-								<small class="form-text">[ 0 => Non-Active, 1 => Active ]</small>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="keterangan">Keterangan</label>
-								<input type="text" name="keterangan" id="keterangan" class="form-control" required>
-								<small class="form-text">[ HRD, Logistic, etc. ]</small>
+								<label for="profesi" class="require">Profesi</label>
+								<input type="text" name="profesi" id="profesi" class="form-control" required>
 							</div>
 						</div>
 					</div>
@@ -204,17 +192,8 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="partisipasi" class="require">Status Partisipasi</label>
-								<input type="text" name="partisipasi" id="partisipasi" class="form-control" required>
-								<small class="form-text">[ 0 => Non-Active, 1 => Active ]</small>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="keterangan">Keterangan</label>
-								<input type="text" name="keterangan" id="keterangan" class="form-control" required>
-								<small class="form-text">[ HRD, Logistic, etc. ]</small>
+								<label for="profesi" class="require">Profesi</label>
+								<input type="text" name="profesi" id="profesi" class="form-control" required>
 							</div>
 						</div>
 					</div>

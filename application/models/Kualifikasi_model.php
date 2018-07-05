@@ -6,6 +6,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Kualifikasi_model extends CI_Model
 {
+	function tampil_kualifikasi() {
+		return $this->db->get('standard_qualification');
+	}
+
 	function add_kualifikasi($table, $data) {
 		$this->db->insert($table, $data);
 		$id = $this->db->insert_id();

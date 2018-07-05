@@ -374,6 +374,6 @@ class Kualifikasi extends CI_Controller
 		);
 		$this->kualifikasi_model->add_buta_warna('standard_buta_warna', $data9);
 
-		echo "berhasil";
+		redirect('dashboard');
 	}
 }

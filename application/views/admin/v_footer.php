@@ -26,9 +26,8 @@
 					modal.find('#id').attr("value",div.data('id'));
 					modal.find('#username').attr("value",div.data('nama'));
 					modal.find('#email').attr("value",div.data('email'));
+					modal.find('#profesi').attr("value",div.data('profesi'));
 					modal.find('#level').attr("value",div.data('level'));
-					modal.find('#partisipasi').attr("value",div.data('partisipasi'));
-					modal.find('#keterangan').attr("value",div.data('keterangan'));
 				});
 
 				// Untuk sunting ability

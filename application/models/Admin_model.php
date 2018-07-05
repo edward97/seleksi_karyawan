@@ -10,12 +10,12 @@ class Admin_model extends CI_Model
 		return $this->db->get('admins');
 	}
 
-	function tampil_admin_active() {
-		return $this->db->get_where('admins', array('status_partisipasi' => 1));
-	}
-
-	function tampil_admin_no_active() {
-		return $this->db->get_where('admins', array('status_partisipasi' => 0));
+	function tampil_admin_sesi() {
+		$this->db->select('*');
+		$this->db->from('admins_sesi');
+		$this->db->join('admins', 'admins.id_admin = admins_sesi.id_admin', 'left');
+		$this->db->where('admins_sesi.id_stage', 0);
+		return $this->db->get();
 	}
 
 	function add_admin($table, $data) {
