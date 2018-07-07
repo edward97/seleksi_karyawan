@@ -26,7 +26,9 @@ class Sesi extends CI_Controller
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['job'] = $this->setting_model->tampil_job()->result();
 			$data['admin'] = $this->admin_model->tampil_admin()->result();
-			$data['temp_admin'] = $this->admin_model->tampil_admin_sesi()->result();
+
+			$idUser = $this->session->userdata('ses_id');
+			$data['temp_admin'] = $this->admin_model->tampil_admin_sesi($idUser)->result();
 			$data['kualifikasi'] = $this->kualifikasi_model->tampil_kualifikasi()->result();
 			$data['s_online'] = $this->soal_model->tampil_online_label()->result();
 			$data['s_f2f'] = $this->soal_model->tampil_f2f_label()->result();
@@ -129,6 +131,10 @@ class Sesi extends CI_Controller
 			);
 			$this->sesi_model->add_detail_selection('selection_stage_detail', $detail_stage);
 
+			$data_admin = array( 'id_stage' => $idSelection );
+			$data_admin_where = array( 'created_by' => $this->session->userdata('id_admin') );
+			$admin_sesi = $this->sesi_model->update_admin_sesi('admins_sesi', $data_admin_where, $data_admin);
+
 			redirect('sesi/next');
 		}
 		else {
@@ -149,7 +155,8 @@ class Sesi extends CI_Controller
 				'id' => null,
 				'keterangan' => $keterangan,
 				'id_admin' => $id,
-				'id_stage' => 0
+				'id_stage' => 0,
+				'created_by' => $this->session->userdata('ses_id')
 			);
 			$where = array('id_admin' => $id);
 

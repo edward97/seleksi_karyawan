@@ -57,7 +57,7 @@ class Kualifikasi extends CI_Controller
 				'id_job' => $divisi
 			));
 		}
-		$this->kualifikasi_model->add_required('required_job', $val);
+		$this->kualifikasi_model->add_required('required_ability', $val);
 
 		$jumlah_kemampuan_1 = $this->input->post('jlh_kemampuan1');
 		$jumlah_kemampuan_2 = $this->input->post('jlh_kemampuan2');

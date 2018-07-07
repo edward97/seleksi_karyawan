@@ -16,6 +16,7 @@ class Register extends CI_Controller
 
 	function index() {
 		$data['ability'] = $this->setting_model->tampil_ability()->result();
+		$data['job'] = $this->setting_model->tampil_job()->result();
 
 		$this->load->view('v_register', $data);
 	}
@@ -27,6 +28,15 @@ class Register extends CI_Controller
 		$password = md5($this->input->post('password'));
 		$tempat_lahir = $this->input->post('tempat_lahir');
 		$tgl_lahir = $this->input->post('tgl_lahir');
+		$post_time = strtotime($this->input->post('tgl_lahir'));
+
+		// get age
+		$now = time();
+		$units = 1;
+		$year = timespan($post_time, $now, $units);
+		$number = preg_replace("/[^0-9]/", '', $year);
+		// end
+
 		$jenis_kelamin = $this->input->post('jenis_kelamin');
 		$agama = $this->input->post('agama');
 		$address = $this->input->post('address');
@@ -48,16 +58,6 @@ class Register extends CI_Controller
 			redirect('register');
 		}
 		// print_r($target);
-		
-		// array 2D u/ simpan ability
-		$val = array();
-		foreach ($target['tar'] as $i) {
-			array_push($val, array(
-				'id' =>  null,
-				'id_ability' => $i,
-				'id_user' => $idInsert
-			));
-		}
 
 		$data_user = array(
 			'id_user' => null,
@@ -81,7 +81,7 @@ class Register extends CI_Controller
 			'kode_pos' => $pos,
 			'p_number' => $no_hp,
 			't_number' => $no_telp,
-			'age' => 99,
+			'age' => $number,
 			'gender' => $jenis_kelamin,
 			'religion' => $agama,
 			'last_education' => $pendidikan,
@@ -93,9 +93,20 @@ class Register extends CI_Controller
 			'id_user' => $idInsert
 		);
 
+		// array 2D u/ simpan ability
+		$val = array();
+		foreach ($target['tar'] as $i) {
+			array_push($val, array(
+				'id' =>  null,
+				'id_ability' => $i,
+				'id_user' => $idInsert
+			));
+		}
+
 		$this->user_model->add_user_detail('users_detail', $detail_user);
 		$this->user_model->add_user_ability('users_ability', $val);
 		$this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>Register berhasil!</strong> Silahkan konfirmasi email anda terlebih dahulu.</div>');
+		
 		redirect('login');
 	}
 }

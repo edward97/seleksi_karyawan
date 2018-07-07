@@ -19,4 +19,9 @@ class Sesi_model extends CI_Model
 	function add_detail_selection($table, $data) {
 		$this->db->insert_batch($table, $data);
 	}
+
+	function update_admin_sesi($table, $where, $data) {
+		$this->db->where($where);
+		$this->db->update($table, $data);
+	}
 }
