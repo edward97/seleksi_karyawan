@@ -55,6 +55,11 @@ class Login extends CI_Controller
 					}
 				}
 				else {
+					$where = array(
+						'email' => $email,
+						'password' => md5($password),
+						'acc_status' => 1
+					);
 					$cek_user = $this->login_model->auth_user('users', $where);
 
 					if ($cek_user->num_rows() > 0) {
@@ -64,6 +69,10 @@ class Login extends CI_Controller
 						$this->session->set_userdata('akses', '3');
 						$this->session->set_userdata('ses_id', $data['id_user']);
 						$this->session->set_userdata('ses_nm', $data['email']);
+						
+						$selection_detail = $this->login_model->get_label($email)->row_array();
+						$this->session->set_userdata('ses_stage', $selection_detail['id']);
+						$this->session->set_userdata('ses_label', $selection_detail['label']);
 
 						redirect('dashboard');
 					}

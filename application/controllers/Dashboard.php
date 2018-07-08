@@ -13,6 +13,7 @@ class Dashboard extends CI_Controller
 		if ($this->session->userdata('masuk') != TRUE) {
 			redirect('login');
 		}
+		$this->load->model('sesi_model');
 	}
 
 	function index() {
@@ -26,7 +27,7 @@ class Dashboard extends CI_Controller
 			$this->load->view('admin/v_footer');
 		}
 		else {
-			echo "Halaman user";
+			$this->load->view('user/v_dashboard', $data);
 		}
 	}
 }

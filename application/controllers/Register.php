@@ -11,10 +11,16 @@ class Register extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('user_model');
+		$this->load->model('sesi_model');
 		$this->load->model('setting_model');
 	}
 
 	function index() {
+		$data['format'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		
+		$data['open_sesi'] = $this->sesi_model->tampil_tahap_1()->result();
+		$data['cek'] = $this->sesi_model->tampil_tahap_1()->num_rows();
+
 		$data['ability'] = $this->setting_model->tampil_ability()->result();
 		$data['job'] = $this->setting_model->tampil_job()->result();
 
@@ -50,7 +56,8 @@ class Register extends CI_Controller
 		$status = $this->input->post('status');
 		$pendidikan = $this->input->post('pendidikan');
 		$pengalaman = $this->input->post('pengalaman');
-		$job_required = $this->input->post('job_required');
+		$job = $this->input->post('job');
+		$stage = $this->input->post('stage');
 
 		$target['tar'] = $this->input->post('kemampuan');
 
@@ -64,8 +71,8 @@ class Register extends CI_Controller
 			'email' => $email,
 			'password' => $password,
 			'confirm_code' => null,
-			'id_job' => 99,
-			'id_stage' => 99
+			'id_job' => $job,
+			'id_stage' => $stage
 		);
 		// insert data user dan ambil last_id
 		$idInsert = $this->user_model->add_user('users', $data_user);

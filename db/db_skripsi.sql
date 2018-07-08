@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2018 at 07:27 PM
+-- Generation Time: Jul 08, 2018 at 07:41 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.16
 
@@ -61,9 +61,8 @@ CREATE TABLE `admins` (
   `nm_admin` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
+  `profesi` varchar(255) NOT NULL,
   `level` int(1) NOT NULL,
-  `status_partisipasi` tinyint(4) NOT NULL,
-  `keterangan` varchar(255) DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -72,11 +71,44 @@ CREATE TABLE `admins` (
 -- Dumping data for table `admins`
 --
 
-INSERT INTO `admins` (`id_admin`, `nm_admin`, `email`, `password`, `level`, `status_partisipasi`, `keterangan`, `created_at`, `updated_at`) VALUES
-(6, 'ccdnkz', 'ccdnkz@mail.com', '856e22b06868660656e0e6fff975a8d9', 1, 1, 'Bagian Hura Hura', '2018-06-23 13:14:04', '2018-07-03 17:24:44'),
-(7, 'Edward', 'esj@mail.com', '5f0713b7c76ee9285a14984eeb332f43', 1, 1, 'IT - Hiring', '2018-06-27 16:26:07', '2018-07-03 17:24:09'),
-(13, 'Admin', 'admin@mail.com', '21232f297a57a5a743894a0e4a801fc3', 2, 0, 'Administrator', '2018-06-30 21:03:01', '2018-07-03 15:13:04'),
-(14, 'Ryan', 'ryan@mail.com', '10c7ccc7a4f0aff03c915c485565b9da', 1, 1, 'Bagian Hired Job', '2018-06-30 21:59:08', '2018-06-30 14:59:08');
+INSERT INTO `admins` (`id_admin`, `nm_admin`, `email`, `password`, `profesi`, `level`, `created_at`, `updated_at`) VALUES
+(6, 'ccdnkz', 'ccdnkz@mail.com', '856e22b06868660656e0e6fff975a8d9', 'IT - Support', 1, '2018-06-23 13:14:04', '2018-07-05 13:48:25'),
+(7, 'Edward', 'esj@mail.com', '5f0713b7c76ee9285a14984eeb332f43', 'IT - Maintenance', 1, '2018-06-27 16:26:07', '2018-07-05 13:48:33'),
+(13, 'Admin', 'admin@mail.com', '21232f297a57a5a743894a0e4a801fc3', 'IT - UI IX', 1, '2018-06-30 21:03:01', '2018-07-05 13:49:52'),
+(14, 'Ryan', 'ryan@mail.com', '10c7ccc7a4f0aff03c915c485565b9da', 'IT - Tech', 1, '2018-06-30 21:59:08', '2018-07-05 13:48:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins_sesi`
+--
+
+CREATE TABLE `admins_sesi` (
+  `id` int(6) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `id_admin` int(6) NOT NULL,
+  `id_stage` int(6) DEFAULT NULL,
+  `created_by` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `algoritma`
+--
+
+CREATE TABLE `algoritma` (
+  `id_algo` int(3) NOT NULL,
+  `nm_algo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `algoritma`
+--
+
+INSERT INTO `algoritma` (`id_algo`, `nm_algo`) VALUES
+(1, 'CART'),
+(2, 'C4.5');
 
 -- --------------------------------------------------------
 
@@ -127,21 +159,6 @@ INSERT INTO `job` (`id_job`, `nm_job`, `created_at`, `updated_at`) VALUES
 (9, 'Manajer Operasional', '2018-07-03 01:34:23', '2018-07-02 18:34:23'),
 (10, 'Manajer Logistik', '2018-07-03 01:34:34', '2018-07-02 18:34:34'),
 (11, 'IT - Kepala Bagian Support', '2018-07-03 01:34:52', '2018-07-02 18:34:52');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `news`
---
-
-CREATE TABLE `news` (
-  `id_news` int(3) NOT NULL,
-  `judul` varchar(255) NOT NULL,
-  `konten` text NOT NULL,
-  `img` text NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -203,35 +220,23 @@ INSERT INTO `question_online` (`id_question`, `question`, `answer_a`, `answer_b`
 (1, '<p><em>Apakah</em> Jawaban di bawah ini <strong>BENAR</strong> ?</p>', 'Mungkin', 'Iya', 'Salah', 'Kek Nya Benar', 'Iya', 30, 1, 'Akuntansi I', '2018-07-01 16:02:26', '2018-07-01 12:23:10', 1),
 (2, '<p>Apa yang kami inginkan ?</p>', 'Tidak Urus', 'Uang', 'Hidup Mewah', 'Kekayaan', 'Tidak Urus', 15, 1, 'Akuntansi II', '2018-07-01 18:19:58', '2018-07-01 15:48:23', 6),
 (3, '<p>How ?</p>', '1', '2', '3', '4', '4', 74, 1, 'Akuntansi II', '2018-07-01 19:15:28', '2018-07-01 12:15:42', 3),
-(4, '<p>Skripsi itu mudah atau tidak ?</p>', 'Ez', 'Susah', 'Gak Kuliah', 'Susah Susah Gampang Bang', 'Ez', 9, 1, 'Akuntansi II', '2018-07-01 22:49:34', '2018-07-01 15:49:47', 6);
+(4, '<p>Skripsi itu mudah atau tidak ?</p>', 'Ez', 'Susah', 'Gak Kuliah', 'Susah Susah Gampang Bang', 'Ez', 9, 1, 'Akuntansi II', '2018-07-01 22:49:34', '2018-07-01 15:49:47', 6),
+(5, '<p>Kegunaan Mouse ?</p>', 'Untuk menjalankan kursor', 'Ntah', 'Jawab Sendiri', 'Gk usa Jawab', 'Untuk menjalankan kursor', 5, 1, 'IT', '2018-07-05 22:16:56', '2018-07-05 15:16:56', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `required_job`
+-- Table structure for table `required_ability`
 --
 
-CREATE TABLE `required_job` (
+CREATE TABLE `required_ability` (
   `id` int(6) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_ability` int(6) NOT NULL,
-  `id_job` int(6) NOT NULL
+  `id_job` int(6) NOT NULL,
+  `id_std` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `required_job`
---
-
-INSERT INTO `required_job` (`id`, `created_at`, `updated_at`, `id_ability`, `id_job`) VALUES
-(10, '2018-07-03 01:27:13', '2018-07-02 18:27:13', 2, 7),
-(11, '2018-07-03 01:27:13', '2018-07-02 18:27:13', 12, 7),
-(12, '2018-07-03 01:27:13', '2018-07-02 18:27:13', 17, 7),
-(13, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 17, 7),
-(14, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 18, 7),
-(15, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 20, 7),
-(16, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 21, 7),
-(17, '2018-07-03 01:37:34', '2018-07-02 18:37:34', 23, 7);
 
 -- --------------------------------------------------------
 
@@ -242,13 +247,31 @@ INSERT INTO `required_job` (`id`, `created_at`, `updated_at`, `id_ability`, `id_
 CREATE TABLE `selection_stage` (
   `id_stage` int(6) NOT NULL,
   `nm_stage` varchar(255) NOT NULL,
-  `start_stage` datetime DEFAULT NULL,
-  `end_stage` datetime DEFAULT NULL,
   `label_online` varchar(255) NOT NULL,
   `label_f2f` varchar(255) NOT NULL,
-  `status` tinyint(4) NOT NULL,
+  `status_selesai` int(3) NOT NULL,
+  `status_laporan` int(3) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_algo` int(6) NOT NULL,
+  `id_std` int(6) NOT NULL,
+  `id_job` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `selection_stage_detail`
+--
+
+CREATE TABLE `selection_stage_detail` (
+  `id` int(6) NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `start_stage` date NOT NULL,
+  `end_stage` date NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `id_stage` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -447,6 +470,21 @@ CREATE TABLE `users_detail` (
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users_exam`
+--
+
+CREATE TABLE `users_exam` (
+  `id` int(6) NOT NULL,
+  `start_online` datetime NOT NULL,
+  `end_online` datetime NOT NULL,
+  `start_f2f` datetime NOT NULL,
+  `end_f2f` datetime NOT NULL,
+  `id_user` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 --
 -- Indexes for dumped tables
 --
@@ -464,6 +502,18 @@ ALTER TABLE `admins`
   ADD PRIMARY KEY (`id_admin`);
 
 --
+-- Indexes for table `admins_sesi`
+--
+ALTER TABLE `admins_sesi`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `algoritma`
+--
+ALTER TABLE `algoritma`
+  ADD PRIMARY KEY (`id_algo`);
+
+--
 -- Indexes for table `dataset`
 --
 ALTER TABLE `dataset`
@@ -474,12 +524,6 @@ ALTER TABLE `dataset`
 --
 ALTER TABLE `job`
   ADD PRIMARY KEY (`id_job`);
-
---
--- Indexes for table `news`
---
-ALTER TABLE `news`
-  ADD PRIMARY KEY (`id_news`);
 
 --
 -- Indexes for table `question_f2f`
@@ -494,9 +538,9 @@ ALTER TABLE `question_online`
   ADD PRIMARY KEY (`id_question`);
 
 --
--- Indexes for table `required_job`
+-- Indexes for table `required_ability`
 --
-ALTER TABLE `required_job`
+ALTER TABLE `required_ability`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -504,6 +548,12 @@ ALTER TABLE `required_job`
 --
 ALTER TABLE `selection_stage`
   ADD PRIMARY KEY (`id_stage`);
+
+--
+-- Indexes for table `selection_stage_detail`
+--
+ALTER TABLE `selection_stage_detail`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `standard_ability`
@@ -584,6 +634,12 @@ ALTER TABLE `users_detail`
   ADD PRIMARY KEY (`id_d_user`);
 
 --
+-- Indexes for table `users_exam`
+--
+ALTER TABLE `users_exam`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -600,6 +656,18 @@ ALTER TABLE `admins`
   MODIFY `id_admin` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `admins_sesi`
+--
+ALTER TABLE `admins_sesi`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `algoritma`
+--
+ALTER TABLE `algoritma`
+  MODIFY `id_algo` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `dataset`
 --
 ALTER TABLE `dataset`
@@ -612,12 +680,6 @@ ALTER TABLE `job`
   MODIFY `id_job` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `news`
---
-ALTER TABLE `news`
-  MODIFY `id_news` int(3) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `question_f2f`
 --
 ALTER TABLE `question_f2f`
@@ -627,19 +689,25 @@ ALTER TABLE `question_f2f`
 -- AUTO_INCREMENT for table `question_online`
 --
 ALTER TABLE `question_online`
-  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT for table `required_job`
+-- AUTO_INCREMENT for table `required_ability`
 --
-ALTER TABLE `required_job`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+ALTER TABLE `required_ability`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
   MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `selection_stage_detail`
+--
+ALTER TABLE `selection_stage_detail`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `standard_ability`
@@ -718,6 +786,12 @@ ALTER TABLE `users_ability`
 --
 ALTER TABLE `users_detail`
   MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `users_exam`
+--
+ALTER TABLE `users_exam`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

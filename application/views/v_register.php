@@ -15,6 +15,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/icheck-bootstrap.min.css">
 
+
+
 		<style type="text/css">
 			.stepwizard-step p {
 				margin-top: 0px;
@@ -61,17 +63,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				border-radius: 15px;
 			}
 		</style>
-
-		<script type="text/javascript">
-			function confirmDialog() {
-				return confirm('Are you sure want to delete this record?')
-			}
-		</script>
 	</head>
 	<body class="sidebar-hidden header-fixed">
 		<div class="page-wrapper">
 			<nav class="navbar page-header">
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="<?php echo site_url('dashboard'); ?>">
 					<img src="<?php echo base_url(); ?>assets/img/logo.png" alt="logo">
 				</a>
 
@@ -84,17 +80,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<div class="main-container">
 				<div class="content">
+					<?php if ($cek != 0): ?>
 					<div class="container">
 						<div class="stepwizard">
 							<div class="stepwizard-row setup-panel">
 								<div class="stepwizard-step col-xs-3"> 
 									<a href="#step-1" type="button" class="btn btn-success btn-circle">1</a>
-									<p><small>Shipper</small></p>
+									<p><small>Register 1</small></p>
 								</div>
 
 								<div class="stepwizard-step col-xs-3"> 
 									<a href="#step-2" type="button" class="btn btn-default btn-circle">2</a>
-									<p><small>Destination</small></p>
+									<p><small>Register 2</small></p>
 								</div>
 							</div>
 						</div>
@@ -106,17 +103,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 
 								<div class="card-body">
-									<div class="row">
-										<div class="col-md-6 offset-md-3">
-											<div class="form-group row">
-												<label for="no_ktp" class="col-sm-4 col-form-label require">No. KTP</label>
-												
-												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_ktp" id="no_ktp">
-												</div>
+									<fieldset class="form-group">
+										<div class="row">
+											<legend class="col-form-label col-sm-3 pt-0">Pilih Sesi yang ingin diikuti</legend>
+											<div class="col-sm-9">
+												<?php foreach ($open_sesi as $i): ?>
+													<?php if ($i->start_stage <= $format && $i->end_stage >= $format): ?>
+														<input type="hidden" name="stage" value="<?php echo $i->id ?>">
+														<div class="form-check">
+															<input class="form-check-input" type="radio" name="job" id="<?php $i->id_job; ?>" value="<?php echo $i->id_job; ?>">
+															<label class="form-check-label" for="<?php $i->id_job ?>">
+																<?php echo $i->nm_job ?> <br> <?php echo $i->start_stage." - ".$i->end_stage ?>
+															</label>
+														</div>
+													<?php endif ?>
+												<?php endforeach ?>
 											</div>
 										</div>
-									</div>
+									</fieldset>
 								</div>
 
 								<div class="modal-footer">
@@ -383,23 +387,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="row">
 										<div class="col-md-6 offset-md-3">
 											<div class="form-group row">
-												<label for="job_required" class="col-sm-4 col-form-label require">Dibutuhkan Posisi</label>
-												
-												<div class="col-sm-8">
-													<select name="job_required" id="job_required" class="form-control">
-														<option selected>Choose...</option>
-														<?php foreach ($job as $i): ?>
-															<option value="<?php echo $i->id_job ?>"><?php echo $i->nm_job ?></option>
-														<?php endforeach ?>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-md-6 offset-md-3">
-											<div class="form-group row">
 												<label for="kemampuan" class="col-sm-4 col-form-label require">kemampuan</label>
 												
 												<div class="col-sm-8">
@@ -465,14 +452,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</div>
 						<?php echo form_close(); ?>
 					</div>
-
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-md-12">
-								
-							</div>
-						</div>
-					</div>
+					<?php else: ?>
+						<h2>Maaf tidak ada sesi hari ini!</h2>
+					<?php endif ?>
 				</div>
 			</div>
 		</div>

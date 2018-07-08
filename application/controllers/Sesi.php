@@ -81,7 +81,8 @@ class Sesi extends CI_Controller
 				'status_selesai' => 0,
 				'status_laporan' => 0,
 				'id_algo' => 'algoritma',
-				'id_std' => $kualifikasi
+				'id_std' => $kualifikasi,
+				'id_job' => $divisi
 			);
 			$idSelection = $this->sesi_model->add_session('selection_stage', $data_selection);
 
@@ -132,8 +133,11 @@ class Sesi extends CI_Controller
 			$this->sesi_model->add_detail_selection('selection_stage_detail', $detail_stage);
 
 			$data_admin = array( 'id_stage' => $idSelection );
-			$data_admin_where = array( 'created_by' => $this->session->userdata('id_admin') );
-			$admin_sesi = $this->sesi_model->update_admin_sesi('admins_sesi', $data_admin_where, $data_admin);
+			$data_admin_where = array( 
+				'id_stage' => 0,
+				'created_by' => $this->session->userdata('ses_id')
+			);
+			$this->sesi_model->update_admin_sesi('admins_sesi', $data_admin_where, $data_admin);
 
 			redirect('sesi/next');
 		}

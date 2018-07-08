@@ -54,7 +54,8 @@ class Kualifikasi extends CI_Controller
 			array_push($val, array(
 				'id' =>  null,
 				'id_ability' => $i,
-				'id_job' => $divisi
+				'id_job' => $divisi,
+				'id_std' => $std_qua
 			));
 		}
 		$this->kualifikasi_model->add_required('required_ability', $val);
