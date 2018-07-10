@@ -16,6 +16,11 @@ class user_model extends CI_Model
 		return (isset($id)) ? $id : FALSE;
 	}
 
+	function change_active($table, $where, $data) {
+		$this->db->where($where);
+		$this->db->update($table, $data);
+	}
+
 	function add_user_detail($table, $data) {
 		$this->db->insert($table, $data);
 	}

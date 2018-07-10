@@ -15,6 +15,17 @@ class Register extends CI_Controller
 		$this->load->model('setting_model');
 	}
 
+	public function random_code($length = 100) {
+		$characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+		$charactersLength = strlen($characters);
+		$randomString = '';
+		for ($i = 0; $i < $length; $i++) {
+			$randomString .= $characters[rand(0, $charactersLength - 1)];
+		}
+
+		return $randomString;
+	}
+
 	function index() {
 		$data['format'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
 		
@@ -31,7 +42,7 @@ class Register extends CI_Controller
 		$full_name = $this->input->post('nama_lengkap');
 		$ktp = $this->input->post('no_ktp');
 		$email = $this->input->post('email');
-		$password = md5($this->input->post('password'));
+		$password = $this->input->post('password');
 		$tempat_lahir = $this->input->post('tempat_lahir');
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$post_time = strtotime($this->input->post('tgl_lahir'));
@@ -66,11 +77,12 @@ class Register extends CI_Controller
 		}
 		// print_r($target);
 
+		$confirm_code = $this->random_code();
 		$data_user = array(
 			'id_user' => null,
 			'email' => $email,
-			'password' => $password,
-			'confirm_code' => null,
+			'password' => md5($password),
+			'confirm_code' => $confirm_code,
 			'id_job' => $job,
 			'id_stage' => $stage
 		);
@@ -112,8 +124,53 @@ class Register extends CI_Controller
 
 		$this->user_model->add_user_detail('users_detail', $detail_user);
 		$this->user_model->add_user_ability('users_ability', $val);
-		$this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>Register berhasil!</strong> Silahkan konfirmasi email anda terlebih dahulu.</div>');
-		
+
+		$config = [
+			'useragent' => 'CodeIgniter',
+			'protocol'  => 'smtp',
+			'mailpath'  => '/usr/sbin/sendmail',
+			// 'smtp_host' => 'ssl://smtp.gmail.com',
+			'smtp_host' => 'ssl://smtp.mail.yahoo.com',
+			'smtp_user' => '', // email
+			'smtp_pass' => '', // password
+			'smtp_port' => 465,
+			'smtp_keepalive' => TRUE,
+			'smtp_crypto' => 'SSL',
+			'wordwrap'  => TRUE,
+			'wrapchars' => 80,
+			'mailtype'  => 'html',
+			'charset'   => 'utf-8',
+			'validate'  => TRUE,
+			'crlf'      => "\r\n",
+			'newline'   => "\r\n",
+		];
+
+		$this->email->initialize($config);
+		$this->email->from('', 'Edward');
+		$this->email->to($email);
+		$this->email->subject('Verifikasi Akun');
+		$this->email->message('Terima kasih telah melakukan verifikasi. Silahkan klik link verifikasi berikut.<br>'.site_url('register/verification/'.$confirm_code)."<br><br><br>Selamat Beraktivitas, Edward Surya Jaya - Selection Team");
+
+		if ($this->email->send()) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-success"><strong>Register berhasil!</strong> Silahkan konfirmasi email anda terlebih dahulu.</div>');
+			redirect('login');
+		}
+		else {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger"><strong>Register berhasil!</strong> Email tidak terkirim.</div>');
+			redirect('login');
+		}
+	}
+
+	function verification($key) {
+		$data = array(
+			'acc_status' => 1
+		);
+		$where = array(
+			'confirm_code' => $key
+		);
+		$this->user_model->change_active('users', $where, $data);
+
+		$this->session->set_flashdata('msg', '<div class="alert alert-info"><strong>Verifikasi berhasil!</strong> Silahkan Login.</div>');
 		redirect('login');
 	}
 }

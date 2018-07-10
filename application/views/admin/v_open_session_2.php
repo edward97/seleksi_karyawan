@@ -13,7 +13,15 @@
 							<div class="col-md-9">
 								<div class="card">
 									<div class="card-header bg-light">
-										Pilih Sistem Penyeleksi
+										<div class="row">
+											<div class="col-md-6">
+												Pilih Sistem Penyeleksi
+											</div>
+
+											<div class="col-md-6 text-right">
+												<i class="fas fa-download"></i> Template
+											</div>
+										</div>
 									</div>
 
 									<div class="card-body">
@@ -26,8 +34,7 @@
 
 											<div class="col-md-6">
 												<div class="custom-file">
-													<input type="file" class="custom-file-input" name="data_pertama" id="data_pertama">
-													<label class="custom-file-label" for="data_pertama">Choose file</label>
+													<input type="file" name="data_pertama" id="data_pertama">
 												</div>
 											</div>
 										</div>
@@ -41,8 +48,7 @@
 
 											<div class="col-md-6">
 												<div class="custom-file">
-													<input type="file" class="custom-file-input" name="data_kedua" id="data_kedua">
-													<label class="custom-file-label" for="data_kedua">Choose file</label>
+													<input type="file" name="data_kedua" id="data_kedua">
 												</div>
 											</div>
 										</div>

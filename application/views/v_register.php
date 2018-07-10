@@ -173,10 +173,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="row">
 										<div class="col-md-6 offset-md-3">
 											<div class="form-group row">
-												<label for="pasword" class="col-sm-4 col-form-label require">Password</label>
+												<label for="password" class="col-sm-4 col-form-label require">Password</label>
 												
 												<div class="col-sm-8">
-													<input type="password" class="form-control" name="pasword" id="pasword">
+													<input type="password" class="form-control" name="password" id="password">
 												</div>
 											</div>
 										</div>
