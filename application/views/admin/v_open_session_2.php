@@ -1,3 +1,10 @@
+<script>
+	$(document).ready(function(){
+		// sembunyikan alert validasi kosong
+		$("#kosong").hide();
+	});
+</script>
+
 <div class="content">
 	<div class="container-fluid">
 		<div class="row">
@@ -7,8 +14,9 @@
 						Open Session
 					</div>
 						
-					<?php echo form_open('sesi/save_act_2'); ?>
+					<?php echo form_open_multipart('dataset/form_preview'); ?>
 					<div class="card-body">
+						<?php echo $this->session->flashdata('msg'); ?>
 						<div class="row">
 							<div class="col-md-9">
 								<div class="card">
@@ -19,7 +27,7 @@
 											</div>
 
 											<div class="col-md-6 text-right">
-												<i class="fas fa-download"></i> Template
+												<a class="text-info" href="<?php echo base_url(); ?>assets/files/format.csv"><i class="fas fa-download"></i> Template</a>
 											</div>
 										</div>
 									</div>
@@ -28,13 +36,13 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="col-form-label require">Upload Data Pendukung</label>
+													<label for="file" class="col-form-label require">Upload Data Pendukung</label>
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="custom-file">
-													<input type="file" name="data_pertama" id="data_pertama">
+													<input type="file" name="file" id="file" accept=".csv">
 												</div>
 											</div>
 										</div>
@@ -42,20 +50,22 @@
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="col-form-label">Upload Karyawan Sesi Sebelumnya</label>
+													<label for="file1" class="col-form-label">Upload Karyawan Sesi Sebelumnya</label>
 												</div>
 											</div>
 
 											<div class="col-md-6">
 												<div class="custom-file">
-													<input type="file" name="data_kedua" id="data_kedua">
+													<input type="file" name="file1" id="file1" accept=".csv">
 												</div>
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="col-md-12 text-right">
-												<a href="#" class="btn btn-info">Generate</a>
+												<div class="form-group">
+													<button type="submit" class="btn btn-info" name="preview" value="preview">Preview</button>
+												</div>
 											</div>
 										</div>
 									</div>
