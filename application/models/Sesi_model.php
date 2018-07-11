@@ -10,12 +10,18 @@ class Sesi_model extends CI_Model
 
 	}
 
-	function tampil_tahap_1() {
+	function tampil_tahap_1($data) {
 		$this->db->select('job.id_job, job.nm_job, selection_stage_detail.id, selection_stage_detail.start_stage, selection_stage_detail.end_stage');
 		$this->db->from('job');
 		$this->db->join('selection_stage', 'selection_stage.id_job = job.id_job', 'inner');
 		$this->db->join('selection_stage_detail', 'selection_stage_detail.id_stage = selection_stage.id_stage', 'inner');
-		$this->db->where('selection_stage_detail.label', 'Tahap 1');
+
+		$arr = array(
+			'selection_stage_detail.label' => 'Tahap 1',
+			'selection_stage_detail.start_stage <=' => $data,
+			'selection_stage_detail.end_stage >=' => $data
+		);
+		$this->db->where($arr);
 		return $this->db->get();
 	}
 

@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 									<div class="custom-control custom-checkbox mt-4">
 										<input type="checkbox" class="custom-control-input" id="login" checked>
-										<label class="custom-control-label" for="login">I agree to the <a href="#">Terms of User</a></label>
+										<label class="custom-control-label" for="login">I agree to the <a href="#" class="text-primary">Terms of User</a></label>
 									</div>
 								</div>
 

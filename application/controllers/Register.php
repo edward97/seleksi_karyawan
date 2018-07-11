@@ -29,9 +29,9 @@ class Register extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
 		
-		$data['open_sesi'] = $this->sesi_model->tampil_tahap_1()->result();
-		$data['cek'] = $this->sesi_model->tampil_tahap_1()->num_rows();
-
+		$data['open_sesi'] = $this->sesi_model->tampil_tahap_1($data['format'])->result();
+		$data['cek'] = $this->sesi_model->tampil_tahap_1($data['format'])->num_rows();
+		
 		$data['ability'] = $this->setting_model->tampil_ability()->result();
 		$data['job'] = $this->setting_model->tampil_job()->result();
 

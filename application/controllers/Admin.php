@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * admin
+ * Admin
  */
 class Admin extends CI_Controller
 {

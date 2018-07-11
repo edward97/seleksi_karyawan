@@ -251,7 +251,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															</label>
 														</div>
 
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" disabled>
+															<label class="form-check-label" for="defaultCheck1">
+																Tunggu hasil pendafataran
+															</label>
+														</div>
 														<hr>
+
 														<p>Yang perlu dilakukan</p>
 														<p class="text-center">Status</p>
 														<div class="form-group text-center">

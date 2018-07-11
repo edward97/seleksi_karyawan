@@ -11,6 +11,8 @@ class Login extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('login_model');
+		$this->load->model('sesi_model');
+		$this->load->model('user_model');
 	}
 
 	function index() {
@@ -55,12 +57,13 @@ class Login extends CI_Controller
 					}
 				}
 				else {
-					$where_admin = array(
-						'email' => $email,
-						'password' => md5($password),
-						'acc_status' => 1
+					$today = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+
+					$where_user = array(
+						'users.email' => $email,
+						'users.password' => md5($password),
 					);
-					$cek_user = $this->login_model->auth_user('users', $where_admin);
+					$cek_user = $this->login_model->auth_user('users', $where_user);
 
 					if ($cek_user->num_rows() > 0) {
 						$data = $cek_user->row_array();
@@ -69,12 +72,34 @@ class Login extends CI_Controller
 						$this->session->set_userdata('akses', '3');
 						$this->session->set_userdata('ses_id', $data['id_user']);
 						$this->session->set_userdata('ses_nm', $data['email']);
-						
-						$selection_detail = $this->login_model->get_label($email)->row_array();
-						$this->session->set_userdata('ses_stage', $selection_detail['id']);
-						$this->session->set_userdata('ses_label', $selection_detail['label']);
+						$this->session->set_userdata('ses_stage', $data['id']);
+						$this->session->set_userdata('ses_label', $data['label']);
 
-						redirect('dashboard');
+						if ($data['acc_status'] == '0') {
+							$this->session->set_flashdata('msg', '<div class="alert alert-warning">Silahkan konfirmasi email anda!</div>');
+							redirect('login');
+						}
+						elseif ($data['acc_status'] == '1') {
+
+							// status nya ntar di ganti utk cek apakah user lulus atau tidak
+							if ($today > $data['end_stage'] && $data['label'] == 'Tahap 1') {
+								$data_ar = array(
+									'acc_status' => 2
+								);
+								$where_ar = array(
+									'id_user' => $data['id_user']
+								);
+								$this->user_model->change_active('users', $where_ar, $data_ar);
+								redirect('dashboard/result');
+							}
+							redirect('dashboard');
+						}
+						elseif ($data['acc_status'] == '2') {
+							redirect('dashboard/result');
+						}
+						else {
+							$this->load->view('errors/404.html');
+						}
 					}
 					else {
 						$this->session->set_flashdata('msg', '<div class="alert alert-danger">Email or password is Incorrect!</div>');

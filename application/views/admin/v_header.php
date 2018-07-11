@@ -98,7 +98,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
+								<a href="<?php echo site_url('user'); ?>" class="nav-link">
 									<i class="icon icon-people"></i> Profile User
 								</a>
 							</li>

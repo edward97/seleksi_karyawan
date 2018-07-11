@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 08, 2018 at 07:41 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- Generation Time: Jul 11, 2018 at 11:48 AM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -91,6 +91,15 @@ CREATE TABLE `admins_sesi` (
   `created_by` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `admins_sesi`
+--
+
+INSERT INTO `admins_sesi` (`id`, `keterangan`, `id_admin`, `id_stage`, `created_by`) VALUES
+(2, 'Bagian Pengawas', 7, 1, 7),
+(4, 'Bagian Interview', 13, 1, 7),
+(6, 'Bagian Seleksi', 7, 2, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -131,6 +140,15 @@ CREATE TABLE `dataset` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dataset`
+--
+
+INSERT INTO `dataset` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `buta_warna`, `created_at`, `updated_at`) VALUES
+(1, 'Edward Surya Jaya', 21, 2, 'S1', 'Lajang', 8, 85, 85, 'Baik', 'Negatif', '2018-07-11 08:54:37', '2018-07-11 01:54:37'),
+(2, 'Christine', 25, 5, 'S3', 'Lajang', 7, 90, 90, 'Cukup Baik', 'Positif', '2018-07-11 08:54:37', '2018-07-11 01:54:37'),
+(3, 'Ryan Rajaya', 22, 3, 'S2', 'Menikah', 5, 88, 87, 'Sangat Baik', 'Parsial', '2018-07-11 08:54:37', '2018-07-11 01:54:37');
 
 -- --------------------------------------------------------
 
@@ -238,6 +256,25 @@ CREATE TABLE `required_ability` (
   `id_std` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `required_ability`
+--
+
+INSERT INTO `required_ability` (`id`, `created_at`, `updated_at`, `id_ability`, `id_job`, `id_std`) VALUES
+(1, '2018-07-10 09:09:46', '2018-07-10 02:09:46', 17, 7, 1),
+(2, '2018-07-10 09:09:46', '2018-07-10 02:09:46', 18, 7, 1),
+(3, '2018-07-10 09:09:46', '2018-07-10 02:09:46', 21, 7, 1),
+(4, '2018-07-10 09:09:46', '2018-07-10 02:09:46', 22, 7, 1),
+(5, '2018-07-10 09:09:46', '2018-07-10 02:09:46', 23, 7, 1),
+(6, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 2, 3, 2),
+(7, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 10, 3, 2),
+(8, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 17, 3, 2),
+(9, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 18, 3, 2),
+(10, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 20, 3, 2),
+(11, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 22, 3, 2),
+(12, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 23, 3, 2),
+(13, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 24, 3, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -258,6 +295,14 @@ CREATE TABLE `selection_stage` (
   `id_job` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `selection_stage`
+--
+
+INSERT INTO `selection_stage` (`id_stage`, `nm_stage`, `label_online`, `label_f2f`, `status_selesai`, `status_laporan`, `created_at`, `updated_at`, `id_algo`, `id_std`, `id_job`) VALUES
+(1, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 0, 0, '2018-07-10 09:11:52', '2018-07-10 02:11:52', 0, 1, 7),
+(2, 'nama_stage', 'IT', 'Akuntansi I', 0, 0, '2018-07-11 15:23:00', '2018-07-11 08:23:00', 0, 2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -274,6 +319,24 @@ CREATE TABLE `selection_stage_detail` (
   `id_stage` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `selection_stage_detail`
+--
+
+INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`, `created_at`, `updated_at`, `id_stage`) VALUES
+(1, 'Tahap 1', '2018-07-09', '2018-07-11', '2018-07-10 09:11:52', '2018-07-11 07:40:41', 1),
+(2, 'Tahap 2', '2018-07-16', '2018-07-21', '2018-07-10 09:11:52', '2018-07-11 03:49:23', 1),
+(3, 'Tahap 3', '2018-07-23', '2018-07-28', '2018-07-10 09:11:52', '2018-07-10 02:11:52', 1),
+(4, 'Tahap 4', '2018-07-30', '2018-07-31', '2018-07-10 09:11:52', '2018-07-10 02:11:52', 1),
+(5, 'Tahap 5', '2018-07-30', '2018-07-31', '2018-07-10 09:11:52', '2018-07-10 02:11:52', 1),
+(6, 'Tahap 6', '2018-07-30', '2018-07-31', '2018-07-10 09:11:52', '2018-07-10 02:11:52', 1),
+(7, 'Tahap 1', '2018-07-09', '2018-07-14', '2018-07-11 15:23:00', '2018-07-11 08:23:00', 2),
+(8, 'Tahap 2', '2018-07-16', '2018-07-21', '2018-07-11 15:23:00', '2018-07-11 08:23:00', 2),
+(9, 'Tahap 3', '2018-07-23', '2018-07-28', '2018-07-11 15:23:00', '2018-07-11 08:23:00', 2),
+(10, 'Tahap 4', '2018-07-30', '2018-07-31', '2018-07-11 15:23:00', '2018-07-11 08:23:00', 2),
+(11, 'Tahap 5', '2018-07-30', '2018-07-31', '2018-07-11 15:23:00', '2018-07-11 08:23:00', 2),
+(12, 'Tahap 6', '2018-07-30', '2018-07-31', '2018-07-11 15:23:00', '2018-07-11 08:23:00', 2);
+
 -- --------------------------------------------------------
 
 --
@@ -286,6 +349,20 @@ CREATE TABLE `standard_ability` (
   `id_std` int(6) NOT NULL,
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `standard_ability`
+--
+
+INSERT INTO `standard_ability` (`id`, `kemampuan`, `id_std`, `priority`) VALUES
+(1, 5, 1, 1),
+(2, 7, 1, 1),
+(3, 8, 1, 2),
+(4, 10, 1, 2),
+(5, 5, 2, 1),
+(6, 8, 2, 1),
+(7, 9, 2, 2),
+(8, 10, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -300,6 +377,20 @@ CREATE TABLE `standard_age` (
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `standard_age`
+--
+
+INSERT INTO `standard_age` (`id`, `umur`, `id_std`, `priority`) VALUES
+(1, 20, 1, 1),
+(2, 21, 1, 3),
+(3, 25, 1, 3),
+(4, 40, 1, 2),
+(5, 20, 2, 1),
+(6, 21, 2, 1),
+(7, 25, 2, 1),
+(8, 35, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -312,6 +403,18 @@ CREATE TABLE `standard_buta_warna` (
   `id_std` int(6) NOT NULL,
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `standard_buta_warna`
+--
+
+INSERT INTO `standard_buta_warna` (`id`, `buta_warna`, `id_std`, `priority`) VALUES
+(1, 'Negatif', 1, 3),
+(2, 'Parsial', 1, 2),
+(3, 'Positif', 1, 1),
+(4, 'Negatif', 2, 3),
+(5, 'Parsial', 2, 2),
+(6, 'Positif', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -326,6 +429,20 @@ CREATE TABLE `standard_education` (
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `standard_education`
+--
+
+INSERT INTO `standard_education` (`id`, `pendidikan`, `id_std`, `priority`) VALUES
+(1, 'SMA', 1, 1),
+(2, 'S1', 1, 1),
+(3, 'S2', 1, 2),
+(4, 'S3', 1, 3),
+(5, 'SMA', 2, 1),
+(6, 'S1', 2, 2),
+(7, 'S2', 2, 3),
+(8, 'S3', 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -338,6 +455,20 @@ CREATE TABLE `standard_experience` (
   `id_std` int(6) NOT NULL,
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `standard_experience`
+--
+
+INSERT INTO `standard_experience` (`id`, `pengalaman`, `id_std`, `priority`) VALUES
+(1, 0, 1, 1),
+(2, 1, 1, 2),
+(3, 2, 1, 2),
+(4, 3, 1, 3),
+(5, 0, 2, 1),
+(6, 1, 2, 1),
+(7, 2, 2, 1),
+(8, 3, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -352,6 +483,24 @@ CREATE TABLE `standard_f2f` (
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `standard_f2f`
+--
+
+INSERT INTO `standard_f2f` (`id`, `nilai`, `id_std`, `priority`) VALUES
+(1, 70, 1, 1),
+(2, 79, 1, 1),
+(3, 80, 1, 2),
+(4, 89, 1, 2),
+(5, 90, 1, 3),
+(6, 100, 1, 3),
+(7, 80, 2, 1),
+(8, 80, 2, 1),
+(9, 86, 2, 2),
+(10, 95, 2, 2),
+(11, 96, 2, 3),
+(12, 100, 2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -365,6 +514,24 @@ CREATE TABLE `standard_online` (
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `standard_online`
+--
+
+INSERT INTO `standard_online` (`id`, `nilai`, `id_std`, `priority`) VALUES
+(1, 70, 1, 1),
+(2, 79, 1, 1),
+(3, 80, 1, 3),
+(4, 89, 1, 3),
+(5, 90, 1, 2),
+(6, 100, 1, 2),
+(7, 75, 2, 1),
+(8, 80, 2, 1),
+(9, 81, 2, 2),
+(10, 95, 2, 2),
+(11, 96, 2, 3),
+(12, 100, 2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -376,6 +543,14 @@ CREATE TABLE `standard_qualification` (
   `nm_std` varchar(255) NOT NULL,
   `id_job` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `standard_qualification`
+--
+
+INSERT INTO `standard_qualification` (`id_std`, `nm_std`, `id_job`) VALUES
+(1, 'Standard Akuntansi', 7),
+(2, 'Standar IT', 3);
 
 -- --------------------------------------------------------
 
@@ -390,6 +565,18 @@ CREATE TABLE `standard_sikap` (
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `standard_sikap`
+--
+
+INSERT INTO `standard_sikap` (`id`, `nilai`, `id_std`, `priority`) VALUES
+(1, 'Cukup Baik', 1, 1),
+(2, 'Baik', 1, 2),
+(3, 'Sangat Baik', 1, 3),
+(4, 'Cukup Baik', 2, 1),
+(5, 'Baik', 2, 2),
+(6, 'Sangat Baik', 2, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -402,6 +589,16 @@ CREATE TABLE `standard_status` (
   `id_std` int(6) NOT NULL,
   `priority` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `standard_status`
+--
+
+INSERT INTO `standard_status` (`id`, `status`, `id_std`, `priority`) VALUES
+(1, 'Lajang', 1, 2),
+(2, 'Menikah', 1, 1),
+(3, 'Lajang', 2, 1),
+(4, 'Menikah', 2, 2);
 
 -- --------------------------------------------------------
 
@@ -421,6 +618,14 @@ CREATE TABLE `users` (
   `id_stage` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `email`, `password`, `confirm_code`, `acc_status`, `created_at`, `updated_at`, `id_job`, `id_stage`) VALUES
+(9, 'edw.suryajaya@gmail.com', 'a53f3929621dba1306f8a61588f52f55', '0wKtS1jQ1qENYsrsvMzWlJT10GTMfSQNzQUy65Lys2CRITkvun2KxnUkRyc4B08OmBWXMjhIZw1C02OUq3TbO4OZNtCGS5WLRxj3', 1, '2018-07-10 10:28:06', '2018-07-11 07:40:44', 7, 1),
+(10, 'vincent@mail.com', 'b15ab3f829f0f897fe507ef548741afb', '6YG6qVdWN5hq5FryfKldls96oGUxQuZCezFQOY7rIcb5f3prqO9yYywLLtMsMvvzx0EbLeGQIxeGDm6nQM6z6gjr4O3AcV2wHCYL', 1, '2018-07-11 15:25:29', '2018-07-11 08:25:48', 3, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -434,6 +639,21 @@ CREATE TABLE `users_ability` (
   `id_ability` int(6) NOT NULL,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_ability`
+--
+
+INSERT INTO `users_ability` (`id`, `created_at`, `updated_at`, `id_ability`, `id_user`) VALUES
+(49, '2018-07-10 10:28:06', '2018-07-10 03:28:06', 18, 9),
+(50, '2018-07-10 10:28:06', '2018-07-10 03:28:06', 20, 9),
+(51, '2018-07-10 10:28:06', '2018-07-10 03:28:06', 21, 9),
+(52, '2018-07-10 10:28:06', '2018-07-10 03:28:06', 22, 9),
+(53, '2018-07-10 10:28:06', '2018-07-10 03:28:06', 23, 9),
+(54, '2018-07-10 10:28:06', '2018-07-10 03:28:06', 24, 9),
+(55, '2018-07-11 15:25:30', '2018-07-11 08:25:30', 18, 10),
+(56, '2018-07-11 15:25:30', '2018-07-11 08:25:30', 20, 10),
+(57, '2018-07-11 15:25:30', '2018-07-11 08:25:30', 23, 10);
 
 -- --------------------------------------------------------
 
@@ -469,6 +689,14 @@ CREATE TABLE `users_detail` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_detail`
+--
+
+INSERT INTO `users_detail` (`id_d_user`, `full_name`, `no_ktp`, `birth_place`, `birth_date`, `address`, `domisili`, `kode_pos`, `p_number`, `t_number`, `age`, `gender`, `religion`, `last_education`, `status`, `experience`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `status_passed`, `nama_kerabat`, `nomor_kerabat`, `hubungan_kerabat`, `created_at`, `updated_at`, `id_user`) VALUES
+(9, 'Edward Surya Jaya', '141111235', 'Serbalawan', '1997-02-02', 'Jl. Damar III', 'Medan', '20011', '085275522020', '-', 21, 'Pria', 'Buddha', 'S2', 'Lajang', 3, NULL, NULL, NULL, 0, 'John Doe', '081345692357', 'Saudara', '2018-07-10 10:28:06', '2018-07-10 03:28:06', 9),
+(10, 'Vincent', '141110604', 'Siantar', '1990-01-01', 'Jl. Asia Mega Mas', 'Medan', '20115', '085275469871', '-', 28, 'Pria', 'Konghucu', 'SMA', 'Lajang', 3, NULL, NULL, NULL, 0, 'Calwin', '085236981236', 'Teman', '2018-07-11 15:25:30', '2018-07-11 08:25:30', 10);
 
 -- --------------------------------------------------------
 
@@ -659,7 +887,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admins_sesi`
 --
 ALTER TABLE `admins_sesi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `algoritma`
@@ -671,7 +899,7 @@ ALTER TABLE `algoritma`
 -- AUTO_INCREMENT for table `dataset`
 --
 ALTER TABLE `dataset`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `job`
@@ -695,97 +923,97 @@ ALTER TABLE `question_online`
 -- AUTO_INCREMENT for table `required_ability`
 --
 ALTER TABLE `required_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `standard_ability`
 --
 ALTER TABLE `standard_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `standard_age`
 --
 ALTER TABLE `standard_age`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `standard_buta_warna`
 --
 ALTER TABLE `standard_buta_warna`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `standard_education`
 --
 ALTER TABLE `standard_education`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `standard_experience`
 --
 ALTER TABLE `standard_experience`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `standard_f2f`
 --
 ALTER TABLE `standard_f2f`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `standard_online`
 --
 ALTER TABLE `standard_online`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `standard_qualification`
 --
 ALTER TABLE `standard_qualification`
-  MODIFY `id_std` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_std` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `standard_sikap`
 --
 ALTER TABLE `standard_sikap`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `standard_status`
 --
 ALTER TABLE `standard_status`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users_ability`
 --
 ALTER TABLE `users_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `users_detail`
 --
 ALTER TABLE `users_detail`
-  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `users_exam`

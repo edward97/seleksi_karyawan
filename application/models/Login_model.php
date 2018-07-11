@@ -11,14 +11,10 @@ class Login_model extends CI_Model
 	}
 
 	function auth_user($table, $where) {
-		return $this->db->get_where($table, $where);
-	}
-
-	function get_label($email) {
-		$this->db->select('selection_stage_detail.id, selection_stage_detail.label');
-		$this->db->from('selection_stage_detail');
-		$this->db->join('users', 'users.id_stage = selection_stage_detail.id', 'inner');
-		$this->db->where('users.email', $email);
+		$this->db->select('*, selection_stage_detail.id, selection_stage_detail.label, selection_stage_detail.end_stage');
+		$this->db->from('users');
+		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage', 'left');
+		$this->db->where($where);
 		return $this->db->get();
 	}
 }

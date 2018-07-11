@@ -108,15 +108,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<legend class="col-form-label col-sm-3 pt-0">Pilih Sesi yang ingin diikuti</legend>
 											<div class="col-sm-9">
 												<?php foreach ($open_sesi as $i): ?>
-													<?php if ($i->start_stage <= $format && $i->end_stage >= $format): ?>
-														<input type="hidden" name="stage" value="<?php echo $i->id ?>">
-														<div class="form-check">
-															<input class="form-check-input" type="radio" name="job" id="<?php $i->id_job; ?>" value="<?php echo $i->id_job; ?>">
-															<label class="form-check-label" for="<?php $i->id_job ?>">
-																<?php echo $i->nm_job ?> <br> <?php echo $i->start_stage." - ".$i->end_stage ?>
-															</label>
-														</div>
-													<?php endif ?>
+													<input type="hidden" name="stage" value="<?php echo $i->id ?>">
+													<div class="form-check">
+														<input class="form-check-input" type="radio" name="job" id="<?php $i->id_job; ?>" value="<?php echo $i->id_job; ?>">
+														<label class="form-check-label" for="<?php $i->id_job ?>">
+															<?php echo $i->nm_job ?> <br> <?php echo $i->start_stage." - ".$i->end_stage ?>
+														</label>
+													</div>
 												<?php endforeach ?>
 											</div>
 										</div>
@@ -453,7 +451,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<?php echo form_close(); ?>
 					</div>
 					<?php else: ?>
-						<h2>Maaf tidak ada sesi hari ini!</h2>
+						<h1 class="text-center text-danger">Maaf tidak ada sesi hari ini!</h1>
 					<?php endif ?>
 				</div>
 			</div>

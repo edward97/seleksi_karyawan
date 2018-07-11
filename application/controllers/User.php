@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * dasboard
+ * User
  */
-class Dashboard extends CI_Controller
+class User extends CI_Controller
 {
 	
 	function __construct()
@@ -13,30 +13,24 @@ class Dashboard extends CI_Controller
 		if ($this->session->userdata('masuk') != TRUE) {
 			redirect('login');
 		}
-		$this->load->model('sesi_model');
+		$this->load->model('user_model');
 	}
 
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
-
+		
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
-			$data['judul'] = 'Dashboard';
+			$data['user'] = $this->user_model->tampil_user()->result();
+			$data['ability'] = $this->user_model->compare_ability()->result();
+
+			$data['judul'] = "Users";
 
 			$this->load->view('admin/v_header', $data);
-			$this->load->view('admin/v_dashboard');
+			$this->load->view('admin/v_users');
 			$this->load->view('admin/v_footer');
 		}
 		else {
-			$data['today'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
-
-			
-
-			$this->load->view('user/v_dashboard', $data);
+			$this->load->view('errors/404.html');
 		}
-	}
-
-	function result() {
-		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
-			$this->load->view('user/v_dashboard_tidak_lulus', $data);
 	}
 }
