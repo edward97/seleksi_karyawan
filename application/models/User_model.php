@@ -16,7 +16,7 @@ class user_model extends CI_Model
 		return (isset($id)) ? $id : FALSE;
 	}
 
-	function change_active($table, $where, $data) {
+	function change_user($table, $where, $data) {
 		$this->db->where($where);
 		$this->db->update($table, $data);
 	}
@@ -60,5 +60,14 @@ class user_model extends CI_Model
 		$this->db->where('required_ability.id_std', $where1);
 		$this->db->where('users_ability.id_user', $where2);
 		return $this->db->get();
+	}
+
+	// exam
+	function check($table, $where) {
+		return $this->db->get_where($table, $where);
+	}
+
+	function add_exam($table, $data) {
+		$this->db->insert($table, $data);
 	}
 }

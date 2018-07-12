@@ -65,39 +65,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="content">
 					<div class="container-fluid text-center">
 						<div class="row">
-							<?php if ($this->session->userdata('ses_label') == "Tahap 1"): ?>
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-danger">
-											Tahap Register <i class="fas fa-times"></i>
-										</div>
+							<div class="col-md-3">
+								<div class="card text-white">
+									<div class="card-body bg-danger">
+										Tahap Register <i class="fas fa-times"></i>
 									</div>
 								</div>
+							</div>
 
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Tahap Ujian
-										</div>
+							<div class="col-md-3">
+								<div class="card">
+									<div class="card-body">
+										Tahap Ujian
 									</div>
 								</div>
+							</div>
 
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Tahap Interview
-										</div>
+							<div class="col-md-3">
+								<div class="card">
+									<div class="card-body">
+										Tahap Interview
 									</div>
 								</div>
+							</div>
 
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Result
-										</div>
+							<div class="col-md-3">
+								<div class="card">
+									<div class="card-body">
+										Result
 									</div>
 								</div>
-							<?php endif ?>
+							</div>
 						</div>
 					</div>
 
@@ -113,31 +111,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 										<div class="card-body">
 											<div class="row">
-												<?php if ($this->session->userdata('ses_label') == "Tahap 1"): ?>
-													<div class="col-md-12">
-														<h4>Step 1</h4>
-														<div class="form-check">
-															<input class="form-check-input" type="checkbox" id="defaultCheck1" checked disabled>
-															<label class="form-check-label" for="defaultCheck1">
-																Isi formulir pendaftaran
-															</label>
-														</div>
-
-														<div class="form-check">
-															<input class="form-check-input" type="checkbox" id="defaultCheck2" checked disabled>
-															<label class="form-check-label" for="defaultCheck2">
-																Maaf anda tidak lulus dalam tahapan registrasi, terima kasih.
-															</label>
-														</div>
-														<hr>
-
-														<p>Yang perlu dilakukan</p>
-														<p class="text-center">Status</p>
-														<div class="form-group text-center">
-															<button type="button" class="form-control btn btn-danger" disabled>End</button>
-														</div>
+												<div class="col-md-12">
+													<h4>Step 1</h4>
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" id="defaultCheck1" checked disabled>
+														<label class="form-check-label" for="defaultCheck1">
+															Isi formulir pendaftaran
+														</label>
 													</div>
-												<?php endif ?>
+
+													<div class="form-check">
+														<input class="form-check-input" type="checkbox" id="defaultCheck2" checked disabled>
+														<label class="form-check-label" for="defaultCheck2">
+															Maaf anda tidak lulus dalam tahapan registrasi, terima kasih.
+														</label>
+													</div>
+													<hr>
+
+													<p>Yang perlu dilakukan</p>
+													<p class="text-center">Status</p>
+													<div class="form-group text-center">
+														<button type="button" class="form-control btn btn-danger" disabled>End</button>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>

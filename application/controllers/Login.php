@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * login
+ * Login
  */
 class Login extends CI_Controller
 {
@@ -71,8 +71,6 @@ class Login extends CI_Controller
 						$this->session->set_userdata('akses', '3');
 						$this->session->set_userdata('ses_id', $data['id_user']);
 						$this->session->set_userdata('ses_nm', $data['email']);
-						$this->session->set_userdata('ses_stage', $data['id']);
-						$this->session->set_userdata('ses_label', $data['label']);
 
 						if ($data['acc_status'] == '0') {
 							$this->session->set_flashdata('msg', '<div class="alert alert-warning">Silahkan konfirmasi email anda!</div>');

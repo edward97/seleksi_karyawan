@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * register
+ * Register
  */
 class Register extends CI_Controller
 {
@@ -168,7 +168,7 @@ class Register extends CI_Controller
 		$where = array(
 			'confirm_code' => $key
 		);
-		$this->user_model->change_active('users', $where, $data);
+		$this->user_model->change_user('users', $where, $data);
 
 		$this->session->set_flashdata('msg', '<div class="alert alert-info"><strong>Verifikasi berhasil!</strong> Silahkan Login.</div>');
 		redirect('login');

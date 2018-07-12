@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * dasboard
+ * Dashboard
  */
 class Dashboard extends CI_Controller
 {
@@ -35,33 +35,57 @@ class Dashboard extends CI_Controller
 				'users.email' => $this->session->userdata('ses_nm'),
 				'users.acc_status' => 1,
 			);
-			$data['user'] = $this->login_model->auth_user('users', $where_user)->result();
+			$check = $this->login_model->auth_user('users', $where_user)->row_array();
+			$data['usr'] = $this->login_model->auth_user('users', $where_user)->result();
 
-			// status nya ntar di ganti utk cek apakah user lulus atau tidak
-			if ($today > $data['end_stage'] && $data['label'] == 'Tahap 1') {
-				$id_std_usr = $this->user_model->get_id_std_user_spec($data['id_user'])->row_array();
-				$total_sama = $this->user_model->compare_ability_spec($id_std_usr['id_std'], $id_std_usr['id_user'])->num_rows();
+			if ($check['acc_status'] == 1) {
+				// status nya ntar di ganti utk cek apakah user lulus atau tidak
+				if ($data['today'] > $check['end_stage'] && $check['label'] == 'Tahap 1') {
+					$id_std_usr = $this->user_model->get_id_std_user_spec($check['id_user'])->row_array();
+					$total_sama = $this->user_model->compare_ability_spec($id_std_usr['id_std'], $id_std_usr['id_user'])->num_rows();
 
-				if ($total_sama < 5) {
-					$data_ar = array(
-						'acc_status' => 2
-					);
-					$where_ar = array(
-						'id_user' => $data['id_user']
-					);
-					$this->user_model->change_active('users', $where_ar, $data_ar);
-					redirect('dashboard/result');
+					if ($total_sama < 5) {
+						$data_ar = array(
+							'acc_status' => 2
+						);
+						$where_ar = array(
+							'id_user' => $check['id_user']
+						);
+						$this->user_model->change_user('users', $where_ar, $data_ar);
+						redirect('dashboard/result');
+					}
 				}
+
+				$data['tahap_2'] = $this->sesi_model->tampil_tahap_2($data['today'])->num_rows();
+
+				// waktu ujian
+				$where_waktu = array(
+					'id_user' => $this->session->userdata('ses_id')
+				);
+				$que_exam = $this->user_model->check('users_exam', $where_waktu);
+				$data['waktu'] = $que_exam->result();
+
+
+
+				$this->load->view('user/v_header', $data);
+				$this->load->view('user/v_dashboard');
+				$this->load->view('user/v_footer');
 			}
-
-			
-
-			$this->load->view('user/v_dashboard', $data);
+			elseif ($check['acc_status'] == 2) {
+				redirect('dashboard/result');
+			}
+			else {
+				$this->load->view('errors/404.html');
+			}
 		}
 	}
 
 	function result() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 			$this->load->view('user/v_dashboard_tidak_lulus_tahap_1.php', $data);
+	}
+
+	function upt() {
+		
 	}
 }
