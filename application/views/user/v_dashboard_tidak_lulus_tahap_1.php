@@ -77,7 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="col-md-3">
 									<div class="card">
 										<div class="card-body">
-											Tahap Ujian Online
+											Tahap Ujian
 										</div>
 									</div>
 								</div>

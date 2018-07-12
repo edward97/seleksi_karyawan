@@ -29,19 +29,6 @@ class user_model extends CI_Model
 		$this->db->insert_batch($table, $data);
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-	// tahap perbaikan
 	function get_id_std_user() {
 		$this->db->select('*');
 		$this->db->from('users');
@@ -54,7 +41,24 @@ class user_model extends CI_Model
 		$this->db->select('*');
 		$this->db->from('required_ability');
 		$this->db->join('users_ability', 'users_ability.id_ability = required_ability.id_ability', 'inner');
-		$this->db->where('users_ability.id_user', '9');
+		return $this->db->get();
+	}
+
+	function get_id_std_user_spec($where) {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage', 'inner');
+		$this->db->join('selection_stage', 'selection_stage.id_stage = selection_stage_detail.id_stage', 'inner');
+		$this->db->where('users.id_user', $where);
+		return $this->db->get();
+	}
+
+	function compare_ability_spec($where1, $where2) {
+		$this->db->select('*');
+		$this->db->from('required_ability');
+		$this->db->join('users_ability', 'users_ability.id_ability = required_ability.id_ability', 'inner');
+		$this->db->where('required_ability.id_std', $where1);
+		$this->db->where('users_ability.id_user', $where2);
 		return $this->db->get();
 	}
 }

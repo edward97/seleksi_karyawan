@@ -16,12 +16,15 @@
 					<div class="card-body">
 						<div class="row">
 							<?php foreach ($user as $i): ?>
-								<?php $count = 0; ?>
-								<div class="col-md-6"><?php echo $i->email ?></div>
+								<div class="col-md-6">
+									<?php echo $i->email; ?>
+								</div>
 
 								<div class="col-md-6">
-									<?php foreach ($ability as $j): ?>
-										<?php if ($j->id_user == $i->id_user): ?>
+									total kemampuan : 
+									<?php $count = 0; ?>
+									<?php foreach ($compare as $j): ?>
+										<?php if ($i->id_std == $j->id_std && $i->id_user == $j->id_user): ?>
 											<?php $count++; ?>
 										<?php endif ?>
 									<?php endforeach ?>

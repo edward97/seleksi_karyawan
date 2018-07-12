@@ -73,7 +73,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item">
-						<a href="<?php echo site_url('login') ?>"><i class="fa fa-sign-in-alt"></i> Login</a>
+						<a href="<?php echo site_url('login'); ?>"><i class="fa fa-sign-in-alt"></i> Login</a>
 					</li>
 				</ul>
 			</nav>
@@ -90,7 +90,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 
 								<div class="stepwizard-step col-xs-3"> 
-									<a href="#step-2" type="button" class="btn btn-default btn-circle">2</a>
+									<a href="#step-2" type="button" class="btn btn-secondary btn-circle">2</a>
 									<p><small>Register 2</small></p>
 								</div>
 							</div>
@@ -107,14 +107,27 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="row">
 											<legend class="col-form-label col-sm-3 pt-0">Pilih Sesi yang ingin diikuti</legend>
 											<div class="col-sm-9">
+												<?php $count = 0; ?>
 												<?php foreach ($open_sesi as $i): ?>
-													<input type="hidden" name="stage" value="<?php echo $i->id ?>">
-													<div class="form-check">
-														<input class="form-check-input" type="radio" name="job" id="<?php $i->id_job; ?>" value="<?php echo $i->id_job; ?>">
-														<label class="form-check-label" for="<?php $i->id_job ?>">
-															<?php echo $i->nm_job ?> <br> <?php echo $i->start_stage." - ".$i->end_stage ?>
-														</label>
-													</div>
+													<?php if ($count == 0): ?>
+														<input type="hidden" name="stage" value="<?php echo $i->id; ?>">
+														<div class="form-check">
+															<input class="form-check-input" type="radio" name="job" id="<?php $i->id_job; ?>" value="<?php echo $i->id_job; ?>" checked>
+															<label class="form-check-label" for="<?php $i->id_job; ?>">
+																<?php echo $i->nm_job ?> <br> <?php echo $i->start_stage." - ".$i->end_stage ?>
+															</label>
+														</div>
+													<?php else: ?>
+														<input type="hidden" name="stage" value="<?php echo $i->id ?>">
+														<div class="form-check">
+															<input class="form-check-input" type="radio" name="job" id="<?php $i->id_job; ?>" value="<?php echo $i->id_job; ?>">
+															<label class="form-check-label" for="<?php $i->id_job; ?>">
+																<?php echo $i->nm_job ?> <br> <?php echo $i->start_stage." - ".$i->end_stage ?>
+															</label>
+														</div>
+													<?php endif ?>
+													
+													<?php $count++; ?>
 												<?php endforeach ?>
 											</div>
 										</div>
@@ -475,7 +488,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				$item = $(this);
 
 				if (!$item.hasClass('disabled')) {
-					navListItems.removeClass('btn-success').addClass('btn-default');
+					navListItems.removeClass('btn-success').addClass('btn-secondary');
 					$item.addClass('btn-success');
 					allWells.hide();
 					$target.show();

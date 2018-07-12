@@ -20,8 +20,8 @@ class User extends CI_Controller
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
-			$data['user'] = $this->user_model->tampil_user()->result();
-			$data['ability'] = $this->user_model->compare_ability()->result();
+			$data['user'] = $this->user_model->get_id_std_user()->result();
+			$data['compare'] = $this->user_model->compare_ability()->result();
 
 			$data['judul'] = "Users";
 

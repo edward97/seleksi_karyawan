@@ -77,7 +77,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<div class="col-md-3">
 									<div class="card">
 										<div class="card-body">
-											Tahap Ujian Online
+											Tahap Ujian
 										</div>
 									</div>
 								</div>
@@ -94,134 +94,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<div class="card">
 										<div class="card-body">
 											Result
-										</div>
-									</div>
-								</div>
-							<?php elseif ($this->session->userdata('ses_label') == "Tahap 2"): ?>
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											tahap Register <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											Tahap Ujian Online <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Tahap Interview
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Result
-										</div>
-									</div>
-								</div>
-							<?php elseif ($this->session->userdata('ses_label') == "Tahap 3"): ?>
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											tahap Register <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											Tahap Ujian Online <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Tahap Interview
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Result
-										</div>
-									</div>
-								</div>
-							<?php elseif ($this->session->userdata('ses_label') == "Tahap 4"): ?>
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											tahap Register <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											Tahap Ujian Online <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											Tahap Interview <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card">
-										<div class="card-body">
-											Result
-										</div>
-									</div>
-								</div>
-							<?php elseif ($this->session->userdata('ses_label') == "Tahap 5"): ?>
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											tahap Register <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											Tahap Ujian Online <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											Tahap Interview <i class="icon icon-pin"></i>
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-3">
-									<div class="card text-white">
-										<div class="card-body bg-success">
-											Result <i class="icon icon-pin"></i>
 										</div>
 									</div>
 								</div>
@@ -242,59 +114,90 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="card-body">
 											<div class="row">
 												<?php if ($this->session->userdata('ses_label') == "Tahap 1"): ?>
-													<div class="col-md-12">
-														<h4>Step 1</h4>
-														<div class="form-check">
-															<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
-															<label class="form-check-label" for="defaultCheck1">
-																Isi formulir pendaftaran
-															</label>
-														</div>
+													<?php foreach ($user as $i): ?>
+														<?php if ($today > $i->end_stage): ?>
+															<div class="col-md-12">
+																<h4>Step 1</h4>
+																<div class="form-check">
+																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
+																	<label class="form-check-label" for="defaultCheck1">
+																		Isi formulir pendaftaran
+																	</label>
+																</div>
 
-														<div class="form-check">
-															<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" disabled>
-															<label class="form-check-label" for="defaultCheck1">
-																Tunggu hasil pendafataran
-															</label>
-														</div>
-														<hr>
+																<div class="form-check">
+																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" disabled>
+																	<label class="form-check-label" for="defaultCheck1">
+																		Tunggu hasil pendafataran
+																	</label>
+																</div>
+																<hr>
 
-														<p>Yang perlu dilakukan</p>
-														<p class="text-center">Status</p>
-														<div class="form-group text-center">
-															<button type="button" class="form-control btn btn-outline-success" disabled>Pending</button>
-														</div>
-													</div>
-												<?php elseif ($this->session->userdata('ses_label') == "Tahap 2"): ?>
-													<div class="col-md-12">
-														<h4>Step 2</h4>
-														<div class="form-check">
-															<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
-															<label class="form-check-label" for="defaultCheck1">
-																Isi formulir pendaftaran
-															</label>
-														</div>
+																<p>Yang perlu dilakukan</p>
+																<p class="text-center">Status</p>
+																<div class="form-group text-center">
+																	<button type="button" class="form-control btn btn-success" disabled>Success</button>
+																</div>
+															</div>
 
-														<div class="form-check">
-															<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
-															<label class="form-check-label" for="defaultCheck1">
-																Ujian Online
-															</label>
-														</div>
+															<div class="col-md-12">
+																<hr>
+																<h4>Step 2</h4>
+																<div class="form-check">
+																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
+																	<label class="form-check-label" for="defaultCheck1">
+																		Isi formulir pendaftaran
+																	</label>
+																</div>
 
-														<hr>
-														<p>Yang perlu dilakukan</p>
-														<p class="text-center">Status</p>
-														<div class="form-group text-center">
-															<button type="button" class="form-control btn btn-outline-success" disabled>Pending</button>
-														</div>
-													</div>
-												<?php elseif ($this->session->userdata('ses_label') == "Tahap 3"): ?>
-													
-												<?php elseif ($this->session->userdata('ses_label') == "Tahap 4"): ?>
-													
-												<?php elseif ($this->session->userdata('ses_label') == "Tahap 5"): ?>
-													
+																<div class="form-check">
+																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
+																	<label class="form-check-label" for="defaultCheck1">
+																		Tunggu hasil pendafataran
+																	</label>
+																</div>
+
+																<div class="form-check">
+																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" disabled>
+																	<label class="form-check-label" for="defaultCheck1">
+																		Ujian Online
+																	</label>
+																</div>
+																<hr>
+
+																<p>Yang perlu dilakukan</p>
+																<p class="text-center">Status</p>
+																<div class="form-group text-center">
+																	<button type="button" class="form-control btn btn-outline-info">Mulai Ujian Online</button>
+																</div>
+															</div>
+
+														<?php else: ?>
+															<div class="col-md-12">
+																<h4>Step 1</h4>
+																<div class="form-check">
+																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
+																	<label class="form-check-label" for="defaultCheck1">
+																		Isi formulir pendaftaran
+																	</label>
+																</div>
+
+																<div class="form-check">
+																	<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" disabled>
+																	<label class="form-check-label" for="defaultCheck1">
+																		Tunggu hasil pendafataran
+																	</label>
+																</div>
+																<hr>
+
+																<p>Yang perlu dilakukan</p>
+																<p class="text-center">Status</p>
+																<div class="form-group text-center">
+																	<button type="button" class="form-control btn btn-outline-info" disabled>Pending</button>
+																</div>
+															</div>
+														<?php endif ?>
+													<?php endforeach ?>													
 												<?php endif ?>
 											</div>
 										</div>

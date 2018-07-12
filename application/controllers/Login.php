@@ -12,7 +12,6 @@ class Login extends CI_Controller
 		parent::__construct();
 		$this->load->model('login_model');
 		$this->load->model('sesi_model');
-		$this->load->model('user_model');
 	}
 
 	function index() {
@@ -80,18 +79,6 @@ class Login extends CI_Controller
 							redirect('login');
 						}
 						elseif ($data['acc_status'] == '1') {
-
-							// status nya ntar di ganti utk cek apakah user lulus atau tidak
-							if ($today > $data['end_stage'] && $data['label'] == 'Tahap 1') {
-								$data_ar = array(
-									'acc_status' => 2
-								);
-								$where_ar = array(
-									'id_user' => $data['id_user']
-								);
-								$this->user_model->change_active('users', $where_ar, $data_ar);
-								redirect('dashboard/result');
-							}
 							redirect('dashboard');
 						}
 						elseif ($data['acc_status'] == '2') {
