@@ -208,7 +208,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 
 									<div class="col-md-3">
-										<div class="card">
+										<div class="card text-white">
 											<div class="card-body bg-info">
 												Tahap Ujian <i class="icon icon-pin"></i>
 											</div>
@@ -241,7 +241,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 
 									<div class="col-md-3">
-										<div class="card">
+										<div class="card text-white">
 											<div class="card-body bg-primary">
 												Tahap Ujian <i class="icon icon-pin"></i>
 											</div>
@@ -252,6 +252,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										<div class="card">
 											<div class="card-body">
 												Tahap Interview
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body">
+												Result
+											</div>
+										</div>
+									</div>
+
+								<?php elseif ($i->label == 'Tahap 4' && $i->start_stage >= $today): ?>
+									<div class="col-md-3">
+										<div class="card text-white">
+											<div class="card-body bg-success">
+												Tahap Register <i class="icon icon-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card text-white">
+											<div class="card-body bg-success">
+												Tahap Ujian <i class="icon icon-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card text-white">
+											<div class="card-body bg-info">
+												Tahap Interview <i class="icon icon-pin"></i>
 											</div>
 										</div>
 									</div>
