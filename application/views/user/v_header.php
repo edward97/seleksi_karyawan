@@ -165,6 +165,104 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</div>
 									</div>
 
+								<?php elseif ($i->label == 'Tahap 2' && $i->end_stage <= $today): ?>
+									<div class="col-md-3">
+										<div class="card text-white">
+											<div class="card-body bg-success">
+												Tahap Register <i class="icon icon-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body bg-danger">
+												Tahap Ujian <i class="icon icon-times"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body">
+												Tahap Interview
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body">
+												Result
+											</div>
+										</div>
+									</div>
+
+								<?php elseif ($i->label == 'Tahap 3' && $i->start_stage >= $today): ?>
+									<div class="col-md-3">
+										<div class="card text-white">
+											<div class="card-body bg-success">
+												Tahap Register <i class="icon icon-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body bg-info">
+												Tahap Ujian <i class="icon icon-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body">
+												Tahap Interview
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body">
+												Result
+											</div>
+										</div>
+									</div>
+
+								<?php elseif ($i->label == 'Tahap 3' && $i->start_stage <= $today && $i->end_stage >= $today): ?>
+									<div class="col-md-3">
+										<div class="card text-white">
+											<div class="card-body bg-success">
+												Tahap Register <i class="icon icon-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body bg-primary">
+												Tahap Ujian <i class="icon icon-pin"></i>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body">
+												Tahap Interview
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-3">
+										<div class="card">
+											<div class="card-body">
+												Result
+											</div>
+										</div>
+									</div>
 
 								<?php endif ?>
 							<?php endforeach ?>

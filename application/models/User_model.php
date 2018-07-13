@@ -70,4 +70,9 @@ class user_model extends CI_Model
 	function add_exam($table, $data) {
 		$this->db->insert($table, $data);
 	}
+
+	function update_exam($table, $where, $data) {
+		$this->db->where($where);
+		$this->db->update($table, $data);
+	}
 }

@@ -57,6 +57,7 @@ class Dashboard extends CI_Controller
 				}
 
 				$data['tahap_2'] = $this->sesi_model->tampil_tahap_2($data['today'])->num_rows();
+				$data['tahap_3'] = $this->sesi_model->tampil_tahap_3($data['today'])->num_rows();
 
 				// waktu ujian
 				$where_waktu = array(
