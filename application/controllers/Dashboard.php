@@ -20,91 +20,71 @@ class Dashboard extends CI_Controller
 
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
+		$data['today'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$data['judul'] = "Dashboard";
 
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
-			$data['judul'] = 'Dashboard';
-
 			$this->load->view('admin/v_header', $data);
 			$this->load->view('admin/v_dashboard');
 			$this->load->view('admin/v_footer');
 		}
 		else {
-			$data['today'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
-
-			$where_user = array(
+			$where = array(
 				'users.email' => $this->session->userdata('ses_nm'),
 				'users.acc_status' => 1,
 			);
-			$x = $this->login_model->auth_user('users', $where_user);
-
-			$check = $x->row_array();
+			$x = $this->login_model->auth_user($where);
+			$row = $x->row_array();
 			$data['usr'] = $x->result();
 
-			if ($check['acc_status'] == 1) {
-				if ($check['label'] == 'Tahap 1') {
-					// status nya ntar di ganti utk cek apakah user lulus atau tidak
-					if ($data['today'] > $check['end_stage']) {
-						$id_std_usr = $this->user_model->get_id_std_user_spec($check['id_user'])->row_array();
-						$total_sama = $this->user_model->compare_ability_spec($id_std_usr['id_std'], $id_std_usr['id_user'])->num_rows();
+			$data['tahapan'] = $this->sesi_model->tampil_tahapan('selection_stage_detail', $row['id_stage'])->result();
 
-						if ($total_sama < 5) {
-							$data_ar = array(
-								'acc_status' => 2
-							);
-							$where_ar = array(
-								'id_user' => $check['id_user']
-							);
-							$this->user_model->change_user('users', $where_ar, $data_ar);
-							redirect('dashboard/result');
-						}
+			if ($row['acc_status'] == 1) {
+				if ($row['label'] == 'Tahap 1') {
+					if (($row['end_stage'] < $data['today']) && ($row['total_ability'] < 5)) {
+						$data_ar = array(
+							'acc_status' => 2
+						);
+						$where_ar = array(
+							'id_user' => $this->session->userdata('ses_id')
+						);
+						$this->user_model->change_user('users', $where_ar, $data_ar);
+
+						redirect('dashboard/result');
 					}
-					$data['tahap_2'] = $this->sesi_model->tampil_tahap_2($data['today'])->num_rows();
+					else {
+						foreach ($data['tahapan'] as $i) {
+							if ($row['label'] == 'Tahap 1' && $i->label == 'Tahap 2' && $i->end_stage < $data['today']) {
+								$data_ar = array(
+									'acc_status' => 2
+								);
+								$where_ar = array(
+									'id_user' => $this->session->userdata('ses_id')
+								);
+								$this->user_model->change_user('users', $where_ar, $data_ar);
 
-					$this->load->view('user/v_header', $data);
-					$this->load->view('user/v_tahap_1');
-					$this->load->view('user/v_footer');
+								redirect('dashboard/result');
+							}
+						}
+						$this->load->view('user/v_header', $data);
+						$this->load->view('user/v_tahap_1');
+						$this->load->view('user/v_footer');
+					}
 				}
-				elseif ($check['label'] == 'Tahap 2') {
-					$data['tahap_3'] = $this->sesi_model->tampil_tahap_3($data['today'])->num_rows();
-
-
-					$this->load->view('user/v_header', $data);
-					$this->load->view('user/v_tahap_2');
-					$this->load->view('user/v_footer');
+				elseif ($row['acc_status'] == 'Tahap 2') {
 
 				}
-				elseif ($check['label'] == 'Tahap 3') {
-					$where = array(
-						'id_user' => $this->session->userdata('ses_id')
-					);
-					$que_exam = $this->user_model->check('users_exam', $where);
-					$data['waktu'] = $que_exam->result();
-
-					$data['tahap_3'] = $this->sesi_model->tampil_tahap_3($data['today'])->num_rows();
-
-					$this->load->view('user/v_header', $data);
-					$this->load->view('user/v_tahap_3');
-					$this->load->view('user/v_footer');
-				}
-				elseif ($check['label'] == 'Tahap 4') {
-					$where = array(
-						'id_user' => $this->session->userdata('ses_id')
-					);
+				elseif ($row['acc_status'] == 'Tahap 3') {
 					
-					$data['tahap_3'] = $this->sesi_model->tampil_tahap_3($data['today'])->num_rows();
-
-					$this->load->view('user/v_header', $data);
-					$this->load->view('user/v_tahap_4');
-					$this->load->view('user/v_footer');
 				}
-				elseif ($check['label'] == 'Tahap 5') {
+				elseif ($row['acc_status'] == 'Tahap 4') {
 					
 				}
 				else {
-
+					$this->load->view('errors/404.html');
 				}
 			}
-			elseif ($check['acc_status'] == 2) {
+			elseif ($row['acc_status'] == 2) {
 				redirect('dashboard/result');
 			}
 			else {
@@ -116,9 +96,5 @@ class Dashboard extends CI_Controller
 	function result() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 			$this->load->view('user/v_dashboard_tidak_lulus_tahap_1.php', $data);
-	}
-
-	function upt() {
-		
 	}
 }

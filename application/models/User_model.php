@@ -32,7 +32,7 @@ class user_model extends CI_Model
 	function get_id_std_user() {
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage', 'inner');
+		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage_detail', 'inner');
 		$this->db->join('selection_stage', 'selection_stage.id_stage = selection_stage_detail.id_stage', 'inner');
 		return $this->db->get();
 	}
@@ -47,7 +47,7 @@ class user_model extends CI_Model
 	function get_id_std_user_spec($where) {
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage', 'inner');
+		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage_detail', 'inner');
 		$this->db->join('selection_stage', 'selection_stage.id_stage = selection_stage_detail.id_stage', 'inner');
 		$this->db->where('users.id_user', $where);
 		return $this->db->get();

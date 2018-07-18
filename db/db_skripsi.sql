@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 11:02 AM
+-- Generation Time: Jul 18, 2018 at 11:57 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -96,7 +96,8 @@ CREATE TABLE `admins_sesi` (
 --
 
 INSERT INTO `admins_sesi` (`id`, `keterangan`, `id_admin`, `id_stage`, `created_by`) VALUES
-(8, 'Bagian Pengawas', 7, 4, 7);
+(8, 'Bagian Pengawas', 7, 4, 7),
+(9, 'Bagian Pengawas', 7, 5, 7);
 
 -- --------------------------------------------------------
 
@@ -204,7 +205,8 @@ CREATE TABLE `question_f2f` (
 
 INSERT INTO `question_f2f` (`id_question`, `question`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_ans`, `weight`, `status`, `label`, `created_at`, `updated_at`, `id_job`) VALUES
 (1, '<p>Apakah tulisan di disamping ini bold ?&nbsp;<strong>TESTING</strong></p>', 'Benar', 'Salah', 'Mungkin', 'Tidak Mungkin', 'Mungkin', 30, 1, 'Akuntansi I', '2018-07-01 16:03:48', '2018-07-01 11:20:17', 2),
-(2, '<p>Kepanjangan <strong>HTML</strong> adalah ?</p>', 'Gak Tau', 'HTML => HTML', 'Lol', 'Gk usa Jawab', 'Gk usa Jawab', 5, 1, 'Akuntansi I', '2018-07-01 18:14:39', '2018-07-01 12:06:46', 3);
+(2, '<p>Kepanjangan <strong>HTML</strong> adalah ?</p>', 'Gak Tau', 'HTML => HTML', 'Lol', 'Gk usa Jawab', 'Gk usa Jawab', 5, 1, 'Akuntansi I', '2018-07-01 18:14:39', '2018-07-01 12:06:46', 3),
+(3, '<p>&lt;?php print_r(\'Hello World!\') ?&gt;</p>\r\n<p>is that true ?</p>', 'Maybe', 'Yes', 'No Answer', 'No', 'No', 65, 1, 'Manager I', '2018-07-18 08:42:20', '2018-07-18 01:42:20', 10);
 
 -- --------------------------------------------------------
 
@@ -237,7 +239,8 @@ INSERT INTO `question_online` (`id_question`, `question`, `answer_a`, `answer_b`
 (2, '<p>Apa yang kami inginkan ?</p>', 'Tidak Urus', 'Uang', 'Hidup Mewah', 'Kekayaan', 'Tidak Urus', 15, 1, 'Akuntansi II', '2018-07-01 18:19:58', '2018-07-01 15:48:23', 6),
 (3, '<p>How ?</p>', '1', '2', '3', '4', '4', 74, 1, 'Akuntansi II', '2018-07-01 19:15:28', '2018-07-01 12:15:42', 3),
 (4, '<p>Skripsi itu mudah atau tidak ?</p>', 'Ez', 'Susah', 'Gak Kuliah', 'Susah Susah Gampang Bang', 'Ez', 9, 1, 'Akuntansi II', '2018-07-01 22:49:34', '2018-07-01 15:49:47', 6),
-(5, '<p>Kegunaan Mouse ?</p>', 'Untuk menjalankan kursor', 'Ntah', 'Jawab Sendiri', 'Gk usa Jawab', 'Untuk menjalankan kursor', 5, 1, 'IT', '2018-07-05 22:16:56', '2018-07-05 15:16:56', 2);
+(5, '<p>Kegunaan Mouse ?</p>', 'Untuk menjalankan kursor', 'Ntah', 'Jawab Sendiri', 'Gk usa Jawab', 'Untuk menjalankan kursor', 5, 1, 'IT', '2018-07-05 22:16:56', '2018-07-05 15:16:56', 2),
+(6, '<p>testing ?</p>\r\n<ul>\r\n<li>blue eye</li>\r\n<li>red eye</li>\r\n<li>green eye</li>\r\n<li>brown eye</li>\r\n</ul>', 'Blue', 'Red', 'Green', 'Brown', 'Red', 25, 1, 'Manager I', '2018-07-18 08:41:14', '2018-07-18 01:41:14', 10);
 
 -- --------------------------------------------------------
 
@@ -298,7 +301,8 @@ CREATE TABLE `selection_stage` (
 --
 
 INSERT INTO `selection_stage` (`id_stage`, `nm_stage`, `label_online`, `label_f2f`, `status_selesai`, `status_laporan`, `created_at`, `updated_at`, `id_algo`, `id_std`, `id_job`) VALUES
-(4, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 0, 0, '2018-07-13 01:05:43', '2018-07-12 18:05:43', 0, 1, 7);
+(4, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 0, 0, '2018-07-13 01:05:43', '2018-07-12 18:05:43', 0, 1, 7),
+(5, 'nama_stage', 'Manager I', 'Manager I', 0, 0, '2018-07-18 08:43:48', '2018-07-18 01:43:48', 0, 2, 10);
 
 -- --------------------------------------------------------
 
@@ -326,7 +330,13 @@ INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`,
 (22, 'Tahap 3', '2018-07-23', '2018-07-28', '2018-07-13 01:05:43', '2018-07-13 09:01:49', 4),
 (23, 'Tahap 4', '2018-07-30', '2018-07-31', '2018-07-13 01:05:43', '2018-07-12 18:05:43', 4),
 (24, 'Tahap 5', '2018-07-30', '2018-07-31', '2018-07-13 01:05:43', '2018-07-12 18:05:43', 4),
-(25, 'Tahap 6', '2018-07-30', '2018-07-31', '2018-07-13 01:05:43', '2018-07-12 18:05:43', 4);
+(25, 'Tahap 6', '2018-07-30', '2018-07-31', '2018-07-13 01:05:43', '2018-07-12 18:05:43', 4),
+(26, 'Tahap 1', '2018-07-16', '2018-07-21', '2018-07-18 08:43:48', '2018-07-18 09:27:35', 5),
+(27, 'Tahap 2', '2018-07-23', '2018-07-28', '2018-07-18 08:43:48', '2018-07-18 09:27:31', 5),
+(28, 'Tahap 3', '2018-07-30', '2018-08-04', '2018-07-18 08:43:48', '2018-07-18 01:43:48', 5),
+(29, 'Tahap 4', '2018-08-06', '2018-08-11', '2018-07-18 08:43:48', '2018-07-18 01:43:48', 5),
+(30, 'Tahap 5', '2018-08-06', '2018-08-11', '2018-07-18 08:43:48', '2018-07-18 01:43:48', 5),
+(31, 'Tahap 6', '2018-08-06', '2018-08-11', '2018-07-18 08:43:48', '2018-07-18 01:43:48', 5);
 
 -- --------------------------------------------------------
 
@@ -606,8 +616,15 @@ CREATE TABLE `users` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_job` int(6) NOT NULL,
-  `id_stage` int(6) DEFAULT NULL
+  `id_stage_detail` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `email`, `password`, `confirm_code`, `acc_status`, `created_at`, `updated_at`, `id_job`, `id_stage_detail`) VALUES
+(4, 'edw.suryajaya@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 1, '2018-07-18 11:15:34', '2018-07-18 09:28:50', 10, 26);
 
 -- --------------------------------------------------------
 
@@ -622,6 +639,16 @@ CREATE TABLE `users_ability` (
   `id_ability` int(6) NOT NULL,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_ability`
+--
+
+INSERT INTO `users_ability` (`id`, `created_at`, `updated_at`, `id_ability`, `id_user`) VALUES
+(22, '2018-07-18 11:15:34', '2018-07-18 04:15:34', 17, 4),
+(23, '2018-07-18 11:15:34', '2018-07-18 04:15:34', 20, 4),
+(24, '2018-07-18 11:15:34', '2018-07-18 04:15:34', 21, 4),
+(25, '2018-07-18 11:15:34', '2018-07-18 04:15:34', 22, 4);
 
 -- --------------------------------------------------------
 
@@ -649,6 +676,7 @@ CREATE TABLE `users_detail` (
   `nilai_online` float DEFAULT NULL,
   `nilai_f2f` float DEFAULT NULL,
   `nilai_sikap` varchar(255) DEFAULT NULL,
+  `total_ability` int(3) NOT NULL,
   `status_passed` tinyint(4) NOT NULL DEFAULT '0',
   `nama_kerabat` varchar(255) NOT NULL,
   `nomor_kerabat` varchar(255) NOT NULL,
@@ -657,6 +685,13 @@ CREATE TABLE `users_detail` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_detail`
+--
+
+INSERT INTO `users_detail` (`id_d_user`, `full_name`, `no_ktp`, `birth_place`, `birth_date`, `address`, `domisili`, `kode_pos`, `p_number`, `t_number`, `age`, `gender`, `religion`, `last_education`, `status`, `experience`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `total_ability`, `status_passed`, `nama_kerabat`, `nomor_kerabat`, `hubungan_kerabat`, `created_at`, `updated_at`, `id_user`) VALUES
+(4, 'Edward Surya Jaya', '141111235', 'Serbalawan', '1997-02-02', 'Jl. Cemara', 'Medan', '20011', '085275522020', '-', 21, 'Pria', 'Buddha', 'S2', 'Lajang', 3, NULL, NULL, NULL, 6, 0, 'John Doe', '081345692357', 'Teman', '2018-07-18 11:15:34', '2018-07-18 08:50:12', 4);
 
 -- --------------------------------------------------------
 
@@ -847,7 +882,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admins_sesi`
 --
 ALTER TABLE `admins_sesi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `algoritma`
@@ -871,13 +906,13 @@ ALTER TABLE `job`
 -- AUTO_INCREMENT for table `question_f2f`
 --
 ALTER TABLE `question_f2f`
-  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `question_online`
 --
 ALTER TABLE `question_online`
-  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `required_ability`
@@ -889,13 +924,13 @@ ALTER TABLE `required_ability`
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `standard_ability`
@@ -961,25 +996,25 @@ ALTER TABLE `standard_status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users_ability`
 --
 ALTER TABLE `users_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `users_detail`
 --
 ALTER TABLE `users_detail`
-  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users_exam`
 --
 ALTER TABLE `users_exam`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

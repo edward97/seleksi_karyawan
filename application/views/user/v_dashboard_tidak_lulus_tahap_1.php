@@ -104,52 +104,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<div class="card-body">
 								<div class="row">
 									<div class="col-md-6">
-									<div class="card">
-										<div class="card-header border border-top-0 border-right-0 border-left-0">
-											Card Divded Header
-										</div>
+										<div class="card">
+											<div class="card-header border border-top-0 border-right-0 border-left-0">
+												Card Divded Header
+											</div>
 
-										<div class="card-body">
-											<div class="row">
-												<div class="col-md-12">
-													<h4>Step 1</h4>
-													<div class="form-check">
-														<input class="form-check-input" type="checkbox" id="defaultCheck1" checked disabled>
-														<label class="form-check-label" for="defaultCheck1">
-															Isi formulir pendaftaran
-														</label>
-													</div>
+											<div class="card-body">
+												<div class="row">
+													<div class="col-md-12">
+														<h4>Step 1</h4>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" id="defaultCheck1" checked disabled>
+															<label class="form-check-label" for="defaultCheck1">
+																Isi formulir pendaftaran
+															</label>
+														</div>
 
-													<div class="form-check">
-														<input class="form-check-input" type="checkbox" id="defaultCheck2" checked disabled>
-														<label class="form-check-label" for="defaultCheck2">
-															Maaf anda tidak lulus dalam tahapan registrasi, terima kasih.
-														</label>
-													</div>
-													<hr>
+														<div class="form-check">
+															<input class="form-check-input" type="checkbox" id="defaultCheck2" checked disabled>
+															<label class="form-check-label" for="defaultCheck2">
+																Maaf anda tidak lulus dalam tahapan registrasi, terima kasih.
+															</label>
+														</div>
+														<hr>
 
-													<p>Yang perlu dilakukan</p>
-													<p class="text-center">Status</p>
-													<div class="form-group text-center">
-														<button type="button" class="form-control btn btn-danger" disabled>End</button>
+														<p>Yang perlu dilakukan</p>
+														<p class="text-center">Status</p>
+														<div class="form-group text-center">
+															<button type="button" class="form-control btn btn-danger" disabled>End</button>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-
-								<div class="col-md-6">
-									<div class="card">
-										<div class="card-header border border-top-0 border-right-0 border-left-0">
-											Card Divded Header
-										</div>
-
-										<div class="card-body">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit. A aperiam cupiditate dolore facere magnam, rerum sint velit voluptate voluptates? A assumenda consequuntur debitis eaque est in ipsam iure molestiae quam.
-										</div>
-									</div>
-								</div>
 								</div>
 							</div>
 						</div>

@@ -62,7 +62,7 @@ class Login extends CI_Controller
 						'users.email' => $email,
 						'users.password' => md5($password),
 					);
-					$cek_user = $this->login_model->auth_user('users', $where_user);
+					$cek_user = $this->login_model->auth_user($where_user);
 
 					if ($cek_user->num_rows() > 0) {
 						$data = $cek_user->row_array();

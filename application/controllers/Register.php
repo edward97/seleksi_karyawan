@@ -84,10 +84,25 @@ class Register extends CI_Controller
 			'password' => md5($password),
 			'confirm_code' => $confirm_code,
 			'id_job' => $job,
-			'id_stage' => $stage
+			'id_stage_detail' => $stage
 		);
 		// insert data user dan ambil last_id
 		$idInsert = $this->user_model->add_user('users', $data_user);
+
+		// array 2D u/ simpan ability
+		$val = array();
+		foreach ($target['tar'] as $i) {
+			array_push($val, array(
+				'id' =>  null,
+				'id_ability' => $i,
+				'id_user' => $idInsert
+			));
+		}
+		$this->user_model->add_user_ability('users_ability', $val);
+
+		// total ability user yg sama dengan required ability
+		$id_std_usr = $this->user_model->get_id_std_user_spec($idInsert)->row_array();
+		$total_sama = $this->user_model->compare_ability_spec($id_std_usr['id_std'], $id_std_usr['id_user'])->num_rows();
 
 		$detail_user = array(
 			'id_d_user' => null,
@@ -106,24 +121,13 @@ class Register extends CI_Controller
 			'last_education' => $pendidikan,
 			'status' => $status,
 			'experience' => $pengalaman,
+			'total_ability' => $total_sama,
 			'nama_kerabat' => $nama_kerabat,
 			'nomor_kerabat' => $no_kerabat,
 			'hubungan_kerabat' => $hubungan_kerabat,
 			'id_user' => $idInsert
 		);
-
-		// array 2D u/ simpan ability
-		$val = array();
-		foreach ($target['tar'] as $i) {
-			array_push($val, array(
-				'id' =>  null,
-				'id_ability' => $i,
-				'id_user' => $idInsert
-			));
-		}
-
 		$this->user_model->add_user_detail('users_detail', $detail_user);
-		$this->user_model->add_user_ability('users_ability', $val);
 
 		$config = [
 			'useragent' => 'CodeIgniter',
