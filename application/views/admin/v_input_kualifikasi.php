@@ -683,7 +683,7 @@
 						<hr>
 
 						<!-- Buta Warna -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Buta Warna</label>
@@ -746,7 +746,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="card-footer bg-light text-right">
 						<div class="form-group">

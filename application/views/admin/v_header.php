@@ -104,7 +104,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
+								<a href="<?php echo site_url('interview'); ?>" class="nav-link">
 									<i class="icon icon-pencil"></i> Input Nilai Interview
 								</a>
 							</li>

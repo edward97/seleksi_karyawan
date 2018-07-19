@@ -347,33 +347,33 @@ class Kualifikasi extends CI_Controller
 		);
 		$this->kualifikasi_model->add_sikap('standard_sikap', $data8);
 
-		$buta_warna_1 = $this->input->post('b_warna1');
-		$prioritas_buta_warna_1 = $this->input->post('p_buta1');
-		$buta_warna_2 = $this->input->post('b_warna2');
-		$prioritas_buta_warna_2 = $this->input->post('p_buta2');
-		$buta_warna_3 = $this->input->post('b_warna3');
-		$prioritas_buta_warna_3 = $this->input->post('p_buta3');
-		$data9 = array(
-			array(
-				'id' => null,
-				'buta_warna' => $buta_warna_1,
-				'id_std' => $std_qua,
-				'priority' => $prioritas_buta_warna_1
-			),
-			array(
-				'id' => null,
-				'buta_warna' => $buta_warna_2,
-				'id_std' => $std_qua,
-				'priority' => $prioritas_buta_warna_2
-			),
-			array(
-				'id' => null,
-				'buta_warna' => $buta_warna_3,
-				'id_std' => $std_qua,
-				'priority' => $prioritas_buta_warna_3
-			)
-		);
-		$this->kualifikasi_model->add_buta_warna('standard_buta_warna', $data9);
+		// $buta_warna_1 = $this->input->post('b_warna1');
+		// $prioritas_buta_warna_1 = $this->input->post('p_buta1');
+		// $buta_warna_2 = $this->input->post('b_warna2');
+		// $prioritas_buta_warna_2 = $this->input->post('p_buta2');
+		// $buta_warna_3 = $this->input->post('b_warna3');
+		// $prioritas_buta_warna_3 = $this->input->post('p_buta3');
+		// $data9 = array(
+		// 	array(
+		// 		'id' => null,
+		// 		'buta_warna' => $buta_warna_1,
+		// 		'id_std' => $std_qua,
+		// 		'priority' => $prioritas_buta_warna_1
+		// 	),
+		// 	array(
+		// 		'id' => null,
+		// 		'buta_warna' => $buta_warna_2,
+		// 		'id_std' => $std_qua,
+		// 		'priority' => $prioritas_buta_warna_2
+		// 	),
+		// 	array(
+		// 		'id' => null,
+		// 		'buta_warna' => $buta_warna_3,
+		// 		'id_std' => $std_qua,
+		// 		'priority' => $prioritas_buta_warna_3
+		// 	)
+		// );
+		// $this->kualifikasi_model->add_buta_warna('standard_buta_warna', $data9);
 
 		redirect('dashboard');
 	}

@@ -10,6 +10,13 @@ class user_model extends CI_Model
 		return $this->db->get('users');
 	}
 
+	function tampil_detail_user() {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('users_detail', 'users_detail.id_user = users.id_user', 'inner');
+		return $this->db->get();
+	}
+
 	function add_user($table, $data) {
 		$this->db->insert($table, $data);
 		$id = $this->db->insert_id();

@@ -63,7 +63,6 @@
 									</div>
 									<hr>
 
-									<p>Yang perlu dilakukan</p>
 									<p class="text-center">Status</p>
 									<div class="form-group text-center">
 										<button type="button" class="form-control btn btn-outline-warning" disabled>Register - Pending</button>
@@ -112,6 +111,7 @@
 								</div>
 							</div>
 						</div>
+						<?php break; ?>
 					<?php endif ?>
 				<?php endforeach ?>
 
@@ -158,22 +158,34 @@
 											Tunggu hasil pendafataran
 										</label>
 									</div>
+									<hr>
 
+									<p class="text-center">Status</p>
+									<div class="form-group text-center">
+										<button type="button" class="form-control btn btn-success" disabled>Register Success</button>
+									</div>
+								</div>
+
+								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+									<small>what wrong!</small>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-4">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="text-center">Step 2</h4>
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
 										<label class="form-check-label" for="defaultCheck2">
 											Ujian Online
 										</label>
 									</div>
+									<div>&nbsp;</div>
 									<hr>
 
-									<p>Yang perlu dilakukan</p>
 									<p class="text-center">Status</p>
-
-									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-success" disabled>Register Success</button>
-									</div>
-
 									<?php foreach ($tahapan as $j): ?>
 										<?php if ($j->label == 'Tahap 2' && $j->start_stage <= $today): ?>
 											<div class="form-group text-center">

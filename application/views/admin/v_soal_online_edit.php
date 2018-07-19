@@ -111,13 +111,6 @@
 									</div>
 								</div>
 							</div>
-
-							<div class="col-md-6">
-								<div class="form-group">
-									<label for="bobot" class="require">Bobot Soal</label>
-									<input type="number" name="bobot" id="bobot" class="form-control" value="<?php echo $i->weight ?>">
-								</div>
-							</div>
 						</div>
 					</div>
 

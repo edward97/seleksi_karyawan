@@ -57,4 +57,10 @@ class Soal_model extends CI_Model
 		$this->db->where($where);
 		$this->db->update($table, $data);
 	}
+
+	function min_total($table, $where) {
+		$this->db->where($where);
+		$this->db->limit(1);
+		return $this->db->get($table);
+	}
 }

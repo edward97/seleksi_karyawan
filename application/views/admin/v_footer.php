@@ -30,6 +30,18 @@
 					modal.find('#level').attr("value",div.data('level'));
 				});
 
+				// Untuk sunting nilai interview
+				$('#editItv').on('show.bs.modal', function (event) {
+					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+					var modal = $(this)
+
+					// Isi nilai pada field
+					modal.find('#id').attr("value",div.data('id'));
+					modal.find('#id_stage').attr("value",div.data('stage'));
+					modal.find('#username').attr("value",div.data('nama'));
+					modal.find('#n_sikap').attr("value",div.data('sikap'));
+				});
+
 				// Untuk sunting ability
 				$('#edit-ability').on('show.bs.modal', function (event) {
 					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan

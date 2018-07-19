@@ -89,6 +89,47 @@ class Dashboard extends CI_Controller
 					$this->load->view('user/v_tahap_2');
 					$this->load->view('user/v_footer');
 				}
+				elseif ($row['label'] == 'Tahap 3') {
+					foreach ($data['tahapan'] as $i) {
+						if ($row['label'] == 'Tahap 3' && $i->label == 'Tahap 4' && $i->end_stage < $data['today']) {
+							$data_ar = array(
+								'acc_status' => 2
+							);
+							$where_ar = array(
+								'id_user' => $this->session->userdata('ses_id')
+							);
+							$this->user_model->change_user('users', $where_ar, $data_ar);
+
+							redirect('dashboard/result');
+						}
+					}
+					$this->load->view('user/v_header', $data);
+					$this->load->view('user/v_tahap_3');
+					$this->load->view('user/v_footer');
+				}
+				elseif ($row['label'] == 'Tahap 4') {
+					foreach ($data['tahapan'] as $i) {
+						if ($row['label'] == 'Tahap 4' && $i->label == 'Tahap 5' && $i->end_stage < $data['today']) {
+							$data_ar = array(
+								'acc_status' => 2
+							);
+							$where_ar = array(
+								'id_user' => $this->session->userdata('ses_id')
+							);
+							$this->user_model->change_user('users', $where_ar, $data_ar);
+
+							redirect('dashboard/result');
+						}
+					}
+					$this->load->view('user/v_header', $data);
+					$this->load->view('user/v_tahap_4');
+					$this->load->view('user/v_footer');
+				}
+				elseif ($row['label'] == 'Tahap 5') {
+					$this->load->view('user/v_header', $data);
+					$this->load->view('user/v_tahap_5');
+					$this->load->view('user/v_footer');
+				}
 				else {
 					$this->load->view('errors/404.html');
 				}

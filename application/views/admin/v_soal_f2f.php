@@ -64,10 +64,6 @@
 											<div class="col-md-6">
 												Answer : <?php echo $i->correct_ans ?>
 											</div>
-
-											<div class="col-md-6 text-right">
-												Bobot Soal : <?php echo $i->weight ?>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -171,13 +167,6 @@
 									</div>
 									<input type="text" class="form-control" name="ans_d" id="ans_d">
 								</div>
-							</div>
-						</div>
-
-						<div class="col-md-6">
-							<div class="form-group">
-								<label for="bobot" class="require">Weight</label>
-								<input type="number" name="bobot" id="bobot" class="form-control">
 							</div>
 						</div>
 					</div>

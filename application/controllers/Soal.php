@@ -61,7 +61,6 @@ class Soal extends CI_Controller
 			$pilB = $this->input->post('ans_b');
 			$pilC = $this->input->post('ans_c');
 			$PilD = $this->input->post('ans_d');
-			$weight = $this->input->post('bobot');
 			$correct = $this->input->post('correct');
 
 			if ($correct == "a") {
@@ -85,7 +84,6 @@ class Soal extends CI_Controller
 				'answer_c' => $pilC,
 				'answer_d' => $PilD,
 				'correct_ans' => $correct,
-				'weight' => $weight,
 				'status' => 1,
 				'label' => $label,
 				'id_job' => $divisi
@@ -112,7 +110,6 @@ class Soal extends CI_Controller
 			$pilB = $this->input->post('ans_b');
 			$pilC = $this->input->post('ans_c');
 			$PilD = $this->input->post('ans_d');
-			$weight = $this->input->post('bobot');
 			$correct = $this->input->post('correct');
 
 			if ($correct == "a") {
@@ -136,7 +133,6 @@ class Soal extends CI_Controller
 				'answer_c' => $pilC,
 				'answer_d' => $PilD,
 				'correct_ans' => $correct,
-				'weight' => $weight,
 				'status' => 1,
 				'label' => $label,
 				'id_job' => $divisi
@@ -201,7 +197,6 @@ class Soal extends CI_Controller
 			$pilB = $this->input->post('ans_b');
 			$pilC = $this->input->post('ans_c');
 			$PilD = $this->input->post('ans_d');
-			$weight = $this->input->post('bobot');
 			$correct = $this->input->post('correct');
 
 			if ($correct == "a") {
@@ -224,7 +219,6 @@ class Soal extends CI_Controller
 				'answer_c' => $pilC,
 				'answer_d' => $PilD,
 				'correct_ans' => $correct,
-				'weight' => $weight,
 				'status' => 1,
 				'label' => $label,
 				'id_job' => $divisi
@@ -253,7 +247,6 @@ class Soal extends CI_Controller
 			$pilB = $this->input->post('ans_b');
 			$pilC = $this->input->post('ans_c');
 			$PilD = $this->input->post('ans_d');
-			$weight = $this->input->post('bobot');
 			$correct = $this->input->post('correct');
 
 			if ($correct == "a") {
@@ -276,7 +269,6 @@ class Soal extends CI_Controller
 				'answer_c' => $pilC,
 				'answer_d' => $PilD,
 				'correct_ans' => $correct,
-				'weight' => $weight,
 				'status' => 1,
 				'label' => $label,
 				'id_job' => $divisi
