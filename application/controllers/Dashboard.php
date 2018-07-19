@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller
 		}
 		else {
 			$where = array(
-				'users.email' => $this->session->userdata('ses_nm'),
+				'users.id_user' => $this->session->userdata('ses_id'),
 				'users.acc_status' => 1,
 			);
 			$x = $this->login_model->auth_user($where);
@@ -71,14 +71,23 @@ class Dashboard extends CI_Controller
 						$this->load->view('user/v_footer');
 					}
 				}
-				elseif ($row['acc_status'] == 'Tahap 2') {
+				elseif ($row['label'] == 'Tahap 2') {
+					foreach ($data['tahapan'] as $i) {
+						if ($row['label'] == 'Tahap 2' && $i->label == 'Tahap 3' && $i->end_stage < $data['today']) {
+							$data_ar = array(
+								'acc_status' => 2
+							);
+							$where_ar = array(
+								'id_user' => $this->session->userdata('ses_id')
+							);
+							$this->user_model->change_user('users', $where_ar, $data_ar);
 
-				}
-				elseif ($row['acc_status'] == 'Tahap 3') {
-					
-				}
-				elseif ($row['acc_status'] == 'Tahap 4') {
-					
+							redirect('dashboard/result');
+						}
+					}
+					$this->load->view('user/v_header', $data);
+					$this->load->view('user/v_tahap_2');
+					$this->load->view('user/v_footer');
 				}
 				else {
 					$this->load->view('errors/404.html');
@@ -95,6 +104,6 @@ class Dashboard extends CI_Controller
 
 	function result() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
-			$this->load->view('user/v_dashboard_tidak_lulus_tahap_1.php', $data);
+		$this->load->view('user/v_dashboard_tidak_lulus.php', $data);
 	}
 }
