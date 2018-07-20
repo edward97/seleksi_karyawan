@@ -17,6 +17,23 @@
 					<?php echo form_open_multipart('dataset/form_preview'); ?>
 					<div class="card-body">
 						<?php echo $this->session->flashdata('msg'); ?>
+
+						<div class="row">
+							<div class="col-md-9">
+								<div class="form-group row">
+									<label for="jenis_kelamin" class="col-sm-4 col-form-label require">Pilih sesi yang akan di hitung</label>
+									
+									<div class="col-sm-8">
+										<select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+											<option selected>Choose...</option>
+											<option value="1">IT</option>
+											<option value="1">Akuntansi</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+
 						<div class="row">
 							<div class="col-md-9">
 								<div class="card">
@@ -60,14 +77,6 @@
 												</div>
 											</div>
 										</div>
-
-										<div class="row">
-											<div class="col-md-12 text-right">
-												<div class="form-group">
-													<button type="submit" class="btn btn-info" name="preview" value="preview">Preview</button>
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -77,7 +86,7 @@
 					<div class="card-footer bg-light text-right">
 						<div class="form-group">
 							<button type="submit" name="submit" value="save" class="btn btn-success">
-								<i class="far fa-save"></i> Save
+								<i class="far fa-save"></i> Generate
 							</button>
 						</div>
 					</div>

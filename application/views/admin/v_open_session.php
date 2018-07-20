@@ -7,28 +7,8 @@
 						Open Session
 					</div>
 						
-					<?php echo form_open('sesi/save_act_1'); ?>
+					<?php echo form_open('sesi/save_act'); ?>
 					<div class="card-body">
-						<!-- Divisi -->
-						<div class="row">
-							<div class="col-md-3 col-sm-6">
-								<div class="form-group">
-									<label for="divisi" class="col-form-label require">Divisi</label>
-								</div>
-							</div>
-
-							<div class="col-md-6 col-sm-6">
-								<div class="form-group">
-									<select name="divisi" id="divisi" class="form-control" required>
-										<option selected>Choose...</option>
-										<?php foreach ($job as $i): ?>
-											<option value="<?php echo $i->id_job; ?>"><?php echo $i->nm_job; ?></option>
-										<?php endforeach ?>
-									</select>
-								</div>
-							</div>
-						</div>
-
 						<!-- Partisipasi admin -->
 						<div class="row">
 							<div class="col-md-9">
@@ -66,6 +46,26 @@
 											</tr>
 										</tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Divisi -->
+						<div class="row">
+							<div class="col-md-3 col-sm-6">
+								<div class="form-group">
+									<label for="divisi" class="col-form-label require">Divisi</label>
+								</div>
+							</div>
+
+							<div class="col-md-6 col-sm-6">
+								<div class="form-group">
+									<select name="divisi" id="divisi" class="form-control" required>
+										<option selected>Choose...</option>
+										<?php foreach ($job as $i): ?>
+											<option value="<?php echo $i->id_job; ?>"><?php echo $i->nm_job; ?></option>
+										<?php endforeach ?>
+									</select>
 								</div>
 							</div>
 						</div>

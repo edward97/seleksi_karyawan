@@ -17,6 +17,23 @@ class Soal extends CI_Controller
 		$this->load->model('setting_model');
 	}
 
+	function list() {
+		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
+
+		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+			$data['divisi'] = $this->setting_model->tampil_job()->result();
+			$data['online'] = $this->soal_model->tampil_online()->result();
+			$data['judul'] = "List Soal Ujian";
+
+			$this->load->view('admin/v_header', $data);
+			$this->load->view('admin/v_soal_list');
+			$this->load->view('admin/v_footer');
+		}
+		else {
+			$this->load->view('errors/404.html');
+		}
+	}
+
 	function list_online() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 

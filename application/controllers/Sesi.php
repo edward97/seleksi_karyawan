@@ -35,7 +35,7 @@ class Sesi extends CI_Controller
 			$data['judul'] = "Open Session";
 
 			$this->load->view('admin/v_header', $data);
-			$this->load->view('admin/v_open_session_1');
+			$this->load->view('admin/v_open_session');
 			$this->load->view('admin/v_footer');
 		}
 		else {
@@ -43,22 +43,7 @@ class Sesi extends CI_Controller
 		}
 	}
 
-	function next() {
-		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
-
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
-			$data['judul'] = "Open Session";
-
-			$this->load->view('admin/v_header', $data);
-			$this->load->view('admin/v_open_session_2');
-			$this->load->view('admin/v_footer');
-		}
-		else {
-			$this->load->view('errors/404.html');
-		}
-	}
-
-	function save_act_1() {
+	function save_act() {
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$divisi = $this->input->post('divisi');
 			$kualifikasi = $this->input->post('kualifikasi');
@@ -79,8 +64,6 @@ class Sesi extends CI_Controller
 				'label_online' => $ujian_online,
 				'label_f2f' => $ujian_f2f,
 				'status_selesai' => 0,
-				'status_laporan' => 0,
-				'id_algo' => 'algoritma',
 				'id_std' => $kualifikasi,
 				'id_job' => $divisi
 			);
@@ -139,15 +122,12 @@ class Sesi extends CI_Controller
 			);
 			$this->sesi_model->update_admin_sesi('admins_sesi', $data_admin_where, $data_admin);
 
-			redirect('sesi/next');
+			$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil ditambah!</div>');
+			redirect('dashboard');
 		}
 		else {
 			$this->load->view('errors/404.html');
 		}
-	}
-
-	function save_act_2() {
-		redirect('dashboard');
 	}
 
 	function edit() {

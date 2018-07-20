@@ -18,11 +18,12 @@
 						<?php echo $this->session->flashdata('msg_online') ?>
 
 						<div class="row">
+							<?php $no = 1; ?>
 							<?php foreach ($online as $i): ?>
-							<div class="col-md-6">
+							<div class="col-md-12">
 								<div class="card">
 									<div class="card-header bg-light">
-										<?php echo $i->label." [ ".$i->nm_job." ] "; ?>
+										<?php echo $no.". ".$i->label." [ Link Job = ".$i->nm_job." ] "; ?>
 
 										<div class="card-actions">
 											<a href="<?php echo site_url('soal/edit_online/')."$i->id_question"; ?>" class="btn text-info">
@@ -68,6 +69,7 @@
 									</div>
 								</div>
 							</div>
+							<?php $no++; ?>
 							<?php endforeach ?>
 						</div>
 					</div>

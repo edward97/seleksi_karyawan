@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header bg-light">
-						List Ujian Tatap Muka
+						List Ujian
 
 						<div class="card-actions">
 							<a href="#" class="btn text-success" data-toggle="modal" data-target="#addAct">
@@ -15,62 +15,15 @@
 					</div>
 
 					<div class="card-body">
-						<?php echo $this->session->flashdata('msg_f2f') ?>
-
 						<div class="row">
-							<?php $no = 1; ?>
-							<?php foreach ($f2f as $i): ?>
-							<div class="col-md-12">
-								<div class="card">
-									<div class="card-header bg-light">
-										<?php echo $no.". ".$i->label." [ Link Job = ".$i->nm_job." ] "; ?>
-
-										<div class="card-actions">
-											<a href="<?php echo site_url('soal/edit_f2f/')."$i->id_question"; ?>" class="btn text-info">
-												<i class="fa fa-cog"></i> Edit
-											</a>
-										</div>
-									</div>
-
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-12">
-												<?php echo $i->question; ?>
-											</div>
-										</div>
-
-										<hr>
-
-										<div class="row">
-											<div class="col-md-6">
-												A - <?php echo $i->answer_a ?>
-											</div>
-
-											<div class="col-md-6">
-												B - <?php echo $i->answer_b ?>
-											</div>
-
-											<div class="col-md-6">
-												C - <?php echo $i->answer_c ?>
-											</div>
-
-											<div class="col-md-6">
-												D - <?php echo $i->answer_d ?>
-											</div>
-										</div>
-									</div>
-
-									<div class="card-footer bg-light text-danger">
-										<div class="row">
-											<div class="col-md-6">
-												Answer : <?php echo $i->correct_ans ?>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="col-md-6">
+								
 							</div>
-							<?php $no++; ?>
-							<?php endforeach ?>
+							
+							<div class="col-md-6">
+								
+							</div>
+							
 						</div>
 					</div>
 				</div>

@@ -86,25 +86,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<li class="nav-title">Navigation</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('sesi'); ?>" class="nav-link">
+								<a href="<?php echo site_url('sesi'); ?>" class="nav-link <?php echo active_link('sesi'); ?>">
 									<i class="icon icon-calendar"></i> Open Session
 								</a>
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('admin'); ?>" class="nav-link">
+								<a href="<?php echo site_url('admin'); ?>" class="nav-link <?php echo active_link('admin'); ?>">
 									<i class="icon icon-user"></i> Manage Admin
 								</a>
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('user'); ?>" class="nav-link">
+								<a href="<?php echo site_url('user'); ?>" class="nav-link <?php echo active_link('user'); ?>">
 									<i class="icon icon-people"></i> Profile User
 								</a>
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('interview'); ?>" class="nav-link">
+								<a href="<?php echo site_url('algoritma'); ?>" class="nav-link <?php echo active_link('algoritma'); ?>">
+									<i class="icon icon-speech"></i> Algoritma
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="<?php echo site_url('interview'); ?>" class="nav-link <?php echo active_link('interview'); ?>">
 									<i class="icon icon-pencil"></i> Input Nilai Interview
 								</a>
 							</li>
@@ -116,13 +122,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<ul class="nav-dropdown-items">
 									<li class="nav-item">
-										<a href="<?php echo site_url('soal/list_online') ?>" class="nav-link">
+										<a href="<?php echo site_url('soal/list') ?>" class="nav-link <?php echo active_link('soal/list'); ?>">
+											<i class="icon icon-notebook"></i> List
+										</a>
+									</li>
+
+									<li class="nav-item">
+										<a href="<?php echo site_url('soal/list_online') ?>" class="nav-link <?php echo active_link('soal/list_online'); ?>">
 											<i class="icon icon-notebook"></i> Ujian Online
 										</a>
 									</li>
 
 									<li class="nav-item">
-										<a href="<?php echo site_url('soal/list_f2f') ?>" class="nav-link">
+										<a href="<?php echo site_url('soal/list_f2f') ?>" class="nav-link <?php echo active_link('soal/list_f2f'); ?>">
 											<i class="icon icon-book-open"></i> Ujian Tatap Muka
 										</a>
 									</li>
@@ -130,13 +142,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('kualifikasi'); ?>" class="nav-link">
+								<a href="<?php echo site_url('kualifikasi'); ?>" class="nav-link <?php echo active_link('kualifikasi'); ?>">
 									<i class="icon icon-doc"></i> Kualifikasi
 								</a>
 							</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('setting'); ?>" class="nav-link">
+								<a href="<?php echo site_url('setting'); ?>" class="nav-link <?php echo active_link('setting'); ?>">
 									<i class="icon icon-briefcase"></i> Abilites & Jobs
 								</a>
 							</li>
@@ -144,8 +156,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<li class="nav-title">More</li>
 
 							<li class="nav-item">
-								<a href="<?php echo site_url('dashboard'); ?>" class="nav-link">
-									<i class="icon icon-docs"></i> Laporan Session
+								<a href="<?php echo site_url('login/logout'); ?>" class="nav-link">
+									<i class="icon icon-logout"></i> Logout
 								</a>
 							</li>
 						</ul>

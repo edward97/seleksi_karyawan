@@ -1,4 +1,2 @@
-nama_lengkap,umur,experience,last_education,status,total_kemampuan,nilai_online,nilai_f2f,nilai_sikap,buta_warna
-Edward Surya Jaya,21,2,S1,Lajang,8,85,85,Baik,Negatif
-Christine,25,5,S3,Lajang,7,90,90,Cukup Baik,Positif
-Ryan Rajaya,22,3,S2,Menikah,5,88,87,Sangat Baik,Parsial
+nama_lengkap,umur,experience,last_education,status,total_kemampuan,nilai_online,nilai_f2f,nilai_sikap
+Edward Surya Jaya,25,3,S1,Lajang,7,85,90,Cukup Baik

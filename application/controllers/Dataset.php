@@ -37,7 +37,7 @@ class Dataset extends CI_Controller
 		else {
 			$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">'.$data['upload_error'].'</div>');
-			redirect('sesi/next');
+			redirect('algoritma');
 		}
 	}
 
@@ -93,7 +93,6 @@ class Dataset extends CI_Controller
 				$nilai_online = $get[6];
 				$nilai_f2f = $get[7];
 				$nilai_sikap = $get[8];
-				$buta_warna = $get[9];
 
 				// push (add)ke variabel data
 				array_push($data, [
@@ -106,7 +105,6 @@ class Dataset extends CI_Controller
 					'nilai_online' => $nilai_online,
 					'nilai_f2f' => $nilai_f2f,
 					'nilai_sikap' => $nilai_sikap,
-					'buta_warna' => $buta_warna
 				]);
 			}
 			$numrow++;
@@ -114,6 +112,6 @@ class Dataset extends CI_Controller
 
 		$this->dataset_model->add_dataset('dataset', $data);
 		$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil diupload!</div>');
-		redirect('sesi/next');
+		redirect('algoritma');
 	}
 }

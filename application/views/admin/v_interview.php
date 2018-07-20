@@ -36,18 +36,25 @@
 										<td><?php echo $i->nilai_online ?></td>
 										<td><?php echo $i->nilai_f2f ?></td>
 										<td><?php echo $i->nilai_sikap ?></td>
-										<td>
-											<a
-												href="javascript:;" 
-												data-id="<?php echo $i->id_user ?>" 
-												data-nama="<?php echo $i->full_name ?>" 
-												data-stage="<?php echo $i->id_stage_detail ?>" 
-												data-sikap="<?php echo $i->nilai_sikap ?>" 
-												data-toggle="modal" data-target="#editItv" 
-												class="btn btn-outline-info btn-sm">
-													<i class="fa fa-edit" aria-hidden="true"></i> Edit
-											</a>
-										</td>
+
+										<?php if ($i->nilai_f2f != null): ?>
+											<td>
+												<a
+													href="javascript:;" 
+													data-id="<?php echo $i->id_user ?>" 
+													data-nama="<?php echo $i->full_name ?>" 
+													data-stage="<?php echo $i->id_stage_detail ?>" 
+													data-sikap="<?php echo $i->nilai_sikap ?>" 
+													data-toggle="modal" data-target="#editItv" 
+													class="btn btn-outline-info btn-sm">
+														<i class="fa fa-edit" aria-hidden="true"></i> Edit
+												</a>
+											</td>
+										<?php else: ?>
+											<td>
+												<button type="button" class="btn btn-outline-info btn-sm" disabled><i class="fa fa-edit" aria-hidden="true"></i> Edit</button>
+											</td>
+										<?php endif ?>
 									</tr>
 									<?php $no++; ?>
 									<?php endforeach ?>
