@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * setting_model
+ * Setting_model
  */
 class Setting_model extends CI_Model
 {

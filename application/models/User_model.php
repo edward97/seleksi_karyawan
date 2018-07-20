@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * user_model
+ * User_model
  */
-class user_model extends CI_Model
+class User_model extends CI_Model
 {
 	function tampil_user() {
 		return $this->db->get('users');

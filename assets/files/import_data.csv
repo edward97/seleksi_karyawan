@@ -1,2 +1,11 @@
-nama_lengkap,umur,experience,last_education,status,total_kemampuan,nilai_online,nilai_f2f,nilai_sikap
-Edward Surya Jaya,25,3,S1,Lajang,7,85,90,Cukup Baik
+nama_lengkap,umur,experience,last_education,status,total_kemampuan,nilai_online,nilai_f2f,nilai_sikap,status_passed
+Vincent,21,3,pasca,lajang,6,90,85,baik,lulus
+Christine,21,0,sarjana,lajang,7,85,90,cukup baik,lulus
+Ryan,21,3,sma,lajang,8,75,78,cukup baik,gagal
+Eric A,21,0,pasca,lajang,9,75,76,baik,lulus
+Morris,21,3,pasca,lajang,5,85,85,cukup baik,gagal
+Afie,21,1,akademi,lajang,4,75,75,cukup baik,lulus
+Chandra,21,3,sarjana,lajang,3,75,77,baik,lulus
+Agus,21,2,sma,lajang,2,75,75,baik,gagal
+Aling,21,2,sma,lajang,4,79,79,sangat baik,gagal
+Edward,21,3,pasca,lajang,8,100,95,cukup baik,gagal

@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * soal_model
+ * Soal_model
  */
 class Soal_model extends CI_Model
 {

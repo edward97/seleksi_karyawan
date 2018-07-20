@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * admin_model
+ * Admin_model
  */
 class Admin_model extends CI_Model
 {

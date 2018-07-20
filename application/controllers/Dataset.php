@@ -93,6 +93,7 @@ class Dataset extends CI_Controller
 				$nilai_online = $get[6];
 				$nilai_f2f = $get[7];
 				$nilai_sikap = $get[8];
+				$status_passed = $get[9];
 
 				// push (add)ke variabel data
 				array_push($data, [
@@ -105,6 +106,7 @@ class Dataset extends CI_Controller
 					'nilai_online' => $nilai_online,
 					'nilai_f2f' => $nilai_f2f,
 					'nilai_sikap' => $nilai_sikap,
+					'status_passed' => $status_passed,
 				]);
 			}
 			$numrow++;
