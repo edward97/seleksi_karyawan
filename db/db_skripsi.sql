@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 19, 2018 at 09:01 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- Generation Time: Jul 21, 2018 at 04:03 AM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -96,8 +96,8 @@ CREATE TABLE `admins_sesi` (
 --
 
 INSERT INTO `admins_sesi` (`id`, `keterangan`, `id_admin`, `id_stage`, `created_by`) VALUES
-(8, 'Bagian Pengawas', 7, 4, 7),
-(9, 'Bagian Pengawas', 7, 5, 7);
+(10, 'Bagian Pengawas', 7, 6, 7),
+(12, 'Bagian Interview', 6, 6, 7);
 
 -- --------------------------------------------------------
 
@@ -116,7 +116,6 @@ CREATE TABLE `dataset` (
   `nilai_online` float NOT NULL,
   `nilai_f2f` float NOT NULL,
   `nilai_sikap` varchar(255) NOT NULL,
-  `buta_warna` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -125,10 +124,8 @@ CREATE TABLE `dataset` (
 -- Dumping data for table `dataset`
 --
 
-INSERT INTO `dataset` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `buta_warna`, `created_at`, `updated_at`) VALUES
-(1, 'Edward Surya Jaya', 21, 2, 'S1', 'Lajang', 8, 85, 85, 'Baik', 'Negatif', '2018-07-11 08:54:37', '2018-07-11 01:54:37'),
-(2, 'Christine', 25, 5, 'S3', 'Lajang', 7, 90, 90, 'Cukup Baik', 'Positif', '2018-07-11 08:54:37', '2018-07-11 01:54:37'),
-(3, 'Ryan Rajaya', 22, 3, 'S2', 'Menikah', 5, 88, 87, 'Sangat Baik', 'Parsial', '2018-07-11 08:54:37', '2018-07-11 01:54:37');
+INSERT INTO `dataset` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `created_at`, `updated_at`) VALUES
+(5, 'Edward Surya Jaya', 25, 3, 'S1', 'Lajang', 7, 85, 90, 'Cukup Baik', '2018-07-20 15:00:13', '2018-07-20 08:00:13');
 
 -- --------------------------------------------------------
 
@@ -184,9 +181,16 @@ CREATE TABLE `question_f2f` (
 --
 
 INSERT INTO `question_f2f` (`id_question`, `question`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_ans`, `status`, `label`, `created_at`, `updated_at`, `id_job`) VALUES
-(1, '<p>Apakah tulisan di disamping ini bold ?&nbsp;<strong>TESTING</strong></p>', 'Benar', 'Salah', 'Mungkin', 'Tidak Mungkin', 'Mungkin', 1, 'Akuntansi I', '2018-07-01 16:03:48', '2018-07-01 11:20:17', 2),
-(2, '<p>Kepanjangan <strong>HTML</strong> adalah ?</p>', 'Gak Tau', 'HTML => HTML', 'Lol', 'Gk usa Jawab', 'Gk usa Jawab', 1, 'Akuntansi I', '2018-07-01 18:14:39', '2018-07-01 12:06:46', 3),
-(3, '<p>&lt;?php print_r(\'Hello World!\') ?&gt;</p>\r\n<p>is that true ?</p>', 'Maybe', 'Yes', 'No Answer', 'No', 'No', 1, 'Manager I', '2018-07-18 08:42:20', '2018-07-18 01:42:20', 10);
+(4, '<p>Posting atau pemindah bukuan adalah proses pemindahan informasi dari ?</p>', 'Jurnal ke neraca saldo keuangan', 'Buku besar ke laporan', 'Buku besar ke neraca saldo', 'Jurnal ke buku besar', 'Jurnal ke buku besar', 1, 'Akuntansi I', '2018-07-20 10:51:54', '2018-07-20 03:51:54', 7),
+(5, '<p>Di antara kejadian berikut mana yang bukan merupakan transaksi usaha ?</p>', 'Penyetoran sejumlah uang oleh pemilik untuk kepentingan usaha', 'Pembelian bahan baku secara tunai', 'Penjualan barang dagangan secara kredit', 'Kenaikan suku bunga pinjaman di bank', 'Kenaikan suku bunga pinjaman di bank', 1, 'Akuntansi I', '2018-07-20 10:53:23', '2018-07-20 03:53:23', 7),
+(6, '<p>Pembelian perlengkapan kantor secara kredit akan mempengaruhi persamaan akuntansi sebagai berikut ?</p>', 'Aktiva bertambah dan hutang bertambah', 'Aktiva bertambah dan modal berkurang', 'Aktiva bertambah dan modal bertambah', 'Aktiva,utang dan modal tidak berubah', 'Aktiva bertambah dan hutang bertambah', 1, 'Akuntansi I', '2018-07-20 11:07:44', '2018-07-20 04:07:44', 7),
+(7, '<p>A payment of cash for the purchases of merchandise would be recorded in the :</p>', 'Purchase journal', 'Cash payment journal', 'Sales journal', 'Cash receipt journal', 'Cash payment journal', 1, 'Akuntansi I', '2018-07-20 11:08:46', '2018-07-20 04:08:46', 7),
+(8, '<p>Manakah di antara pernyataan berikut yang tidak tepat ?</p>', 'Kas mempunyai saldo normal debit', 'Piutang mempunyai saldo normal debit', 'Modal mempunyai saldo normal debit', 'Hutang mempunyai saldo normal kredit', 'Modal mempunyai saldo normal debit', 1, 'Akuntansi I', '2018-07-20 11:09:31', '2018-07-20 04:09:31', 7),
+(9, '<p>Outstanding check disebut juga :</p>', 'Cek kosong', 'Cek tidak cukup dana', 'cek yang belum disetorkan', 'Cek yang beredar', 'Cek yang beredar', 1, 'Akuntansi I', '2018-07-20 11:10:25', '2018-07-20 04:10:25', 7),
+(10, '<p>Dalam balance sheet investasi jangka pendek termasuk dalam kelompok :</p>', 'Aktiva tetap', 'Aktiva lancar', 'Hutang jangka pendek', 'Hutang jangka panjang', 'Aktiva lancar', 1, 'Akuntansi I', '2018-07-20 11:11:19', '2018-07-20 04:11:19', 7),
+(11, '<p>Dasar penyusutan dapat dipengaruhi oleh nilai-nilai berikut, kecuali:</p>', 'Harga perolehan', 'Nilai sisa', 'Nilai buku', 'Nilai pasar', 'Nilai pasar', 1, 'Akuntansi I', '2018-07-20 11:12:52', '2018-07-20 04:12:52', 7),
+(12, '<p>Satu dari pos-pos kerugian dibawah ini termasuk dalam katagori pos-pos luar biasa :</p>', 'Kerugian karena penjualan aktiva tetap', 'Kerugian karena penurunan niali persediaan', 'Kerugian karena devaluasi rupiah', 'Kerugian karena penjualan surat-surat berharga', 'Kerugian karena devaluasi rupiah', 1, 'Akuntansi I', '2018-07-20 11:18:26', '2018-07-20 04:18:26', 7),
+(13, '<p>&nbsp;Ayat jurnal tidak dibuat untuK ?</p>', 'Penempatan saham', 'Perolehan kembali saham', 'Pemecahan saham', 'Pengeluaran saham', 'Pemecahan saham', 1, 'Akuntansi I', '2018-07-20 11:19:49', '2018-07-20 04:19:49', 7);
 
 -- --------------------------------------------------------
 
@@ -214,14 +218,16 @@ CREATE TABLE `question_online` (
 --
 
 INSERT INTO `question_online` (`id_question`, `question`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_ans`, `status`, `label`, `created_at`, `updated_at`, `id_job`) VALUES
-(1, '<p><em>Apakah</em> Jawaban di bawah ini <strong>BENAR</strong> ?</p>', 'Mungkin', 'Iya', 'Salah', 'Kek Nya Benar', 'Iya', 1, 'Akuntansi I', '2018-07-01 16:02:26', '2018-07-19 13:18:21', 1),
-(2, '<p>Apa yang kami inginkan ?</p>', 'Tidak Urus', 'Uang', 'Hidup Mewah', 'Kekayaan', 'Tidak Urus', 1, 'Akuntansi II', '2018-07-01 18:19:58', '2018-07-19 13:18:19', 6),
-(3, '<p>How ?</p>', '1', '2', '3', '4', '4', 1, 'Akuntansi II', '2018-07-01 19:15:28', '2018-07-19 13:18:17', 3),
-(4, '<p>Skripsi itu mudah atau tidak ?</p>', 'Ez', 'Susah', 'Gak Kuliah', 'Susah Susah Gampang Bang', 'Ez', 1, 'Akuntansi II', '2018-07-01 22:49:34', '2018-07-19 13:18:15', 6),
-(5, '<p>Kegunaan Mouse ?</p>', 'Untuk menjalankan kursor', 'Ntah', 'Jawab Sendiri', 'Gk usa Jawab', 'Untuk menjalankan kursor', 1, 'IT', '2018-07-05 22:16:56', '2018-07-19 13:18:13', 2),
-(6, '<p>testing ?</p>\r\n<ul>\r\n<li>blue eye</li>\r\n<li>red eye</li>\r\n<li>green eye</li>\r\n<li>brown eye</li>\r\n</ul>', 'Blue', 'Red', 'Green', 'Brown', 'Red', 1, 'Manager I', '2018-07-18 08:41:14', '2018-07-18 01:41:14', 10),
-(7, '<p>adfafdasgffd</p>', 'kjtkjh', 'dfnlkuyl', 'cvxcv', 'atrhrh', 'dfnlkuyl', 1, 'Manager I', '2018-07-19 18:57:30', '2018-07-19 11:57:30', 10),
-(8, '<p>hello world!</p>', 'apa', 'siapa', 'mengapa', 'berapa', 'mengapa', 1, 'Manager I', '2018-07-19 19:27:04', '2018-07-19 12:27:04', 10);
+(9, '<p>Setiap anggota harus berperilaku yang konsisten dengan reputasi profesi&nbsp; yang baik dan menjauhi tindakan yang dapat mendiskreditkan profesi. Hal ini merupakan salah satu prinsip etika profesi teknisi akuntansi yaitu ?</p>', 'Objektivitas', 'Subjektivitas', 'Integritas', 'Profesional', 'Profesional', 1, 'Akuntansi I', '2018-07-20 09:53:20', '2018-07-20 02:53:20', 7),
+(10, '<p>Untuk menghindari kecelakaan kerja ditempat kerja, dapat dilakukan dengan memberikan santunan untuk penghasilan yang hilang sebagai akibat dari kecelakaan kerja berupa ?</p>', 'Standarisasi', 'Pengawasan', 'Asuransi', 'Riset Teknis', 'Asuransi', 1, 'Akuntansi I', '2018-07-20 09:54:16', '2018-07-20 02:54:16', 7),
+(11, '<p>Bidang akuntansi yang bertujuan menyediakan informasi didalam perusahaan ?</p>', 'Akuntansi Keuangan', 'Akuntansi Manajemen', 'AKuntansi Pemeriksaan', 'Akuntansi Biaya', 'Akuntansi Manajemen', 1, 'Akuntansi I', '2018-07-20 09:55:48', '2018-07-20 02:55:48', 7),
+(12, '<p>Transaksi pembayaran gaji karyawan dalam persamaan dasar akuntansi akan mempengaruhi ?</p>', 'Harta (-), Hutang (-), dan Modal (+)', 'Harta (-) dan Modal (+)', 'Harta (-) dan Modal (-)', 'Harta (+) dan Modal (-)', 'Harta (-) dan Modal (-)', 1, 'Akuntansi I', '2018-07-20 09:57:16', '2018-07-20 02:57:26', 7),
+(13, '<p>Bukti transaksi atas penjualan atau pembelian (secara kredit) adalah ?</p>', 'Invoice', 'Memo', 'Kuitansi', 'Debet Memorandum', 'Invoice', 1, 'Akuntansi I', '2018-07-20 10:07:27', '2018-07-20 03:07:27', 7),
+(14, '<p>Pada tahun berapa berdiri organisasi Ikatan Akuntansi Indonesia (IAI) ?</p>', '1958', '1957', '1975', '1960', '1957', 1, 'Akuntansi I', '2018-07-20 10:35:35', '2018-07-20 03:35:35', 7),
+(15, '<p>Perhatikan jenis-jenis biaya berikut ini :</p>\r\n<ol style=\"list-style-type: upper-roman;\">\r\n<li>Biaya bahan baku</li>\r\n<li>Biaya tenaga kerja</li>\r\n<li>Pengeluaran pendapatan</li>\r\n<li>Biaya produksi</li>\r\n<li>Biaya pemasaran</li>\r\n<li>Biaya langsung</li>\r\n<li>Biaya tetap</li>\r\n<li>Biaya administrasi dan umum</li>\r\n</ol>\r\n<p>yang merupakan jenis biaya atas dasar objek pengeluaran adalah ?</p>', 'I, II, III', 'IV, V, VIII', 'V, VI, VII', 'I, V, IV', 'IV, V, VIII', 1, 'Akuntansi I', '2018-07-20 10:39:58', '2018-07-20 03:39:58', 7),
+(16, '<p>Salah satu alasan dilakukannya rekonsiliasi bank adalah ?</p>', 'Kesalahan mencatat nama customer oleh perusahaan', 'Kesalahan menulis nomor cek oleh perusahaan', 'Adanya setoran dalam perjalanan', 'Penggunaan cek dalam pembayaran hutang', 'Adanya setoran dalam perjalanan', 1, 'Akuntansi I', '2018-07-20 10:41:22', '2018-07-20 03:41:22', 7),
+(17, '<p>Terdapat data PT Mawar sebagai berikut :</p>\r\n<p style=\"padding-left: 30px;\">Pembelian Rp 246.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Retur Pembelian Rp 44.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Biaya angkut pembelian Rp 5.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Persediaan awal Rp 420.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Persediaan akhir (Rp 240.000.000,-)</p>\r\n<p style=\"padding-left: 30px;\">Penjualan Rp 800.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Retur penjualan (Rp 44.000.000,-)</p>\r\n<p>Berdasarkan data diatas, PT MAWAR mengalami ?</p>', 'Laba kotor Rp 377.000.000,-', 'Laba kotor Rp 387.000.000,-', 'Laba kotor Rp 403.000.000,-', 'Laba kotor Rp 763.000.000,-', 'Laba kotor Rp 387.000.000,-', 1, 'Akuntansi I', '2018-07-20 10:45:05', '2018-07-20 03:45:05', 7),
+(18, '<p>Pendapatan diterima di muka adalah ?</p>', 'Aktiva', 'Modal', 'Pendapatan', 'Kewajiban', 'Kewajiban', 1, 'Akuntansi I', '2018-07-20 10:45:54', '2018-07-20 03:45:54', 7);
 
 -- --------------------------------------------------------
 
@@ -280,8 +286,7 @@ CREATE TABLE `selection_stage` (
 --
 
 INSERT INTO `selection_stage` (`id_stage`, `nm_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`) VALUES
-(4, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 0, '2018-07-13 01:05:43', '2018-07-12 18:05:43', 1, 7),
-(5, 'nama_stage', 'Manager I', 'Manager I', 0, '2018-07-18 08:43:48', '2018-07-18 01:43:48', 2, 10);
+(7, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 0, '2018-07-20 11:22:39', '2018-07-20 04:22:39', 1, 7);
 
 -- --------------------------------------------------------
 
@@ -304,18 +309,12 @@ CREATE TABLE `selection_stage_detail` (
 --
 
 INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`, `created_at`, `updated_at`, `id_stage`) VALUES
-(20, 'Tahap 1', '2018-07-09', '2018-07-14', '2018-07-13 01:05:43', '2018-07-13 09:01:33', 4),
-(21, 'Tahap 2', '2018-07-16', '2018-07-21', '2018-07-13 01:05:43', '2018-07-13 09:01:43', 4),
-(22, 'Tahap 3', '2018-07-23', '2018-07-28', '2018-07-13 01:05:43', '2018-07-13 09:01:49', 4),
-(23, 'Tahap 4', '2018-07-30', '2018-07-31', '2018-07-13 01:05:43', '2018-07-12 18:05:43', 4),
-(24, 'Tahap 5', '2018-07-30', '2018-07-31', '2018-07-13 01:05:43', '2018-07-12 18:05:43', 4),
-(25, 'Tahap 6', '2018-07-30', '2018-07-31', '2018-07-13 01:05:43', '2018-07-12 18:05:43', 4),
-(26, 'Tahap 1', '2018-07-16', '2018-07-17', '2018-07-18 08:43:48', '2018-07-19 14:35:11', 5),
-(27, 'Tahap 2', '2018-07-18', '2018-07-18', '2018-07-18 08:43:48', '2018-07-19 14:49:15', 5),
-(28, 'Tahap 3', '2018-07-18', '2018-07-18', '2018-07-18 08:43:48', '2018-07-19 15:24:49', 5),
-(29, 'Tahap 4', '2018-07-18', '2018-07-21', '2018-07-18 08:43:48', '2018-07-19 15:28:50', 5),
-(30, 'Tahap 5', '2018-07-19', '2018-08-11', '2018-07-18 08:43:48', '2018-07-19 16:46:16', 5),
-(31, 'Tahap 6', '2018-08-06', '2018-08-11', '2018-07-18 08:43:48', '2018-07-18 01:43:48', 5);
+(38, 'Tahap 1', '2018-07-20', '2018-07-21', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
+(39, 'Tahap 2', '2018-07-22', '2018-07-23', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
+(40, 'Tahap 3', '2018-07-24', '2018-07-25', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
+(41, 'Tahap 4', '2018-07-26', '2018-07-27', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
+(42, 'Tahap 5', '2018-07-26', '2018-07-27', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
+(43, 'Tahap 6', '2018-07-26', '2018-07-27', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7);
 
 -- --------------------------------------------------------
 
@@ -578,7 +577,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `email`, `password`, `confirm_code`, `acc_status`, `created_at`, `updated_at`, `id_job`, `id_stage_detail`) VALUES
-(5, 'edw.suryajaya@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 1, '2018-07-19 18:47:59', '2018-07-19 16:47:10', 10, 28);
+(6, 'edw.suryajaya@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 1, '2018-07-20 11:25:03', '2018-07-20 04:29:21', 7, 38),
+(7, 'vincent@mail.com', 'b15ab3f829f0f897fe507ef548741afb', NULL, 1, '2018-07-20 11:27:54', '2018-07-20 04:29:23', 7, 38);
 
 -- --------------------------------------------------------
 
@@ -599,8 +599,19 @@ CREATE TABLE `users_ability` (
 --
 
 INSERT INTO `users_ability` (`id`, `created_at`, `updated_at`, `id_ability`, `id_user`) VALUES
-(26, '2018-07-19 18:47:59', '2018-07-19 11:47:59', 21, 5),
-(27, '2018-07-19 18:47:59', '2018-07-19 11:47:59', 22, 5);
+(28, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 2, 6),
+(29, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 10, 6),
+(30, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 17, 6),
+(31, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 18, 6),
+(32, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 20, 6),
+(33, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 21, 6),
+(34, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 22, 6),
+(35, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 23, 6),
+(36, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 24, 6),
+(37, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 2, 7),
+(38, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 10, 7),
+(39, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 21, 7),
+(40, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 24, 7);
 
 -- --------------------------------------------------------
 
@@ -643,7 +654,8 @@ CREATE TABLE `users_detail` (
 --
 
 INSERT INTO `users_detail` (`id_d_user`, `full_name`, `no_ktp`, `birth_place`, `birth_date`, `address`, `domisili`, `kode_pos`, `p_number`, `t_number`, `age`, `gender`, `religion`, `last_education`, `status`, `experience`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `total_ability`, `status_passed`, `nama_kerabat`, `nomor_kerabat`, `hubungan_kerabat`, `created_at`, `updated_at`, `id_user`) VALUES
-(5, 'Edward Surya Jaya', '141111235', 'Serbalawan', '1997-02-02', 'Jl. Cemara', 'Medan', '20011', '085275522020', '-', 21, 'Pria', 'Buddha', 'S2', 'Lajang', 3, 100, 100, 'Baik', 5, 0, 'John Doe', '061455872', 'Sepupu', '2018-07-19 18:47:59', '2018-07-19 16:40:02', 5);
+(6, 'Edward Surya Jaya', '141111235', 'Siantar', '1997-02-02', 'Jl. Damar III', 'Medan', '20115', '085275522020', '-', 21, 'Pria', 'Buddha', 'S2', 'Lajang', 3, NULL, NULL, NULL, 5, 0, 'Steven', '085236981236', 'Teman', '2018-07-20 11:25:03', '2018-07-20 04:25:03', 6),
+(7, 'Vincent', '141110604', 'Siantar', '1990-01-01', 'Jl. Asia Mega Mas', 'Medan', '20154', '081145983657', '061455789', 28, 'Pria', 'Buddha', 'S1', 'Menikah', 4, NULL, NULL, NULL, 1, 0, 'Edward', '085275522020', 'Teman', '2018-07-20 11:27:54', '2018-07-20 04:27:54', 7);
 
 -- --------------------------------------------------------
 
@@ -659,13 +671,6 @@ CREATE TABLE `users_exam` (
   `end_f2f` datetime DEFAULT NULL,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_exam`
---
-
-INSERT INTO `users_exam` (`id`, `start_online`, `end_online`, `start_f2f`, `end_f2f`, `id_user`) VALUES
-(2, '2018-07-19 21:35:32', '2018-07-19 23:35:32', '2018-07-19 22:07:07', '2018-07-20 00:07:07', 5);
 
 --
 -- Indexes for dumped tables
@@ -829,13 +834,13 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admins_sesi`
 --
 ALTER TABLE `admins_sesi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `dataset`
 --
 ALTER TABLE `dataset`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `job`
@@ -847,13 +852,13 @@ ALTER TABLE `job`
 -- AUTO_INCREMENT for table `question_f2f`
 --
 ALTER TABLE `question_f2f`
-  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `question_online`
 --
 ALTER TABLE `question_online`
-  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `required_ability`
@@ -865,13 +870,13 @@ ALTER TABLE `required_ability`
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `standard_ability`
@@ -931,25 +936,25 @@ ALTER TABLE `standard_status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users_ability`
 --
 ALTER TABLE `users_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT for table `users_detail`
 --
 ALTER TABLE `users_detail`
-  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users_exam`
 --
 ALTER TABLE `users_exam`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
