@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2018 at 04:03 AM
+-- Generation Time: Jul 21, 2018 at 09:32 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.1.17
 
@@ -116,6 +116,7 @@ CREATE TABLE `dataset` (
   `nilai_online` float NOT NULL,
   `nilai_f2f` float NOT NULL,
   `nilai_sikap` varchar(255) NOT NULL,
+  `status_passed` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -124,8 +125,17 @@ CREATE TABLE `dataset` (
 -- Dumping data for table `dataset`
 --
 
-INSERT INTO `dataset` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `created_at`, `updated_at`) VALUES
-(5, 'Edward Surya Jaya', 25, 3, 'S1', 'Lajang', 7, 85, 90, 'Cukup Baik', '2018-07-20 15:00:13', '2018-07-20 08:00:13');
+INSERT INTO `dataset` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `status_passed`, `created_at`, `updated_at`) VALUES
+(6, 'Vincent', 21, 3, 'pasca', 'lajang', 6, 90, 85, 'baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(7, 'Christine', 21, 0, 'sarjana', 'lajang', 7, 85, 90, 'cukup baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(8, 'Ryan', 21, 3, 'sma', 'lajang', 8, 75, 78, 'cukup baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(9, 'Eric A', 21, 0, 'pasca', 'lajang', 9, 75, 76, 'baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(10, 'Morris', 21, 3, 'pasca', 'lajang', 5, 85, 85, 'cukup baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(11, 'Afie', 21, 1, 'akademi', 'lajang', 4, 75, 75, 'cukup baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(12, 'Chandra', 21, 3, 'sarjana', 'lajang', 3, 75, 77, 'baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(13, 'Agus', 21, 2, 'sma', 'lajang', 2, 75, 75, 'baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(14, 'Aling', 21, 2, 'sma', 'lajang', 4, 79, 79, 'sangat baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
+(15, 'Edward', 21, 3, 'pasca', 'lajang', 8, 100, 95, 'cukup baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46');
 
 -- --------------------------------------------------------
 
@@ -840,7 +850,7 @@ ALTER TABLE `admins_sesi`
 -- AUTO_INCREMENT for table `dataset`
 --
 ALTER TABLE `dataset`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `job`

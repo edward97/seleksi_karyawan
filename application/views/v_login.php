@@ -32,7 +32,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="content">
 					<div class="container-fluid">
 						<div class="row">
-							<div class="col-md-7" style="padding: 50px;">
+							<div class="col-md-8" style="padding: 50px;">
 								<h1>Seleksi Karyawan</h1>
 
 								<p style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 							</div>
 							
-							<div class="col-md-5">
+							<div class="col-md-4">
 								<?php echo $this->session->flashdata('msg'); ?>
 								<?php echo form_open('login/auth'); ?>
 									<div class="card">
@@ -59,14 +59,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</div>
 
 											<div class="form-group">
-													<label class="form-control-label" for="password">Password</label>
-													<input type="password" class="form-control" name="password" id="password" placeholder="Password">
-													<?php echo form_error('password', '<small class="form-text text-danger">', '</small>') ?>
+												<label class="form-control-label" for="password">Password</label>
+												<input type="password" class="form-control" name="password" id="password" placeholder="Password">
+												<?php echo form_error('password', '<small class="form-text text-danger">', '</small>') ?>
 											</div>
 
 											<div class="custom-control custom-checkbox mt-4">
 												<input type="checkbox" class="custom-control-input" id="login">
-												<label class="custom-control-label" for="login">Remember me!</a></label>
+												<label class="custom-control-label" for="login">Remember me!</label>
 											</div>
 										</div>
 
@@ -114,16 +114,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div>
 		</div>
-
-		<footer style="padding: 25px;" class="bg-light">
-			<div class="container-fluid text-right">
-				<div class="row">
-					<div class="col-md-12">
-						<small>&copy; Seleksi Karyawan v1</small>
-					</div>
-				</div>
-			</div>
-		</footer>
 
 		<script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/vendor/popper.js/popper.min.js"></script>
