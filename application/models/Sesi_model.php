@@ -6,12 +6,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Sesi_model extends CI_Model
 {
-	function tampil_kualifikasi() {
+	function tampil_seleksi($where) {
+		$this->db->select('*');
+		$this->db->from('selection_stage');
+		$this->db->join('job', 'job.id_job = selection_stage.id_job', 'left');
+		$this->db->where($where);
+		return $this->db->get();
+	}
 
+	function tampil_tahapan_detail() {
+		return $this->db->get('selection_stage_detail');
 	}
 
 	function tampil_tahapan($table, $where) {
 		return $this->db->get_where($table, array('id_stage' => $where));
+	}
+
+	function update_seleksi($table, $where, $data) {
+		$this->db->where($where);
+		$this->db->update($table, $data);
 	}
 
 	function tampil_tahap_1($data) {

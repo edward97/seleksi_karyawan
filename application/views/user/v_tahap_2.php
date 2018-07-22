@@ -71,7 +71,7 @@
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<small>what wrong!</small>
+									<!-- <small>what wrong!</small> -->
 								</div>
 							</div>
 						</div>
@@ -96,7 +96,7 @@
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<small>what wrong!</small>
+									<small><?php echo $i->start_stage." - ".$i->end_stage; ?></small>
 								</div>
 							</div>
 						</div>
@@ -198,67 +198,67 @@
 						</div>
 
 						<div class="col-md-4">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="text-center">Step 2</h4>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
-								<label class="form-check-label" for="defaultCheck2">
-									Ujian Online (Selesai)
-								</label>
+							<div class="card">
+								<div class="card-body">
+									<h4 class="text-center">Step 2</h4>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
+										<label class="form-check-label" for="defaultCheck2">
+											Ujian Online (Selesai)
+										</label>
+									</div>
+									<div>&nbsp;</div>
+									<hr>
+
+									<p class="text-center">Status</p>
+
+									<div class="form-group text-center">
+										<button type="button" class="form-control btn btn-success" disabled>Ujian Online - Success</button>
+									</div>
+
+								</div>
+
+								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+									<small><?php echo $i->start_stage." - ".$i->end_stage; ?></small>
+								</div>
 							</div>
-							<div>&nbsp;</div>
-							<hr>
-
-							<p class="text-center">Status</p>
-
-							<div class="form-group text-center">
-								<button type="button" class="form-control btn btn-success" disabled>Ujian Online - Success</button>
-							</div>
-
 						</div>
-
-						<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-							<small>what wrong!</small>
-						</div>
-					</div>
-				</div>
 
 						<div class="col-md-4">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="text-center">Step 3</h4>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
-								<label class="form-check-label" for="defaultCheck2">
-									Ujian Tatap Muka
-								</label>
+							<div class="card">
+								<div class="card-body">
+									<h4 class="text-center">Step 3</h4>
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+										<label class="form-check-label" for="defaultCheck2">
+											Ujian Tatap Muka
+										</label>
+									</div>
+									<div>&nbsp;</div>
+									<hr>
+
+									<p class="text-center">Status</p>
+									<?php foreach ($tahapan as $j): ?>
+										<?php if ($j->label == 'Tahap 3' && $j->start_stage <= $today): ?>
+											<div class="form-group text-center">
+												<a href="start/f2f/<?php echo $j->id; ?>" class="form-control btn btn-outline-info">Ujian Tatap Muka - Mulai</a>
+											</div>
+
+										<?php elseif ($j->label == 'Tahap 3' && $j->start_stage > $today): ?>
+											<div class="form-group text-center">
+												<button type="button" class="form-control btn btn-outline-warning" disabled>Ujian Tatap Muka - Pending</button>
+											</div>
+
+											<?php break; ?>
+										<?php endif ?>
+									<?php endforeach ?>
+								</div>
+
+								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+									<small>what wrong!</small>
+								</div>
 							</div>
-							<div>&nbsp;</div>
-							<hr>
-
-							<p class="text-center">Status</p>
-							<?php foreach ($tahapan as $j): ?>
-								<?php if ($j->label == 'Tahap 3' && $j->start_stage <= $today): ?>
-									<div class="form-group text-center">
-										<a href="start/f2f/<?php echo $j->id; ?>" class="form-control btn btn-outline-info">Ujian Tatap Muka - Mulai</a>
-									</div>
-
-								<?php elseif ($j->label == 'Tahap 3' && $j->start_stage > $today): ?>
-									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-outline-warning" disabled>Ujian Tatap Muka - Pending</button>
-									</div>
-
-									<?php break; ?>
-								<?php endif ?>
-							<?php endforeach ?>
 						</div>
-
-						<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-							<small>what wrong!</small>
-						</div>
-					</div>
-				</div>
 					</div>
 				</div>
 			</div>

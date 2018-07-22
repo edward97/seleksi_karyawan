@@ -14,12 +14,19 @@ class Algoritma extends CI_Controller
 			redirect('login');
 		}
 		$this->load->model('dataset_model');
+		$this->load->model('user_model');
+		$this->load->model('sesi_model');
 	}
 
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+			$where = array(
+				'status_selesai' => 1
+			);
+			$que = $this->sesi_model->tampil_seleksi($where);
+			$data['seleksi_aktif_ar'] = $que->result();
 			$data['judul'] = "Algoritma";
 
 			$this->load->view('admin/v_header', $data);
@@ -31,8 +38,7 @@ class Algoritma extends CI_Controller
 		}
 	}
 
-	function hitungC45() {
-		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
+	function hitungC45($id) {
 		$this->load->library('C45');
 
 		// $data  = [
@@ -76,8 +82,13 @@ class Algoritma extends CI_Controller
 		$this->c45->hitung();
 		// $this->c45->printRules();
 
+		$where_training = array(
+			'selection_stage_detail.id_stage' => $id
+		);
+		$data_training = $this->user_model->tampil_detail_user_stage($where_training)->result();
 		$hasil = array();
-		foreach ($dataset as $i) {
+
+		foreach ($data_training as $i) {
 			if ($i->experience == 0)
 				$pengalaman = 'tidak pengalaman';
 			if ($i->experience <= 2)
@@ -94,19 +105,21 @@ class Algoritma extends CI_Controller
 
 			$testing = [$pengalaman, $i->last_education, $nilai_online, $i->nilai_sikap];
 
-			$hasil[] = [$i->nama_lengkap, $pengalaman, $i->last_education, $nilai_online, $i->nilai_sikap, $this->c45->predictDataTesting($testing)];
+			$hasil[] = [$i->full_name, $pengalaman, $i->last_education, $nilai_online, $i->nilai_sikap, $this->c45->predictDataTesting($testing)];
 		}
 
-		$data['data_testing'] = $hasil;
+		return $hasil;
+	}
 
-		// echo "<pre>";
-		// print_r($data['z']);
-		// echo "</pre>";
+	function hitung($id) {
+		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
+		$data['data_testing'] = $this->hitungC45($id);
 
 		$data['judul'] = "Hitung Algoritma";
 
 		$this->load->view('admin/v_header', $data);
 		$this->load->view('admin/v_algoritma_1');
 		$this->load->view('admin/v_footer');
+
 	}
 }

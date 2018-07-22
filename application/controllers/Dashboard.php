@@ -24,6 +24,16 @@ class Dashboard extends CI_Controller
 		$data['judul'] = "Dashboard";
 
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+			$where = array(
+				'status_selesai' => 0
+			);
+			$que = $this->sesi_model->tampil_seleksi($where);
+			$data['seleksi_aktif_ar'] = $que->result();
+			$data['seleksi_aktif_ar_detail'] = $this->sesi_model->tampil_tahapan_detail()->result();
+			$data['count_user'] = $this->user_model->tampil_user()->result();
+			$data['seleksi_aktif'] = $que->num_rows();
+
+
 			$this->load->view('admin/v_header', $data);
 			$this->load->view('admin/v_dashboard');
 			$this->load->view('admin/v_footer');

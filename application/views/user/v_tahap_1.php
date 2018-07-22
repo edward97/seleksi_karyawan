@@ -70,7 +70,7 @@
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<small>what wrong!</small>
+									<small><?php echo $i->start_stage." - ".$i->end_stage; ?></small>
 								</div>
 							</div>
 						</div>
@@ -167,7 +167,7 @@
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<small>what wrong!</small>
+									<small><?php echo $i->start_stage." - ".$i->end_stage; ?></small>
 								</div>
 							</div>
 						</div>
@@ -203,7 +203,7 @@
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<small>what wrong!</small>
+									<!-- <small>what wrong!</small> -->
 								</div>
 							</div>
 						</div>

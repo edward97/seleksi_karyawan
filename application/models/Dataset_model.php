@@ -13,4 +13,8 @@ class Dataset_model extends CI_Model
 	function add_dataset($table, $data) {
 		$this->db->insert_batch($table, $data);
 	}
+
+	function delete_dataset($table) {
+		$this->db->truncate($table);
+	}
 }

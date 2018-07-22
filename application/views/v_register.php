@@ -203,7 +203,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												</div>
 
 												<div class="col-sm-4">
-													<input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir">
+													<input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" required>
 												</div>
 											</div>
 										</div>
@@ -215,8 +215,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="jenis_kelamin" class="col-sm-4 col-form-label require">Jenis Kelamin</label>
 												
 												<div class="col-sm-8">
-													<select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
-														<option selected>Choose...</option>
+													<select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
+														<option value="">Choose...</option>
 														<option value="Pria">Pria</option>
 														<option value="Wanita">Wanita</option>
 													</select>
@@ -231,8 +231,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="agama" class="col-sm-4 col-form-label require">Agama</label>
 												
 												<div class="col-sm-8">
-													<select name="agama" id="agama" class="form-control">
-														<option selected>Choose...</option>
+													<select name="agama" id="agama" class="form-control" required>
+														<option value="">Choose...</option>
 														<option value="Buddha">Buddha</option>
 														<option value="Hindu">Hindu</option>
 														<option value="Islam">Islam</option>
@@ -333,8 +333,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="hubungan_kerabat" class="col-sm-4 col-form-label require">Hubungan</label>
 																
 																<div class="col-sm-8">
-																	<select name="hubungan_kerabat" id="hubungan_kerabat" class="form-control">
-																		<option selected>Choose...</option>
+																	<select name="hubungan_kerabat" id="hubungan_kerabat" class="form-control" required>
+																		<option value="">Choose...</option>
 																		<option value="Saudara">Saudara</option>
 																		<option value="Sepupu">Sepupu</option>
 																		<option value="Teman">Teman</option>
@@ -371,8 +371,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="pendidikan" class="col-sm-4 col-form-label require">Pendidikan Terakhir</label>
 												
 												<div class="col-sm-8">
-													<select name="pendidikan" id="pendidikan" class="form-control">
-														<option selected>Choose...</option>
+													<select name="pendidikan" id="pendidikan" class="form-control" required>
+														<option value="">Choose...</option>
 														<option value="SMA">SMA</option>
 														<option value="S1">S1</option>
 														<option value="S2">S2</option>

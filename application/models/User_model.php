@@ -17,6 +17,15 @@ class User_model extends CI_Model
 		return $this->db->get();
 	}
 
+	function tampil_detail_user_stage($where) {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('users_detail', 'users_detail.id_user = users.id_user', 'inner');
+		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage_detail', 'inner');
+		$this->db->where($where);
+		return $this->db->get();
+	}
+
 	function add_user($table, $data) {
 		$this->db->insert($table, $data);
 		$id = $this->db->insert_id();

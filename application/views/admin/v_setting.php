@@ -20,6 +20,7 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
+										<th>No</th>
 										<th>ID</th>
 										<th>Ability</th>
 										<th>Action</th>
@@ -27,11 +28,13 @@
 								</thead>
 
 								<tbody>
+									<?php $no = 1; ?>
 									<?php foreach ($ability as $i): ?>
 									<tr>
+										<td><?php echo $no; ?></td>
 										<td><?php echo $i->id_ability; ?></td>
 										<td><?php echo $i->nm_ability; ?></td>
-										<td>
+										<td class="text-nowrap">
 											<a
 												href="javascript:;" 
 												data-id="<?php echo $i->id_ability ?>" 
@@ -44,6 +47,7 @@
 											<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('setting/delete_act_abt/').$i->id_ability ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
 										</td>
 									</tr>
+									<?php $no++; ?>
 									<?php endforeach ?>
 								</tbody>
 							</table>
@@ -71,6 +75,7 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
+										<th>No</th>
 										<th>ID</th>
 										<th>Job</th>
 										<th>Action</th>
@@ -78,11 +83,13 @@
 								</thead>
 
 								<tbody>
+									<?php $no = 1; ?>
 									<?php foreach ($job as $i): ?>
 									<tr>
+										<td><?php echo $no; ?></td>
 										<td><?php echo $i->id_job; ?></td>
 										<td><?php echo $i->nm_job; ?></td>
-										<td>
+										<td class="text-nowrap">
 											<a
 												href="javascript:;" 
 												data-id="<?php echo $i->id_job ?>" 
@@ -95,6 +102,7 @@
 											<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('setting/delete_act_job/').$i->id_job ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
 										</td>
 									</tr>
+									<?php $no++; ?>
 									<?php endforeach ?>
 								</tbody>
 							</table>

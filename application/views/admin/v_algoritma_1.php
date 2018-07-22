@@ -2,6 +2,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
+				<?php echo $this->session->flashdata('msg'); ?>
+				
 				<div class="card">
 					<div class="card-header bg-light">
 						Hasil Akurasi

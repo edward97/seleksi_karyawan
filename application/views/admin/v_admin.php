@@ -20,6 +20,7 @@
 							<table class="table table-hover">
 								<thead>
 									<tr>
+										<th>No</th>
 										<th>ID</th>
 										<th>Nama Admin</th>
 										<th>Email</th>
@@ -30,8 +31,10 @@
 								</thead>
 
 								<tbody>
+									<?php $no = 1; ?>
 									<?php foreach ($admin as $i): ?>
 									<tr>
+										<td><?php echo $no; ?></td>
 										<td><?php echo $i->id_admin ?></td>
 										<td><?php echo $i->nm_admin ?></td>
 										<td><?php echo $i->email ?></td>
@@ -53,6 +56,7 @@
 											<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('admin/delete/').$i->id_admin ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
 										</td>
 									</tr>
+									<?php $no++; ?>
 									<?php endforeach ?>
 								</tbody>
 							</table>

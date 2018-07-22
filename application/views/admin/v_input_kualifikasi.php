@@ -34,8 +34,8 @@
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<select name="divisi" id="divisi" class="form-control">
-										<option selected>Choose...</option>
+									<select name="divisi" id="divisi" class="form-control" required>
+										<option value="">Choose...</option>
 										<?php foreach ($job as $i): ?>
 											<option value="<?php echo $i->id_job; ?>"><?php echo $i->nm_job; ?></option>
 										<?php endforeach ?>

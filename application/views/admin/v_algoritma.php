@@ -21,13 +21,14 @@
 						<div class="row">
 							<div class="col-md-9">
 								<div class="form-group row">
-									<label for="jenis_kelamin" class="col-sm-4 col-form-label require">Pilih sesi yang akan di hitung</label>
+									<label for="sesi" class="col-sm-4 col-form-label require">Pilih sesi yang akan di hitung</label>
 									
 									<div class="col-sm-8">
-										<select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
-											<option selected>Choose...</option>
-											<option value="1">IT</option>
-											<option value="1">Akuntansi</option>
+										<select name="sesi" id="sesi" class="form-control" required>
+											<option value="">Choose...</option>
+											<?php foreach ($seleksi_aktif_ar as $i): ?>
+												<option value="<?php echo $i->id_stage; ?>"><?php echo $i->nm_job;; ?></option>
+											<?php endforeach ?>
 										</select>
 									</div>
 								</div>

@@ -39,7 +39,7 @@
 
 											<tr>
 												<td colspan="4" class="text-right">
-													<a class="btn btn-outline-info btn-sm" href="#" data-toggle="modal" data-target="#editAct">
+													<a class="btn btn-outline-success btn-sm" href="#" data-toggle="modal" data-target="#editAct">
 														<i class="fa fa-trash-alt" aria-hidden="true"></i> Add
 													</a>
 												</td>
@@ -61,7 +61,7 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<select name="divisi" id="divisi" class="form-control" required>
-										<option selected>Choose...</option>
+										<option value="">Choose...</option>
 										<?php foreach ($job as $i): ?>
 											<option value="<?php echo $i->id_job; ?>"><?php echo $i->nm_job; ?></option>
 										<?php endforeach ?>
@@ -81,7 +81,7 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<select name="kualifikasi" id="kualifikasi" class="form-control" required>
-										<option selected>Choose...</option>
+										<option value="">Choose...</option>
 										<?php foreach ($kualifikasi as $i): ?>
 											<option value="<?php echo $i->id_std; ?>"><?php echo $i->nm_std; ?></option>
 										<?php endforeach ?>
@@ -101,7 +101,7 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<select name="ujian_online" id="ujian_online" class="form-control" required>
-										<option selected>Choose...</option>
+										<option value="">Choose...</option>
 										<?php foreach ($s_online as $i): ?>
 											<option value="<?php echo $i->label; ?>"><?php echo $i->label; ?></option>
 										<?php endforeach ?>
@@ -121,7 +121,7 @@
 							<div class="col-md-6 col-sm-6">
 								<div class="form-group">
 									<select name="ujian_f2f" id="ujian_f2f" class="form-control" required>
-										<option selected>Choose...</option>
+										<option value="">Choose...</option>
 										<?php foreach ($s_f2f as $i): ?>
 											<option value="<?php echo $i->label; ?>"><?php echo $i->label; ?></option>
 										<?php endforeach ?>
@@ -140,13 +140,13 @@
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_pendaftaran1" id="sesi_pendaftaran1" class="form-control">
+									<input type="date" name="sesi_pendaftaran1" id="sesi_pendaftaran1" class="form-control" required>
 								</div>
 							</div>
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_pendaftaran2" id="sesi_pendaftaran2" class="form-control">
+									<input type="date" name="sesi_pendaftaran2" id="sesi_pendaftaran2" class="form-control" required>
 								</div>
 							</div>
 						</div>
@@ -161,13 +161,13 @@
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_online1" id="sesi_online1" class="form-control">
+									<input type="date" name="sesi_online1" id="sesi_online1" class="form-control" required>
 								</div>
 							</div>
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_online2" id="sesi_online2" class="form-control">
+									<input type="date" name="sesi_online2" id="sesi_online2" class="form-control" required>
 								</div>
 							</div>
 						</div>
@@ -182,13 +182,13 @@
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_tatap1" id="sesi_tatap1" class="form-control">
+									<input type="date" name="sesi_tatap1" id="sesi_tatap1" class="form-control" required>
 								</div>
 							</div>
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_tatap2" id="sesi_tatap2" class="form-control">
+									<input type="date" name="sesi_tatap2" id="sesi_tatap2" class="form-control" required>
 								</div>
 							</div>
 						</div>
@@ -203,13 +203,13 @@
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_interview1" id="sesi_interview1" class="form-control">
+									<input type="date" name="sesi_interview1" id="sesi_interview1" class="form-control" required>
 								</div>
 							</div>
 
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<input type="date" name="sesi_interview2" id="sesi_interview2" class="form-control">
+									<input type="date" name="sesi_interview2" id="sesi_interview2" class="form-control" required>
 								</div>
 							</div>
 						</div>
@@ -249,7 +249,7 @@
 								<label for="admin" class="require">Name</label>
 
 								<select name="admin" id="admin" class="form-control" required>
-									<option selected>Choose...</option>
+									<option value="">Choose...</option>
 									<?php foreach ($admin as $i): ?>
 										<option value="<?php echo $i->id_admin; ?>"><?php echo "ID[".$i->id_admin."] - ".$i->nm_admin; ?></option>
 									<?php endforeach ?>

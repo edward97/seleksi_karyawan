@@ -167,4 +167,19 @@ class Sesi extends CI_Controller
 			$this->load->view('errors/404.html');
 		}
 	}
+
+	function closing($id) {
+		if ($this->session->userdata('akses') == '1') {
+			$data = array('status_selesai' => 1);
+			$where = array('id_stage' => $id);
+
+			$this->sesi_model->update_seleksi('selection_stage', $where, $data);
+			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diubah!</div>');
+
+			redirect('dashboard');
+		}
+		else {
+			$this->load->view('errors/404.html');
+		}
+	}
 }

@@ -108,7 +108,7 @@
 							<div class="form-group">
 								<label for="n_sikap" class="require">Nilai Sikap</label>
 								<input type="text" name="n_sikap" id="n_sikap" class="form-control">
-								<small class="form-text">[ Cukup Baik, Baik, Sangat Baik ]</small>
+								<small class="form-text">[ cukup baik, baik, sangat baik ]</small>
 							</div>
 						</div>
 					</div>

@@ -30,9 +30,11 @@ class Dataset extends CI_Controller
 
 	function form_preview() {
 		$upload = $this->upload_file($this->filename);
+		// id sesi yang di hitung
+		$id_x = $this->input->post('sesi');
 
 		if ($upload['result'] == "success") {
-			$this->import();
+			$this->import($id_x);
 		}
 		else {
 			$data['upload_error'] = $upload['error']; // Ambil pesan error uploadnya untuk dikirim ke file form dan ditampilkan
@@ -59,7 +61,7 @@ class Dataset extends CI_Controller
 		return $return;
 	}
 
-	function import() {
+	function import($id) {
 		// load plugin PHPExcel
 		include APPPATH.'third_party/PHPExcel/PHPExcel.php';
 
@@ -111,9 +113,10 @@ class Dataset extends CI_Controller
 			}
 			$numrow++;
 		}
-
+		$this->dataset_model->delete_dataset('dataset');
 		$this->dataset_model->add_dataset('dataset', $data);
-		$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil diupload!</div>');
-		redirect('algoritma');
+		$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil diupload dan dihitung!</div>');
+		redirect('algoritma/hitung/'.$id);
+		// redirect('algoritma');
 	}
 }

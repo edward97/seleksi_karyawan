@@ -103,8 +103,8 @@
 						<div class="col-md-5">
 							<div class="form-group">
 								<label for="divisi" class="require">Divisi</label>
-								<select name="divisi" id="divisi" class="form-control">
-									<option selected>Choose...</option>
+								<select name="divisi" id="divisi" class="form-control" required>
+									<option value="">Choose...</option>
 								<?php foreach ($divisi as $i): ?>
 									<option value="<?php echo $i->id_job ?>"><?php echo $i->nm_job ?></option>
 								<?php endforeach ?>
