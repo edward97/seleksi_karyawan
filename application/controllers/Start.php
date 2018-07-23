@@ -29,7 +29,11 @@ class Start extends CI_Controller
 				'id_user' => $this->session->userdata('ses_id')
 			);
 			$que_exam = $this->user_model->check('users_exam', $where);
-			$data['waktu'] = $que_exam->result();
+			$waktu = $que_exam->row_array();
+			$interval1 = new DateTime($data['today_time']);
+			$interval2 = new DateTime($waktu['end_online']);
+			$data['waktu'] = $interval1->diff($interval2);
+
 
 			if ($que_exam->num_rows() == 0) {
 				$end_exam = mdate('%Y-%m-%d %H:%i:%s', strtotime('+2 hours', strtotime($data['today_time'])));

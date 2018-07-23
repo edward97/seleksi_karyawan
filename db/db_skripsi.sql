@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 21, 2018 at 09:32 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.1.17
+-- Generation Time: Jul 23, 2018 at 10:27 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -96,8 +96,88 @@ CREATE TABLE `admins_sesi` (
 --
 
 INSERT INTO `admins_sesi` (`id`, `keterangan`, `id_admin`, `id_stage`, `created_by`) VALUES
-(10, 'Bagian Pengawas', 7, 6, 7),
-(12, 'Bagian Interview', 6, 6, 7);
+(13, 'Bagian Pengawas', 7, 9, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_atribut`
+--
+
+CREATE TABLE `cart_atribut` (
+  `id` int(6) NOT NULL,
+  `nm_atribut` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart_atribut`
+--
+
+INSERT INTO `cart_atribut` (`id`, `nm_atribut`) VALUES
+(1, 'experience'),
+(2, 'last_education'),
+(3, 'nilai_online'),
+(4, 'nilai_sikap');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_atribut_detail`
+--
+
+CREATE TABLE `cart_atribut_detail` (
+  `id` int(6) NOT NULL,
+  `detail` varchar(255) NOT NULL,
+  `id_atribut` int(6) NOT NULL,
+  `flag` tinyint(4) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart_atribut_detail`
+--
+
+INSERT INTO `cart_atribut_detail` (`id`, `detail`, `id_atribut`, `flag`) VALUES
+(1, '0 tahun', 1, 1),
+(2, '1-2 tahun', 1, 1),
+(3, '> 2 tahun', 1, 0),
+(4, 'sma', 2, 1),
+(5, 'akademi', 2, 0),
+(6, 'sarjana', 2, 0),
+(7, 'pasca', 2, 0),
+(8, '70-79', 3, 0),
+(9, '80-89', 3, 0),
+(10, '90-100', 3, 0),
+(11, 'cukup baik', 4, 1),
+(12, 'baik', 4, 1),
+(13, 'sangat baik', 4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_rule`
+--
+
+CREATE TABLE `cart_rule` (
+  `id` int(6) NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `left_keputusan` varchar(255) DEFAULT NULL,
+  `right_keputusan` varchar(255) DEFAULT NULL,
+  `keputusan` varchar(255) DEFAULT NULL,
+  `link` int(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart_rule`
+--
+
+INSERT INTO `cart_rule` (`id`, `label`, `left_keputusan`, `right_keputusan`, `keputusan`, `link`) VALUES
+(1, 'last_education', 'sma', '!sma', NULL, NULL),
+(2, 'sma', '-', '-', 'gagal', 1),
+(3, '!sma', '> 2 tahun', '!> 2 tahun', NULL, 1),
+(4, '> 2 tahun', 'cukup baik', '!cukup baik', NULL, 3),
+(5, '!> 2 tahun', '-', '-', 'lulus', 3),
+(6, 'cukup baik', '-', '-', 'gagal', 4),
+(7, '!cukup baik', '-', '-', 'lulus', 4);
 
 -- --------------------------------------------------------
 
@@ -116,6 +196,7 @@ CREATE TABLE `dataset` (
   `nilai_online` float NOT NULL,
   `nilai_f2f` float NOT NULL,
   `nilai_sikap` varchar(255) NOT NULL,
+  `flag` tinyint(4) NOT NULL,
   `status_passed` varchar(255) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -125,17 +206,54 @@ CREATE TABLE `dataset` (
 -- Dumping data for table `dataset`
 --
 
-INSERT INTO `dataset` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `status_passed`, `created_at`, `updated_at`) VALUES
-(6, 'Vincent', 21, 3, 'pasca', 'lajang', 6, 90, 85, 'baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(7, 'Christine', 21, 0, 'sarjana', 'lajang', 7, 85, 90, 'cukup baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(8, 'Ryan', 21, 3, 'sma', 'lajang', 8, 75, 78, 'cukup baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(9, 'Eric A', 21, 0, 'pasca', 'lajang', 9, 75, 76, 'baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(10, 'Morris', 21, 3, 'pasca', 'lajang', 5, 85, 85, 'cukup baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(11, 'Afie', 21, 1, 'akademi', 'lajang', 4, 75, 75, 'cukup baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(12, 'Chandra', 21, 3, 'sarjana', 'lajang', 3, 75, 77, 'baik', 'lulus', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(13, 'Agus', 21, 2, 'sma', 'lajang', 2, 75, 75, 'baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(14, 'Aling', 21, 2, 'sma', 'lajang', 4, 79, 79, 'sangat baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46'),
-(15, 'Edward', 21, 3, 'pasca', 'lajang', 8, 100, 95, 'cukup baik', 'gagal', '2018-07-21 10:36:46', '2018-07-21 03:36:46');
+INSERT INTO `dataset` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`, `created_at`, `updated_at`) VALUES
+(1, 'Vincent', 21, 3, 'pasca', 'lajang', 6, 90, 85, 'baik', 0, 'lulus', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(2, 'Christine', 21, 0, 'sarjana', 'lajang', 7, 85, 90, 'cukup baik', 0, 'lulus', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(3, 'Ryan', 21, 3, 'sma', 'lajang', 8, 75, 78, 'cukup baik', 0, 'gagal', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(4, 'Eric A', 21, 0, 'pasca', 'lajang', 9, 75, 76, 'baik', 0, 'lulus', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(5, 'Morris', 21, 3, 'pasca', 'lajang', 5, 85, 85, 'cukup baik', 0, 'gagal', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(6, 'Afie', 21, 1, 'akademi', 'lajang', 4, 75, 75, 'cukup baik', 0, 'lulus', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(7, 'Chandra', 21, 3, 'sarjana', 'lajang', 3, 75, 77, 'baik', 0, 'lulus', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(8, 'Agus', 21, 2, 'sma', 'lajang', 2, 75, 75, 'baik', 0, 'gagal', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(9, 'Aling', 21, 2, 'sma', 'lajang', 4, 79, 79, 'sangat baik', 0, 'gagal', '2018-07-23 10:30:26', '2018-07-23 03:30:26'),
+(10, 'Edward', 21, 3, 'pasca', 'lajang', 8, 100, 95, 'cukup baik', 0, 'gagal', '2018-07-23 10:30:26', '2018-07-23 03:30:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dataset_hitung`
+--
+
+CREATE TABLE `dataset_hitung` (
+  `id` int(3) NOT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
+  `umur` int(3) NOT NULL,
+  `experience` varchar(255) NOT NULL,
+  `last_education` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `total_kemampuan` int(3) NOT NULL,
+  `nilai_online` varchar(255) NOT NULL,
+  `nilai_f2f` float NOT NULL,
+  `nilai_sikap` varchar(255) NOT NULL,
+  `flag` tinyint(4) NOT NULL,
+  `status_passed` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dataset_hitung`
+--
+
+INSERT INTO `dataset_hitung` (`id`, `nama_lengkap`, `umur`, `experience`, `last_education`, `status`, `total_kemampuan`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`) VALUES
+(1, 'Vincent', 21, '> 2 tahun', 'pasca', 'lajang', 6, '90-100', 85, 'baik', 1, 'lulus'),
+(2, 'Christine', 21, '0 tahun', 'sarjana', 'lajang', 7, '80-89', 90, 'cukup baik', 1, 'lulus'),
+(3, 'Ryan', 21, '> 2 tahun', 'sma', 'lajang', 8, '70-79', 78, 'cukup baik', 1, 'gagal'),
+(4, 'Eric A', 21, '0 tahun', 'pasca', 'lajang', 9, '70-79', 76, 'baik', 1, 'lulus'),
+(5, 'Morris', 21, '> 2 tahun', 'pasca', 'lajang', 5, '80-89', 85, 'cukup baik', 1, 'gagal'),
+(6, 'Afie', 21, '1-2 tahun', 'akademi', 'lajang', 4, '70-79', 75, 'cukup baik', 1, 'lulus'),
+(7, 'Chandra', 21, '> 2 tahun', 'sarjana', 'lajang', 3, '70-79', 77, 'baik', 1, 'lulus'),
+(8, 'Agus', 21, '1-2 tahun', 'sma', 'lajang', 2, '70-79', 75, 'baik', 1, 'gagal'),
+(9, 'Aling', 21, '1-2 tahun', 'sma', 'lajang', 4, '70-79', 79, 'sangat baik', 1, 'gagal'),
+(10, 'Edward', 21, '> 2 tahun', 'pasca', 'lajang', 8, '90-100', 95, 'cukup baik', 1, 'gagal');
 
 -- --------------------------------------------------------
 
@@ -193,7 +311,7 @@ CREATE TABLE `question_f2f` (
 INSERT INTO `question_f2f` (`id_question`, `question`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_ans`, `status`, `label`, `created_at`, `updated_at`, `id_job`) VALUES
 (4, '<p>Posting atau pemindah bukuan adalah proses pemindahan informasi dari ?</p>', 'Jurnal ke neraca saldo keuangan', 'Buku besar ke laporan', 'Buku besar ke neraca saldo', 'Jurnal ke buku besar', 'Jurnal ke buku besar', 1, 'Akuntansi I', '2018-07-20 10:51:54', '2018-07-20 03:51:54', 7),
 (5, '<p>Di antara kejadian berikut mana yang bukan merupakan transaksi usaha ?</p>', 'Penyetoran sejumlah uang oleh pemilik untuk kepentingan usaha', 'Pembelian bahan baku secara tunai', 'Penjualan barang dagangan secara kredit', 'Kenaikan suku bunga pinjaman di bank', 'Kenaikan suku bunga pinjaman di bank', 1, 'Akuntansi I', '2018-07-20 10:53:23', '2018-07-20 03:53:23', 7),
-(6, '<p>Pembelian perlengkapan kantor secara kredit akan mempengaruhi persamaan akuntansi sebagai berikut ?</p>', 'Aktiva bertambah dan hutang bertambah', 'Aktiva bertambah dan modal berkurang', 'Aktiva bertambah dan modal bertambah', 'Aktiva,utang dan modal tidak berubah', 'Aktiva bertambah dan hutang bertambah', 1, 'Akuntansi I', '2018-07-20 11:07:44', '2018-07-20 04:07:44', 7),
+(6, '<p>Pembelian perlengkapan kantor secara kredit akan mempengaruhi persamaan akuntansi sebagai berikut ?</p>', 'Aktiva bertambah dan hutang bertambah', 'Aktiva bertambah dan modal berkurang', 'Aktiva bertambah dan modal bertambah', 'Aktiva, utang dan modal tidak berubah', 'Aktiva bertambah dan hutang bertambah', 1, 'Akuntansi I', '2018-07-20 11:07:44', '2018-07-23 20:26:11', 7),
 (7, '<p>A payment of cash for the purchases of merchandise would be recorded in the :</p>', 'Purchase journal', 'Cash payment journal', 'Sales journal', 'Cash receipt journal', 'Cash payment journal', 1, 'Akuntansi I', '2018-07-20 11:08:46', '2018-07-20 04:08:46', 7),
 (8, '<p>Manakah di antara pernyataan berikut yang tidak tepat ?</p>', 'Kas mempunyai saldo normal debit', 'Piutang mempunyai saldo normal debit', 'Modal mempunyai saldo normal debit', 'Hutang mempunyai saldo normal kredit', 'Modal mempunyai saldo normal debit', 1, 'Akuntansi I', '2018-07-20 11:09:31', '2018-07-20 04:09:31', 7),
 (9, '<p>Outstanding check disebut juga :</p>', 'Cek kosong', 'Cek tidak cukup dana', 'cek yang belum disetorkan', 'Cek yang beredar', 'Cek yang beredar', 1, 'Akuntansi I', '2018-07-20 11:10:25', '2018-07-20 04:10:25', 7),
@@ -296,7 +414,8 @@ CREATE TABLE `selection_stage` (
 --
 
 INSERT INTO `selection_stage` (`id_stage`, `nm_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`) VALUES
-(7, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 0, '2018-07-20 11:22:39', '2018-07-20 04:22:39', 1, 7);
+(9, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 1, '2018-07-22 20:04:49', '2018-07-23 03:30:14', 1, 7),
+(10, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 1, '2018-07-22 20:34:15', '2018-07-22 14:33:33', 1, 8);
 
 -- --------------------------------------------------------
 
@@ -319,12 +438,18 @@ CREATE TABLE `selection_stage_detail` (
 --
 
 INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`, `created_at`, `updated_at`, `id_stage`) VALUES
-(38, 'Tahap 1', '2018-07-20', '2018-07-21', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
-(39, 'Tahap 2', '2018-07-22', '2018-07-23', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
-(40, 'Tahap 3', '2018-07-24', '2018-07-25', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
-(41, 'Tahap 4', '2018-07-26', '2018-07-27', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
-(42, 'Tahap 5', '2018-07-26', '2018-07-27', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7),
-(43, 'Tahap 6', '2018-07-26', '2018-07-27', '2018-07-20 11:22:39', '2018-07-20 04:22:39', 7);
+(50, 'Tahap 1', '2018-07-21', '2018-07-23', '2018-07-22 20:04:49', '2018-07-23 03:29:33', 9),
+(51, 'Tahap 2', '2018-07-23', '2018-07-23', '2018-07-22 20:04:49', '2018-07-23 03:29:36', 9),
+(52, 'Tahap 3', '2018-07-23', '2018-07-23', '2018-07-22 20:04:49', '2018-07-23 03:29:37', 9),
+(53, 'Tahap 4', '2018-07-23', '2018-07-22', '2018-07-22 20:04:49', '2018-07-23 03:30:11', 9),
+(54, 'Tahap 5', '2018-07-26', '2018-07-30', '2018-07-22 20:04:49', '2018-07-23 03:18:54', 9),
+(55, 'Tahap 6', '2018-07-29', '2018-07-30', '2018-07-22 20:04:49', '2018-07-22 13:04:49', 9),
+(56, 'Tahap 1', '2018-07-21', '2018-07-21', '2018-07-22 20:34:16', '2018-07-22 14:00:03', 10),
+(57, 'Tahap 2', '2018-07-22', '2018-07-24', '2018-07-22 20:34:16', '2018-07-22 14:31:34', 10),
+(58, 'Tahap 3', '2018-07-23', '2018-07-27', '2018-07-22 20:34:16', '2018-07-22 14:00:32', 10),
+(59, 'Tahap 4', '2018-07-21', '2018-07-21', '2018-07-22 20:34:16', '2018-07-22 14:31:09', 10),
+(60, 'Tahap 5', '2018-07-28', '2018-07-29', '2018-07-22 20:34:16', '2018-07-22 13:34:16', 10),
+(61, 'Tahap 6', '2018-07-28', '2018-07-29', '2018-07-22 20:34:16', '2018-07-22 13:34:16', 10);
 
 -- --------------------------------------------------------
 
@@ -582,14 +707,6 @@ CREATE TABLE `users` (
   `id_stage_detail` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id_user`, `email`, `password`, `confirm_code`, `acc_status`, `created_at`, `updated_at`, `id_job`, `id_stage_detail`) VALUES
-(6, 'edw.suryajaya@gmail.com', '202cb962ac59075b964b07152d234b70', NULL, 1, '2018-07-20 11:25:03', '2018-07-20 04:29:21', 7, 38),
-(7, 'vincent@mail.com', 'b15ab3f829f0f897fe507ef548741afb', NULL, 1, '2018-07-20 11:27:54', '2018-07-20 04:29:23', 7, 38);
-
 -- --------------------------------------------------------
 
 --
@@ -603,25 +720,6 @@ CREATE TABLE `users_ability` (
   `id_ability` int(6) NOT NULL,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_ability`
---
-
-INSERT INTO `users_ability` (`id`, `created_at`, `updated_at`, `id_ability`, `id_user`) VALUES
-(28, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 2, 6),
-(29, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 10, 6),
-(30, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 17, 6),
-(31, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 18, 6),
-(32, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 20, 6),
-(33, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 21, 6),
-(34, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 22, 6),
-(35, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 23, 6),
-(36, '2018-07-20 11:25:03', '2018-07-20 04:25:03', 24, 6),
-(37, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 2, 7),
-(38, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 10, 7),
-(39, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 21, 7),
-(40, '2018-07-20 11:27:54', '2018-07-20 04:27:54', 24, 7);
 
 -- --------------------------------------------------------
 
@@ -658,14 +756,6 @@ CREATE TABLE `users_detail` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users_detail`
---
-
-INSERT INTO `users_detail` (`id_d_user`, `full_name`, `no_ktp`, `birth_place`, `birth_date`, `address`, `domisili`, `kode_pos`, `p_number`, `t_number`, `age`, `gender`, `religion`, `last_education`, `status`, `experience`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `total_ability`, `status_passed`, `nama_kerabat`, `nomor_kerabat`, `hubungan_kerabat`, `created_at`, `updated_at`, `id_user`) VALUES
-(6, 'Edward Surya Jaya', '141111235', 'Siantar', '1997-02-02', 'Jl. Damar III', 'Medan', '20115', '085275522020', '-', 21, 'Pria', 'Buddha', 'S2', 'Lajang', 3, NULL, NULL, NULL, 5, 0, 'Steven', '085236981236', 'Teman', '2018-07-20 11:25:03', '2018-07-20 04:25:03', 6),
-(7, 'Vincent', '141110604', 'Siantar', '1990-01-01', 'Jl. Asia Mega Mas', 'Medan', '20154', '081145983657', '061455789', 28, 'Pria', 'Buddha', 'S1', 'Menikah', 4, NULL, NULL, NULL, 1, 0, 'Edward', '085275522020', 'Teman', '2018-07-20 11:27:54', '2018-07-20 04:27:54', 7);
 
 -- --------------------------------------------------------
 
@@ -705,9 +795,33 @@ ALTER TABLE `admins_sesi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `cart_atribut`
+--
+ALTER TABLE `cart_atribut`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart_atribut_detail`
+--
+ALTER TABLE `cart_atribut_detail`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cart_rule`
+--
+ALTER TABLE `cart_rule`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `dataset`
 --
 ALTER TABLE `dataset`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dataset_hitung`
+--
+ALTER TABLE `dataset_hitung`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -844,13 +958,37 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admins_sesi`
 --
 ALTER TABLE `admins_sesi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `cart_atribut`
+--
+ALTER TABLE `cart_atribut`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `cart_atribut_detail`
+--
+ALTER TABLE `cart_atribut_detail`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `cart_rule`
+--
+ALTER TABLE `cart_rule`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `dataset`
 --
 ALTER TABLE `dataset`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `dataset_hitung`
+--
+ALTER TABLE `dataset_hitung`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `job`
@@ -880,13 +1018,13 @@ ALTER TABLE `required_ability`
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT for table `standard_ability`
@@ -946,25 +1084,25 @@ ALTER TABLE `standard_status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_ability`
 --
 ALTER TABLE `users_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
 
 --
 -- AUTO_INCREMENT for table `users_detail`
 --
 ALTER TABLE `users_detail`
-  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_exam`
 --
 ALTER TABLE `users_exam`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

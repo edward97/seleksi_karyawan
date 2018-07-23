@@ -182,4 +182,37 @@ class Sesi extends CI_Controller
 			$this->load->view('errors/404.html');
 		}
 	}
+
+	function next($id) {
+		$sekarang = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+
+		if ($this->session->userdata('akses') == '1') {
+			$data = array('end_stage' => $sekarang);
+			$where = array('id' => $id);
+
+			$up = $this->sesi_model->update_tahapan_detail('selection_stage_detail', $where, $data);
+
+			$where = array('id' => $id+1);
+			$row = $this->sesi_model->update_tahapan_detail_where('selection_stage_detail', $where)->row_array();
+
+			if ($row['label'] == 'Tahap 4') {
+				$data = array(
+					'start_stage' => $sekarang,
+					'end_stage' => $sekarang
+				);
+				$where = array('id' => $id+1);
+				$this->sesi_model->update_tahapan_detail('selection_stage_detail', $where, $data);
+			}
+			else {
+				$data = array('start_stage' => $sekarang);
+				$where = array('id' => $id+1);
+				$this->sesi_model->update_tahapan_detail('selection_stage_detail', $where, $data);
+			}
+			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diubah!</div>');
+			redirect('dashboard');
+		}
+		else {
+			$this->load->view('errors/404.html');
+		}
+	}
 }

@@ -42,7 +42,7 @@
 								</div>
 
 								<!-- <div id="" class="collapse show"> -->
-								<div id="collapse<?php echo $i->id_stage; ?>" class="collapse">
+								<div id="collapse<?php echo $i->id_stage; ?>" class="collapse show">
 									<div class="card-body">
 										<?php foreach ($seleksi_aktif_ar_detail as $j): ?>
 
@@ -70,8 +70,8 @@
 													<div class="col-md-6 text-right">
 														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
 
-														<?php if ($j->start_stage <= $today && $j->end_stage >= $today): ?>
-															<a href="#" class="btn btn-outline-info">Next Step</a>
+														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>
@@ -93,8 +93,8 @@
 													<div class="col-md-6 text-right">
 														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
 
-														<?php if ($j->start_stage <= $today && $j->end_stage >= $today): ?>
-															<a href="#" class="btn btn-outline-info">Next Step</a>
+														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>
@@ -116,8 +116,8 @@
 													<div class="col-md-6 text-right">
 														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
 
-														<?php if ($j->start_stage <= $today && $j->end_stage >= $today): ?>
-															<a href="#" class="btn btn-outline-info">Next Step</a>
+														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>
@@ -139,8 +139,8 @@
 													<div class="col-md-6 text-right">
 														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
 
-														<?php if ($j->start_stage <= $today && $j->end_stage >= $today): ?>
-															<a href="#" class="btn btn-outline-info">Next Step</a>
+														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>

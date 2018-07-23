@@ -18,6 +18,15 @@ class Sesi_model extends CI_Model
 		return $this->db->get('selection_stage_detail');
 	}
 
+	function update_tahapan_detail_where($table, $where) {
+		return $this->db->get_where($table, $where);
+	}
+
+	function update_tahapan_detail($table, $where, $data) {
+		$this->db->where($where);
+		$this->db->update($table, $data);
+	}
+
 	function tampil_tahapan($table, $where) {
 		return $this->db->get_where($table, array('id_stage' => $where));
 	}
