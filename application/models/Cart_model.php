@@ -36,6 +36,10 @@ class Cart_model extends CI_Model
 		$this->db->truncate($table);
 	}
 
+	function update_flag($table, $data) {
+		$this->db->update($table, $data);
+	}
+
 
 
 	function cek_rule() {
@@ -65,5 +69,9 @@ class Cart_model extends CI_Model
 
 	function cek_keputusan($table, $where) {
 		return $this->db->get_where($table, $where);
+	}
+
+	function tampil_tree() {
+		return $this->db->get('cart_rule');
 	}
 }

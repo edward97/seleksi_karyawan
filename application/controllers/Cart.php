@@ -7,9 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Cart extends CI_Controller
 {
 
-	// update cart_atribut_detail set flag = 0;
-	// update dataset_hitung set flag = 0;
-	// truncate cart_rule;
+	// update cart_atribut_detail set flag = 0; update dataset_hitung set flag = 0; truncate cart_rule;
 	
 	function __construct()
 	{
@@ -21,54 +19,65 @@ class Cart extends CI_Controller
 	}
 
 	function index() {
-		$this->hitungCart();
-		// echo "testing";
-	}
+		$this->cart_model->truncate('dataset_hitung');
+		$this->cart_model->truncate('cart_rule');
 
-	function hitungCart() {
-		// $this->cart_model->truncate('dataset_hitung');
 		$where = array(
 			'flag' => 0
 		);
-		// $data = $this->cart_model->tampil_data('dataset', $where)->result();
+		$data = $this->cart_model->tampil_data('dataset', $where)->result();
+		$this->cart_model->update_flag('dataset_hitung', $where);
+		$this->cart_model->update_flag('cart_atribut_detail', $where);
 
-		// foreach ($data as $i) {
-		// 	if ($i->experience == 0) {
-		// 		$experience = '0 tahun';
-		// 	}
-		// 	elseif ($i->experience < 3) {
-		// 		$experience = '1-2 tahun';
-		// 	}
-		// 	else {
-		// 		$experience = '> 2 tahun';
-		// 	}
+		foreach ($data as $i) {
+			if ($i->experience == 0) {
+				$experience = '0 tahun';
+			}
+			elseif ($i->experience < 3) {
+				$experience = '1-2 tahun';
+			}
+			else {
+				$experience = '> 2 tahun';
+			}
 
-		// 	if ($i->nilai_online <= 79) {
-		// 		$nilai_online = '70 -79';
-		// 	}
-		// 	elseif ($i->nilai_online <= 89) {
-		// 		$nilai_online = '80 - 89';
-		// 	}
-		// 	else {
-		// 		$nilai_online = '90-100';
-		// 	}
+			if ($i->nilai_online <= 79) {
+				$nilai_online = '70-79';
+			}
+			elseif ($i->nilai_online <= 89) {
+				$nilai_online = '80-89';
+			}
+			else {
+				$nilai_online = '90-100';
+			}
 
-		// 	$data = array(
-		// 		'id' => null,
-		// 		'nama_lengkap' => $i->nama_lengkap,
-		// 		'umur' => $i->umur,
-		// 		'experience' => $experience,
-		// 		'last_education' => $i->last_education,
-		// 		'status' => $i->status,
-		// 		'total_kemampuan' => $i->total_kemampuan,
-		// 		'nilai_online' => $nilai_online,
-		// 		'nilai_f2f' => $i->nilai_f2f,
-		// 		'nilai_sikap' => $i->nilai_sikap,
-		// 		'flag' => 0,
-		// 		'status_passed' => $i->status_passed
-		// 	);
-		// 	$this->cart_model->add_dataset_hitung('dataset_hitung', $data);
-		// }
+			$data = array(
+				'id' => null,
+				'nama_lengkap' => $i->nama_lengkap,
+				'umur' => $i->umur,
+				'experience' => $experience,
+				'last_education' => $i->last_education,
+				'status' => $i->status,
+				'total_kemampuan' => $i->total_kemampuan,
+				'nilai_online' => $nilai_online,
+				'nilai_f2f' => $i->nilai_f2f,
+				'nilai_sikap' => $i->nilai_sikap,
+				'flag' => 0,
+				'status_passed' => $i->status_passed
+			);
+			$this->cart_model->add_dataset_hitung('dataset_hitung', $data);
+		}
+
+		$total_data = $this->cart_model->tampil_data('dataset_hitung', $where)->num_rows();
+		do {
+			$this->hitungCart();
+			$total_data = $this->cart_model->tampil_data('dataset_hitung', $where)->num_rows();
+		} while ($total_data != 0);
+	}
+
+	function hitungCart() {
+		$where = array(
+			'flag' => 0
+		);
 		$data_hitung = $this->cart_model->tampil_data('dataset_hitung', $where)->result();
 		$total_data = $this->cart_model->tampil_data('dataset_hitung', $where)->num_rows();
 
@@ -267,12 +276,6 @@ class Cart extends CI_Controller
 		$this->makeRule($root_id, $root, $left, $right, $fix_left, $fix_right);
 	}
 
-
-
-
-
-
-
 	function makeRule($root_id, $root, $left, $right, array $fix_left, array $fix_right) {
 		$rule = $this->cart_model->cek_rule();
 		$cek = $rule->num_rows();
@@ -452,7 +455,6 @@ class Cart extends CI_Controller
 			$cek_kanan = $kanan->num_rows();
 			$data_kanan = $kanan->result();
 
-
 			if ($cek_kanan != 0) {
 				foreach ($data_kanan as $i) {
 					$node_ar = array(
@@ -535,5 +537,75 @@ class Cart extends CI_Controller
 				}
 			}
 		}
+	}
+
+	function dataTesting() {
+		$tes = array(
+			'experience' => '> 2 tahun',
+			'last_education' => 'sma',
+			'nilai_online' => '90-100',
+			'nilai_sikap' => 'baik'
+		);
+		$this->_dataTesting($tes);
+	}
+
+	function _dataTesting(array $data_testing) {
+		$tree = $this->cart_model->tampil_tree()->result();
+		
+		$count = 0;
+		$hasil = '';
+		$label = '';
+		$temp_left = '';
+		$temp_right = '';
+
+
+
+		foreach ($data_testing as $atribut => $value) {
+			foreach ($tree as $i) {
+				if ($atribut == $i->label) {
+					$label = $i->label;
+					$temp_left = $i->left_keputusan;
+					$temp_right = $i->right_keputusan;
+				}
+				
+				
+				$count++;
+			}
+		}
+
+
+		// foreach ($tree as $i) {
+		// 	foreach ($data_testing as $atribut => $value) {
+		// 		if ($i->label == $atribut) {
+		// 			$root = $atribut;
+		// 			$temp = $value;
+		// 		}
+		// 		else {
+		// 			if ($temp == $i->left_keputusan) {
+		// 				echo "pas";
+		// 				if ($i->keputusan != null) {
+		// 					$hasil = $i->keputusan;
+		// 					break;
+		// 				}
+		// 				else {
+		// 					$root = $atribut;
+		// 					$temp = $value;
+		// 				}
+		// 			}
+		// 			else {
+		// 				if ($i->keputusan != null) {
+		// 					$hasil = $i->keputusan;
+		// 					break;
+		// 				}
+		// 				else {
+		// 					$root = $atribut;
+		// 					$temp = $value;
+		// 				}
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		echo $hasil;
 	}
 }

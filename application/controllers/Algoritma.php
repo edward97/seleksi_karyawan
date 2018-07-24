@@ -107,7 +107,6 @@ class Algoritma extends CI_Controller
 
 			$hasil[] = [$i->full_name, $pengalaman, $i->last_education, $nilai_online, $i->nilai_sikap, $this->c45->predictDataTesting($testing)];
 		}
-
 		return $hasil;
 	}
 
@@ -120,6 +119,5 @@ class Algoritma extends CI_Controller
 		$this->load->view('admin/v_header', $data);
 		$this->load->view('admin/v_algoritma_1');
 		$this->load->view('admin/v_footer');
-
 	}
 }
