@@ -248,10 +248,10 @@ class Cart extends CI_Controller
 				$root_id = $i->id;
 			}
 		}
-		echo $root."<br>";
-		echo $left."<br>";
-		echo $right."<br>";
-		echo $maxx."<br>";
+		echo 'ROOT : '.$root."<br>";
+		echo 'LEFT : '.$left."<br>";
+		echo 'RIGHT : '.$right."<br>";
+		echo 'MAX : '.$maxx."<br>";
 
 		$fix_left = array();
 		$fix_right = array();
@@ -269,10 +269,10 @@ class Cart extends CI_Controller
 				$fix_right = array(
 					$key => $value
 				);
-				echo "<br>fix right => ".$key." ".$value."<br>";
+				echo "<br>fix right => !=".$key." ".$value."<br>";
 			}
 		}
-
+		echo "--------------------------------------<br>";
 		$this->makeRule($root_id, $root, $left, $right, $fix_left, $fix_right);
 	}
 
@@ -411,7 +411,6 @@ class Cart extends CI_Controller
 					}
 
 					if ($fix_right != null) {
-						echo $root_id;
 						foreach ($fix_right as $key => $value) {
 							$right_ar = array(
 								'label' => '!'.$key,
@@ -541,10 +540,10 @@ class Cart extends CI_Controller
 
 	function dataTesting() {
 		$tes = array(
-			'experience' => '> 2 tahun',
-			'last_education' => 'sma',
+			'experience' => '1-2 tahun',
+			'last_education' => 'akademi',
 			'nilai_online' => '90-100',
-			'nilai_sikap' => 'baik'
+			'nilai_sikap' => 'sangat baik'
 		);
 		$this->_dataTesting($tes);
 	}
@@ -552,60 +551,42 @@ class Cart extends CI_Controller
 	function _dataTesting(array $data_testing) {
 		$tree = $this->cart_model->tampil_tree()->result();
 		
-		$count = 0;
 		$hasil = '';
-		$label = '';
-		$temp_left = '';
-		$temp_right = '';
+		$temp_left = null;
+		$temp_right = null;
+		$link;
 
+		$getRoot = $this->cart_model->get_root()->row_array();
 
+		foreach ($tree as $pohon) {
+			if ($pohon->link == null) {
+				$link = $pohon->id;
+				$temp_left = $pohon->left_keputusan;
+				$temp_right = $pohon->right_keputusan;
+			}
 
-		foreach ($data_testing as $atribut => $value) {
-			foreach ($tree as $i) {
-				if ($atribut == $i->label) {
-					$label = $i->label;
-					$temp_left = $i->left_keputusan;
-					$temp_right = $i->right_keputusan;
+			foreach ($data_testing as $data_atribut => $data_isi) {
+				if ($pohon->link == $link) {
+					if ($temp_left == $data_isi) {
+						if ($pohon->keputusan != null) {
+							$hasil = $pohon->keputusan;
+							break;
+						}
+					}
+					if ($temp_right != $data_isi) {
+						echo "string";
+						if ($pohon->keputusan != null) {
+							$hasil = $pohon->keputusan;
+							break;
+						}
+						if ($pohon->keputusan == null) {
+
+						}
+					}
 				}
-				
-				
-				$count++;
 			}
 		}
 
-
-		// foreach ($tree as $i) {
-		// 	foreach ($data_testing as $atribut => $value) {
-		// 		if ($i->label == $atribut) {
-		// 			$root = $atribut;
-		// 			$temp = $value;
-		// 		}
-		// 		else {
-		// 			if ($temp == $i->left_keputusan) {
-		// 				echo "pas";
-		// 				if ($i->keputusan != null) {
-		// 					$hasil = $i->keputusan;
-		// 					break;
-		// 				}
-		// 				else {
-		// 					$root = $atribut;
-		// 					$temp = $value;
-		// 				}
-		// 			}
-		// 			else {
-		// 				if ($i->keputusan != null) {
-		// 					$hasil = $i->keputusan;
-		// 					break;
-		// 				}
-		// 				else {
-		// 					$root = $atribut;
-		// 					$temp = $value;
-		// 				}
-		// 			}
-		// 		}
-		// 	}
-		// }
-
-		echo $hasil;
+		echo "<br>Hasil = ".$hasil;
 	}
 }
