@@ -74,4 +74,17 @@ class Cart_model extends CI_Model
 	function tampil_tree() {
 		return $this->db->get('cart_rule');
 	}
+
+	function root() {
+		$this->db->limit(1);
+		return $this->db->get('cart_rule');
+	}
+
+	function node() {
+		$this->db->distinct();
+		$this->db->select('link');
+		$this->db->from('cart_rule');
+		$this->db->where('link !=', null);
+		return $this->db->get();
+	}
 }

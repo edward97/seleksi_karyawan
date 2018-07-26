@@ -175,8 +175,6 @@ class Cart extends CI_Controller
 				$temp_fix_keputusan_right[$i->detail] = 'gagal';
 			}
 
-
-
 			$dua = 2 * ($x/$total_data) * ($y/$total_data);
 			$pl_pr_2[] = $dua;
 
@@ -540,53 +538,52 @@ class Cart extends CI_Controller
 
 	function dataTesting() {
 		$tes = array(
-			'experience' => '1-2 tahun',
+			'experience' => '> 2 tahun',
 			'last_education' => 'akademi',
 			'nilai_online' => '90-100',
-			'nilai_sikap' => 'sangat baik'
+			'nilai_sikap' => 'cukup baik'
 		);
 		$this->_dataTesting($tes);
 	}
 
 	function _dataTesting(array $data_testing) {
 		$tree = $this->cart_model->tampil_tree()->result();
-		
-		$hasil = '';
+		$z = $this->cart_model->node()->num_rows();
+		$getRoot = $this->cart_model->root()->row_array();
+
+		$link = null;
+		$temp = null;
 		$temp_left = null;
 		$temp_right = null;
-		$link;
+		$stop = false;
 
-		$getRoot = $this->cart_model->get_root()->row_array();
-
-		foreach ($tree as $pohon) {
-			if ($pohon->link == null) {
-				$link = $pohon->id;
-				$temp_left = $pohon->left_keputusan;
-				$temp_right = $pohon->right_keputusan;
-			}
-
-			foreach ($data_testing as $data_atribut => $data_isi) {
-				if ($pohon->link == $link) {
-					if ($temp_left == $data_isi) {
-						if ($pohon->keputusan != null) {
-							$hasil = $pohon->keputusan;
-							break;
+		foreach ($tree as $i) {
+			foreach ($data_testing as $key => $value) {
+				if ($stop == false) {
+					if ($i->link == null && $i->label == $key) {
+						if ($i->left_keputusan == $value) {
+							$link = $i->id;
+							$temp = $i->left_keputusan;
+						}
+						else {
+							$link = $i->id;
+							$temp = $i->right_keputusan;
 						}
 					}
-					if ($temp_right != $data_isi) {
-						echo "string";
-						if ($pohon->keputusan != null) {
-							$hasil = $pohon->keputusan;
-							break;
-						}
-						if ($pohon->keputusan == null) {
 
+					if ($i->link == $link && $i->label == $temp) {
+						if ($i->keputusan != null) {
+							$hasil = $i->keputusan;
+							$stop = true;
+						}
+
+						if ($i->keputusan == null) {
+							
 						}
 					}
 				}
 			}
 		}
 
-		echo "<br>Hasil = ".$hasil;
 	}
 }
