@@ -40,7 +40,7 @@
 											<tr>
 												<td colspan="4" class="text-right">
 													<a class="btn btn-outline-success btn-sm" href="#" data-toggle="modal" data-target="#editAct">
-														<i class="fa fa-trash-alt" aria-hidden="true"></i> Add
+														<i class="fa fa-plus" aria-hidden="true"></i> Add
 													</a>
 												</td>
 											</tr>

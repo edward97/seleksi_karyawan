@@ -313,7 +313,8 @@ class Cart extends CI_Controller
 			}
 			else {
 				$left_ar = array(
-					'label' => $left,
+					// 'label' => $left,
+					'label' => $root,
 					'right_keputusan' => '-',
 					'link' => $id
 				);
@@ -348,7 +349,8 @@ class Cart extends CI_Controller
 			}
 			else {
 				$right_ar = array(
-					'label' => '!'.$right,
+					// 'label' => '!'.$right,
+					'label' => $root,
 					'left_keputusan' => '-',
 					'link' => $id
 				);
@@ -366,6 +368,7 @@ class Cart extends CI_Controller
 			if ($cek_kiri != 0) {
 				foreach ($data_kiri as $i) {
 					$node_ar = array(
+						'label' => $root,
 						'left_keputusan' => $left,
 						'right_keputusan' => '!'.$right
 					);
@@ -401,7 +404,8 @@ class Cart extends CI_Controller
 					}
 					else {
 						$left_ar = array(
-							'label' => $left,
+							// 'label' => $left,
+							'label' => $root,
 							'right_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -436,7 +440,8 @@ class Cart extends CI_Controller
 					}
 					else {
 						$right_ar = array(
-							'label' => '!'.$right,
+							// 'label' => '!'.$right,
+							'label' => $root,
 							'left_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -455,6 +460,7 @@ class Cart extends CI_Controller
 			if ($cek_kanan != 0) {
 				foreach ($data_kanan as $i) {
 					$node_ar = array(
+						'label' => $root,
 						'left_keputusan' => $left,
 						'right_keputusan' => '!'.$right
 					);
@@ -490,7 +496,8 @@ class Cart extends CI_Controller
 					}
 					else {
 						$left_ar = array(
-							'label' => $left,
+							// 'label' => $left,
+							'label' => $root,
 							'right_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -525,7 +532,8 @@ class Cart extends CI_Controller
 					}
 					else {
 						$right_ar = array(
-							'label' => '!'.$right,
+							// 'label' => '!'.$right,
+							'label' => $root,
 							'left_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -556,34 +564,41 @@ class Cart extends CI_Controller
 		$temp_left = null;
 		$temp_right = null;
 		$stop = false;
+		$hasil = null;
 
 		foreach ($tree as $i) {
 			foreach ($data_testing as $key => $value) {
-				if ($stop == false) {
-					if ($i->link == null && $i->label == $key) {
-						if ($i->left_keputusan == $value) {
-							$link = $i->id;
-							$temp = $i->left_keputusan;
-						}
-						else {
-							$link = $i->id;
-							$temp = $i->right_keputusan;
-						}
+				if ($i->link == null && $i->label == $key) {
+					if ($i->left_keputusan == $value) {
+						$link = $i->id;
+						$temp = $i->left_keputusan;
 					}
-
-					if ($i->link == $link && $i->label == $temp) {
-						if ($i->keputusan != null) {
-							$hasil = $i->keputusan;
-							$stop = true;
-						}
-
-						if ($i->keputusan == null) {
-							
-						}
+					else {
+						$link = $i->id;
+						$temp = $i->right_keputusan;
 					}
 				}
+				if ($i->link == $link && $i->label == $temp) {
+					if ($i->keputusan != null) {
+						$hasil = $i->keputusan;
+					}
+				}
+				if ($i->link == $link && $i->label == $key) {
+					if ($i->left_keputusan == $value) {
+						$link = $i->id;
+						$temp = $i->left_keputusan;
+					}
+					if ($i->right_keputusan == $value) {
+						$link = $i->id;
+						$temp = $i->right_keputusan;
+					}
+
+					echo $temp;
+				}
+
+
 			}
 		}
-
+		// echo $hasil;
 	}
 }
