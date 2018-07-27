@@ -21,8 +21,8 @@ class Soal extends CI_Controller
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
-			$data['divisi'] = $this->setting_model->tampil_job()->result();
-			$data['online'] = $this->soal_model->tampil_online()->result();
+			$data['s_online'] = $this->soal_model->tampil_online_label()->result();
+			$data['s_f2f'] = $this->soal_model->tampil_f2f_label()->result();
 			$data['judul'] = "List Soal Ujian";
 
 			$this->load->view('admin/v_header', $data);

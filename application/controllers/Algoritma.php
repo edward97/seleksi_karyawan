@@ -70,14 +70,14 @@ class Algoritma extends CI_Controller
 		foreach ($data as $i) {
 			if ($i->age < 25)
 				$age = '< 25';
-			elseif ($i->age <= 25)
+			elseif ($i->age <= 30)
 				$age = '25-30';
 			else
 				$age = '> 35';
 
 			if ($i->experience == 0)
 				$experience = '0 tahun';
-			elseif ($i->experience < 3)
+			elseif ($i->experience <= 2)
 				$experience = '1-2 tahun';
 			else
 				$experience = '> 2 tahun';
@@ -136,14 +136,14 @@ class Algoritma extends CI_Controller
 		foreach ($data_training as $i) {
 			if ($i->age < 25)
 				$age = '< 25';
-			elseif ($i->age <= 25)
+			elseif ($i->age <= 30)
 				$age = '25-30';
 			else
 				$age = '> 35';
 
 			if ($i->experience == 0)
 				$experience = '0 tahun';
-			elseif ($i->experience < 3)
+			elseif ($i->experience <= 2)
 				$experience = '1-2 tahun';
 			else
 				$experience = '> 2 tahun';
@@ -680,14 +680,14 @@ class Algoritma extends CI_Controller
 		foreach ($data_training as $i) {
 			if ($i->age < 25)
 				$age = '< 25';
-			elseif ($i->age <= 25)
+			elseif ($i->age <= 30)
 				$age = '25-30';
 			else
 				$age = '> 35';
 
 			if ($i->experience == 0)
 				$experience = '0 tahun';
-			elseif ($i->experience < 3)
+			elseif ($i->experience <= 2)
 				$experience = '1-2 tahun';
 			else
 				$experience = '> 2 tahun';

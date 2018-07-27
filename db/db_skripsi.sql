@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2018 at 03:25 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- Generation Time: Jul 27, 2018 at 12:00 PM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -144,10 +144,10 @@ INSERT INTO `cart_atribut_detail` (`id`, `detail`, `id_atribut`, `flag`) VALUES
 (1, '< 25', 1, 0),
 (2, '25-35', 1, 0),
 (3, '> 35', 1, 0),
-(4, '0 tahun', 2, 1),
-(5, '1-2 tahun', 2, 1),
+(4, '0 tahun', 2, 0),
+(5, '1-2 tahun', 2, 0),
 (6, '> 2 tahun', 2, 0),
-(7, 'sma', 3, 1),
+(7, 'sma', 3, 0),
 (8, 'akademi', 3, 0),
 (9, 'sarjana', 3, 0),
 (10, 'pasca', 3, 0),
@@ -157,13 +157,13 @@ INSERT INTO `cart_atribut_detail` (`id`, `detail`, `id_atribut`, `flag`) VALUES
 (14, '8-10', 5, 0),
 (15, '70-79', 6, 0),
 (16, '80-89', 6, 0),
-(17, '90-100', 6, 0),
+(17, '90-100', 6, 1),
 (18, '70-79', 7, 0),
 (19, '80-89', 7, 0),
-(20, '90-100', 7, 0),
-(21, 'cukup baik', 8, 1),
-(22, 'baik', 8, 1),
-(23, 'sangat baik', 8, 1);
+(20, '90-100', 7, 1),
+(21, 'cukup baik', 8, 0),
+(22, 'baik', 8, 0),
+(23, 'sangat baik', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -180,19 +180,6 @@ CREATE TABLE `cart_rule` (
   `keputusan` varchar(255) DEFAULT NULL,
   `link` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `cart_rule`
---
-
-INSERT INTO `cart_rule` (`id`, `atribut`, `label`, `left_keputusan`, `right_keputusan`, `keputusan`, `link`) VALUES
-(1, 'last_education', 'last_education', 'sma', '!sma', NULL, NULL),
-(2, 'last_education', 'sma', '-', '-', 'gagal', 1),
-(3, 'last_education', '!sma', '> 2 tahun', '!> 2 tahun', NULL, 1),
-(4, 'experience', '> 2 tahun', 'cukup baik', '!cukup baik', NULL, 3),
-(5, 'experience', '!> 2 tahun', '-', '-', 'lulus', 3),
-(6, 'nilai_sikap', 'cukup baik', '-', '-', 'gagal', 4),
-(7, 'nilai_sikap', '!cukup baik', '-', '-', 'lulus', 4);
 
 -- --------------------------------------------------------
 
@@ -222,16 +209,16 @@ CREATE TABLE `dataset` (
 --
 
 INSERT INTO `dataset` (`id`, `nama_lengkap`, `age`, `experience`, `last_education`, `status`, `total_ability`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`, `created_at`, `updated_at`) VALUES
-(1, 'Suharto', 21, 4, 'pasca', 'lajang', 6, 95, 85, 'baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(2, 'Adi', 21, 0, 'sarjana', 'menikah', 7, 83, 90, 'cukup baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(3, 'Dewi', 21, 3, 'sma', 'lajang', 8, 71, 78, 'cukup baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(4, 'Martha', 21, 0, 'pasca', 'menikah', 9, 74, 76, 'baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(5, 'Stephen', 21, 4, 'pasca', 'lajang', 5, 86, 85, 'cukup baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(6, 'Eko', 21, 1, 'akademi', 'menikah', 4, 70, 75, 'cukup baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(7, 'Wulan', 21, 5, 'sarjana', 'lajang', 3, 76, 95, 'baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(8, 'Susanti', 21, 2, 'sma', 'lajang', 2, 74, 75, 'baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(9, 'Sudirman', 21, 2, 'sma', 'menikah', 4, 78, 79, 'sangat baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
-(10, 'Surya', 21, 5, 'pasca', 'lajang', 8, 93, 95, 'cukup baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14');
+(1, 'Suharto', 21, 4, 'pasca', 'lajang', 6, 95, 85, 'baik', 0, 'gagal', '2018-07-27 09:47:59', '2018-07-27 03:08:25'),
+(2, 'Adi', 21, 0, 'sarjana', 'menikah', 7, 83, 90, 'cukup baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:47:59'),
+(3, 'Dewi', 35, 3, 'sma', 'lajang', 8, 71, 78, 'cukup baik', 0, 'gagal', '2018-07-27 09:47:59', '2018-07-27 02:48:30'),
+(4, 'Martha', 21, 0, 'akademi', 'menikah', 9, 74, 76, 'baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 03:00:13'),
+(5, 'Stephen', 21, 4, 'pasca', 'lajang', 5, 86, 85, 'cukup baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:53:54'),
+(6, 'Eko', 26, 1, 'akademi', 'menikah', 4, 70, 75, 'cukup baik', 0, 'gagal', '2018-07-27 09:47:59', '2018-07-27 02:53:58'),
+(7, 'Wulan', 21, 5, 'sarjana', 'lajang', 3, 76, 95, 'baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:47:59'),
+(8, 'Susanti', 21, 2, 'sma', 'lajang', 2, 74, 75, 'baik', 0, 'gagal', '2018-07-27 09:47:59', '2018-07-27 02:47:59'),
+(9, 'Sudirman', 28, 2, 'sma', 'menikah', 4, 78, 79, 'sangat baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 03:01:10'),
+(10, 'Surya', 21, 5, 'pasca', 'lajang', 8, 93, 95, 'cukup baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:53:47');
 
 -- --------------------------------------------------------
 
@@ -259,16 +246,16 @@ CREATE TABLE `dataset_hitung` (
 --
 
 INSERT INTO `dataset_hitung` (`id`, `nama_lengkap`, `age`, `experience`, `last_education`, `status`, `total_ability`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`) VALUES
-(1, 'Suharto', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '90-100', '80-89', 'baik', 1, 'lulus'),
+(1, 'Suharto', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '90-100', '80-89', 'baik', 0, 'gagal'),
 (2, 'Adi', '< 25', '0 tahun', 'sarjana', 'menikah', '5-7', '80-89', '90-100', 'cukup baik', 1, 'lulus'),
-(3, 'Dewi', '< 25', '> 2 tahun', 'sma', 'lajang', '8-10', '70-79', '70-79', 'cukup baik', 1, 'gagal'),
-(4, 'Martha', '< 25', '0 tahun', 'pasca', 'menikah', '8-10', '70-79', '70-79', 'baik', 1, 'lulus'),
-(5, 'Stephen', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '80-89', '80-89', 'cukup baik', 1, 'gagal'),
-(6, 'Eko', '< 25', '1-2 tahun', 'akademi', 'menikah', '5-7', '70-79', '70-79', 'cukup baik', 1, 'lulus'),
+(3, 'Dewi', '> 35', '> 2 tahun', 'sma', 'lajang', '8-10', '70-79', '70-79', 'cukup baik', 0, 'gagal'),
+(4, 'Martha', '< 25', '0 tahun', 'akademi', 'menikah', '8-10', '70-79', '70-79', 'baik', 0, 'lulus'),
+(5, 'Stephen', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '80-89', '80-89', 'cukup baik', 0, 'lulus'),
+(6, 'Eko', '25-30', '1-2 tahun', 'akademi', 'menikah', '5-7', '70-79', '70-79', 'cukup baik', 0, 'gagal'),
 (7, 'Wulan', '< 25', '> 2 tahun', 'sarjana', 'lajang', '5-7', '70-79', '90-100', 'baik', 1, 'lulus'),
-(8, 'Susanti', '< 25', '1-2 tahun', 'sma', 'lajang', '5-7', '70-79', '70-79', 'baik', 1, 'gagal'),
-(9, 'Sudirman', '< 25', '1-2 tahun', 'sma', 'menikah', '5-7', '70-79', '70-79', 'sangat baik', 1, 'gagal'),
-(10, 'Surya', '< 25', '> 2 tahun', 'pasca', 'lajang', '8-10', '90-100', '90-100', 'cukup baik', 1, 'gagal');
+(8, 'Susanti', '< 25', '1-2 tahun', 'sma', 'lajang', '5-7', '70-79', '70-79', 'baik', 0, 'gagal'),
+(9, 'Sudirman', '25-30', '1-2 tahun', 'sma', 'menikah', '5-7', '70-79', '70-79', 'sangat baik', 0, 'lulus'),
+(10, 'Surya', '< 25', '> 2 tahun', 'pasca', 'lajang', '8-10', '90-100', '90-100', 'cukup baik', 1, 'lulus');
 
 -- --------------------------------------------------------
 
@@ -991,7 +978,7 @@ ALTER TABLE `cart_atribut_detail`
 -- AUTO_INCREMENT for table `cart_rule`
 --
 ALTER TABLE `cart_rule`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=555;
 
 --
 -- AUTO_INCREMENT for table `dataset`
