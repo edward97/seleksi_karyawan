@@ -77,7 +77,7 @@
 
 								<tbody>
 									<?php $no = 1; ?>
-									<?php foreach ($data_testing as $i): ?>
+									<?php foreach ($data_testing_c45 as $i): ?>
 										<tr>
 											<td><?php echo $no; ?></td>
 											<td><?php echo $i[0]; ?></td>
@@ -92,16 +92,40 @@
 								</tbody>
 							</table>
 						</div>
-
 					</div>
 
 					<div class="tab-pane" id="cart" role="tabpanel" aria-expanded="false">
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+						<div class="table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Nama</th>
+										<th>Pengalaman</th>
+										<th>Pendidikan</th>
+										<th>Nilai Ujian</th>
+										<th>Nilai Sikap</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<?php $no = 1; ?>
+									<?php foreach ($data_testing_cart as $i): ?>
+										<tr>
+											<td><?php echo $no; ?></td>
+											<td><?php echo $i[0]; ?></td>
+											<td><?php echo $i[1]; ?></td>
+											<td><?php echo $i[2]; ?></td>
+											<td class="text-nowrap"><?php echo $i[3]; ?></td>
+											<td class="text-nowrap"><?php echo $i[4]; ?></td>
+											<td><?php echo $i[5]; ?></td>
+										</tr>
+										<?php $no++; ?>
+									<?php endforeach ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

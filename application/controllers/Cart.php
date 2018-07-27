@@ -8,7 +8,6 @@ class Cart extends CI_Controller
 {
 
 	// update cart_atribut_detail set flag = 0; update dataset_hitung set flag = 0; truncate cart_rule;
-	
 	function __construct()
 	{
 		parent::__construct();
@@ -30,36 +29,49 @@ class Cart extends CI_Controller
 		$this->cart_model->update_flag('cart_atribut_detail', $where);
 
 		foreach ($data as $i) {
-			if ($i->experience == 0) {
-				$experience = '0 tahun';
-			}
-			elseif ($i->experience < 3) {
-				$experience = '1-2 tahun';
-			}
-			else {
-				$experience = '> 2 tahun';
-			}
+			if ($i->age < 25)
+				$age = '< 25';
+			elseif ($i->age <= 25)
+				$age = '25-30';
+			else
+				$age = '> 35';
 
-			if ($i->nilai_online <= 79) {
+			if ($i->experience == 0)
+				$experience = '0 tahun';
+			elseif ($i->experience < 3)
+				$experience = '1-2 tahun';
+			else
+				$experience = '> 2 tahun';
+
+			if ($i->total_ability <= 7)
+				$total_ability = '5-7';
+			else
+				$total_ability = '8-10';
+
+			if ($i->nilai_online <= 79)
 				$nilai_online = '70-79';
-			}
-			elseif ($i->nilai_online <= 89) {
+			elseif ($i->nilai_online <= 89)
 				$nilai_online = '80-89';
-			}
-			else {
+			else
 				$nilai_online = '90-100';
-			}
+
+			if ($i->nilai_f2f <= 79)
+				$nilai_f2f = '70-79';
+			elseif ($i->nilai_f2f <= 89)
+				$nilai_f2f = '80-89';
+			else
+				$nilai_f2f = '90-100';
 
 			$data = array(
 				'id' => null,
 				'nama_lengkap' => $i->nama_lengkap,
-				'umur' => $i->umur,
+				'age' => $age,
 				'experience' => $experience,
 				'last_education' => $i->last_education,
 				'status' => $i->status,
-				'total_kemampuan' => $i->total_kemampuan,
+				'total_ability' => $total_ability,
 				'nilai_online' => $nilai_online,
-				'nilai_f2f' => $i->nilai_f2f,
+				'nilai_f2f' => $nilai_f2f,
 				'nilai_sikap' => $i->nilai_sikap,
 				'flag' => 0,
 				'status_passed' => $i->status_passed
@@ -246,10 +258,10 @@ class Cart extends CI_Controller
 				$root_id = $i->id;
 			}
 		}
-		echo 'ROOT : '.$root."<br>";
-		echo 'LEFT : '.$left."<br>";
-		echo 'RIGHT : '.$right."<br>";
-		echo 'MAX : '.$maxx."<br>";
+		// echo 'ROOT : '.$root."<br>";
+		// echo 'LEFT : '.$left."<br>";
+		// echo 'RIGHT : '.$right."<br>";
+		// echo 'MAX : '.$maxx."<br>";
 
 		$fix_left = array();
 		$fix_right = array();
@@ -259,7 +271,7 @@ class Cart extends CI_Controller
 					$key => $value
 				);
 
-				echo "<br>fix left => ".$key." ".$value."<br>";
+				// echo "<br>fix left => ".$key." ".$value."<br>";
 			}
 		}
 		foreach ($temp_fix_keputusan_right as $key => $value) {
@@ -267,10 +279,10 @@ class Cart extends CI_Controller
 				$fix_right = array(
 					$key => $value
 				);
-				echo "<br>fix right => !=".$key." ".$value."<br>";
+				// echo "<br>fix right => !=".$key." ".$value."<br>";
 			}
 		}
-		echo "--------------------------------------<br>";
+		// echo "--------------------------------------<br>";
 		$this->makeRule($root_id, $root, $left, $right, $fix_left, $fix_right);
 	}
 
@@ -280,6 +292,7 @@ class Cart extends CI_Controller
 
 		if ($cek == 0) {
 			$root_ar = array(
+				'atribut' => $root,
 				'label' => $root,
 				'left_keputusan' => $left,
 				'right_keputusan' => '!'.$right
@@ -289,6 +302,7 @@ class Cart extends CI_Controller
 			if ($fix_left != null) {
 				foreach ($fix_left as $key => $value) {
 					$left_ar = array(
+						'atribut' => $root,
 						'label' => $key,
 						'left_keputusan' => '-',
 						'right_keputusan' => '-',
@@ -313,8 +327,9 @@ class Cart extends CI_Controller
 			}
 			else {
 				$left_ar = array(
-					// 'label' => $left,
-					'label' => $root,
+					'atribut' => $root,
+					'label' => $left,
+					// 'label' => $root,
 					'right_keputusan' => '-',
 					'link' => $id
 				);
@@ -324,6 +339,7 @@ class Cart extends CI_Controller
 			if ($fix_right != null) {
 				foreach ($fix_right as $key => $value) {
 					$right_ar = array(
+						'atribut' => $root,
 						'label' => '!'.$key,
 						'right_keputusan' => '-',
 						'left_keputusan' => '-',
@@ -349,8 +365,9 @@ class Cart extends CI_Controller
 			}
 			else {
 				$right_ar = array(
-					// 'label' => '!'.$right,
-					'label' => $root,
+					'atribut' => $root,
+					'label' => '!'.$right,
+					// 'label' => $root,
 					'left_keputusan' => '-',
 					'link' => $id
 				);
@@ -368,7 +385,7 @@ class Cart extends CI_Controller
 			if ($cek_kiri != 0) {
 				foreach ($data_kiri as $i) {
 					$node_ar = array(
-						'label' => $root,
+						// 'label' => $root,
 						'left_keputusan' => $left,
 						'right_keputusan' => '!'.$right
 					);
@@ -380,6 +397,7 @@ class Cart extends CI_Controller
 					if ($fix_left != null) {
 						foreach ($fix_left as $key => $value) {
 							$left_ar = array(
+								'atribut' => $root,
 								'label' => $key,
 								'left_keputusan' => '-',
 								'right_keputusan' => '-',
@@ -404,8 +422,9 @@ class Cart extends CI_Controller
 					}
 					else {
 						$left_ar = array(
-							// 'label' => $left,
 							'label' => $root,
+							'label' => $left,
+							// 'label' => $root,
 							'right_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -415,6 +434,7 @@ class Cart extends CI_Controller
 					if ($fix_right != null) {
 						foreach ($fix_right as $key => $value) {
 							$right_ar = array(
+								'atribut' => $root,
 								'label' => '!'.$key,
 								'right_keputusan' => '-',
 								'left_keputusan' => '-',
@@ -440,8 +460,9 @@ class Cart extends CI_Controller
 					}
 					else {
 						$right_ar = array(
-							// 'label' => '!'.$right,
 							'label' => $root,
+							'label' => '!'.$right,
+							// 'label' => $root,
 							'left_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -460,7 +481,7 @@ class Cart extends CI_Controller
 			if ($cek_kanan != 0) {
 				foreach ($data_kanan as $i) {
 					$node_ar = array(
-						'label' => $root,
+						// 'label' => $root,
 						'left_keputusan' => $left,
 						'right_keputusan' => '!'.$right
 					);
@@ -472,6 +493,7 @@ class Cart extends CI_Controller
 					if ($fix_left != null) {
 						foreach ($fix_left as $key => $value) {
 							$left_ar = array(
+								'atribut' => $root,
 								'label' => $key,
 								'left_keputusan' => '-',
 								'right_keputusan' => '-',
@@ -496,8 +518,9 @@ class Cart extends CI_Controller
 					}
 					else {
 						$left_ar = array(
-							// 'label' => $left,
-							'label' => $root,
+							'atribut' => $root,
+							'label' => $left,
+							// 'label' => $root,
 							'right_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -507,6 +530,7 @@ class Cart extends CI_Controller
 					if ($fix_right != null) {
 						foreach ($fix_right as $key => $value) {
 							$right_ar = array(
+								'atribut' => $root,
 								'label' => '!'.$key,
 								'right_keputusan' => '-',
 								'left_keputusan' => '-',
@@ -532,8 +556,9 @@ class Cart extends CI_Controller
 					}
 					else {
 						$right_ar = array(
-							// 'label' => '!'.$right,
-							'label' => $root,
+							'atribut' => $root,
+							'label' => '!'.$right,
+							// 'label' => $root,
 							'left_keputusan' => '-',
 							'link' => $i->id
 						);
@@ -546,59 +571,70 @@ class Cart extends CI_Controller
 
 	function dataTesting() {
 		$tes = array(
-			'experience' => '> 2 tahun',
-			'last_education' => 'akademi',
+			'age' => '25-35',
+			'experience' => '1-2 tahun',
+			'last_education' => 'sma',
+			'status' => 'menikah',
+			'total_ability' => '5-7',
 			'nilai_online' => '90-100',
-			'nilai_sikap' => 'cukup baik'
+			'nilai_f2f' => '90-100',
+			'nilai_sikap' => 'baik'
 		);
-		$this->_dataTesting($tes);
+		echo $this->_dataTesting($tes);
+		// return $this->_dataTesting($tes);
 	}
 
 	function _dataTesting(array $data_testing) {
 		$tree = $this->cart_model->tampil_tree()->result();
-		$z = $this->cart_model->node()->num_rows();
-		$getRoot = $this->cart_model->root()->row_array();
 
 		$link = null;
-		$temp = null;
 		$temp_left = null;
 		$temp_right = null;
 		$stop = false;
 		$hasil = null;
 
 		foreach ($tree as $i) {
-			foreach ($data_testing as $key => $value) {
-				if ($i->link == null && $i->label == $key) {
-					if ($i->left_keputusan == $value) {
+			if ($stop == false) {
+				foreach ($data_testing as $key => $value) {
+					if ($i->id == 1) {
+						$root = $i->atribut;
 						$link = $i->id;
-						$temp = $i->left_keputusan;
-					}
-					else {
-						$link = $i->id;
-						$temp = $i->right_keputusan;
-					}
-				}
-				if ($i->link == $link && $i->label == $temp) {
-					if ($i->keputusan != null) {
-						$hasil = $i->keputusan;
-					}
-				}
-				if ($i->link == $link && $i->label == $key) {
-					if ($i->left_keputusan == $value) {
-						$link = $i->id;
-						$temp = $i->left_keputusan;
-					}
-					if ($i->right_keputusan == $value) {
-						$link = $i->id;
-						$temp = $i->right_keputusan;
+						$temp_left = $i->left_keputusan;
+						$temp_right = $i->right_keputusan;
 					}
 
-					echo $temp;
+					if ($i->atribut == $key && $i->link == $link) {
+						if ($temp_left == $value && $temp_left == $i->label) {
+							if ($i->keputusan != null) {
+								$hasil = $i->keputusan;
+								// echo $i->label;
+								$stop = true;
+							}
+							else {
+								$root = $i->atribut;
+								$link = $i->id;
+								$temp_left = $i->left_keputusan;
+								$temp_right = $i->right_keputusan;
+							}
+						}
+						if ($temp_right != $value && $temp_right == $i->label) {
+							if ($i->keputusan != null) {
+								$hasil = $i->keputusan;
+								// echo $i->label;
+								$stop = true;
+							}
+							else {
+								$root = $i->atribut;
+								$link = $i->id;
+								$temp_left = $i->left_keputusan;
+								$temp_right = $i->right_keputusan;
+							}
+						}
+					}
 				}
-
-
 			}
 		}
-		// echo $hasil;
+		// echo "Hasil : ".$hasil;
+		return $hasil;
 	}
 }

@@ -217,8 +217,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<div class="col-sm-8">
 													<select name="jenis_kelamin" id="jenis_kelamin" class="form-control" required>
 														<option value="">Choose...</option>
-														<option value="Pria">Pria</option>
-														<option value="Wanita">Wanita</option>
+														<option value="pria">Pria</option>
+														<option value="wanita">Wanita</option>
 													</select>
 												</div>
 											</div>
@@ -233,11 +233,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<div class="col-sm-8">
 													<select name="agama" id="agama" class="form-control" required>
 														<option value="">Choose...</option>
-														<option value="Buddha">Buddha</option>
-														<option value="Hindu">Hindu</option>
-														<option value="Islam">Islam</option>
-														<option value="Konghucu">Konghucu</option>
-														<option value="Kristen">Kristen</option>
+														<option value="buddha">Buddha</option>
+														<option value="hindu">Hindu</option>
+														<option value="islam">Islam</option>
+														<option value="konghucu">Konghucu</option>
+														<option value="kristen">Kristen</option>
 													</select>
 												</div>
 											</div>
@@ -356,8 +356,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<div class="col-sm-8">
 													<select name="status" id="status" class="form-control">
 														<option selected>Choose...</option>
-														<option value="Lajang">Lajang</option>
-														<option value="Menikah">Menikah</option>
+														<option value="lajang">Lajang</option>
+														<option value="menikah">Menikah</option>
 													</select>
 												</div>
 											</div>
@@ -373,10 +373,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<div class="col-sm-8">
 													<select name="pendidikan" id="pendidikan" class="form-control" required>
 														<option value="">Choose...</option>
-														<option value="SMA">SMA</option>
-														<option value="S1">S1</option>
-														<option value="S2">S2</option>
-														<option value="S3">S3</option>
+														<option value="sma">SMA</option>
+														<option value="akademi">Akademi</option>
+														<option value="sarjana">Sarjana</option>
+														<option value="pasca">Pasca</option>
 													</select>
 												</div>
 											</div>

@@ -94,8 +94,17 @@ class C45
 				$splitInfo += -($jumlah_case/$jumlah_data)*log($jumlah_case/$jumlah_data, 2); // esj
 			}
 			$gain = $entropy_total - $lx;
-			$gainRatio = $gain/$splitInfo; // esj
-			$gains[$indexAttribute] = $gainRatio;
+			
+			if ($splitInfo != 0) {
+				$gainRatio = $gain/$splitInfo; // esj	
+			}
+			else {
+				$gainRatio = 0;
+			}
+
+			
+
+			$gains[$indexAttribute] = $gain;
 		}
 
 		$l = arsort($gains); // urutkan angka besar -> kecil
@@ -211,6 +220,7 @@ class C45
 	}
 }
 
+// aktive link pada menu bar
 function active_link($path, $className = 'active') {
 	$CI =& get_instance();
 	$uri_string = $CI->uri->uri_string();

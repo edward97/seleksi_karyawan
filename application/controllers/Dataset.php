@@ -87,11 +87,11 @@ class Dataset extends CI_Controller
 
 				// ambil data value dari $get
 				$nama_lengkap = $get[0]; // ambil data kolom A di csv
-				$umur = $get[1];
+				$age = $get[1];
 				$experience = $get[2];
 				$last_education = $get[3];
 				$status = $get[4];
-				$total_kemampuan = $get[5];
+				$total_ability = $get[5];
 				$nilai_online = $get[6];
 				$nilai_f2f = $get[7];
 				$nilai_sikap = $get[8];
@@ -100,11 +100,11 @@ class Dataset extends CI_Controller
 				// push (add)ke variabel data
 				array_push($data, [
 					'nama_lengkap' => $nama_lengkap,
-					'umur' => $umur,
+					'age' => $age,
 					'experience' => $experience,
 					'last_education' => $last_education,
 					'status' => $status,
-					'total_kemampuan' => $total_kemampuan,
+					'total_ability' => $total_ability,
 					'nilai_online' => $nilai_online,
 					'nilai_f2f' => $nilai_f2f,
 					'nilai_sikap' => $nilai_sikap,

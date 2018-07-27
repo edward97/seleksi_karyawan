@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Dataset_model extends CI_Model
 {
 	function tampil_dataset() {
-		return $this->db->get('dataset');
+		return $this->db->get('dataset_hitung');
 	}
 
 	function add_dataset($table, $data) {
