@@ -35,6 +35,16 @@ class Soal extends CI_Controller
 		}
 	}
 
+	function next() {
+		$label = $this->input->post('label');
+		$divisi = $this->input->post('divisi');
+		$jenis_ujian = $this->input->post('jenis_ujian');
+
+
+		
+		
+	}
+
 	
 	
 

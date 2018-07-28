@@ -152,7 +152,7 @@
 
 				<div class="modal-footer border-0">
 					<button type="reset" name="reset" class="btn btn-warning"><i class="far fa-trash-alt"></i> Reset</button>
-					<button type="submit" name="submit" value="save" class="btn btn-success"><i class="far fa-save"></i> Save</button>
+					<button type="submit" name="submit" value="Next" class="btn btn-success"><i class="fas fa-arrow-right"></i> Next</button>
 				</div>
 			<?php echo form_close(); ?>
 		</div>
