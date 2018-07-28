@@ -89,7 +89,7 @@
 <div class="modal fade" id="addAct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<?php echo form_open(''); ?>
+			<?php echo form_open('soal/next'); ?>
 				<div class="modal-header bg-success border-0">
 					<h5 class="modal-title text-white">Add Label Question</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -99,13 +99,13 @@
 
 				<div class="modal-body p-5">
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="label" class="col-form-label require">Nama Soal Ujian</label>
 							</div>
 						</div>
 						
-						<div class="col-md-8">
+						<div class="col-md-7">
 							<div class="form-group">
 								<input type="text" name="label" id="label" class="form-control" required>
 							</div>
@@ -113,13 +113,32 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md-4">
+						<div class="col-md-5">
+							<div class="form-group">
+								<label for="divisi" class="require">Divisi</label>
+							</div>
+						</div>
+
+						<div class="col-md-7">
+							<div class="form-group">
+								<select name="divisi" id="divisi" class="form-control" required>
+									<option value="">Choose...</option>
+								<?php foreach ($divisi as $i): ?>
+									<option value="<?php echo $i->id_job ?>"><?php echo $i->nm_job ?></option>
+								<?php endforeach ?>
+								</select>
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-5">
 							<div class="form-group">
 								<label for="jenis_ujian" class="col-form-label require">Jenis Ujian</label>
 							</div>
 						</div>
 						
-						<div class="col-md-8">
+						<div class="col-md-7">
 							<div class="form-group">
 								<select name="jenis_ujian" id="jenis_ujian" class="form-control" required>
 									<option value="">Choose...</option>
