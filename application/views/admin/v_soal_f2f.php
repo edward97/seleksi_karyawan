@@ -13,69 +13,71 @@
 							</a>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+
+		<?php echo $this->session->flashdata('msg_f2f'); ?>
+
+		<?php $no = 1; ?>
+		<?php foreach ($f2f as $i): ?>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-header bg-light">
+						<?php echo $no.". ".$i->label." [ Link Job = ".$i->nm_job." ] "; ?>
+
+						<div class="card-actions">
+							<a href="<?php echo site_url('soal/edit_f2f/')."$i->id_question"; ?>" class="btn text-info">
+								<i class="fa fa-cog"></i> Edit
+							</a>
+
+							<a href="<?php echo site_url('soal/delete_f2f/')."$i->id_question"; ?>" class="btn text-danger" onclick="return confirmDialog();">
+								<i class="fa fa-trash-alt"></i> Delete
+							</a>
+						</div>
+					</div>
 
 					<div class="card-body">
-						<?php echo $this->session->flashdata('msg_f2f') ?>
+						<div class="row">
+							<div class="col-md-12">
+								<?php echo $i->question; ?>
+							</div>
+						</div>
+
+						<hr>
 
 						<div class="row">
-							<?php $no = 1; ?>
-							<?php foreach ($f2f as $i): ?>
-							<div class="col-md-12">
-								<div class="card">
-									<div class="card-header bg-light">
-										<?php echo $no.". ".$i->label." [ Link Job = ".$i->nm_job." ] "; ?>
-
-										<div class="card-actions">
-											<a href="<?php echo site_url('soal/edit_f2f/')."$i->id_question"; ?>" class="btn text-info">
-												<i class="fa fa-cog"></i> Edit
-											</a>
-										</div>
-									</div>
-
-									<div class="card-body">
-										<div class="row">
-											<div class="col-md-12">
-												<?php echo $i->question; ?>
-											</div>
-										</div>
-
-										<hr>
-
-										<div class="row">
-											<div class="col-md-6">
-												A - <?php echo $i->answer_a ?>
-											</div>
-
-											<div class="col-md-6">
-												B - <?php echo $i->answer_b ?>
-											</div>
-
-											<div class="col-md-6">
-												C - <?php echo $i->answer_c ?>
-											</div>
-
-											<div class="col-md-6">
-												D - <?php echo $i->answer_d ?>
-											</div>
-										</div>
-									</div>
-
-									<div class="card-footer bg-light text-danger">
-										<div class="row">
-											<div class="col-md-6">
-												Answer : <?php echo $i->correct_ans ?>
-											</div>
-										</div>
-									</div>
-								</div>
+							<div class="col-md-6">
+								A - <?php echo $i->answer_a ?>
 							</div>
-							<?php $no++; ?>
-							<?php endforeach ?>
+
+							<div class="col-md-6">
+								B - <?php echo $i->answer_b ?>
+							</div>
+
+							<div class="col-md-6">
+								C - <?php echo $i->answer_c ?>
+							</div>
+
+							<div class="col-md-6">
+								D - <?php echo $i->answer_d ?>
+							</div>
+						</div>
+					</div>
+
+					<div class="card-footer bg-light text-danger">
+						<div class="row">
+							<div class="col-md-6">
+								Answer : <?php echo $i->correct_ans ?>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+		<?php $no++; ?>
+		<?php endforeach ?>
 	</div>
 </div>
 
@@ -93,22 +95,24 @@
 
 				<div class="modal-body p-5">
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-2">
 							<div class="form-group">
-								<label for="divisi" class="require">Divisi</label>
-								<select name="divisi" id="divisi" class="form-control" required>
-									<option value="">Choose...</option>
-								<?php foreach ($divisi as $i): ?>
-									<option value="<?php echo $i->id_job ?>"><?php echo $i->nm_job ?></option>
-								<?php endforeach ?>
-								</select>
+								<label for="id">ID</label>
+								<input type="text" name="id" id="id" class="form-control" readonly>
 							</div>
 						</div>
 
-						<div class="col-md-6">
+						<div class="col-md-5">
+							<div class="form-group">
+								<label for="divisi">ID Divisi</label>
+								<input type="text" name="divisi" id="divisi" class="form-control" value="<?php echo $divisi; ?>" readonly>
+							</div>
+						</div>
+
+						<div class="col-md-5">
 							<div class="form-group">
 							<label for="nama_soal" class="require">Nama Soal</label>
-								<input type="text" name="nama_soal" id="nama_soal" class="form-control" required>
+								<input type="text" name="nama_soal" id="nama_soal" class="form-control" value="<?php echo $label; ?>" readonly>
 								<small class="form-text">[ Akuntansi I, Akuntansi II ]</small>
 							</div>
 						</div>

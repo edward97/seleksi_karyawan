@@ -209,7 +209,8 @@ class C45
 
 		foreach ($kasusAttribute as $kasus => $item) {
 			if ($data[$attribute] == $kasus && isset($item['nilai'])) {
-				$this->hasilPrediksi = strtoupper($item['nilai']);
+				// $this->hasilPrediksi = strtoupper($item['nilai']);
+				$this->hasilPrediksi = ($item['nilai']);
 			}
 
 			if ($data[$attribute] == $kasus && isset($item['forward'])) {

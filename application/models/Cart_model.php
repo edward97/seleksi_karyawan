@@ -40,8 +40,8 @@ class Cart_model extends CI_Model
 		$this->db->update($table, $data);
 	}
 
-	function cek_rule() {
-		return $this->db->get_where('cart_rule');
+	function cek_rule($table) {
+		return $this->db->get($table);
 	}
 
 	function insert_rule($table, $data) {
@@ -69,7 +69,7 @@ class Cart_model extends CI_Model
 		return $this->db->get_where($table, $where);
 	}
 
-	function tampil_tree() {
-		return $this->db->get('cart_rule');
+	function tampil_tree($table) {
+		return $this->db->get($table);
 	}
 }

@@ -23,9 +23,9 @@
 								<tbody>
 									<tr>
 										<td>C4.5</td>
-										<td>90%</td>
+										<td><?php echo $akurasi_c45; ?>%</td>
 										<td>
-											<a href="#" class="btn btn-outline-info btn-sm">
+											<a href="<?php echo site_url('algoritma/detail/c45') ?>" class="btn btn-outline-info btn-sm">
 												<i class="fas fa-info-circle"></i> Detail
 											</a>
 										</td>
@@ -33,9 +33,9 @@
 
 									<tr>
 										<td>CART</td>
-										<td>85%</td>
+										<td><?php echo $akurasi_cart; ?>%</td>
 										<td>
-											<a href="#" class="btn btn-outline-info btn-sm">
+											<a href="<?php echo site_url('algoritma/detail/cart') ?>" class="btn btn-outline-info btn-sm">
 												<i class="fas fa-info-circle"></i> Detail
 											</a>
 										</td>

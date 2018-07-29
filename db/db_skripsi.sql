@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 28, 2018 at 09:08 AM
--- Server version: 10.1.32-MariaDB
--- PHP Version: 7.1.17
+-- Generation Time: Jul 29, 2018 at 08:18 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.1.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -40,7 +40,7 @@ CREATE TABLE `ability` (
 --
 
 INSERT INTO `ability` (`id_ability`, `nm_ability`, `created_at`, `updated_at`) VALUES
-(2, 'Algoritma', '2018-06-26 11:28:27', '2018-07-28 04:55:39'),
+(2, 'Algorithm', '2018-06-26 11:28:27', '2018-06-27 13:36:11'),
 (10, 'Coding C#', '2018-06-26 16:05:22', '2018-06-26 09:05:22'),
 (17, 'Bahasa Inggris - Aktif', '2018-06-30 21:01:51', '2018-07-02 18:30:25'),
 (18, 'Bahasa Inggris - Pasif', '2018-07-03 01:30:36', '2018-07-02 18:30:36'),
@@ -101,6 +101,60 @@ INSERT INTO `admins_sesi` (`id`, `keterangan`, `id_admin`, `id_stage`, `created_
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `akurasi_dataset`
+--
+
+CREATE TABLE `akurasi_dataset` (
+  `id` int(3) NOT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
+  `age` varchar(255) NOT NULL,
+  `experience` varchar(255) NOT NULL,
+  `last_education` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  `total_ability` varchar(255) NOT NULL,
+  `nilai_online` varchar(255) NOT NULL,
+  `nilai_f2f` varchar(255) NOT NULL,
+  `nilai_sikap` varchar(255) NOT NULL,
+  `flag` tinyint(4) NOT NULL,
+  `status_passed` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akurasi_dataset`
+--
+
+INSERT INTO `akurasi_dataset` (`id`, `nama_lengkap`, `age`, `experience`, `last_education`, `status`, `total_ability`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`) VALUES
+(1, 'Sudirman', '< 25', '1-2 tahun', 'sma', 'menikah', '5-7', '70-79', '70-79', 'sangat baik', 1, 'gagal'),
+(2, 'Surya', '< 25', '0 tahun', 'pasca', 'lajang', '8-10', '90-100', '90-100', 'cukup baik', 1, 'gagal');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akurasi_rule`
+--
+
+CREATE TABLE `akurasi_rule` (
+  `id` int(6) NOT NULL,
+  `atribut` varchar(255) NOT NULL,
+  `label` varchar(255) NOT NULL,
+  `left_keputusan` varchar(255) DEFAULT NULL,
+  `right_keputusan` varchar(255) DEFAULT NULL,
+  `keputusan` varchar(255) DEFAULT NULL,
+  `link` int(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akurasi_rule`
+--
+
+INSERT INTO `akurasi_rule` (`id`, `atribut`, `label`, `left_keputusan`, `right_keputusan`, `keputusan`, `link`) VALUES
+(1, 'age', 'age', '< 25', '!< 25', NULL, NULL),
+(2, 'age', '< 25', '-', '-', 'gagal', 1),
+(3, 'age', '!< 25', '-', NULL, NULL, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cart_atribut`
 --
 
@@ -141,7 +195,7 @@ CREATE TABLE `cart_atribut_detail` (
 --
 
 INSERT INTO `cart_atribut_detail` (`id`, `detail`, `id_atribut`, `flag`) VALUES
-(1, '< 25', 1, 0),
+(1, '< 25', 1, 1),
 (2, '25-35', 1, 0),
 (3, '> 35', 1, 0),
 (4, '0 tahun', 2, 0),
@@ -151,7 +205,7 @@ INSERT INTO `cart_atribut_detail` (`id`, `detail`, `id_atribut`, `flag`) VALUES
 (8, 'akademi', 3, 0),
 (9, 'sarjana', 3, 0),
 (10, 'pasca', 3, 0),
-(11, 'lajang', 4, 1),
+(11, 'lajang', 4, 0),
 (12, 'menikah', 4, 0),
 (13, '5-7', 5, 0),
 (14, '8-10', 5, 0),
@@ -159,11 +213,11 @@ INSERT INTO `cart_atribut_detail` (`id`, `detail`, `id_atribut`, `flag`) VALUES
 (16, '80-89', 6, 0),
 (17, '90-100', 6, 0),
 (18, '70-79', 7, 0),
-(19, '80-89', 7, 1),
-(20, '90-100', 7, 1),
-(21, 'cukup baik', 8, 1),
-(22, 'baik', 8, 1),
-(23, 'sangat baik', 8, 1);
+(19, '80-89', 7, 0),
+(20, '90-100', 7, 0),
+(21, 'cukup baik', 8, 0),
+(22, 'baik', 8, 0),
+(23, 'sangat baik', 8, 0);
 
 -- --------------------------------------------------------
 
@@ -186,15 +240,13 @@ CREATE TABLE `cart_rule` (
 --
 
 INSERT INTO `cart_rule` (`id`, `atribut`, `label`, `left_keputusan`, `right_keputusan`, `keputusan`, `link`) VALUES
-(1, 'nilai_f2f', 'nilai_f2f', '70-79', '!70-79', NULL, NULL),
-(2, 'nilai_f2f', '70-79', 'lajang', '!lajang', NULL, 1),
-(3, 'nilai_f2f', '!70-79', '-', '-', 'lulus', 1),
-(4, 'status', 'lajang', '-', '-', 'gagal', 2),
-(5, '', '!lajang', 'lajang', '!lajang', NULL, 2),
-(6, 'status', 'lajang', '-', '-', 'gagal', 5),
-(7, 'status', '!lajang', 'cukup baik', '!cukup baik', NULL, 5),
-(8, 'nilai_sikap', 'cukup baik', '-', '-', 'gagal', 7),
-(9, 'nilai_sikap', '!cukup baik', '-', '-', 'lulus', 7);
+(1, 'last_education', 'last_education', 'sma', '!sma', NULL, NULL),
+(2, 'last_education', 'sma', '-', '-', 'gagal', 1),
+(3, 'last_education', '!sma', '> 2 tahun', '!> 2 tahun', NULL, 1),
+(4, 'experience', '> 2 tahun', 'cukup baik', '!cukup baik', NULL, 3),
+(5, 'experience', '!> 2 tahun', '-', '-', 'lulus', 3),
+(6, 'nilai_sikap', 'cukup baik', '-', '-', 'gagal', 4),
+(7, 'nilai_sikap', '!cukup baik', '-', '-', 'lulus', 4);
 
 -- --------------------------------------------------------
 
@@ -224,16 +276,16 @@ CREATE TABLE `dataset` (
 --
 
 INSERT INTO `dataset` (`id`, `nama_lengkap`, `age`, `experience`, `last_education`, `status`, `total_ability`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`, `created_at`, `updated_at`) VALUES
-(1, 'Suharto', 21, 4, 'pasca', 'lajang', 6, 95, 85, 'baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-28 04:54:06'),
-(2, 'Adi', 21, 0, 'sarjana', 'menikah', 7, 83, 90, 'cukup baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:47:59'),
-(3, 'Dewi', 35, 3, 'sma', 'lajang', 8, 71, 78, 'cukup baik', 0, 'gagal', '2018-07-27 09:47:59', '2018-07-27 02:48:30'),
-(4, 'Martha', 21, 0, 'akademi', 'menikah', 9, 74, 76, 'baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 03:00:13'),
-(5, 'Stephen', 21, 4, 'pasca', 'lajang', 5, 86, 85, 'cukup baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:53:54'),
-(6, 'Eko', 26, 1, 'akademi', 'menikah', 4, 70, 75, 'cukup baik', 0, 'gagal', '2018-07-27 09:47:59', '2018-07-27 02:53:58'),
-(7, 'Wulan', 21, 5, 'sarjana', 'lajang', 3, 76, 95, 'baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:47:59'),
-(8, 'Susanti', 21, 2, 'sma', 'lajang', 2, 74, 75, 'baik', 0, 'gagal', '2018-07-27 09:47:59', '2018-07-27 02:47:59'),
-(9, 'Sudirman', 28, 2, 'sma', 'menikah', 4, 78, 79, 'sangat baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 03:01:10'),
-(10, 'Surya', 21, 5, 'pasca', 'lajang', 8, 93, 95, 'cukup baik', 0, 'lulus', '2018-07-27 09:47:59', '2018-07-27 02:53:47');
+(1, 'Suharto', 21, 4, 'pasca', 'lajang', 6, 95, 85, 'baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(2, 'Adi', 21, 0, 'sarjana', 'menikah', 7, 83, 90, 'cukup baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(3, 'Dewi', 21, 3, 'sma', 'lajang', 8, 71, 78, 'cukup baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(4, 'Martha', 21, 0, 'pasca', 'menikah', 9, 74, 76, 'baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(5, 'Stephen', 21, 4, 'pasca', 'lajang', 5, 86, 85, 'cukup baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(6, 'Eko', 21, 1, 'akademi', 'menikah', 4, 70, 75, 'cukup baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(7, 'Wulan', 21, 5, 'sarjana', 'lajang', 3, 76, 95, 'baik', 0, 'lulus', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(8, 'Susanti', 21, 2, 'sma', 'lajang', 2, 74, 75, 'baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(9, 'Sudirman', 21, 2, 'sma', 'menikah', 4, 78, 79, 'sangat baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14'),
+(10, 'Surya', 21, 5, 'pasca', 'lajang', 8, 93, 95, 'cukup baik', 0, 'gagal', '2018-07-27 01:17:14', '2018-07-26 18:17:14');
 
 -- --------------------------------------------------------
 
@@ -261,16 +313,16 @@ CREATE TABLE `dataset_hitung` (
 --
 
 INSERT INTO `dataset_hitung` (`id`, `nama_lengkap`, `age`, `experience`, `last_education`, `status`, `total_ability`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`) VALUES
-(1, 'Suharto', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '90-100', '80-89', 'baik', 1, 'lulus'),
-(2, 'Adi', '< 25', '0 tahun', 'sarjana', 'menikah', '5-7', '80-89', '90-100', 'cukup baik', 1, 'lulus'),
-(3, 'Dewi', '> 35', '> 2 tahun', 'sma', 'lajang', '8-10', '70-79', '70-79', 'cukup baik', 1, 'gagal'),
-(4, 'Martha', '< 25', '0 tahun', 'akademi', 'menikah', '8-10', '70-79', '70-79', 'baik', 1, 'lulus'),
-(5, 'Stephen', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '80-89', '80-89', 'cukup baik', 1, 'lulus'),
-(6, 'Eko', '25-30', '1-2 tahun', 'akademi', 'menikah', '5-7', '70-79', '70-79', 'cukup baik', 1, 'gagal'),
-(7, 'Wulan', '< 25', '> 2 tahun', 'sarjana', 'lajang', '5-7', '70-79', '90-100', 'baik', 1, 'lulus'),
-(8, 'Susanti', '< 25', '1-2 tahun', 'sma', 'lajang', '5-7', '70-79', '70-79', 'baik', 1, 'gagal'),
-(9, 'Sudirman', '25-30', '1-2 tahun', 'sma', 'menikah', '5-7', '70-79', '70-79', 'sangat baik', 1, 'lulus'),
-(10, 'Surya', '< 25', '> 2 tahun', 'pasca', 'lajang', '8-10', '90-100', '90-100', 'cukup baik', 1, 'lulus');
+(1, 'Suharto', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '90-100', '80-89', 'baik', 0, 'lulus'),
+(2, 'Adi', '< 25', '0 tahun', 'sarjana', 'menikah', '5-7', '80-89', '90-100', 'cukup baik', 0, 'lulus'),
+(3, 'Dewi', '< 25', '> 2 tahun', 'sma', 'lajang', '8-10', '70-79', '70-79', 'cukup baik', 0, 'gagal'),
+(4, 'Martha', '< 25', '0 tahun', 'pasca', 'menikah', '8-10', '70-79', '70-79', 'baik', 0, 'lulus'),
+(5, 'Stephen', '< 25', '> 2 tahun', 'pasca', 'lajang', '5-7', '80-89', '80-89', 'cukup baik', 0, 'gagal'),
+(6, 'Eko', '< 25', '1-2 tahun', 'akademi', 'menikah', '5-7', '70-79', '70-79', 'cukup baik', 0, 'lulus'),
+(7, 'Wulan', '< 25', '> 2 tahun', 'sarjana', 'lajang', '5-7', '70-79', '90-100', 'baik', 0, 'lulus'),
+(8, 'Susanti', '< 25', '1-2 tahun', 'sma', 'lajang', '5-7', '70-79', '70-79', 'baik', 0, 'gagal'),
+(9, 'Sudirman', '< 25', '1-2 tahun', 'sma', 'menikah', '5-7', '70-79', '70-79', 'sangat baik', 0, 'gagal'),
+(10, 'Surya', '< 25', '> 2 tahun', 'pasca', 'lajang', '8-10', '90-100', '90-100', 'cukup baik', 0, 'gagal');
 
 -- --------------------------------------------------------
 
@@ -326,16 +378,16 @@ CREATE TABLE `question_f2f` (
 --
 
 INSERT INTO `question_f2f` (`id_question`, `question`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_ans`, `status`, `label`, `created_at`, `updated_at`, `id_job`) VALUES
-(4, '<p>Posting atau pemindah bukuan adalah proses pemindahan informasi dari ?</p>', 'Jurnal ke neraca saldo keuangan', 'Buku besar ke laporan', 'Buku besar ke neraca saldo', 'Jurnal ke buku besar', 'Jurnal ke buku besar', 1, 'Akuntansi I', '2018-07-20 10:51:54', '2018-07-20 03:51:54', 7),
-(5, '<p>Di antara kejadian berikut mana yang bukan merupakan transaksi usaha ?</p>', 'Penyetoran sejumlah uang oleh pemilik untuk kepentingan usaha', 'Pembelian bahan baku secara tunai', 'Penjualan barang dagangan secara kredit', 'Kenaikan suku bunga pinjaman di bank', 'Kenaikan suku bunga pinjaman di bank', 1, 'Akuntansi I', '2018-07-20 10:53:23', '2018-07-20 03:53:23', 7),
-(6, '<p>Pembelian perlengkapan kantor secara kredit akan mempengaruhi persamaan akuntansi sebagai berikut ?</p>', 'Aktiva bertambah dan hutang bertambah', 'Aktiva bertambah dan modal berkurang', 'Aktiva bertambah dan modal bertambah', 'Aktiva, utang dan modal tidak berubah', 'Aktiva bertambah dan hutang bertambah', 1, 'Akuntansi I', '2018-07-20 11:07:44', '2018-07-23 20:26:11', 7),
-(7, '<p>A payment of cash for the purchases of merchandise would be recorded in the :</p>', 'Purchase journal', 'Cash payment journal', 'Sales journal', 'Cash receipt journal', 'Cash payment journal', 1, 'Akuntansi I', '2018-07-20 11:08:46', '2018-07-20 04:08:46', 7),
-(8, '<p>Manakah di antara pernyataan berikut yang tidak tepat ?</p>', 'Kas mempunyai saldo normal debit', 'Piutang mempunyai saldo normal debit', 'Modal mempunyai saldo normal debit', 'Hutang mempunyai saldo normal kredit', 'Modal mempunyai saldo normal debit', 1, 'Akuntansi I', '2018-07-20 11:09:31', '2018-07-20 04:09:31', 7),
-(9, '<p>Outstanding check disebut juga :</p>', 'Cek kosong', 'Cek tidak cukup dana', 'cek yang belum disetorkan', 'Cek yang beredar', 'Cek yang beredar', 1, 'Akuntansi I', '2018-07-20 11:10:25', '2018-07-20 04:10:25', 7),
-(10, '<p>Dalam balance sheet investasi jangka pendek termasuk dalam kelompok :</p>', 'Aktiva tetap', 'Aktiva lancar', 'Hutang jangka pendek', 'Hutang jangka panjang', 'Aktiva lancar', 1, 'Akuntansi I', '2018-07-20 11:11:19', '2018-07-20 04:11:19', 7),
-(11, '<p>Dasar penyusutan dapat dipengaruhi oleh nilai-nilai berikut, kecuali:</p>', 'Harga perolehan', 'Nilai sisa', 'Nilai buku', 'Nilai pasar', 'Nilai pasar', 1, 'Akuntansi I', '2018-07-20 11:12:52', '2018-07-20 04:12:52', 7),
-(12, '<p>Satu dari pos-pos kerugian dibawah ini termasuk dalam katagori pos-pos luar biasa :</p>', 'Kerugian karena penjualan aktiva tetap', 'Kerugian karena penurunan niali persediaan', 'Kerugian karena devaluasi rupiah', 'Kerugian karena penjualan surat-surat berharga', 'Kerugian karena devaluasi rupiah', 1, 'Akuntansi I', '2018-07-20 11:18:26', '2018-07-20 04:18:26', 7),
-(13, '<p>&nbsp;Ayat jurnal tidak dibuat untuK ?</p>', 'Penempatan saham', 'Perolehan kembali saham', 'Pemecahan saham', 'Pengeluaran saham', 'Pemecahan saham', 1, 'Akuntansi I', '2018-07-20 11:19:49', '2018-07-20 04:19:49', 7);
+(4, '<p>Posting atau pemindah bukuan adalah proses pemindahan informasi dari ?</p>', 'Jurnal ke neraca saldo keuangan', 'Buku besar ke laporan', 'Buku besar ke neraca saldo', 'Jurnal ke buku besar', 'Jurnal ke buku besar', 1, 'Akuntansi I', '2018-07-20 10:51:54', '2018-07-19 20:51:54', 7),
+(5, '<p>Di antara kejadian berikut mana yang bukan merupakan transaksi usaha ?</p>', 'Penyetoran sejumlah uang oleh pemilik untuk kepentingan usaha', 'Pembelian bahan baku secara tunai', 'Penjualan barang dagangan secara kredit', 'Kenaikan suku bunga pinjaman di bank', 'Kenaikan suku bunga pinjaman di bank', 1, 'Akuntansi I', '2018-07-20 10:53:23', '2018-07-19 20:53:23', 7),
+(6, '<p>Pembelian perlengkapan kantor secara kredit akan mempengaruhi persamaan akuntansi sebagai berikut ?</p>', 'Aktiva bertambah dan hutang bertambah', 'Aktiva bertambah dan modal berkurang', 'Aktiva bertambah dan modal bertambah', 'Aktiva, utang dan modal tidak berubah', 'Aktiva bertambah dan hutang bertambah', 1, 'Akuntansi I', '2018-07-20 11:07:44', '2018-07-23 13:26:11', 7),
+(7, '<p>A payment of cash for the purchases of merchandise would be recorded in the :</p>', 'Purchase journal', 'Cash payment journal', 'Sales journal', 'Cash receipt journal', 'Cash payment journal', 1, 'Akuntansi I', '2018-07-20 11:08:46', '2018-07-19 21:08:46', 7),
+(8, '<p>Manakah di antara pernyataan berikut yang tidak tepat ?</p>', 'Kas mempunyai saldo normal debit', 'Piutang mempunyai saldo normal debit', 'Modal mempunyai saldo normal debit', 'Hutang mempunyai saldo normal kredit', 'Modal mempunyai saldo normal debit', 1, 'Akuntansi I', '2018-07-20 11:09:31', '2018-07-19 21:09:31', 7),
+(9, '<p>Outstanding check disebut juga :</p>', 'Cek kosong', 'Cek tidak cukup dana', 'cek yang belum disetorkan', 'Cek yang beredar', 'Cek yang beredar', 1, 'Akuntansi I', '2018-07-20 11:10:25', '2018-07-19 21:10:25', 7),
+(10, '<p>Dalam balance sheet investasi jangka pendek termasuk dalam kelompok :</p>', 'Aktiva tetap', 'Aktiva lancar', 'Hutang jangka pendek', 'Hutang jangka panjang', 'Aktiva lancar', 1, 'Akuntansi I', '2018-07-20 11:11:19', '2018-07-19 21:11:19', 7),
+(11, '<p>Dasar penyusutan dapat dipengaruhi oleh nilai-nilai berikut, kecuali:</p>', 'Harga perolehan', 'Nilai sisa', 'Nilai buku', 'Nilai pasar', 'Nilai pasar', 1, 'Akuntansi I', '2018-07-20 11:12:52', '2018-07-19 21:12:52', 7),
+(12, '<p>Satu dari pos-pos kerugian dibawah ini termasuk dalam katagori pos-pos luar biasa :</p>', 'Kerugian karena penjualan aktiva tetap', 'Kerugian karena penurunan nilai persediaan', 'Kerugian karena devaluasi rupiah', 'Kerugian karena penjualan surat-surat berharga', 'Kerugian karena devaluasi rupiah', 1, 'Akuntansi I', '2018-07-20 11:18:26', '2018-07-29 07:04:53', 7),
+(13, '<p>&nbsp;Ayat jurnal tidak dibuat untuK ?</p>', 'Penempatan saham', 'Perolehan kembali saham', 'Pemecahan saham', 'Pengeluaran saham', 'Pemecahan saham', 1, 'Akuntansi I', '2018-07-20 11:19:49', '2018-07-19 21:19:49', 7);
 
 -- --------------------------------------------------------
 
@@ -426,14 +478,6 @@ CREATE TABLE `selection_stage` (
   `id_job` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `selection_stage`
---
-
-INSERT INTO `selection_stage` (`id_stage`, `nm_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`) VALUES
-(9, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 1, '2018-07-22 20:04:49', '2018-07-23 03:30:14', 1, 7),
-(10, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 1, '2018-07-22 20:34:15', '2018-07-22 14:33:33', 1, 8);
-
 -- --------------------------------------------------------
 
 --
@@ -449,24 +493,6 @@ CREATE TABLE `selection_stage_detail` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_stage` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `selection_stage_detail`
---
-
-INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`, `created_at`, `updated_at`, `id_stage`) VALUES
-(50, 'Tahap 1', '2018-07-21', '2018-07-23', '2018-07-22 20:04:49', '2018-07-23 03:29:33', 9),
-(51, 'Tahap 2', '2018-07-23', '2018-07-23', '2018-07-22 20:04:49', '2018-07-23 03:29:36', 9),
-(52, 'Tahap 3', '2018-07-23', '2018-07-23', '2018-07-22 20:04:49', '2018-07-23 03:29:37', 9),
-(53, 'Tahap 4', '2018-07-23', '2018-07-22', '2018-07-22 20:04:49', '2018-07-23 03:30:11', 9),
-(54, 'Tahap 5', '2018-07-26', '2018-07-30', '2018-07-22 20:04:49', '2018-07-23 03:18:54', 9),
-(55, 'Tahap 6', '2018-07-29', '2018-07-30', '2018-07-22 20:04:49', '2018-07-22 13:04:49', 9),
-(56, 'Tahap 1', '2018-07-21', '2018-07-21', '2018-07-22 20:34:16', '2018-07-22 14:00:03', 10),
-(57, 'Tahap 2', '2018-07-22', '2018-07-24', '2018-07-22 20:34:16', '2018-07-22 14:31:34', 10),
-(58, 'Tahap 3', '2018-07-23', '2018-07-27', '2018-07-22 20:34:16', '2018-07-22 14:00:32', 10),
-(59, 'Tahap 4', '2018-07-21', '2018-07-21', '2018-07-22 20:34:16', '2018-07-22 14:31:09', 10),
-(60, 'Tahap 5', '2018-07-28', '2018-07-29', '2018-07-22 20:34:16', '2018-07-22 13:34:16', 10),
-(61, 'Tahap 6', '2018-07-28', '2018-07-29', '2018-07-22 20:34:16', '2018-07-22 13:34:16', 10);
 
 -- --------------------------------------------------------
 
@@ -812,6 +838,18 @@ ALTER TABLE `admins_sesi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `akurasi_dataset`
+--
+ALTER TABLE `akurasi_dataset`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `akurasi_rule`
+--
+ALTER TABLE `akurasi_rule`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `cart_atribut`
 --
 ALTER TABLE `cart_atribut`
@@ -978,6 +1016,18 @@ ALTER TABLE `admins_sesi`
   MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
+-- AUTO_INCREMENT for table `akurasi_dataset`
+--
+ALTER TABLE `akurasi_dataset`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `akurasi_rule`
+--
+ALTER TABLE `akurasi_rule`
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `cart_atribut`
 --
 ALTER TABLE `cart_atribut`
@@ -993,7 +1043,7 @@ ALTER TABLE `cart_atribut_detail`
 -- AUTO_INCREMENT for table `cart_rule`
 --
 ALTER TABLE `cart_rule`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `dataset`
@@ -1035,13 +1085,13 @@ ALTER TABLE `required_ability`
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `standard_ability`

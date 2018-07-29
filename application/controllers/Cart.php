@@ -287,7 +287,7 @@ class Cart extends CI_Controller
 	}
 
 	function makeRule($root_id, $root, $left, $right, array $fix_left, array $fix_right) {
-		$rule = $this->cart_model->cek_rule();
+		$rule = $this->cart_model->cek_rule('cart_rule');
 		$cek = $rule->num_rows();
 
 		if ($cek == 0) {
@@ -585,7 +585,7 @@ class Cart extends CI_Controller
 	}
 
 	function _dataTesting(array $data_testing) {
-		$tree = $this->cart_model->tampil_tree()->result();
+		$tree = $this->cart_model->tampil_tree('cart_rule')->result();
 
 		$link = null;
 		$temp_left = null;

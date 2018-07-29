@@ -115,36 +115,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</a>
 							</li>
 
-							<li class="nav-item nav-dropdown">
-								<a href="#" class="nav-link nav-dropdown-toggle">
-									<i class="icon icon-folder"></i> Soal Ujian <i class="fa fa-caret-left"></i>
+							<li class="nav-item">
+								<a href="<?php echo site_url('soal'); ?>" class="nav-link <?php echo active_link('soal'); ?>">
+									<i class="icon icon-book-open"></i> Soal Ujian
 								</a>
-
-								<ul class="nav-dropdown-items">
-									<li class="nav-item">
-										<a href="<?php echo site_url('soal/input') ?>" class="nav-link <?php echo active_link('soal/input'); ?>">
-											<i class="icon icon-notebook"></i> Input Soal
-										</a>
-									</li>
-
-									<li class="nav-item">
-										<a href="<?php echo site_url('soal/list') ?>" class="nav-link <?php echo active_link('soal/list'); ?>">
-											<i class="icon icon-notebook"></i> List Soal
-										</a>
-									</li>
-
-									<li class="nav-item">
-										<a href="<?php echo site_url('soal/list_online') ?>" class="nav-link <?php echo active_link('soal/list_online'); ?>">
-											<i class="icon icon-notebook"></i> Ujian Online
-										</a>
-									</li>
-
-									<li class="nav-item">
-										<a href="<?php echo site_url('soal/list_f2f') ?>" class="nav-link <?php echo active_link('soal/list_f2f'); ?>">
-											<i class="icon icon-book-open"></i> Ujian Tatap Muka
-										</a>
-									</li>
-								</ul>
 							</li>
 
 							<li class="nav-item">
