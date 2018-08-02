@@ -15,8 +15,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/icheck-bootstrap.min.css">
 
-
-
 		<style type="text/css">
 			.stepwizard-step p {
 				margin-top: 0px;
@@ -95,8 +93,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</div>
 							</div>
 						</div>
-
-						<?php echo form_open('register/register_act'); ?>
+						<?php $attributes = array('onsubmit' => 'return checkForm(this);'); ?>
+						<?php echo form_open('register/register_act', $attributes); ?>
 							<div class="card setup-content" id="step-1">
 								<div class="card-header border text-uppercase h4 font-weight-light border-top-0 border-right-0 border-left-0 text-center">
 									REGISTER
@@ -151,7 +149,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_ktp" class="col-sm-4 col-form-label require">No. KTP</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_ktp" id="no_ktp">
+													<input type="text" class="form-control" name="no_ktp" id="no_ktp" minlength="16" maxlength="16" required>
 												</div>
 											</div>
 										</div>
@@ -163,7 +161,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="nama_lengkap" class="col-sm-4 col-form-label require">Nama Lengkap</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap">
+													<input type="text" class="form-control" name="nama_lengkap" id="nama_lengkap" required>
 												</div>
 											</div>
 										</div>
@@ -175,7 +173,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="email" class="col-sm-4 col-form-label require">Email</label>
 												
 												<div class="col-sm-8">
-													<input type="email" class="form-control" name="email" id="email">
+													<input type="email" class="form-control" name="email" id="email" required>
 												</div>
 											</div>
 										</div>
@@ -187,7 +185,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="password" class="col-sm-4 col-form-label require">Password</label>
 												
 												<div class="col-sm-8">
-													<input type="password" class="form-control" name="password" id="password">
+													<input type="password" class="form-control" name="password" id="password" required>
 												</div>
 											</div>
 										</div>
@@ -257,13 +255,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<div class="form-group">
 														<div class="row">
 															<div class="col-md-6">
-																<input type="text" class="form-control" name="kota" id="kota">
+																<input type="text" class="form-control" name="kota" id="kota" required>
 																<small class="form-text">Kota</small>
 
 															</div>
 
 															<div class="col-md-6">
-																<input type="text" class="form-control" name="pos" id="pos">
+																<input type="text" class="form-control" name="pos" id="pos" required>
 																<small class="form-text">Kode Pos</small>
 															</div>
 														</div>
@@ -279,7 +277,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_hp" class="col-sm-4 col-form-label require">Nomor Handphone</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_hp" id="no_hp">
+													<input type="text" class="form-control" name="no_hp" id="no_hp" required>
 												</div>
 											</div>
 										</div>
@@ -309,7 +307,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="nama_kerabat" class="col-sm-4 col-form-label require">Nama Kerabat</label>
 																
 																<div class="col-sm-8">
-																	<input type="text" class="form-control" name="nama_kerabat" id="nama_kerabat">
+																	<input type="text" class="form-control" name="nama_kerabat" id="nama_kerabat" required>
 																</div>
 															</div>
 														</div>
@@ -321,7 +319,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="no_kerabat" class="col-sm-4 col-form-label require">No. Hp / Telp</label>
 																
 																<div class="col-sm-8">
-																	<input type="text" class="form-control" name="no_kerabat" id="no_kerabat">
+																	<input type="text" class="form-control" name="no_kerabat" id="no_kerabat" required>
 																</div>
 															</div>
 														</div>
@@ -389,7 +387,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="pengalaman" class="col-sm-4 col-form-label require">Pengalaman</label>
 												
 												<div class="col-sm-8">
-													<input type="number" min="0" class="form-control" name="pengalaman" id="pengalaman">
+													<input type="number" min="0" class="form-control" name="pengalaman" id="pengalaman" required>
 												</div>
 											</div>
 										</div>
@@ -452,7 +450,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 								<div class="modal-footer">
 									<div class="form-check">
-										<input class="form-check-input" type="checkbox" id="gridCheck">
+										<input class="form-check-input" type="checkbox" name="terms" id="gridCheck">
 										<label class="form-check-label" for="gridCheck">
 										Saya menyetujui <a href="#" class="text-primary">syarat dan ketentuan</a> yang berlaku
 										</label>
@@ -514,6 +512,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
 			$('div.setup-panel div a.btn-success').trigger('click');
 		});
+		</script>
+
+		<script>
+			function checkForm(form) {
+				if (!form.terms.checked) {
+					alert("Please that you accept the Terms and Conditions");
+					form.terms.focus();
+					return false;
+				}
+				else {
+					return true;
+				}
+			}
 		</script>
 	</body>
 </html>

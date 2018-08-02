@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 29, 2018 at 08:18 PM
+-- Generation Time: Aug 02, 2018 at 08:44 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.16
 
@@ -96,7 +96,8 @@ CREATE TABLE `admins_sesi` (
 --
 
 INSERT INTO `admins_sesi` (`id`, `keterangan`, `id_admin`, `id_stage`, `created_by`) VALUES
-(13, 'Bagian Pengawas', 7, 9, 7);
+(13, 'Bagian Pengawas', 7, 9, 7),
+(14, 'Pengawas', 7, 1, 7);
 
 -- --------------------------------------------------------
 
@@ -424,7 +425,8 @@ INSERT INTO `question_online` (`id_question`, `question`, `answer_a`, `answer_b`
 (15, '<p>Perhatikan jenis-jenis biaya berikut ini :</p>\r\n<ol style=\"list-style-type: upper-roman;\">\r\n<li>Biaya bahan baku</li>\r\n<li>Biaya tenaga kerja</li>\r\n<li>Pengeluaran pendapatan</li>\r\n<li>Biaya produksi</li>\r\n<li>Biaya pemasaran</li>\r\n<li>Biaya langsung</li>\r\n<li>Biaya tetap</li>\r\n<li>Biaya administrasi dan umum</li>\r\n</ol>\r\n<p>yang merupakan jenis biaya atas dasar objek pengeluaran adalah ?</p>', 'I, II, III', 'IV, V, VIII', 'V, VI, VII', 'I, V, IV', 'IV, V, VIII', 1, 'Akuntansi I', '2018-07-20 10:39:58', '2018-07-20 03:39:58', 7),
 (16, '<p>Salah satu alasan dilakukannya rekonsiliasi bank adalah ?</p>', 'Kesalahan mencatat nama customer oleh perusahaan', 'Kesalahan menulis nomor cek oleh perusahaan', 'Adanya setoran dalam perjalanan', 'Penggunaan cek dalam pembayaran hutang', 'Adanya setoran dalam perjalanan', 1, 'Akuntansi I', '2018-07-20 10:41:22', '2018-07-20 03:41:22', 7),
 (17, '<p>Terdapat data PT Mawar sebagai berikut :</p>\r\n<p style=\"padding-left: 30px;\">Pembelian Rp 246.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Retur Pembelian Rp 44.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Biaya angkut pembelian Rp 5.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Persediaan awal Rp 420.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Persediaan akhir (Rp 240.000.000,-)</p>\r\n<p style=\"padding-left: 30px;\">Penjualan Rp 800.000.000,-</p>\r\n<p style=\"padding-left: 30px;\">Retur penjualan (Rp 44.000.000,-)</p>\r\n<p>Berdasarkan data diatas, PT MAWAR mengalami ?</p>', 'Laba kotor Rp 377.000.000,-', 'Laba kotor Rp 387.000.000,-', 'Laba kotor Rp 403.000.000,-', 'Laba kotor Rp 763.000.000,-', 'Laba kotor Rp 387.000.000,-', 1, 'Akuntansi I', '2018-07-20 10:45:05', '2018-07-20 03:45:05', 7),
-(18, '<p>Pendapatan diterima di muka adalah ?</p>', 'Aktiva', 'Modal', 'Pendapatan', 'Kewajiban', 'Kewajiban', 1, 'Akuntansi I', '2018-07-20 10:45:54', '2018-07-20 03:45:54', 7);
+(18, '<p>Pendapatan diterima di muka adalah ?</p>', 'Aktiva', 'Modal', 'Pendapatan', 'Kewajiban', 'Kewajiban', 1, 'Akuntansi I', '2018-07-20 10:45:54', '2018-07-20 03:45:54', 7),
+(19, '<p>Apakah sebuah aplikasi yang dibangun harus di testing terlebih dahulu atau langsung implementasi ?</p>', 'Tidak', 'Harus', 'Tidak harus', 'Tergantung aplikasi yang dibangun', 'Harus', 1, 'IT - Testing I', '2018-07-30 23:14:50', '2018-07-30 16:14:50', 6);
 
 -- --------------------------------------------------------
 
@@ -478,6 +480,13 @@ CREATE TABLE `selection_stage` (
   `id_job` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `selection_stage`
+--
+
+INSERT INTO `selection_stage` (`id_stage`, `nm_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`) VALUES
+(1, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 0, '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1, 7);
+
 -- --------------------------------------------------------
 
 --
@@ -493,6 +502,18 @@ CREATE TABLE `selection_stage_detail` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_stage` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `selection_stage_detail`
+--
+
+INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`, `created_at`, `updated_at`, `id_stage`) VALUES
+(1, 'Tahap 1', '2018-08-03', '2018-08-04', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
+(2, 'Tahap 2', '2018-08-05', '2018-08-06', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
+(3, 'Tahap 3', '2018-08-07', '2018-08-08', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
+(4, 'Tahap 4', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
+(5, 'Tahap 5', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
+(6, 'Tahap 6', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1);
 
 -- --------------------------------------------------------
 
@@ -750,6 +771,13 @@ CREATE TABLE `users` (
   `id_stage_detail` int(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id_user`, `email`, `password`, `confirm_code`, `acc_status`, `created_at`, `updated_at`, `id_job`, `id_stage_detail`) VALUES
+(1, 'edw.suryajaya@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', NULL, 1, '2018-08-03 01:38:10', '2018-08-02 18:41:50', 7, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -763,6 +791,21 @@ CREATE TABLE `users_ability` (
   `id_ability` int(6) NOT NULL,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_ability`
+--
+
+INSERT INTO `users_ability` (`id`, `created_at`, `updated_at`, `id_ability`, `id_user`) VALUES
+(1, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 2, 1),
+(2, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 10, 1),
+(3, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 17, 1),
+(4, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 18, 1),
+(5, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 20, 1),
+(6, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 21, 1),
+(7, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 22, 1),
+(8, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 23, 1),
+(9, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 24, 1);
 
 -- --------------------------------------------------------
 
@@ -799,6 +842,13 @@ CREATE TABLE `users_detail` (
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_user` int(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users_detail`
+--
+
+INSERT INTO `users_detail` (`id_d_user`, `full_name`, `no_ktp`, `birth_place`, `birth_date`, `address`, `domisili`, `kode_pos`, `p_number`, `t_number`, `age`, `gender`, `religion`, `last_education`, `status`, `experience`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `total_ability`, `status_passed`, `nama_kerabat`, `nomor_kerabat`, `hubungan_kerabat`, `created_at`, `updated_at`, `id_user`) VALUES
+(1, 'Edward Surya Jaya', '1411112356789000', 'Serbalawan', '1997-02-02', 'Jl. Damar III', 'Medan', '20011', '085275522020', '-', 21, 'pria', 'buddha', 'sarjana', 'lajang', 4, NULL, NULL, NULL, 5, 0, 'Steven Than', '0614557896', 'Teman', '2018-08-03 01:38:10', '2018-08-02 18:38:10', 1);
 
 -- --------------------------------------------------------
 
@@ -1013,7 +1063,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admins_sesi`
 --
 ALTER TABLE `admins_sesi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `akurasi_dataset`
@@ -1073,7 +1123,7 @@ ALTER TABLE `question_f2f`
 -- AUTO_INCREMENT for table `question_online`
 --
 ALTER TABLE `question_online`
-  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id_question` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `required_ability`
@@ -1085,13 +1135,13 @@ ALTER TABLE `required_ability`
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `standard_ability`
@@ -1151,19 +1201,19 @@ ALTER TABLE `standard_status`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users_ability`
 --
 ALTER TABLE `users_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users_detail`
 --
 ALTER TABLE `users_detail`
-  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `users_exam`

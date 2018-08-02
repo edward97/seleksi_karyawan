@@ -148,7 +148,7 @@ class Dashboard extends CI_Controller
 				redirect('dashboard/result');
 			}
 			else {
-				$this->load->view('errors/404.html');
+				redirect('login');
 			}
 		}
 	}
