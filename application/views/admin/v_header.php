@@ -135,7 +135,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<li class="nav-title">More</li>
 
-							<li class="nav-item">
+							<!-- <li class="nav-item">
 								<a href="<?php echo site_url('cart'); ?>" class="nav-link">
 									<i class="icon icon-logout"></i> Cart
 								</a>
@@ -145,7 +145,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<a href="<?php echo site_url('akurasi'); ?>" class="nav-link">
 									<i class="icon icon-logout"></i> Akurasi
 								</a>
-							</li>
+							</li> -->
 
 							<li class="nav-item">
 								<a href="<?php echo site_url('login/logout'); ?>" class="nav-link">

@@ -73,19 +73,22 @@ class Algoritma extends CI_Controller
 	function hitung($id) {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		// hitung cart
+		// 	HITUNG CART
 		$data['data_testing_cart'] = $this->hitungCart($id);
+		// HITUNG C45
 		$data['data_testing_c45'] = $this->hitungC45($id);
 
 		# --------------------------------------------------------------------------------------------------- #
 
-		// hitung akurasi
+		// HITUNG AKURASI
 		$x = $this->akurasi_model->tampil_dataset();
 
 		$dataset = $x->result();
 		$total_data = $x->num_rows();
 
 		$k = 5;
+		$this->session->set_userdata('k', $k);
+
 		$start_partisi = 0;
 		$partisi = $total_data/$k;
 		$end = $partisi;
@@ -150,6 +153,7 @@ class Algoritma extends CI_Controller
 		// echo "</pre>";
 		$hasilCart = $this->akurasiCart($k, $arr);
 		$hasilC45 = $this->akurasiC45($k, $arr);
+		$this->session->set_userdata('konversi_dataset', $arr);
 		$this->session->set_userdata('hasilcart', $hasilCart);
 		$this->session->set_userdata('hasilc45', $hasilC45);
 
@@ -160,26 +164,28 @@ class Algoritma extends CI_Controller
 		$data['akurasi_cart'] = 0;
 		$data['akurasi_c45'] = 0;
 
+		// echo "<pre>";
+		// print_r($hasilC45);
+		// echo "</pre>";
+
 		for ($i=0; $i < $k; $i++) {
 			$cart_tp = 0;
 			$cart_fn = 0;
 			$cart_tn = 0;
 			$cart_fp = 0;
 			foreach ($hasilCart as $key => $next) {
-				if ($i != $key) {
-					foreach ($next as $j => $value) {
-						if ($value[9] == 'lulus' && $value[10] == 'lulus') {
-							$cart_tp++;
-						}
-						elseif ($value[9] == 'lulus' && $value[10] == 'gagal') {
-							$cart_fn++;
-						}
-						elseif ($value[9] == 'gagal' && $value[10] == 'lulus') {
-							$cart_fp++;
-						}
-						else {
-							$cart_tn++;
-						}
+				foreach ($next as $j => $value) {
+					if ($value[9] == 'lulus' && $value[10] == 'lulus') {
+						$cart_tp++;
+					}
+					elseif ($value[9] == 'lulus' && $value[10] == 'gagal') {
+						$cart_fn++;
+					}
+					elseif ($value[9] == 'gagal' && $value[10] == 'lulus') {
+						$cart_fp++;
+					}
+					else {
+						$cart_tn++;
 					}
 				}
 			}
@@ -203,20 +209,18 @@ class Algoritma extends CI_Controller
 			$c45_fp = 0;
 
 			foreach ($hasilC45 as $key => $next) {
-				if ($i != $key) {
-					foreach ($next as $j => $value) {
-						if ($value[9] == 'lulus' && $value[10] == 'lulus') {
-							$c45_tp++;
-						}
-						elseif ($value[9] == 'lulus' && $value[10] == 'gagal') {
-							$c45_fn++;
-						}
-						elseif ($value[9] == 'gagal' && $value[10] == 'lulus') {
-							$c45_fp++;
-						}
-						else {
-							$c45_tn++;
-						}
+				foreach ($next as $j => $value) {
+					if ($value[9] == 'lulus' && $value[10] == 'lulus') {
+						$c45_tp++;
+					}
+					elseif ($value[9] == 'lulus' && $value[10] == 'gagal') {
+						$c45_fn++;
+					}
+					elseif ($value[9] == 'gagal' && $value[10] == 'lulus') {
+						$c45_fp++;
+					}
+					else {
+						$c45_tn++;
 					}
 				}
 			}
