@@ -30,7 +30,8 @@
 										</div>
 
 										<div class="col-md-6 text-right">
-											<a href="sesi/edit_sesi/<?php echo $i->id_stage; ?>" class="btn btn-warning">Edit Session</a>
+											<a href="#" class="btn btn-outline-info"><i class="fas fa-info-circle"></i> Detail</a>
+											<a href="sesi/edit_sesi/<?php echo $i->id_stage; ?>" class="btn btn-outline-warning"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
 											<!-- hanya dapat closing jika waktu sudah melewati batas tahap 4 -->
 											<?php foreach ($seleksi_aktif_ar_detail as $j): ?>
 												<?php if ($j->id_stage == $i->id_stage && $j->label == 'Tahap 4' && $j->end_stage < $today && $this->session->userdata('akses') == '1'): ?>
@@ -68,10 +69,8 @@
 													</div>
 
 													<div class="col-md-6 text-right">
-														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
-
 														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
-															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>
@@ -91,10 +90,8 @@
 													</div>
 
 													<div class="col-md-6 text-right">
-														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
-
 														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
-															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>
@@ -114,10 +111,8 @@
 													</div>
 
 													<div class="col-md-6 text-right">
-														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
-
 														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
-															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>
@@ -137,10 +132,8 @@
 													</div>
 
 													<div class="col-md-6 text-right">
-														<a href="#" class="btn btn-outline-secondary">Lihat Detail</a>
-
 														<?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
-															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info">Next Step</a>
+															<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>
 														<?php endif ?>
 													</div>
 												</div>

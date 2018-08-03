@@ -133,9 +133,9 @@
 								<label for="ans_a" class="require">Pilihan A</label>
 								<div class="input-group mb-2">
 									<div class="input-group-prepend">
-										<div class="input-group-text"><input type="radio" name="correct" value="a"></div>
+										<div class="input-group-text"><input type="radio" name="correct" value="a" required></div>
 									</div>
-									<input type="text" class="form-control" name="ans_a" id="ans_a">
+									<input type="text" class="form-control" name="ans_a" id="ans_a" required>
 								</div>
 							</div>
 						</div>
@@ -145,9 +145,9 @@
 								<label for="ans_b" class="require">Pilihan B</label>
 								<div class="input-group mb-2">
 									<div class="input-group-prepend">
-										<div class="input-group-text"><input type="radio" name="correct" value="b"></div>
+										<div class="input-group-text"><input type="radio" name="correct" value="b" required></div>
 									</div>
-									<input type="text" class="form-control" name="ans_b" id="ans_b">
+									<input type="text" class="form-control" name="ans_b" id="ans_b" required>
 								</div>
 							</div>
 						</div>
@@ -157,9 +157,9 @@
 								<label for="ans_c" class="require">Pilihan C</label>
 								<div class="input-group mb-2">
 									<div class="input-group-prepend">
-										<div class="input-group-text"><input type="radio" name="correct" value="c"></div>
+										<div class="input-group-text"><input type="radio" name="correct" value="c" required></div>
 									</div>
-									<input type="text" class="form-control" name="ans_c" id="ans_c">
+									<input type="text" class="form-control" name="ans_c" id="ans_c" required>
 								</div>
 							</div>
 						</div>
@@ -169,9 +169,9 @@
 								<label for="ans_d" class="require">Pilihan D</label>
 								<div class="input-group mb-2">
 									<div class="input-group-prepend">
-										<div class="input-group-text"><input type="radio" name="correct" value="d"></div>
+										<div class="input-group-text"><input type="radio" name="correct" value="d" required></div>
 									</div>
-									<input type="text" class="form-control" name="ans_d" id="ans_d">
+									<input type="text" class="form-control" name="ans_d" id="ans_d" required>
 								</div>
 							</div>
 						</div>

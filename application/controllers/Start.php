@@ -63,9 +63,17 @@ class Start extends CI_Controller
 			$x = $this->login_model->auth_user($where);
 			$row = $x->row_array();
 			$data['usr'] = $x->result();
-			$data['soal_online'] = $this->soal_model->tampil_online()->result();
-			$data['tahapan'] = $this->sesi_model->tampil_tahapan('selection_stage_detail', $row['id_stage'])->result();
 
+			$tampil_tahapan = $this->sesi_model->tampil_tahapan('selection_stage_detail', $row['id_stage']);
+			$data['tahapan'] = $tampil_tahapan->result();
+
+
+			$get_label = $tampil_tahapan->row_array();
+			$this->session->set_userdata('label_ses_online', $get_label['label_online']);
+			$get = array(
+				'label' => $this->session->userdata('label_ses_online')
+			);
+			$data['soal_online'] = $this->soal_model->tampil_soal_user('question_online', $get)->result();
 
 			$this->load->view('user/v_header', $data);
 			$this->load->view('user/v_online');
@@ -84,8 +92,12 @@ class Start extends CI_Controller
 		$x = $this->login_model->auth_user($where);
 		$row = $x->row_array();
 
-		$soal = $this->soal_model->tampil_online()->result();
+		$get = array(
+			'label' => $this->session->userdata('label_ses_online')
+		);
+		$soal = $this->soal_model->tampil_soal_user('question_online', $get)->result();
 
+		$tar = [];
 		foreach ($soal as $i) {
 			if ($row['label_online'] == $i->label) {
 				$tar[] = $this->input->post($i->id_question);
@@ -177,8 +189,16 @@ class Start extends CI_Controller
 			$x = $this->login_model->auth_user($where);
 			$row = $x->row_array();
 			$data['usr'] = $x->result();
-			$data['soal_f2f'] = $this->soal_model->tampil_f2f()->result();
-			$data['tahapan'] = $this->sesi_model->tampil_tahapan('selection_stage_detail', $row['id_stage'])->result();
+
+			$tampil_tahapan = $this->sesi_model->tampil_tahapan('selection_stage_detail', $row['id_stage']);
+			$data['tahapan'] = $tampil_tahapan->result();
+
+			$get_label = $tampil_tahapan->row_array();
+			$this->session->set_userdata('label_ses_f2f', $get_label['label_f2f']);
+			$get = array(
+				'label' => $this->session->userdata('label_ses_f2f')
+			);
+			$data['soal_f2f'] = $this->soal_model->tampil_soal_user('question_f2f', $get)->result();
 
 			$this->load->view('user/v_header', $data);
 			$this->load->view('user/v_f2f');
@@ -197,8 +217,12 @@ class Start extends CI_Controller
 		$x = $this->login_model->auth_user($where);
 		$row = $x->row_array();
 
-		$soal = $this->soal_model->tampil_f2f()->result();
+		$get = array(
+			'label' => $this->session->userdata('label_ses_f2f')
+		);
+		$soal = $this->soal_model->tampil_soal_user('question_f2f', $get)->result();
 
+		$tar = [];
 		foreach ($soal as $i) {
 			if ($row['label_f2f'] == $i->label) {
 				$tar[] = $this->input->post($i->id_question);

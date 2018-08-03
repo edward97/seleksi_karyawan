@@ -277,7 +277,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_hp" class="col-sm-4 col-form-label require">Nomor Handphone</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_hp" id="no_hp" required>
+													<input type="text" class="form-control" name="no_hp" id="no_hp" minlength="12" maxlength="12" required>
 												</div>
 											</div>
 										</div>
@@ -289,7 +289,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_telp" class="col-sm-4 col-form-label">Nomor Telepon</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_telp" id="no_telp">
+													<input type="text" class="form-control" name="no_telp" id="no_telp" maxlength="6">
 												</div>
 											</div>
 										</div>
@@ -307,7 +307,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="nama_kerabat" class="col-sm-4 col-form-label require">Nama Kerabat</label>
 																
 																<div class="col-sm-8">
-																	<input type="text" class="form-control" name="nama_kerabat" id="nama_kerabat" required>
+																	<input type="text" class="form-control" name="nama_kerabat" id="nama_kerabat" minlength="6" maxlength="12" required>
 																</div>
 															</div>
 														</div>

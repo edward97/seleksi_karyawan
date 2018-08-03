@@ -15,6 +15,10 @@ class Soal_model extends CI_Model
 		return $this->db->get();
 	}
 
+	function tampil_soal_user($table, $where) {
+		return $this->db->get_where($table, $where);
+	}
+
 	function tampil_online_label() {
 		$this->db->distinct('label');
 		$this->db->select('label, id_job');

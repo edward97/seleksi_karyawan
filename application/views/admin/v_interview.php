@@ -69,13 +69,13 @@
 </div>
 
 
-<!-- Modal Update Admin -->
+<!-- Modal Update Status -->
 <div class="modal fade" id="editItv" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<?php echo form_open('interview/update_act'); ?>
 				<div class="modal-header bg-info border-0">
-					<h5 class="modal-title text-white">Update Admin</h5>
+					<h5 class="modal-title text-white">Update Status</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>

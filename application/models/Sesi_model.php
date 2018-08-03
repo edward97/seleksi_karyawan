@@ -28,7 +28,11 @@ class Sesi_model extends CI_Model
 	}
 
 	function tampil_tahapan($table, $where) {
-		return $this->db->get_where($table, array('id_stage' => $where));
+		$this->db->select('*');
+		$this->db->from($table);
+		$this->db->join('selection_stage', 'selection_stage.id_stage = selection_stage_detail.id_stage', 'left');
+		$this->db->where('selection_stage_detail.id_stage', $where);
+		return $this->db->get();
 	}
 
 	function update_seleksi($table, $where, $data) {

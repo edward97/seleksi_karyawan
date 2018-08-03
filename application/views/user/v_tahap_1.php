@@ -191,20 +191,24 @@
 											<div class="form-group text-center">
 												<a href="start/online/<?php echo $j->id; ?>" class="form-control btn btn-outline-info">Ujian Online - Mulai</a>
 											</div>
+								</div>
+
+								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+									<small><?php echo $j->start_stage." - ".$j->end_stage; ?></small>
+								</div>
 
 										<?php elseif ($j->label == 'Tahap 2' && $j->start_stage > $today): ?>
 											<div class="form-group text-center">
 												<button type="button" class="form-control btn btn-outline-warning" disabled>Ujian Online - Pending</button>
 											</div>
-
-											<?php break; ?>
-										<?php endif ?>
-									<?php endforeach ?>
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<!-- <small>what wrong!</small> -->
+									<small><?php echo $j->start_stage." - ".$j->end_stage; ?></small>
 								</div>
+											<?php break; ?>
+										<?php endif ?>
+									<?php endforeach ?>
 							</div>
 						</div>
 					</div>

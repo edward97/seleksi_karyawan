@@ -14,7 +14,8 @@
 				tinymce.init({
 					// selector : 'textarea',
 					selector : '#deskripsi',
-					plugins : 'advlist autolink link lists charmap print preview'
+					plugins : 'advlist autolink link lists charmap print preview',
+					height : '320'
 				});
 
 				// Untuk sunting admin
