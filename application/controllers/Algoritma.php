@@ -358,7 +358,7 @@ class Algoritma extends CI_Controller
 
 			$testing = [$age, $experience, $i->last_education, $i->status, $total_ability, $nilai_online, $nilai_f2f, $i->nilai_sikap];
 
-			$hasil[] = [$i->nama_lengkap, $age, $experience, $i->last_education, $i->status, $total_ability, $nilai_online, $nilai_f2f, $i->nilai_sikap, $this->dataTesting($testing)];
+			$hasil[] = [$i->full_name, $age, $experience, $i->last_education, $i->status, $total_ability, $nilai_online, $nilai_f2f, $i->nilai_sikap, $this->dataTesting($testing)];
 		}
 		return $hasil;
 	}
@@ -902,7 +902,7 @@ class Algoritma extends CI_Controller
 
 			$testing = [$age, $experience, $i->last_education, $i->status, $total_ability, $nilai_online, $nilai_f2f, $i->nilai_sikap];
 
-			$hasil[] = [$i->nama_lengkap, $age, $experience, $i->last_education, $i->status, $total_ability, $nilai_online, $nilai_f2f, $i->nilai_sikap, $this->c45->predictDataTesting($testing)];
+			$hasil[] = [$i->full_name, $age, $experience, $i->last_education, $i->status, $total_ability, $nilai_online, $nilai_f2f, $i->nilai_sikap, $this->c45->predictDataTesting($testing)];
 		}
 		return $hasil;
 	}

@@ -1,11 +1,11 @@
-nama_lengkap,umur,experience,last_education,status,total_kemampuan,nilai_online,nilai_f2f,nilai_sikap,status_passed
-Suharto,21,4,pasca,lajang,6,95,85,baik,lulus
-Adi,21,0,sarjana,menikah,7,83,90,cukup baik,lulus
-Dewi,21,3,sma,lajang,8,71,78,cukup baik,gagal
-Martha,21,0,pasca,menikah,9,74,76,baik,lulus
-Stephen,21,4,pasca,lajang,5,86,85,cukup baik,gagal
-Eko,21,1,akademi,menikah,4,70,75,cukup baik,lulus
-Wulan,21,5,sarjana,lajang,3,76,95,baik,lulus
-Susanti,21,2,sma,lajang,2,74,75,baik,gagal
-Sudirman,21,2,sma,menikah,4,78,79,sangat baik,gagal
-Surya,21,5,pasca,lajang,8,93,95,cukup baik,gagal
+nama_lengkap,age,experience,last_education,status,total_ability,nilai_online,nilai_f2f,nilai_sikap,status_passed
+f,18,3,sma,menikah,7,79,89,sangat baik,gagal
+g,25,3,pasca,lajang,10,79,89,sangat baik,gagal
+h,45,2,sarjana,menikah,10,89,79,sangat baik,gagal
+i,18,3,sma,lajang,10,79,79,sangat baik,lulus
+j,18,0,akademi,lajang,10,100,100,cukup baik,lulus
+k,45,2,sma,lajang,7,100,100,cukup baik,gagal
+u,25,3,sarjana,menikah,7,79,100,baik,lulus
+v,25,0,pasca,lajang,10,79,100,baik,lulus
+w,45,0,akademi,lajang,7,79,100,baik,gagal
+x,18,3,sma,menikah,7,100,89,baik,lulus
