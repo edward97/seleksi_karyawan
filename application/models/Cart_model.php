@@ -16,20 +16,8 @@ class Cart_model extends CI_Model
 		$this->db->insert($table, $data);
 	}
 
-	function tampil_atribut() {
-		return $this->db->get('cart_atribut');
-	}
-
 	function tampil_atribut_detail() {
 		return $this->db->get('cart_atribut_detail');
-	}
-
-	function tampil_atribut_join($where) {
-		$this->db->select('*');
-		$this->db->from('cart_atribut_detail');
-		$this->db->join('cart_atribut', 'cart_atribut.id = cart_atribut_detail.id_atribut', 'left');
-		$this->db->where($where);
-		return $this->db->get();
 	}
 
 	function truncate($table) {
@@ -70,6 +58,15 @@ class Cart_model extends CI_Model
 	}
 
 	function tampil_tree($table) {
+		return $this->db->get($table);
+	}
+
+	function tampil_cek($table, $where) {
+		return $this->db->get_where($table, $where);
+	}
+
+	function total_next($table, $where) {
+		$this->db->where($where);
 		return $this->db->get($table);
 	}
 }
