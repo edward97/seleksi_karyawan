@@ -1,11 +1,31 @@
 nama_lengkap,age,experience,last_education,status,total_ability,nilai_online,nilai_f2f,nilai_sikap,status_passed
-f,18,3,sma,menikah,7,79,89,sangat baik,gagal
-g,25,3,pasca,lajang,10,79,89,sangat baik,gagal
-h,45,2,sarjana,menikah,10,89,79,sangat baik,gagal
-i,18,3,sma,lajang,10,79,79,sangat baik,lulus
-j,18,0,akademi,lajang,10,100,100,cukup baik,lulus
-k,45,2,sma,lajang,7,100,100,cukup baik,gagal
-u,25,3,sarjana,menikah,7,79,100,baik,lulus
-v,25,0,pasca,lajang,10,79,100,baik,lulus
-w,45,0,akademi,lajang,7,79,100,baik,gagal
-x,18,3,sma,menikah,7,100,89,baik,lulus
+Edward,18,1,pasca,menikah,9,99,96,sangat baik,lulus
+Ryan,44,3,pasca,menikah,7,99,96,sangat baik,gagal
+Christine,19,0,sarjana,lajang,7,99,96,sangat baik,gagal
+Oba,20,0,sarjana,menikah,9,78,96,sangat baik,gagal
+Calwin,46,0,sma,menikah,9,78,88,sangat baik,lulus
+Eric,19,3,sma,menikah,7,78,88,sangat baik,gagal
+Vincent,35,3,pasca,lajang,9,78,88,sangat baik,gagal
+Morris,44,1,sarjana,menikah,9,85,74,sangat baik,gagal
+Abok,19,3,sma,lajang,9,78,74,sangat baik,lulus
+Afie,21,0,akademi,lajang,9,99,96,cukup baik,lulus
+Harianto,44,1,sma,lajang,7,99,96,cukup baik,gagal
+Chandra,34,1,sarjana,lajang,7,85,96,cukup baik,lulus
+Steven,33,3,sma,lajang,9,85,88,cukup baik,lulus
+Atok,44,1,sma,menikah,7,78,88,cukup baik,lulus
+Justin,35,0,akademi,menikah,7,78,88,cukup baik,lulus
+Santoso,19,3,akademi,menikah,7,99,74,cukup baik,lulus
+Deibi,19,0,pasca,lajang,7,85,74,cukup baik,lulus
+Rosa,35,0,sarjana,menikah,9,78,74,cukup baik,lulus
+Elly,19,1,pasca,menikah,9,78,74,cukup baik,gagal
+Dewi,19,1,pasca,menikah,9,99,96,baik,gagal
+Citra,26,3,sarjana,menikah,7,78,96,baik,lulus
+Iyus,35,0,pasca,lajang,9,78,96,baik,lulus
+Acun,44,0,akademi,lajang,7,78,96,baik,gagal
+Aling,24,3,sma,menikah,7,99,88,baik,lulus
+Budi,44,1,akademi,menikah,7,99,88,baik,lulus
+Iman,39,3,sma,menikah,9,85,88,baik,lulus
+Sindy,37,3,pasca,menikah,7,99,74,baik,gagal
+Tata,35,1,pasca,menikah,7,99,74,baik,gagal
+Nora,30,3,akademi,menikah,9,85,74,baik,lulus
+Apheng,44,1,pasca,menikah,9,78,74,baik,lulus

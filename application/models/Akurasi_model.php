@@ -6,8 +6,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Akurasi_model extends CI_Model
 {
-	function tampil_dataset() {
-		return $this->db->get('dataset_hitung');
+	function tampil_dataset($table) {
+		return $this->db->get($table);
 	}
 
 	function get_row($table, $where) {

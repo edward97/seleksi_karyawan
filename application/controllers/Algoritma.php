@@ -40,7 +40,7 @@ class Algoritma extends CI_Controller
 
 	function detail() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
-		$data['dataset'] = $this->dataset_model->tampil_dataset()->result();
+		$data['dataset'] = $this->dataset_model->tampil_dataset('dataset_hitung')->result();
 
 		$check = $this->uri->segment(3);
 		# MENAMPILKAN HALAMAN DETAIL HASIL PERHITUNGAN
@@ -76,14 +76,17 @@ class Algoritma extends CI_Controller
 		$data['data_testing_c45'] = $this->hitungC45($id);
 
 		# --------------------------------------------------------------------------------------------------- #
+		$data_atribut = array( 'flag' => 0 );
+		$where_atribut = array( 'id !=' => 0 );
+		$this->cart_model->update_atribut_detail('cart_atribut_detail', $where_atribut, $data_atribut);
 
 		# HITUNG AKURASI
-		$x = $this->akurasi_model->tampil_dataset();
+		$x = $this->akurasi_model->tampil_dataset('dataset_hitung');
 
 		$dataset = $x->result();
 		$total_data = $x->num_rows();
 
-		$k = 5;
+		$k = 10;
 		$this->session->set_userdata('k', $k);
 
 		$start_partisi = 0;
@@ -100,13 +103,13 @@ class Algoritma extends CI_Controller
 					$where = array(
 						'id' => $z+1
 					);
-					$row = $this->akurasi_model->get_row('dataset_hitung', $where)->row_array();
+					$row = $this->akurasi_model->get_row('dataset', $where)->row_array();
 
 					# ---------------------------------------
 					if ($row['age'] < 25)
 						$age = '< 25';
-					elseif ($row['age'] <= 30)
-						$age = '25-30';
+					elseif ($row['age'] <= 35)
+						$age = '25-35';
 					else
 						$age = '> 35';
 
@@ -143,6 +146,10 @@ class Algoritma extends CI_Controller
 			}
 			$end+=$partisi;
 		}
+		// echo "<pre>";
+		// print_r($arr);
+		// echo "</pre>";
+
 		$hasilCart = $this->akurasiCart($k, $arr);
 		$hasilC45 = $this->akurasiC45($k, $arr);
 
@@ -248,8 +255,8 @@ class Algoritma extends CI_Controller
 		foreach ($data as $i) {
 			if ($i->age < 25)
 				$age = '< 25';
-			elseif ($i->age <= 30)
-				$age = '25-30';
+			elseif ($i->age <= 35)
+				$age = '25-35';
 			else
 				$age = '> 35';
 
@@ -305,7 +312,7 @@ class Algoritma extends CI_Controller
 			$total_next = $this->cart_model->total_next('cart_rule', array('status_hitung' => 'next'))->num_rows();
 		}
 	
-		# HITUNG DATA TRAINING		
+		# HITUNG DATA TRAINING
 		$where_training = array( 'selection_stage_detail.id_stage' => $id );
 		$data_training = $this->user_model->tampil_detail_user_stage($where_training)->result();
 		$hasil = array();
@@ -313,8 +320,8 @@ class Algoritma extends CI_Controller
 		foreach ($data_training as $i) {
 			if ($i->age < 25)
 				$age = '< 25';
-			elseif ($i->age <= 30)
-				$age = '25-30';
+			elseif ($i->age <= 35)
+				$age = '25-35';
 			else
 				$age = '> 35';
 
@@ -587,7 +594,7 @@ class Algoritma extends CI_Controller
 	function loopTree() {
 		$tree = $this->cart_model->tampil_tree('cart_rule')->result();
 		foreach ($tree as $i) {
-			if ($i->status_hitung == 'root') {$
+			if ($i->status_hitung == 'root') {
 				# HITUNG ROOT KIRI
 				$this->resetData();
 				$data = array( 'flag' => 0 );
@@ -690,8 +697,8 @@ class Algoritma extends CI_Controller
 					}
 					foreach ($pecah_atribut as $key_1 => $value_1) { # 0 1  2 
 						foreach ($pecah_label as $key_2 => $value_2) { # 0 1 2
-							if ($key_1 == $key_2 && $value_1 != null) { # 0 0 nilai sikap != null 1 1 last_education != null 2 2 null == ''
-								$str .= $value_1.$value_2.' AND '; # nilai_sikap = sangat baik AND last_education = sma AND
+							if ($key_1 == $key_2 && $value_1 != null) {
+								$str .= $value_1.$value_2.' AND ';
 							}
 						}
 					}
@@ -851,8 +858,8 @@ class Algoritma extends CI_Controller
 		foreach ($data_training as $i) {
 			if ($i->age < 25)
 				$age = '< 25';
-			elseif ($i->age <= 30)
-				$age = '25-30';
+			elseif ($i->age <= 35)
+				$age = '25-35';
 			else
 				$age = '> 35';
 
@@ -889,21 +896,6 @@ class Algoritma extends CI_Controller
 		return $hasil;
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	/*
 	* AKURASI ALGORITMA CART
 	* ----------------------
@@ -919,6 +911,11 @@ class Algoritma extends CI_Controller
 			$testing = array();
 			foreach ($data as $key => $next) {
 				if ($i == $key) {
+					foreach ($next as $j => $value) {
+						$testing[] = [$value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
+					}
+				}
+				else {
 					foreach ($next as $j => $value) {
 						$in = array(
 							'id' => NULL,
@@ -937,12 +934,10 @@ class Algoritma extends CI_Controller
 						$this->akurasi_model->add_data('akurasi_dataset', $in);
 					}
 				}
-				else {
-					foreach ($next as $j => $value) {
-						$testing[] = [$value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
-					}
-				}
 			}
+			// echo "<pre>";
+			// print_r($testing);
+			// echo "</pre>";
 
 			$this->_hitungCart_acc(null, null, null, null);
 			$total_next = $this->cart_model->total_next('akurasi_rule', array('status_hitung' => 'next'))->num_rows();
@@ -1211,7 +1206,7 @@ class Algoritma extends CI_Controller
 	function loopTree_acc() {
 		$tree = $this->cart_model->tampil_tree('akurasi_rule')->result();
 		foreach ($tree as $i) {
-			if ($i->status_hitung == 'root') {$
+			if ($i->status_hitung == 'root') {
 				# HITUNG ROOT KIRI
 				$this->resetData_acc();
 				$data = array( 'flag' => 0 );
@@ -1369,7 +1364,7 @@ class Algoritma extends CI_Controller
 	function resetData_acc() {
 		$_dataset = array('flag' => 1);
 		$_where = array('id !=' => 0);
-		$this->cart_model->update_dataset('dataset_hitung', $_where, $_dataset);
+		$this->cart_model->update_dataset('akurasi_dataset', $_where, $_dataset);
 	}
 	/*
 	* RESET FLAG TABEL DATASET & ATRIBUT
@@ -1378,7 +1373,7 @@ class Algoritma extends CI_Controller
 	function resetData_1_acc() {
 		$_dataset = array('flag' => 1);
 		$_where = array('id !=' => 0);
-		$this->cart_model->update_dataset('dataset_hitung', $_where, $_dataset);
+		$this->cart_model->update_dataset('akurasi_dataset', $_where, $_dataset);
 
 		# GANTI STATUS ATRIBUT
 		$data_atribut = array( 'flag' => 0 );
@@ -1411,12 +1406,14 @@ class Algoritma extends CI_Controller
 			foreach ($data as $key => $next) {
 				if ($i == $key) {
 					foreach ($next as $j => $value) {
-						$data_arr[] = [$value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
+						// $data_arr[] = [$value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
+						$testing[] = [$value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
 					}
 				}
 				else {
 					foreach ($next as $j => $value) {
-						$testing[] = [$value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
+						// $testing[] = [$value[0], $value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
+						$data_arr[] = [$value[1], $value[2], $value[3], $value[4], $value[5], $value[6], $value[7], $value[8], $value[9]];
 					}
 				}
 			}

@@ -103,6 +103,7 @@
 									<tr>
 										<th>No</th>
 										<th>Nama</th>
+										<th>Umur</th>
 										<th>Pengalaman</th>
 										<th>Pendidikan</th>
 										<th>Nilai Ujian</th>
@@ -122,6 +123,7 @@
 											<td class="text-nowrap"><?php echo $i[3]; ?></td>
 											<td class="text-nowrap"><?php echo $i[4]; ?></td>
 											<td><?php echo $i[5]; ?></td>
+											<td><?php echo $i[6]; ?></td>
 										</tr>
 										<?php $no++; ?>
 									<?php endforeach ?>
