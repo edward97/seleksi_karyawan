@@ -21,8 +21,6 @@ class User extends CI_Controller
 		
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['user'] = $this->user_model->get_id_std_user()->result();
-			$data['compare'] = $this->user_model->compare_ability()->result();
-
 			$data['judul'] = "Users";
 
 			$this->load->view('admin/v_header', $data);

@@ -60,7 +60,6 @@ class Sesi extends CI_Controller
 
 			$data_selection = array(
 				'id_stage' => null,
-				'nm_stage' => 'nama_stage',
 				'label_online' => $ujian_online,
 				'label_f2f' => $ujian_f2f,
 				'status_selesai' => 0,

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2018 at 02:53 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- Generation Time: Aug 10, 2018 at 07:01 AM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -1009,7 +1009,6 @@ INSERT INTO `required_ability` (`id`, `created_at`, `updated_at`, `id_ability`, 
 
 CREATE TABLE `selection_stage` (
   `id_stage` int(6) NOT NULL,
-  `nm_stage` varchar(255) NOT NULL,
   `label_online` varchar(255) NOT NULL,
   `label_f2f` varchar(255) NOT NULL,
   `status_selesai` tinyint(4) NOT NULL,
@@ -1023,8 +1022,8 @@ CREATE TABLE `selection_stage` (
 -- Dumping data for table `selection_stage`
 --
 
-INSERT INTO `selection_stage` (`id_stage`, `nm_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`) VALUES
-(1, 'nama_stage', 'Akuntansi I', 'Akuntansi I', 1, '2018-08-03 01:07:22', '2018-08-05 02:43:04', 1, 7);
+INSERT INTO `selection_stage` (`id_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`) VALUES
+(1, 'Akuntansi I', 'Akuntansi I', 1, '2018-08-03 01:07:22', '2018-08-05 02:43:04', 1, 7);
 
 -- --------------------------------------------------------
 
