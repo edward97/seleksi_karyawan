@@ -17,7 +17,7 @@ class Cart_model extends CI_Model
 	}
 
 	function tampil_atribut_detail() {
-		return $this->db->get('cart_atribut_detail');
+		return $this->db->get('atribut_detail');
 	}
 
 	function truncate($table) {

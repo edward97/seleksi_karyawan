@@ -62,6 +62,35 @@
 					modal.find('#id').attr("value",div.data('id'));
 					modal.find('#nm_job').attr("value",div.data('nama'));
 				});
+
+				// Untuk sunting detail user
+				$('#edit-user').on('show.bs.modal', function (event) {
+					var div = $(event.relatedTarget) // Tombol dimana modal di tampilkan
+					var modal = $(this)
+
+					// Isi nilai pada field
+					modal.find('#id').attr("value",div.data('id'));
+					modal.find('#ktp').attr("value",div.data('ktp'));
+					modal.find('#email').attr("value",div.data('email'));
+					modal.find('#nm_lengkap').attr("value",div.data('nm_lengkap'));
+					modal.find('#nm_profesi').attr("value",div.data('nm_profesi'));
+					modal.find('#tahap').attr("value",div.data('tahap'));
+					modal.find('#tp_lahir').attr("value",div.data('tp_lahir'));
+					modal.find('#tgl_lahir').attr("value",div.data('tgl_lahir'));
+					modal.find('#address').html(div.data('address'));
+					modal.find('#kota').attr("value",div.data('kota'));
+					modal.find('#pos').attr("value",div.data('pos'));
+					modal.find('#umur').attr("value",div.data('umur'));
+					modal.find('#jenis_kelamin').attr("value",div.data('jenis_kelamin'));
+					modal.find('#last_education').attr("value",div.data('last_education'));
+					modal.find('#religion').attr("value",div.data('religion'));
+					modal.find('#status').attr("value",div.data('status'));
+					modal.find('#experience').attr("value",div.data('experience'));
+					modal.find('#total_ability').attr("value",div.data('total_ability'));
+					modal.find('#nm_kerabat').attr("value",div.data('nm_kerabat'));
+					modal.find('#telp_kerabat').attr("value",div.data('telp_kerabat'));
+					modal.find('#hubungan_kerabat').attr("value",div.data('hubungan_kerabat'));
+				});
 			});
 		</script>
 	</body>

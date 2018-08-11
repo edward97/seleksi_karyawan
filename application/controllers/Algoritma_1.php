@@ -193,6 +193,7 @@ class Algoritma_1 extends CI_Controller
 
 			$data['akurasi_cart']+= $akurasi;
 		}
+		$data['akurasi_cart'] = $data['akurasi_cart'] / $k * 100;
 
 		$c45_accuracy = [];
 		$c45_recall = [];
@@ -227,8 +228,6 @@ class Algoritma_1 extends CI_Controller
 
 			$data['akurasi_c45']+= $akurasi;
 		}
-
-		$data['akurasi_cart'] = $data['akurasi_cart'] / $k * 100;
 		$data['akurasi_c45'] = $data['akurasi_c45'] / $k * 100;
 
 		$data['judul'] = "Hitung Algoritma";

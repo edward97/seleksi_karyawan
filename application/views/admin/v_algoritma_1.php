@@ -1,3 +1,7 @@
+<?php
+$c45 = $this->session->userdata('data_testing_c45');
+$cart = $this->session->userdata('data_testing_cart');
+?>
 <div class="content">
 	<div class="container-fluid">
 		<div class="row">
@@ -10,39 +14,13 @@
 					</div>
 						
 					<div class="card-body">
-						<div class="table-responsive">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>Algoritma</th>
-										<th>Akurasi</th>
-										<th>Action</th>
-									</tr>
-								</thead>
+						<a href="<?php echo site_url('algoritma/detail/c45') ?>" target="_blank" class="btn btn-outline-info btn-sm">
+							<i class="fas fa-info-circle"></i> Detail C4.5
+						</a>
 
-								<tbody>
-									<tr>
-										<td>C4.5</td>
-										<td><?php echo $akurasi_c45; ?>%</td>
-										<td>
-											<a href="<?php echo site_url('algoritma/detail/c45') ?>" class="btn btn-outline-info btn-sm">
-												<i class="fas fa-info-circle"></i> Detail
-											</a>
-										</td>
-									</tr>
-
-									<tr>
-										<td>CART</td>
-										<td><?php echo $akurasi_cart; ?>%</td>
-										<td>
-											<a href="<?php echo site_url('algoritma/detail/cart') ?>" class="btn btn-outline-info btn-sm">
-												<i class="fas fa-info-circle"></i> Detail
-											</a>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+						<a href="<?php echo site_url('algoritma/detail/cart') ?>" target="_blank" class="btn btn-outline-info btn-sm">
+							<i class="fas fa-info-circle"></i> Detail Cart
+						</a>
 					</div>
 				</div>
 			</div>
@@ -70,15 +48,18 @@
 										<th>Umur</th>
 										<th>Pengalaman</th>
 										<th>Pendidikan</th>
-										<th>Nilai Ujian</th>
-										<th>Nilai Sikap</th>
 										<th>Status</th>
+										<th>Total Kemampuan</th>
+										<th>Ujian Online</th>
+										<th>Ujian F2f</th>
+										<th>Nilai Sikap</th>
+										<th>Hasil</th>
 									</tr>
 								</thead>
 
 								<tbody>
 									<?php $no = 1; ?>
-									<?php foreach ($data_testing_c45 as $i): ?>
+									<?php foreach ($c45 as $i): ?>
 										<tr>
 											<td><?php echo $no; ?></td>
 											<td><?php echo $i[0]; ?></td>
@@ -88,6 +69,9 @@
 											<td class="text-nowrap"><?php echo $i[4]; ?></td>
 											<td><?php echo $i[5]; ?></td>
 											<td><?php echo $i[6]; ?></td>
+											<td><?php echo $i[7]; ?></td>
+											<td><?php echo $i[8]; ?></td>
+											<td><?php echo $i[9]; ?></td>
 										</tr>
 										<?php $no++; ?>
 									<?php endforeach ?>
@@ -106,15 +90,18 @@
 										<th>Umur</th>
 										<th>Pengalaman</th>
 										<th>Pendidikan</th>
-										<th>Nilai Ujian</th>
-										<th>Nilai Sikap</th>
 										<th>Status</th>
+										<th>Total Kemampuan</th>
+										<th>Ujian Online</th>
+										<th>Ujian F2f</th>
+										<th>Nilai Sikap</th>
+										<th>Hasil</th>
 									</tr>
 								</thead>
 
 								<tbody>
 									<?php $no = 1; ?>
-									<?php foreach ($data_testing_cart as $i): ?>
+									<?php foreach ($cart as $i): ?>
 										<tr>
 											<td><?php echo $no; ?></td>
 											<td><?php echo $i[0]; ?></td>
@@ -124,6 +111,9 @@
 											<td class="text-nowrap"><?php echo $i[4]; ?></td>
 											<td><?php echo $i[5]; ?></td>
 											<td><?php echo $i[6]; ?></td>
+											<td><?php echo $i[7]; ?></td>
+											<td><?php echo $i[8]; ?></td>
+											<td><?php echo $i[9]; ?></td>
 										</tr>
 										<?php $no++; ?>
 									<?php endforeach ?>

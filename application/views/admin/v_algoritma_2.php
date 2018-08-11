@@ -7,219 +7,129 @@
 				</div>
 					
 				<div class="card-body">
-					<div class="table-responsive">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>Nama Lengkap</th>
-									<th>Umur</th>
-									<th>Pengalaman</th>
-									<th>Pendidikan Terakhir</th>
-									<th>Status</th>
-									<th>Total Kemampuan</th>
-									<th>Nilai Ujian Online</th>
-									<th>Nilai Ujian Tatap Muka</th>
-									<th>Nilai Sikap</th>
-									<th>Hasil</th>
-								</tr>
-							</thead>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<?php
+									$cart = $this->session->userdata('akurasi_cart');
+									$no = 1;
 
-							<tbody>
-								<?php foreach ($dataset as $i): ?>
-									<tr>
-										<td class="text-nowrap"><?php echo $i->nama_lengkap; ?></td>
-										<td class="text-nowrap"><?php echo $i->age; ?></td>
-										<td class="text-nowrap"><?php echo $i->experience; ?></td>
-										<td class="text-nowrap"><?php echo $i->last_education; ?></td>
-										<td class="text-nowrap"><?php echo $i->status; ?></td>
-										<td class="text-nowrap"><?php echo $i->total_ability; ?></td>
-										<td class="text-nowrap"><?php echo $i->nilai_online; ?></td>
-										<td class="text-nowrap"><?php echo $i->nilai_f2f; ?></td>
-										<td class="text-nowrap"><?php echo $i->nilai_sikap; ?></td>
-										<td class="text-nowrap"><?php echo $i->status_passed ?></td>
-									</tr>
+									$total_akurasi = 0;
+									$total_recall = 0;
+									$total_precision = 0;
+								?>
+								<?php foreach ($cart as $key_1 => $value_1): ?>
+									<div class="h3">Fold-<?php echo $no; ?></div>
+
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Nama Lengkap</th>
+												<th>Umur</th>
+												<th>Pengalaman</th>
+												<th>Pendidikan Terakhir</th>
+												<th>Status</th>
+												<th>Total Kemampuan</th>
+												<th>Nilai Ujian Online</th>
+												<th>Nilai Ujian Tatap Muka</th>
+												<th>Nilai Sikap</th>
+												<th>Hasil</th>
+												<th>Hasil Akurasi</th>
+											</tr>
+										</thead>
+
+										<tbody>
+										<?php $tp = $fn = $tn = $fp = $akurasi = 0; ?>
+										<?php foreach ($value_1 as $key_2 => $value_2): ?>
+											<tr>
+												<td><?php echo $value_2[0]; ?></td>
+												<td><?php echo $value_2[1]; ?></td>
+												<td><?php echo $value_2[2]; ?></td>
+												<td><?php echo $value_2[3]; ?></td>
+												<td><?php echo $value_2[4]; ?></td>
+												<td><?php echo $value_2[5]; ?></td>
+												<td><?php echo $value_2[6]; ?></td>
+												<td><?php echo $value_2[7]; ?></td>
+												<td><?php echo $value_2[8]; ?></td>
+												<td><?php echo $value_2[9]; ?></td>
+												<td><?php echo $value_2[10]; ?></td>
+											</tr>
+
+											<?php
+											if ($value_2[9] == 'lulus' && $value_2[10] == 'lulus') {
+												$tp++;
+											}
+											elseif ($value_2[9] == 'lulus' && $value_2[10] == 'gagal') {
+												$fn++;
+											}
+											elseif ($value_2[9] == 'gagal' && $value_2[10] == 'lulus') {
+												$fp++;
+											}
+											elseif ($value_2[9] == 'gagal' && $value_2[10] == 'gagal') {
+												$tn++;
+											}
+											?>
+										<?php endforeach ?>
+										</tbody>
+
+										<tfoot class="text-danger">
+											<?php
+												$akurasi = ($tp + $tn) / ($tp + $tn + $fp + $fn);
+												$accuracy = $akurasi * 100;
+
+												if (($tp + $fn) != 0) {
+													$recall = $tp / ($tp + $fn) * 100;
+												}
+												else {
+													$recall = 0;
+												}
+												if (($tp + $fp) != 0) {
+													$precision = $tp / ($tp + $fp) * 100;
+												}
+												else {
+													$precision = 0;
+												}
+
+
+												$total_akurasi+=$accuracy;
+												$total_recall+=$recall;
+												$total_precision+=$precision;
+											?>
+
+											<tr>
+												<td>Total Accuracy</td>
+												<td><?php echo $accuracy; ?>%</td>
+											</tr>
+
+											<tr>
+												<td>Total Recall</td>
+												<td><?php echo $recall; ?>%</td>
+											</tr>
+
+											<tr>
+												<td>Total Precision</td>
+												<td><?php echo $precision; ?>%</td>
+											</tr>
+										</tfoot>
+									</table>
+
+									<?php $no++; ?>
 								<?php endforeach ?>
-							</tbody>
-						</table>
+							</div>
+						</div>
+					</div>
+
+						<div class="bg-info">&nbsp;</div>
+
+					<div class="row">
+						<div class="col-md-12">
+							<p>Total Akurasi : <?php echo $total_akurasi/10; ?>%</p>
+							<p>Total Recall : <?php echo $total_recall/10; ?>%</p>
+							<p>Total Precision : <?php echo $total_precision/10; ?>%</p>
+						</div>
 					</div>
 				</div>
 			</div>
-
-			<div class="card">
-				<div class="card-header bg-light">
-					Pengujian 10-Fold Validation
-				</div>
-
-				<div class="card-body">
-					<?php
-					$total_akurasi = 0;
-					$total_recall = 0;
-					$total_precision = 0;
-
-					for ($i=0; $i < $this->session->userdata('k'); $i++) { ?>
-						<?php foreach ($this->session->userdata('konversi_dataset') as $key => $next): ?>
-							<?php if ($i == $key): ?>
-								<div class="card">
-									<div class="card-header bg-light">
-										Dataset Fold-<?php echo $i+1; ?>
-									</div>
-
-									<div class="card-body">
-										<div class="table-responsive">
-											<table class="table table-hover">
-												<thead>
-													<tr>
-														<th>Nama Lengkap</th>
-														<th>Umur</th>
-														<th>Pengalaman</th>
-														<th>Pendidikan Terakhir</th>
-														<th>Status</th>
-														<th>Total Kemampuan</th>
-														<th>Nilai Ujian Online</th>
-														<th>Nilai Ujian Tatap Muka</th>
-														<th>Nilai Sikap</th>
-														<th>Hasil</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<?php foreach ($next as $j => $value): ?>
-														<tr>
-															<td class="text-nowrap"><?php echo $value[0]; ?></td>
-															<td class="text-nowrap"><?php echo $value[1]; ?></td>
-															<td class="text-nowrap"><?php echo $value[2]; ?></td>
-															<td class="text-nowrap"><?php echo $value[3]; ?></td>
-															<td class="text-nowrap"><?php echo $value[4]; ?></td>
-															<td class="text-nowrap"><?php echo $value[5]; ?></td>
-															<td class="text-nowrap"><?php echo $value[6]; ?></td>
-															<td class="text-nowrap"><?php echo $value[7]; ?></td>
-															<td class="text-nowrap"><?php echo $value[8]; ?></td>
-															<td class="text-nowrap"><?php echo $value[9]; ?></td>
-														</tr>
-													<?php endforeach ?>
-												</tbody>
-											</table>
-										</div>
-
-										<?php foreach ($this->session->userdata('hasilcart') as $x => $y): ?>
-											<?php if ($x == $i): ?>
-												<div class="table-responsive">
-													<table class="table table-hover">
-														<thead>
-															<tr class="text-center">
-																<th colspan="10">Data Training Fold-<?php echo $i+1;; ?></th>
-															</tr>
-															<tr>
-																<th>Nama Lengkap</th>
-																<th>Umur</th>
-																<th>Pengalaman</th>
-																<th>Pendidikan Terakhir</th>
-																<th>Status</th>
-																<th>Total Kemampuan</th>
-																<th>Nilai Ujian Online</th>
-																<th>Nilai Ujian Tatap Muka</th>
-																<th>Nilai Sikap</th>
-																<th>Hasil</th>
-															</tr>
-														</thead>
-
-														<tbody>
-															<?php
-															$cart_tp = 0;
-															$cart_fn = 0;
-															$cart_tn = 0;
-															$cart_fp = 0;
-															?>
-
-															<?php foreach ($y as $z => $zz): ?>
-																<?php
-																if ($zz[9] == 'lulus' && $zz[10] == 'lulus') {
-																	$cart_tp++;
-																}
-																elseif ($zz[9] == 'lulus' && $zz[10] == 'gagal') {
-																	$cart_fn++;
-																}
-																elseif ($zz[9] == 'gagal' && $zz[10] == 'lulus') {
-																	$cart_fp++;
-																}
-																else {
-																	$cart_tn++;
-																}
-																?>
-
-																<tr>
-																	<td class="text-nowrap"><?php echo $zz[0] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[1] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[2] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[3] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[4] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[5] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[6] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[7] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[8] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[9]." => ".$zz[10] ?></td>
-																</tr>
-															<?php endforeach ?>
-														</tbody>
-
-														<tfoot>
-															<?php
-															$akurasi = ($cart_tp + $cart_tn) / ($cart_tp + $cart_tn + $cart_fp + $cart_fn);
-															$cart_accuracy = $akurasi * 100;
-															$cart_recall = $cart_tp / ($cart_tp + $cart_fn) * 100;
-															$cart_precision = $cart_tp / ($cart_tp + $cart_fp) * 100;
-
-
-															$total_akurasi+=$cart_accuracy;
-															$total_recall+=$cart_recall;
-															$total_precision+=$cart_precision;
-
-															?>
-
-															<tr>
-																<td>Accuracy</td>
-																<td> : </td>
-																<td colspan="8"><?php echo $cart_accuracy; ?>%</td>
-															</tr>
-															<tr>
-																<td>Recall</td>
-																<td> : </td>
-																<td colspan="8"><?php echo $cart_recall; ?>%</td>
-															</tr>
-															<tr>
-																<td>Precision</td>
-																<td> : </td>
-																<td colspan="8"><?php echo $cart_precision; ?>%</td>
-															</tr>
-														</tfoot>
-													</table>
-												</div>
-											<?php endif ?>
-										<?php endforeach ?>
-									</div>
-								</div>
-							<?php endif ?>
-						<?php endforeach ?>
-
-						<div class="card">
-							<div class="card-header bg-info"></div>
-						</div>
-					<?php } ?>
-				</div>
-			</div>
-
-			<div class="card">
-				<div class="card-header bg-primary text-white">
-					Hasil Akhir
-				</div>
-
-				<div class="card-body">
-					<p>Nilai Akurasi Akhir : <?php echo $total_akurasi / $this->session->userdata('k'); ?>%</p>
-					<p>Nilai Recall Akhir : <?php echo $total_recall / $this->session->userdata('k'); ?>%</p>
-					<p>Nilai Presisi Akhir : <?php echo $total_precision / $this->session->userdata('k'); ?>%</p>
-				</div>
-			</div>
-
 
 		<?php elseif ($check == 'c45'): ?>
 			<div class="card">
@@ -228,216 +138,127 @@
 				</div>
 					
 				<div class="card-body">
-					<div class="table-responsive">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>Nama Lengkap</th>
-									<th>Umur</th>
-									<th>Pengalaman</th>
-									<th>Pendidikan Terakhir</th>
-									<th>Status</th>
-									<th>Total Kemampuan</th>
-									<th>Nilai Ujian Online</th>
-									<th>Nilai Ujian Tatap Muka</th>
-									<th>Nilai Sikap</th>
-									<th>Hasil</th>
-								</tr>
-							</thead>
+					<div class="row">
+						<div class="col-md-12">
+							<div class="table-responsive">
+								<?php
+									$c45 = $this->session->userdata('akurasi_c45');
+									$no = 1;
 
-							<tbody>
-								<?php foreach ($dataset as $i): ?>
-									<tr>
-										<td class="text-nowrap"><?php echo $i->nama_lengkap; ?></td>
-										<td class="text-nowrap"><?php echo $i->age; ?></td>
-										<td class="text-nowrap"><?php echo $i->experience; ?></td>
-										<td class="text-nowrap"><?php echo $i->last_education; ?></td>
-										<td class="text-nowrap"><?php echo $i->status; ?></td>
-										<td class="text-nowrap"><?php echo $i->total_ability; ?></td>
-										<td class="text-nowrap"><?php echo $i->nilai_online; ?></td>
-										<td class="text-nowrap"><?php echo $i->nilai_f2f; ?></td>
-										<td class="text-nowrap"><?php echo $i->nilai_sikap; ?></td>
-										<td class="text-nowrap"><?php echo $i->status_passed ?></td>
-									</tr>
-								<?php endforeach ?>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+									$total_akurasi = 0;
+									$total_recall = 0;
+									$total_precision = 0;
+								?>
+								<?php foreach ($c45 as $key_1 => $value_1): ?>
+									<div class="h3">Fold-<?php echo $no; ?></div>
 
-			<div class="card">
-				<div class="card-header bg-light">
-					Pengujian 10-Fold Validation
-				</div>
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Nama Lengkap</th>
+												<th>Umur</th>
+												<th>Pengalaman</th>
+												<th>Pendidikan Terakhir</th>
+												<th>Status</th>
+												<th>Total Kemampuan</th>
+												<th>Nilai Ujian Online</th>
+												<th>Nilai Ujian Tatap Muka</th>
+												<th>Nilai Sikap</th>
+												<th>Hasil</th>
+												<th>Hasil Akurasi</th>
+											</tr>
+										</thead>
 
-				<div class="card-body">
-					<?php
-					$total_akurasi = 0;
-					$total_recall = 0;
-					$total_precision = 0;
+										<tbody>
+										<?php $tp = $fn = $tn = $fp = $akurasi = 0; ?>
+										<?php foreach ($value_1 as $key_2 => $value_2): ?>
+											<tr>
+												<td><?php echo $value_2[0]; ?></td>
+												<td><?php echo $value_2[1]; ?></td>
+												<td><?php echo $value_2[2]; ?></td>
+												<td><?php echo $value_2[3]; ?></td>
+												<td><?php echo $value_2[4]; ?></td>
+												<td><?php echo $value_2[5]; ?></td>
+												<td><?php echo $value_2[6]; ?></td>
+												<td><?php echo $value_2[7]; ?></td>
+												<td><?php echo $value_2[8]; ?></td>
+												<td><?php echo $value_2[9]; ?></td>
+												<td><?php echo $value_2[10]; ?></td>
+											</tr>
 
-					for ($i=0; $i < $this->session->userdata('k'); $i++) { ?>
-						<?php foreach ($this->session->userdata('konversi_dataset') as $key => $next): ?>
-							<?php if ($i == $key): ?>
-								<div class="card">
-									<div class="card-header bg-light">
-										Dataset Fold-<?php echo $i+1; ?>
-									</div>
-
-									<div class="card-body">
-										<div class="table-responsive">
-											<table class="table table-hover">
-												<thead>
-													<tr>
-														<th>Nama Lengkap</th>
-														<th>Umur</th>
-														<th>Pengalaman</th>
-														<th>Pendidikan Terakhir</th>
-														<th>Status</th>
-														<th>Total Kemampuan</th>
-														<th>Nilai Ujian Online</th>
-														<th>Nilai Ujian Tatap Muka</th>
-														<th>Nilai Sikap</th>
-														<th>Hasil</th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<?php foreach ($next as $j => $value): ?>
-														<tr>
-															<td class="text-nowrap"><?php echo $value[0]; ?></td>
-															<td class="text-nowrap"><?php echo $value[1]; ?></td>
-															<td class="text-nowrap"><?php echo $value[2]; ?></td>
-															<td class="text-nowrap"><?php echo $value[3]; ?></td>
-															<td class="text-nowrap"><?php echo $value[4]; ?></td>
-															<td class="text-nowrap"><?php echo $value[5]; ?></td>
-															<td class="text-nowrap"><?php echo $value[6]; ?></td>
-															<td class="text-nowrap"><?php echo $value[7]; ?></td>
-															<td class="text-nowrap"><?php echo $value[8]; ?></td>
-															<td class="text-nowrap"><?php echo $value[9]; ?></td>
-														</tr>
-													<?php endforeach ?>
-												</tbody>
-											</table>
-										</div>
-
-										<?php foreach ($this->session->userdata('hasilc45') as $x => $y): ?>
-											<?php if ($x == $i): ?>
-												<div class="table-responsive">
-													<table class="table table-hover">
-														<thead>
-															<tr class="text-center">
-																<th colspan="10">Data Training Fold-<?php echo $i+1;; ?></th>
-															</tr>
-															<tr>
-																<th>Nama Lengkap</th>
-																<th>Umur</th>
-																<th>Pengalaman</th>
-																<th>Pendidikan Terakhir</th>
-																<th>Status</th>
-																<th>Total Kemampuan</th>
-																<th>Nilai Ujian Online</th>
-																<th>Nilai Ujian Tatap Muka</th>
-																<th>Nilai Sikap</th>
-																<th>Hasil</th>
-															</tr>
-														</thead>
-
-														<tbody>
-															<?php
-															$c45_tp = 0;
-															$c45_fn = 0;
-															$c45_tn = 0;
-															$c45_fp = 0;
-															?>
-
-															<?php foreach ($y as $z => $zz): ?>
-																<?php
-																if ($zz[9] == 'lulus' && $zz[10] == 'lulus') {
-																	$c45_tp++;
-																}
-																elseif ($zz[9] == 'lulus' && $zz[10] == 'gagal') {
-																	$c45_fn++;
-																}
-																elseif ($zz[9] == 'gagal' && $zz[10] == 'lulus') {
-																	$c45_fp++;
-																}
-																else {
-																	$c45_tn++;
-																}
-																?>
-
-																<tr>
-																	<td class="text-nowrap"><?php echo $zz[0] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[1] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[2] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[3] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[4] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[5] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[6] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[7] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[8] ?></td>
-																	<td class="text-nowrap"><?php echo $zz[9]." => ".$zz[10] ?></td>
-																</tr>
-															<?php endforeach ?>
-														</tbody>
-
-														<tfoot>
-															<?php
-															$akurasi = ($c45_tp + $c45_tn) / ($c45_tp + $c45_tn + $c45_fp + $c45_fn);
-															$c45_accuracy = $akurasi * 100;
-															$c45_recall = $c45_tp / ($c45_tp + $c45_fn) * 100;
-															$c45_precision = $c45_tp / ($c45_tp + $c45_fp) * 100;
-
-
-															$total_akurasi+=$c45_accuracy;
-															$total_recall+=$c45_recall;
-															$total_precision+=$c45_precision;
-
-															?>
-
-															<tr>
-																<td>Accuracy</td>
-																<td> : </td>
-																<td colspan="8"><?php echo $c45_accuracy; ?>%</td>
-															</tr>
-															<tr>
-																<td>Recall</td>
-																<td> : </td>
-																<td colspan="8"><?php echo $c45_recall; ?>%</td>
-															</tr>
-															<tr>
-																<td>Precision</td>
-																<td> : </td>
-																<td colspan="8"><?php echo $c45_precision; ?>%</td>
-															</tr>
-														</tfoot>
-													</table>
-												</div>
-											<?php endif ?>
+											<?php
+											if ($value_2[9] == 'lulus' && $value_2[10] == 'lulus') {
+												$tp++;
+											}
+											elseif ($value_2[9] == 'lulus' && $value_2[10] == 'gagal') {
+												$fn++;
+											}
+											elseif ($value_2[9] == 'gagal' && $value_2[10] == 'lulus') {
+												$fp++;
+											}
+											elseif ($value_2[9] == 'gagal' && $value_2[10] == 'gagal') {
+												$tn++;
+											}
+											?>
 										<?php endforeach ?>
-									</div>
-								</div>
-							<?php endif ?>
-						<?php endforeach ?>
+										</tbody>
 
-						<div class="card">
-							<div class="card-header bg-info"></div>
+										<tfoot class="text-danger">
+											<?php
+												$akurasi = ($tp + $tn) / ($tp + $tn + $fp + $fn);
+												$accuracy = $akurasi * 100;
+
+												if (($tp + $fn) != 0) {
+													$recall = $tp / ($tp + $fn) * 100;
+												}
+												else {
+													$recall = 0;
+												}
+												if (($tp + $fp) != 0) {
+													$precision = $tp / ($tp + $fp) * 100;
+												}
+												else {
+													$precision = 0;
+												}
+
+
+												$total_akurasi+=$accuracy;
+												$total_recall+=$recall;
+												$total_precision+=$precision;
+											?>
+
+											<tr>
+												<td>Total Accuracy</td>
+												<td><?php echo $accuracy; ?>%</td>
+											</tr>
+
+											<tr>
+												<td>Total Recall</td>
+												<td><?php echo $recall; ?>%</td>
+											</tr>
+
+											<tr>
+												<td>Total Precision</td>
+												<td><?php echo $precision; ?>%</td>
+											</tr>
+										</tfoot>
+									</table>
+
+									<?php $no++; ?>
+								<?php endforeach ?>
+							</div>
 						</div>
-					<?php } ?>
-				</div>
-			</div>
+					</div>
 
-			<div class="card">
-				<div class="card-header bg-primary text-white">
-					Hasil Akhir
-				</div>
+						<div class="bg-info">&nbsp;</div>
 
-				<div class="card-body">
-					<p>Nilai Akurasi Akhir : <?php echo $total_akurasi / $this->session->userdata('k'); ?>%</p>
-					<p>Nilai Recall Akhir : <?php echo $total_recall / $this->session->userdata('k'); ?>%</p>
-					<p>Nilai Presisi Akhir : <?php echo $total_precision / $this->session->userdata('k'); ?>%</p>
+					<div class="row">
+						<div class="col-md-12">
+							<p>Total Akurasi : <?php echo $total_akurasi/10; ?>%</p>
+							<p>Total Recall : <?php echo $total_recall/10; ?>%</p>
+							<p>Total Precision : <?php echo $total_precision/10; ?>%</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		<?php endif ?>
