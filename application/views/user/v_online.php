@@ -103,7 +103,6 @@
 							<?php break; ?>
 						<?php endif ?>
 					<?php endforeach ?>
-					
 				<?php echo form_close(); ?>
 			</div>
 		</div>

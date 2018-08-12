@@ -54,6 +54,15 @@ class Admin extends CI_Controller
 				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Menambah! Password Minimal 8 Karakter!</div>');
 				redirect('admin');
 			}
+
+			$data = array(
+				'id_admin' => null,
+				'nm_admin' => $name,
+				'email' => $email,
+				'password' => md5($pass),
+				'profesi' => $profesi,
+				'level' => $level,
+			);
 			
 			$this->admin_model->add_admin('admins', $data);
 			$this->session->set_flashdata('msg_admin', '<div class="alert alert-success">Data berhasil ditambah!</div>');

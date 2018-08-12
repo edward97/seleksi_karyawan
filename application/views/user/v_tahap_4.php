@@ -1,7 +1,7 @@
 
 <div class="container text-center">
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="card text-white">
 				<div class="card-body bg-success">
 					Tahap Register <i class="icon icon-badge"></i>
@@ -9,7 +9,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="card text-white">
 				<div class="card-body bg-success">
 					Tahap Ujian <i class="icon icon-badge"></i>
@@ -17,7 +17,7 @@
 			</div>
 		</div>
 
-		<div class="col-md-3">
+		<div class="col-md-4">
 			<div class="card text-white">
 				<div class="card-body bg-success">
 					Tahap Interview <i class="icon icon-badge"></i>
@@ -25,9 +25,9 @@
 			</div>
 		</div>
 
-		<?php foreach ($tahapan as $j): ?>
+		<!-- <?php foreach ($tahapan as $j): ?>
 			<?php if ($j->label == 'Tahap 5' && $j->start_stage <= $today): ?>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card text-white">
 						<div class="card-body bg-info">
 							Result <i class="icon icon-pin"></i>
@@ -36,7 +36,7 @@
 				</div>
 
 			<?php elseif ($j->label == 'Tahap 5' && $j->start_stage > $today): ?>
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card text-white">
 						<div class="card-body bg-warning">
 							Result <i class="icon icon-hourglass"></i>
@@ -46,7 +46,9 @@
 
 				<?php break; ?>
 			<?php endif ?>
-		<?php endforeach ?>
+		<?php endforeach ?> -->
+
+
 	</div>
 </div>
 
@@ -84,7 +86,7 @@
 						</div>
 
 						<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-							<small>what wrong!</small>
+							<!-- <small>what wrong!</small> -->
 						</div>
 					</div>
 				</div>
@@ -110,7 +112,7 @@
 						</div>
 
 						<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-							<small>what wrong!</small>
+							<!-- <small>what wrong!</small> -->
 						</div>
 					</div>
 				</div>
@@ -136,7 +138,7 @@
 						</div>
 
 						<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-							<small>what wrong!</small>
+							<!-- <small>what wrong!</small> -->
 						</div>
 					</div>
 				</div>
@@ -162,43 +164,7 @@
 						</div>
 
 						<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-							<small>what wrong!</small>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-4">
-					<div class="card">
-						<div class="card-body">
-							<h4 class="text-center">Step 5</h4>
-							<div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
-								<label class="form-check-label" for="defaultCheck2">
-									Result
-								</label>
-							</div>
-							<div>&nbsp;</div>
-							<hr>
-
-							<p class="text-center">Status</p>
-							<?php foreach ($tahapan as $j): ?>
-								<?php if ($j->label == 'Tahap 5' && $j->start_stage <= $today): ?>
-									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-outline-info" disabled>Result - Sedang Berlangsung</button>
-									</div>
-
-								<?php elseif ($j->label == 'Tahap 5' && $j->start_stage > $today): ?>
-									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-warning" disabled>Result - Pending</button>
-									</div>
-
-									<?php break; ?>
-								<?php endif ?>
-							<?php endforeach ?>
-						</div>
-
-						<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-							<small>what wrong!</small>
+							<!-- <small>what wrong!</small> -->
 						</div>
 					</div>
 				</div>

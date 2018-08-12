@@ -112,13 +112,13 @@ class Sesi extends CI_Controller
 					'end_stage' => $end_interview,
 					'id_stage' => $idSelection
 				),
-				// array(
-				// 	'id' => null,
-				// 	'label' => 'Tahap 5',
-				// 	'start_stage' => $start_interview,
-				// 	'end_stage' => $end_interview,
-				// 	'id_stage' => $idSelection
-				// ),
+				array(
+					'id' => null,
+					'label' => 'Tahap 5',
+					'start_stage' => $start_interview,
+					'end_stage' => $end_interview,
+					'id_stage' => $idSelection
+				),
 				// array(
 				// 	'id' => null,
 				// 	'label' => 'Tahap 6',

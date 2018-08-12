@@ -259,9 +259,14 @@ class Algoritma extends CI_Controller
 			$x = $this->cart_model->tampil_data('dataset_hitung', $where_left)->num_rows();
 			$y = $this->cart_model->tampil_data('dataset_hitung', $where_right)->num_rows();
 
-
-			$pl[$i->attr][] = $x/$total_data;
-			$pr[$i->attr][] = $y/$total_data;
+			if ($total_data != 0) {
+				$pl[$i->attr][] = $x/$total_data;
+				$pr[$i->attr][] = $y/$total_data;
+			}
+			else {
+				$pl[$i->attr][] = 0;
+				$pr[$i->attr][] = 0;	
+			}
 
 			# LULUS ATAU GAGAL
 			$where_left_lulus = array(
@@ -294,7 +299,7 @@ class Algoritma extends CI_Controller
 				$temp_fix_keputusan_left[$i->detail] = 'gagal';
 			}
 			if ($a_l == 0 && $b_l == 0) {
-				$Next = '#SKIP';
+				$w = '#SKIP';
 			}
 			# --------------------------------------------------
 			$where_right_lulus = array(
@@ -326,7 +331,13 @@ class Algoritma extends CI_Controller
 				$temp_fix_keputusan_right[$i->detail] = 'gagal';
 			}
 
-			$dua = 2 * ($x/$total_data) * ($y/$total_data);
+
+			if ($total_data != 0) {
+				$dua = 2 * ($x/$total_data) * ($y/$total_data);
+			}
+			else {
+				$dua = 0;
+			}
 			$pl_pr_2[] = $dua;
 
 			$tiga = abs($a_l-$a_r)+abs($b_l-$b_r);
@@ -1189,9 +1200,14 @@ class Algoritma extends CI_Controller
 			$x = $this->cart_model->tampil_data('akurasi_data', $where_left)->num_rows();
 			$y = $this->cart_model->tampil_data('akurasi_data', $where_right)->num_rows();
 
-
-			$pl[$i->attr][] = $x/$total_data;
-			$pr[$i->attr][] = $y/$total_data;
+			if ($total_data != 0) {
+				$pl[$i->attr][] = $x/$total_data;
+				$pr[$i->attr][] = $y/$total_data;
+			}
+			else {
+				$pl[$i->attr][] = 0;
+				$pr[$i->attr][] = 0;	
+			}
 
 			# LULUS ATAU GAGAL
 			$where_left_lulus = array(
@@ -1222,6 +1238,9 @@ class Algoritma extends CI_Controller
 			if ($a_l == 0 && $b_l != 0) {
 				$temp_fix_keputusan_left[$i->detail] = 'gagal';
 			}
+			if ($a_l == 0 && $b_l == 0) {
+				$w = '#SKIP';
+			}
 			# --------------------------------------------------
 			$where_right_lulus = array(
 				$i->attr.' !=' => $i->detail,
@@ -1251,8 +1270,13 @@ class Algoritma extends CI_Controller
 			if ($a_r == 0 && $b_r != 0) {
 				$temp_fix_keputusan_right[$i->detail] = 'gagal';
 			}
+			if ($total_data != 0) {
+				$dua = 2 * ($x/$total_data) * ($y/$total_data);
+			}
+			else {
+				$dua = 0;
+			}
 
-			$dua = 2 * ($x/$total_data) * ($y/$total_data);
 			$pl_pr_2[] = $dua;
 
 			$tiga = abs($a_l-$a_r)+abs($b_l-$b_r);

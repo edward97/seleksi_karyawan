@@ -34,6 +34,10 @@ class Start extends CI_Controller
 			$interval2 = new DateTime($waktu['end_online']);
 			$data['waktu'] = $interval1->diff($interval2);
 
+			if ($data['waktu'] == '00:0:0') {
+				
+			}
+
 
 			if ($que_exam->num_rows() == 0) {
 				$end_exam = mdate('%Y-%m-%d %H:%i:%s', strtotime('+2 hours', strtotime($data['today_time'])));
@@ -128,12 +132,13 @@ class Start extends CI_Controller
 		$this->user_model->change_user('users_detail', $where, $data);
 
 		// get minimum req ujian online
-		$min_ar = array(
-			'id_std' => $row['id_std']
-		);
-		$min = $this->soal_model->min_total('standard_online', $min_ar)->row_array();
+		// $min_ar = array(
+		// 	'id_std' => $row['id_std']
+		// );
+		// $min = $this->soal_model->min_total('standard_online', $min_ar)->row_array();
+		$min = 70;
 
-		if ($hasil < $min['nilai']) {
+		if ($hasil < $min) {
 			$data_ar = array(
 				'acc_status' => 2
 			);
@@ -163,7 +168,6 @@ class Start extends CI_Controller
 			if ($check_null['start_f2f'] == null) {
 				$end_exam = mdate('%Y-%m-%d %H:%i:%s', strtotime('+2 hours', strtotime($data['today_time'])));
 				$data_exam = array(
-					'id' => null,
 					'start_f2f' => $data['today_time'],
 					'end_f2f' => $end_exam,
 				);
@@ -253,12 +257,13 @@ class Start extends CI_Controller
 		$this->user_model->change_user('users_detail', $where, $data);
 
 		// get minimum req ujian online
-		$min_ar = array(
-			'id_std' => $row['id_std']
-		);
-		$min = $this->soal_model->min_total('standard_f2f', $min_ar)->row_array();
+		// $min_ar = array(
+		// 	'id_std' => $row['id_std']
+		// );
+		// $min = $this->soal_model->min_total('standard_f2f', $min_ar)->row_array();
+		$min = 70;
 
-		if ($hasil < $min['nilai']) {
+		if ($hasil < $min) {
 			$data_ar = array(
 				'acc_status' => 2
 			);

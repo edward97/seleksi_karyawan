@@ -219,7 +219,7 @@
 					<div class="card-footer bg-light text-right">
 						<div class="form-group">
 							<button type="submit" name="submit" value="save" class="btn btn-success">
-								<i class="far fa-save"></i> Next
+								<i class="far fa-save"></i> Save
 							</button>
 						</div>
 					</div>

@@ -117,6 +117,8 @@ class Register extends CI_Controller
 		// insert data user dan ambil last_id
 		$idInsert = $this->user_model->add_user('users', $data_user);
 
+		
+
 		// array 2D u/ simpan ability
 		$val = array();
 		foreach ($target['tar'] as $i) {
@@ -163,8 +165,8 @@ class Register extends CI_Controller
 			'mailpath'  => '/usr/sbin/sendmail',
 			// 'smtp_host' => 'ssl://smtp.gmail.com',
 			'smtp_host' => 'ssl://smtp.mail.yahoo.com',
-			'smtp_user' => '', // email
-			'smtp_pass' => '', // password
+			'smtp_user' => 'edw_shen@yahoo.com', // email
+			'smtp_pass' => 'esj04121972', // password
 			'smtp_port' => 465,
 			'smtp_keepalive' => TRUE,
 			'smtp_crypto' => 'SSL',
@@ -178,7 +180,7 @@ class Register extends CI_Controller
 		];
 
 		$this->email->initialize($config);
-		$this->email->from('', 'Edward');
+		$this->email->from('edw_shen@yahoo.com', 'Edward');
 		$this->email->to($email);
 		$this->email->subject('Verifikasi Akun');
 		$this->email->message('Terima kasih telah melakukan verifikasi. Silahkan klik link verifikasi berikut.<br>'.site_url('register/verification/'.$confirm_code)."<br><br><br>Selamat Beraktivitas, Edward Surya Jaya - Selection Team");

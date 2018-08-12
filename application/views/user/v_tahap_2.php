@@ -192,7 +192,12 @@
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<small>what wrong!</small>
+									<?php foreach ($tahapan as $j): ?>
+										<?php if ($j->label == 'Tahap 1'): ?>
+											<small><?php echo $j->start_stage." - ".$j->end_stage; ?></small>
+											<?php break; ?>
+										<?php endif ?>
+									<?php endforeach ?>
 								</div>
 							</div>
 						</div>
@@ -255,7 +260,13 @@
 								</div>
 
 								<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
-									<small>what wrong!</small>
+									
+									<?php foreach ($tahapan as $j): ?>
+										<?php if ($j->label == 'Tahap 3'): ?>
+											<small><?php echo $j->start_stage." - ".$j->end_stage; ?></small>
+											<?php break; ?>
+										<?php endif ?>
+									<?php endforeach ?>
 								</div>
 							</div>
 						</div>

@@ -106,9 +106,14 @@
 
 						<div class="col-md-4">
 							<div class="form-group">
-								<label for="n_sikap" class="require">Nilai Sikap</label>
-								<input type="text" name="n_sikap" id="n_sikap" class="form-control">
-								<small class="form-text">[ cukup baik, baik, sangat baik ]</small>
+								<label for="n_sikap">Nilai Sikap</label>
+
+								<select name="n_sikap" id="n_sikap" class="form-control" required>
+									<option value="">Choose...</option>
+									<option value="cukup baik" <?php echo ($i->nilai_sikap === 'cukup baik') ? 'selected' : ''; ?>>Cukup Baik</option>
+									<option value="baik" <?php echo ($i->nilai_sikap === 'baik') ? 'selected' : ''; ?>>Baik</option>
+									<option value="sangat baik" <?php echo ($i->nilai_sikap === 'sangat baik') ? 'selected' : ''; ?>>Sangat Baik</option>
+								</select>
 							</div>
 						</div>
 					</div>
