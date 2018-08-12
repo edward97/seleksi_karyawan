@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2018 at 05:04 PM
+-- Generation Time: Aug 12, 2018 at 11:13 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.1.16
 
@@ -75,7 +75,7 @@ INSERT INTO `admins` (`id_admin`, `nm_admin`, `email`, `password`, `profesi`, `l
 (6, 'ccdnkz', 'ccdnkz@mail.com', '856e22b06868660656e0e6fff975a8d9', 'IT - Support', 1, '2018-06-23 13:14:04', '2018-07-05 13:48:25'),
 (7, 'Edward', 'esj@mail.com', '5f0713b7c76ee9285a14984eeb332f43', 'IT - Maintenance', 1, '2018-06-27 16:26:07', '2018-07-05 13:48:33'),
 (13, 'Admin', 'admin@mail.com', '21232f297a57a5a743894a0e4a801fc3', 'IT - UI IX', 1, '2018-06-30 21:03:01', '2018-07-05 13:49:52'),
-(14, 'Ryan', 'ryan@mail.com', '10c7ccc7a4f0aff03c915c485565b9da', 'IT - Tech', 1, '2018-06-30 21:59:08', '2018-07-05 13:48:55');
+(14, 'Ryan', 'ryan@mail.com', '5f0713b7c76ee9285a14984eeb332f43', 'IT - Tech', 1, '2018-06-30 21:59:08', '2018-08-12 04:34:50');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,8 @@ CREATE TABLE `admins_sesi` (
 
 INSERT INTO `admins_sesi` (`id`, `keterangan`, `id_admin`, `id_stage`, `created_by`) VALUES
 (13, 'Bagian Pengawas', 7, 9, 7),
-(14, 'Pengawas', 7, 1, 7);
+(14, 'Pengawas', 7, 1, 7),
+(15, 'Pengawas', 7, 2, 7);
 
 -- --------------------------------------------------------
 
@@ -430,36 +431,7 @@ CREATE TABLE `dataset` (
 --
 
 INSERT INTO `dataset` (`id`, `nama_lengkap`, `age`, `experience`, `last_education`, `status`, `total_ability`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `flag`, `status_passed`, `created_at`, `updated_at`) VALUES
-(1, 'Edward', 20, 2, 'pasca', 'menikah', 9, 95, 95, 'sangat baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(2, 'Ryan', 40, 0, 'sma', 'menikah', 9, 78, 88, 'sangat baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(3, 'Christine', 20, 3, 'sma', 'lajang', 9, 78, 78, 'sangat baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(4, 'Oba', 40, 3, 'pasca', 'menikah', 6, 95, 95, 'sangat baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(5, 'Calwin', 20, 0, 'sarjana', 'lajang', 6, 95, 95, 'sangat baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(6, 'Eric', 20, 0, 'sarjana', 'menikah', 9, 78, 95, 'sangat baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(7, 'Vincent', 30, 3, 'pasca', 'lajang', 9, 78, 88, 'sangat baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(8, 'Morris', 20, 3, 'sma', 'menikah', 6, 78, 88, 'sangat baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(9, 'Abok', 40, 2, 'sarjana', 'menikah', 9, 85, 78, 'sangat baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(10, 'Afie', 20, 0, 'akademi', 'lajang', 9, 95, 95, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(11, 'Harianto', 40, 2, 'sma', 'lajang', 6, 95, 95, 'cukup baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(12, 'Chandra', 30, 2, 'sarjana', 'lajang', 6, 85, 95, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(13, 'Steven', 30, 3, 'sma', 'lajang', 9, 85, 88, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(14, 'Atok', 40, 2, 'sma', 'menikah', 6, 78, 88, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(15, 'Justin', 30, 0, 'akademi', 'menikah', 6, 78, 88, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(16, 'Santoso', 20, 3, 'akademi', 'menikah', 6, 95, 78, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(17, 'Deibi', 20, 0, 'pasca', 'lajang', 6, 85, 78, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(18, 'Rosa', 30, 0, 'sarjana', 'menikah', 9, 78, 78, 'cukup baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(19, 'Elly', 20, 2, 'pasca', 'menikah', 9, 78, 78, 'cukup baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(20, 'Dewi', 30, 0, 'pasca', 'lajang', 9, 78, 95, 'baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(21, 'Citra', 30, 3, 'sarjana', 'menikah', 6, 78, 95, 'baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(22, 'Iyus', 20, 2, 'pasca', 'menikah', 9, 95, 95, 'baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(23, 'Acun', 40, 0, 'akademi', 'lajang', 6, 78, 95, 'baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(24, 'Aling', 20, 3, 'sma', 'menikah', 6, 95, 88, 'baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(25, 'Budi', 40, 2, 'akademi', 'menikah', 6, 95, 88, 'baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(26, 'Iman', 40, 3, 'sma', 'menikah', 9, 85, 88, 'baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(27, 'Sindy', 30, 3, 'akademi', 'menikah', 9, 85, 78, 'baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(28, 'Tata', 40, 2, 'pasca', 'menikah', 9, 78, 78, 'baik', 0, 'lulus', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(29, 'Nora', 30, 2, 'pasca', 'menikah', 6, 95, 78, 'baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48'),
-(30, 'Apheng', 40, 3, 'pasca', 'menikah', 6, 95, 78, 'baik', 0, 'gagal', '2018-08-11 21:58:48', '2018-08-11 14:58:48');
+(1, 'Edward', 5, 5, 'akademi', 'lajang', 9, 78, 100, 'baik', 0, 'gagal', '2018-08-12 13:10:53', '2018-08-12 06:10:53');
 
 -- --------------------------------------------------------
 
@@ -609,7 +581,6 @@ CREATE TABLE `question_online` (
 --
 
 INSERT INTO `question_online` (`id_question`, `question`, `answer_a`, `answer_b`, `answer_c`, `answer_d`, `correct_ans`, `status`, `label`, `created_at`, `updated_at`, `id_job`) VALUES
-(9, '<p>Setiap anggota harus berperilaku yang konsisten dengan reputasi profesi&nbsp; yang baik dan menjauhi tindakan yang dapat mendiskreditkan profesi. Hal ini merupakan salah satu prinsip etika profesi teknisi akuntansi yaitu ?</p>', 'Objektivitas', 'Subjektivitas', 'Integritas', 'Profesional', 'Profesional', 1, 'Akuntansi I', '2018-07-20 09:53:20', '2018-07-20 02:53:20', 7),
 (10, '<p>Untuk menghindari kecelakaan kerja ditempat kerja, dapat dilakukan dengan memberikan santunan untuk penghasilan yang hilang sebagai akibat dari kecelakaan kerja berupa ?</p>', 'Standarisasi', 'Pengawasan', 'Asuransi', 'Riset Teknis', 'Asuransi', 1, 'Akuntansi I', '2018-07-20 09:54:16', '2018-07-20 02:54:16', 7),
 (11, '<p>Bidang akuntansi yang bertujuan menyediakan informasi didalam perusahaan ?</p>', 'Akuntansi Keuangan', 'Akuntansi Manajemen', 'AKuntansi Pemeriksaan', 'Akuntansi Biaya', 'Akuntansi Manajemen', 1, 'Akuntansi I', '2018-07-20 09:55:48', '2018-07-20 02:55:48', 7),
 (12, '<p>Transaksi pembayaran gaji karyawan dalam persamaan dasar akuntansi akan mempengaruhi ?</p>', 'Harta (-), Hutang (-), dan Modal (+)', 'Harta (-) dan Modal (+)', 'Harta (-) dan Modal (-)', 'Harta (+) dan Modal (-)', 'Harta (-) dan Modal (-)', 1, 'Akuntansi I', '2018-07-20 09:57:16', '2018-07-20 02:57:26', 7),
@@ -652,7 +623,16 @@ INSERT INTO `required_ability` (`id`, `created_at`, `updated_at`, `id_ability`, 
 (10, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 20, 3, 2),
 (11, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 22, 3, 2),
 (12, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 23, 3, 2),
-(13, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 24, 3, 2);
+(13, '2018-07-11 15:18:43', '2018-07-11 08:18:43', 24, 3, 2),
+(14, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 2, 3, 3),
+(15, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 10, 3, 3),
+(16, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 17, 3, 3),
+(17, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 18, 3, 3),
+(18, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 20, 3, 3),
+(19, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 21, 3, 3),
+(20, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 22, 3, 3),
+(21, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 23, 3, 3),
+(22, '2018-08-12 13:29:20', '2018-08-12 06:29:20', 24, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -676,7 +656,9 @@ CREATE TABLE `selection_stage` (
 --
 
 INSERT INTO `selection_stage` (`id_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`) VALUES
-(1, 'Akuntansi I', 'Akuntansi I', 1, '2018-08-03 01:07:22', '2018-08-05 02:43:04', 1, 7);
+(1, 'Akuntansi I', 'Akuntansi I', 1, '2018-08-03 01:07:22', '2018-08-05 02:43:04', 1, 7),
+(2, 'Akuntansi I', 'Akuntansi I', 0, '2018-08-12 07:26:51', '2018-08-12 00:26:51', 1, 8),
+(3, 'Akuntansi I', 'Akuntansi I', 0, '2018-08-12 08:39:55', '2018-08-12 01:39:55', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -704,177 +686,17 @@ INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`,
 (3, 'Tahap 3', '2018-08-05', '2018-08-05', '2018-08-03 01:07:22', '2018-08-05 02:42:22', 1),
 (4, 'Tahap 4', '2018-08-05', '2018-08-04', '2018-08-03 01:07:22', '2018-08-05 02:42:57', 1),
 (5, 'Tahap 5', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
-(6, 'Tahap 6', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_ability`
---
-
-CREATE TABLE `standard_ability` (
-  `id` int(6) NOT NULL,
-  `kemampuan` int(3) NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_ability`
---
-
-INSERT INTO `standard_ability` (`id`, `kemampuan`, `id_std`, `priority`) VALUES
-(1, 5, 1, 1),
-(2, 7, 1, 1),
-(3, 8, 1, 2),
-(4, 10, 1, 2),
-(5, 5, 2, 1),
-(6, 8, 2, 1),
-(7, 9, 2, 2),
-(8, 10, 2, 2);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_age`
---
-
-CREATE TABLE `standard_age` (
-  `id` int(6) NOT NULL,
-  `umur` int(3) NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_age`
---
-
-INSERT INTO `standard_age` (`id`, `umur`, `id_std`, `priority`) VALUES
-(1, 20, 1, 1),
-(2, 21, 1, 3),
-(3, 25, 1, 3),
-(4, 40, 1, 2),
-(5, 20, 2, 1),
-(6, 21, 2, 1),
-(7, 25, 2, 1),
-(8, 35, 2, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_education`
---
-
-CREATE TABLE `standard_education` (
-  `id` int(6) NOT NULL,
-  `pendidikan` varchar(255) NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_education`
---
-
-INSERT INTO `standard_education` (`id`, `pendidikan`, `id_std`, `priority`) VALUES
-(1, 'SMA', 1, 1),
-(2, 'S1', 1, 1),
-(3, 'S2', 1, 2),
-(4, 'S3', 1, 3),
-(5, 'SMA', 2, 1),
-(6, 'S1', 2, 2),
-(7, 'S2', 2, 3),
-(8, 'S3', 2, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_experience`
---
-
-CREATE TABLE `standard_experience` (
-  `id` int(6) NOT NULL,
-  `pengalaman` int(3) NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_experience`
---
-
-INSERT INTO `standard_experience` (`id`, `pengalaman`, `id_std`, `priority`) VALUES
-(1, 0, 1, 1),
-(2, 1, 1, 2),
-(3, 2, 1, 2),
-(4, 3, 1, 3),
-(5, 0, 2, 1),
-(6, 1, 2, 1),
-(7, 2, 2, 1),
-(8, 3, 2, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_f2f`
---
-
-CREATE TABLE `standard_f2f` (
-  `id` int(6) NOT NULL,
-  `nilai` float NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_f2f`
---
-
-INSERT INTO `standard_f2f` (`id`, `nilai`, `id_std`, `priority`) VALUES
-(1, 70, 1, 1),
-(2, 79, 1, 1),
-(3, 80, 1, 2),
-(4, 89, 1, 2),
-(5, 90, 1, 3),
-(6, 100, 1, 3),
-(7, 80, 2, 1),
-(8, 80, 2, 1),
-(9, 86, 2, 2),
-(10, 95, 2, 2),
-(11, 96, 2, 3),
-(12, 100, 2, 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_online`
---
-
-CREATE TABLE `standard_online` (
-  `id` int(6) NOT NULL,
-  `nilai` float NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_online`
---
-
-INSERT INTO `standard_online` (`id`, `nilai`, `id_std`, `priority`) VALUES
-(1, 70, 1, 1),
-(2, 79, 1, 1),
-(3, 80, 1, 3),
-(4, 89, 1, 3),
-(5, 90, 1, 2),
-(6, 100, 1, 2),
-(7, 75, 2, 1),
-(8, 80, 2, 1),
-(9, 81, 2, 2),
-(10, 95, 2, 2),
-(11, 96, 2, 3),
-(12, 100, 2, 3);
+(6, 'Tahap 6', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
+(7, 'Tahap 1', '2018-08-12', '2018-08-12', '2018-08-12 07:26:52', '2018-08-12 00:26:52', 2),
+(8, 'Tahap 2', '2018-08-12', '2018-08-12', '2018-08-12 07:26:52', '2018-08-12 01:50:32', 2),
+(9, 'Tahap 3', '2018-08-14', '2018-08-14', '2018-08-12 07:26:52', '2018-08-12 01:36:22', 2),
+(10, 'Tahap 4', '2018-08-18', '2018-08-31', '2018-08-12 07:26:52', '2018-08-12 01:36:12', 2),
+(11, 'Tahap 5', '2018-08-15', '2018-08-15', '2018-08-12 07:26:52', '2018-08-12 00:26:52', 2),
+(12, 'Tahap 6', '2018-08-15', '2018-08-15', '2018-08-12 07:26:52', '2018-08-12 00:26:52', 2),
+(13, 'Tahap 1', '2018-08-10', '2018-08-12', '2018-08-12 08:39:55', '2018-08-12 05:42:39', 3),
+(14, 'Tahap 2', '2018-08-12', '2018-08-12', '2018-08-12 08:39:55', '2018-08-12 01:39:55', 3),
+(15, 'Tahap 3', '2018-08-12', '2018-08-12', '2018-08-12 08:39:55', '2018-08-12 01:39:55', 3),
+(16, 'Tahap 4', '2018-08-12', '2018-08-12', '2018-08-12 08:39:55', '2018-08-12 01:39:55', 3);
 
 -- --------------------------------------------------------
 
@@ -893,56 +715,9 @@ CREATE TABLE `standard_qualification` (
 --
 
 INSERT INTO `standard_qualification` (`id_std`, `nm_std`, `id_job`) VALUES
-(1, 'Standard Akuntansi', 7),
-(2, 'Standar IT', 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_sikap`
---
-
-CREATE TABLE `standard_sikap` (
-  `id` int(6) NOT NULL,
-  `nilai` varchar(255) NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_sikap`
---
-
-INSERT INTO `standard_sikap` (`id`, `nilai`, `id_std`, `priority`) VALUES
-(1, 'Cukup Baik', 1, 1),
-(2, 'Baik', 1, 2),
-(3, 'Sangat Baik', 1, 3),
-(4, 'Cukup Baik', 2, 1),
-(5, 'Baik', 2, 2),
-(6, 'Sangat Baik', 2, 3);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `standard_status`
---
-
-CREATE TABLE `standard_status` (
-  `id` int(6) NOT NULL,
-  `status` varchar(255) NOT NULL,
-  `id_std` int(6) NOT NULL,
-  `priority` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `standard_status`
---
-
-INSERT INTO `standard_status` (`id`, `status`, `id_std`, `priority`) VALUES
-(1, 'Lajang', 1, 2),
-(2, 'Menikah', 1, 1),
-(3, 'Lajang', 2, 1),
-(4, 'Menikah', 2, 2);
+(1, 'Standard Akuntansi', 0),
+(2, 'Standar IT', 0),
+(3, 'Kualifikasi Akuntansi IT', 3);
 
 -- --------------------------------------------------------
 
@@ -967,7 +742,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `email`, `password`, `confirm_code`, `acc_status`, `created_at`, `updated_at`, `id_job`, `id_stage_detail`) VALUES
-(1, 'edw.suryajaya@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', NULL, 1, '2018-08-03 01:38:10', '2018-08-02 18:41:50', 7, 1);
+(1, 'edw.suryajaya@gmail.com', '5f0713b7c76ee9285a14984eeb332f43', NULL, 2, '2018-08-03 01:38:10', '2018-08-12 03:56:13', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -1039,7 +814,7 @@ CREATE TABLE `users_detail` (
 --
 
 INSERT INTO `users_detail` (`id_d_user`, `full_name`, `no_ktp`, `birth_place`, `birth_date`, `address`, `domisili`, `kode_pos`, `p_number`, `t_number`, `age`, `gender`, `religion`, `last_education`, `status`, `experience`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `total_ability`, `status_passed`, `nama_kerabat`, `nomor_kerabat`, `hubungan_kerabat`, `created_at`, `updated_at`, `id_user`) VALUES
-(1, 'Edward Surya Jaya', '1411112356789000', 'Serbalawan', '1997-02-02', 'Jl. Damar III', 'Medan', '20011', '085275522020', '-', 21, 'pria', 'buddha', 'sarjana', 'lajang', 4, NULL, NULL, NULL, 5, 0, 'Steven Than', '0614557896', 'Teman', '2018-08-03 01:38:10', '2018-08-02 18:38:10', 1);
+(1, 'Edward Surya Jaya', '1411112356789000', 'Serbalawan', '1997-02-02', 'Jl. Damar III', 'Medan', '20011', '085275522020', '', 21, 'pria', 'buddha', 'sarjana', 'lajang', 4, NULL, NULL, NULL, 5, 0, 'Ryan Rajaya', '0614557896', 'teman', '2018-08-03 01:38:10', '2018-08-12 06:17:55', 1);
 
 -- --------------------------------------------------------
 
@@ -1163,58 +938,10 @@ ALTER TABLE `selection_stage_detail`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `standard_ability`
---
-ALTER TABLE `standard_ability`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `standard_age`
---
-ALTER TABLE `standard_age`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `standard_education`
---
-ALTER TABLE `standard_education`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `standard_experience`
---
-ALTER TABLE `standard_experience`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `standard_f2f`
---
-ALTER TABLE `standard_f2f`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `standard_online`
---
-ALTER TABLE `standard_online`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `standard_qualification`
 --
 ALTER TABLE `standard_qualification`
   ADD PRIMARY KEY (`id_std`);
-
---
--- Indexes for table `standard_sikap`
---
-ALTER TABLE `standard_sikap`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `standard_status`
---
-ALTER TABLE `standard_status`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `users`
@@ -1260,7 +987,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `admins_sesi`
 --
 ALTER TABLE `admins_sesi`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `akurasi_c45_rule`
@@ -1302,7 +1029,7 @@ ALTER TABLE `cart_rule`
 -- AUTO_INCREMENT for table `dataset`
 --
 ALTER TABLE `dataset`
-  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `dataset_hitung`
@@ -1332,73 +1059,25 @@ ALTER TABLE `question_online`
 -- AUTO_INCREMENT for table `required_ability`
 --
 ALTER TABLE `required_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `standard_ability`
---
-ALTER TABLE `standard_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `standard_age`
---
-ALTER TABLE `standard_age`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `standard_education`
---
-ALTER TABLE `standard_education`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `standard_experience`
---
-ALTER TABLE `standard_experience`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `standard_f2f`
---
-ALTER TABLE `standard_f2f`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
--- AUTO_INCREMENT for table `standard_online`
---
-ALTER TABLE `standard_online`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `standard_qualification`
 --
 ALTER TABLE `standard_qualification`
-  MODIFY `id_std` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `standard_sikap`
---
-ALTER TABLE `standard_sikap`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `standard_status`
---
-ALTER TABLE `standard_status`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_std` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
