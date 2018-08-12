@@ -45,12 +45,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					</li> -->
 
 					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
+						<a class="nav-link" href="#" role="button">
 							<img src="<?php echo base_url(); ?>assets/img/avatar-1.png" class="avatar avatar-sm" alt="logo">
 							<span class="small ml-1 d-md-down-none"><?php echo $this->session->userdata('ses_nm')." | ".$format; ?></span>
 						</a>
 
-						<div class="dropdown-menu dropdown-menu-right">
+						<!-- <div class="dropdown-menu dropdown-menu-right">
 							<div class="dropdown-header">Account</div>
 
 							<a href="#" class="dropdown-item">
@@ -74,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<a href="<?php echo site_url('login/logout') ?>" class="dropdown-item">
 								<i class="fa fa-lock"></i> Logout
 							</a>
-						</div>
+						</div> -->
 					</li>
 				</ul>
 			</nav>

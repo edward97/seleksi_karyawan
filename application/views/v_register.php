@@ -80,6 +80,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<div class="content">
 					<?php if ($cek != 0): ?>
 					<div class="container">
+						<?php echo $this->session->flashdata('msg'); ?>
+
 						<div class="stepwizard">
 							<div class="stepwizard-row setup-panel">
 								<div class="stepwizard-step col-xs-3"> 
@@ -149,7 +151,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_ktp" class="col-sm-4 col-form-label require">No. KTP</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_ktp" id="no_ktp" minlength="16" maxlength="16" required>
+													<input type="number" class="form-control" name="no_ktp" id="no_ktp" required>
 												</div>
 											</div>
 										</div>
@@ -185,7 +187,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="password" class="col-sm-4 col-form-label require">Password</label>
 												
 												<div class="col-sm-8">
-													<input type="password" class="form-control" name="password" id="password" required>
+													<input type="password" class="form-control" name="password" id="password" minlength="8" required>
 												</div>
 											</div>
 										</div>
@@ -197,7 +199,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label class="col-sm-4 col-form-label require">Tempat / Tgl Lahir</label>
 												
 												<div class="col-sm-4">
-													<input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir">
+													<input type="text" class="form-control" name="tempat_lahir" id="tempat_lahir" required>
 												</div>
 
 												<div class="col-sm-4">
@@ -261,7 +263,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															</div>
 
 															<div class="col-md-6">
-																<input type="text" class="form-control" name="pos" id="pos" required>
+																<input type="number" class="form-control" name="pos" id="pos" required>
 																<small class="form-text">Kode Pos</small>
 															</div>
 														</div>
@@ -277,7 +279,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_hp" class="col-sm-4 col-form-label require">Nomor Handphone</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_hp" id="no_hp" minlength="12" maxlength="12" required>
+													<input type="number" class="form-control" name="no_hp" id="no_hp" required>
 												</div>
 											</div>
 										</div>
@@ -289,7 +291,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_telp" class="col-sm-4 col-form-label">Nomor Telepon</label>
 												
 												<div class="col-sm-8">
-													<input type="text" class="form-control" name="no_telp" id="no_telp" maxlength="6">
+													<input type="number" class="form-control" name="no_telp" id="no_telp" maxlength="6">
 												</div>
 											</div>
 										</div>
@@ -307,7 +309,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="nama_kerabat" class="col-sm-4 col-form-label require">Nama Kerabat</label>
 																
 																<div class="col-sm-8">
-																	<input type="text" class="form-control" name="nama_kerabat" id="nama_kerabat" minlength="6" maxlength="12" required>
+																	<input type="text" class="form-control" name="nama_kerabat" id="nama_kerabat" required>
 																</div>
 															</div>
 														</div>
@@ -319,7 +321,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="no_kerabat" class="col-sm-4 col-form-label require">No. Hp / Telp</label>
 																
 																<div class="col-sm-8">
-																	<input type="text" class="form-control" name="no_kerabat" id="no_kerabat" required>
+																	<input type="number" class="form-control" name="no_kerabat" id="no_kerabat" required>
 																</div>
 															</div>
 														</div>
@@ -333,9 +335,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<div class="col-sm-8">
 																	<select name="hubungan_kerabat" id="hubungan_kerabat" class="form-control" required>
 																		<option value="">Choose...</option>
-																		<option value="Saudara">Saudara</option>
-																		<option value="Sepupu">Sepupu</option>
-																		<option value="Teman">Teman</option>
+																		<option value="saudara">Saudara</option>
+																		<option value="sepupu">Sepupu</option>
+																		<option value="teman">Teman</option>
 																	</select>
 																</div>
 															</div>

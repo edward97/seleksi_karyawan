@@ -33,7 +33,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</a>
 
 						<div class="dropdown-menu dropdown-menu-right">
-							<div class="dropdown-header">Account</div>
+							<!-- <div class="dropdown-header">Account</div>
 
 							<a href="#" class="dropdown-item">
 								<i class="fa fa-user"></i> Profile
@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<a href="#" class="dropdown-item">
 								<i class="fa fa-wrench"></i> Settings
-							</a>
+							</a> -->
 
 							<a href="<?php echo site_url('login/logout') ?>" class="dropdown-item">
 								<i class="fa fa-lock"></i> Logout

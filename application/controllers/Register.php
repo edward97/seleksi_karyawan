@@ -72,10 +72,38 @@ class Register extends CI_Controller
 
 		$target['tar'] = $this->input->post('kemampuan');
 
-		if ($target['tar'] == null) {
+		# CEK EMAIL SUDAH DIGUNAKAN ATAU BELUM
+		$where = array(
+			'email' => $email,
+			'acc_status !=' => 3
+		);
+		$cek_email = $this->user_model->check('users', $where)->num_rows();
+
+		if ($cek_email != 0) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Email sudah pernah digunakan!</div>');
 			redirect('register');
 		}
-		// print_r($target);
+		if (strlen($ktp) != 16 || !is_numeric($ktp) ) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor KTP anda tidak valid!</div>');
+			redirect('register');
+		}
+		if (strlen($no_hp) > 12 || strlen($no_hp) < 6) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Hp anda tidak valid!</div>');
+			redirect('register');
+		}
+		if ($no_telp != '' && strlen($no_telp) != 6) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Telp anda tidak valid!</div>');
+			redirect('register');
+		}
+		if (strlen($no_kerabat) < 6 || strlen($no_kerabat) > 12) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Hp anda tidak valid!</div>');
+			redirect('register');
+		}
+
+		// if ($target['tar'] == null) {
+		// 	redirect('register');
+		// 	$this->session->set_flashdata('msg', '<div class="alert alert-danger">Jumlah kemampuan tidak boleh kosong!</div>');
+		// }
 
 		$confirm_code = $this->random_code();
 		$data_user = array(

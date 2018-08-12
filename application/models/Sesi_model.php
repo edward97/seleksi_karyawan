@@ -69,4 +69,20 @@ class Sesi_model extends CI_Model
 		$this->db->where($where);
 		$this->db->update($table, $data);
 	}
+
+	function edit_sesi($table, $where) {
+		$this->db->select('*');
+		$this->db->from($table);
+		$this->db->join('job', 'job.id_job = '.$table.'.id_job', 'left');
+		$this->db->join('standard_qualification', 'standard_qualification.id_std = '.$table.'.id_std', 'left');
+		$this->db->where($where);
+		return $this->db->get();
+	}
+	function edit_sesi_detail($table, $where) {
+		return $this->db->get_where($table, $where);
+	}
+	function update_sesi($table, $data, $where) {
+		$this->db->where($where);
+		$this->db->update($table, $data);
+	}
 }

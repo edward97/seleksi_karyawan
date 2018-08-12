@@ -10,6 +10,10 @@ class Admin_model extends CI_Model
 		return $this->db->get('admins');
 	}
 
+	function check($table, $where) {
+		return $this->db->get_where($table, $where);
+	}
+
 	function tampil_admin_sesi($where) {
 		$this->db->select('*');
 		$this->db->from('admins_sesi');

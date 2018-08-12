@@ -40,24 +40,19 @@ class Admin extends CI_Controller
 			$level = $this->input->post('level');
 			$profesi = $this->input->post('profesi');
 
-			if ($pass != '') {
-				$data = array(
-					'id_admin' => null,
-					'nm_admin' => $name,
-					'email' => $email,
-					'profesi' => $profesi,
-					'password' => md5($pass),
-					'level' => $level,
-				);
+			# CEK EMAIL SUDAH DIGUNAKAN ATAU BELUM
+			$where = array(
+				'email' => $email,
+			);
+			$cek_email = $this->admin_model->check('admins', $where)->num_rows();
+
+			if ($cek_email != 0) {
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Menambah! Email sudah digunakan!</div>');
+				redirect('admin');
 			}
-			else {
-				$data = array(
-					'id_admin' => null,
-					'nm_admin' => $name,
-					'email' => $email,
-					'profesi' => $profesi,
-					'level' => $level
-				);
+			if (strlen($pass) < 8) {
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Menambah! Password Minimal 8 Karakter!</div>');
+				redirect('admin');
 			}
 			
 			$this->admin_model->add_admin('admins', $data);
@@ -79,7 +74,11 @@ class Admin extends CI_Controller
 			$level = $this->input->post('level');
 			$profesi = $this->input->post('profesi');
 
-			if ($pass != '') {
+			if (strlen($pass) < 8 && $pass != NULL) {
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Update! Password Minimal 8 Karakter!</div>');
+				redirect('admin');
+			}
+			elseif ($pass != NULL) {
 				$data = array(
 					'nm_admin' => $name,
 					'email' => $email,

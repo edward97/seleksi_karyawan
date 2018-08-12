@@ -59,9 +59,11 @@
 												data-telp_kerabat="<?php echo $i->nomor_kerabat ?>" 
 												data-hubungan_kerabat="<?php echo $i->hubungan_kerabat ?>" 
 												data-toggle="modal" data-target="#edit-user" 
-												class="btn btn-outline-info btn-sm">
-													<i class="fas fa-info-circle"></i> Detail
+												class="btn btn-outline-primary btn-sm">
+													<i class="fa fa-info-circle" aria-hidden="true"></i> Detail
 											</a>
+
+											<a href="user/edit/<?php echo $i->id_user; ?>" class="btn btn-outline-info btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
 										</td>
 									</tr>
 									<?php $no++; ?>
@@ -86,7 +88,7 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
-
+			
 			<div class="modal-body p-5">
 				<div class="row">
 					<div class="col-md-2">
@@ -145,7 +147,7 @@
 					<div class="col-md-6">
 						<div class="form-group">
 							<label for="tgl_lahir">Tanggal Lahir</label>
-							<input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control" readonly>
+							<input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" readonly>
 						</div>
 					</div>
 				</div>

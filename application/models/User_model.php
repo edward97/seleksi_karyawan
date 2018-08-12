@@ -55,6 +55,17 @@ class User_model extends CI_Model
 		return $this->db->get();
 	}
 
+	function edit_detail_user($where) {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('selection_stage_detail', 'selection_stage_detail.id = users.id_stage_detail', 'inner');
+		$this->db->join('selection_stage', 'selection_stage.id_stage = selection_stage_detail.id_stage', 'inner');
+		$this->db->join('users_detail', 'users_detail.id_user = users.id_user', 'left');
+		$this->db->join('job', 'job.id_job = users.id_job', 'left');
+		$this->db->where($where);
+		return $this->db->get();
+	}
+
 	function compare_ability() {
 		$this->db->select('*');
 		$this->db->from('required_ability');
@@ -80,7 +91,6 @@ class User_model extends CI_Model
 		return $this->db->get();
 	}
 
-	// exam
 	function check($table, $where) {
 		return $this->db->get_where($table, $where);
 	}

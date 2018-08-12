@@ -115,8 +115,12 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label for="level" class="require">Level</label>
-								<input type="text" name="level" id="level" class="form-control" required>
-								<small class="form-text">[ 1 => superadmin, 2 => admin ]</small>
+
+								<select name="level" id="level" class="form-control" required>
+									<option value="">Choose...</option>
+									<option value="1">1</option>
+									<option value="2">2</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -144,7 +148,8 @@
 <div class="modal fade" id="editAct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
-			<?php echo form_open('admin/update_act'); ?>
+			<?php $attributes = array('id' => 'assign', 'name' => 'assign', 'onsubmit' => 'return validateForm();'); ?>
+			<?php echo form_open('admin/update_act', $attributes); ?>
 				<div class="modal-header bg-info border-0">
 					<h5 class="modal-title text-white">Update Admin</h5>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -164,7 +169,7 @@
 						<div class="col-md-5">
 							<div class="form-group">
 								<label for="email" class="require">Email</label>
-								<input type="email" name="email" id="email" class="form-control" required>
+								<input type="email" name="email" id="email" class="form-control" readonly>
 							</div>
 						</div>
 
@@ -211,3 +216,20 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	function validateForm(assign) {
+		var v = document.assign.level.value;
+		if (isNaN(v) == true) {
+			alert('Level tidak boleh String!');
+			return false;
+		}
+		else if (v > 2) {
+			alert('Level 1 | 2 only!');
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+</script>

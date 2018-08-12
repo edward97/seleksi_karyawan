@@ -19,7 +19,7 @@
 
 							<div class="col-md-4">
 								<div class="form-group">
-									<input type="text" class="form-control" name="nm_kualifikasi" id="nm_kualifikasi">
+									<input type="text" class="form-control" name="nm_kualifikasi" id="nm_kualifikasi" required>
 								</div>
 							</div>
 						</div>
@@ -102,8 +102,37 @@
 						</div>
 						<hr>
 
-						<!-- Jumlah Kemampuan -->
+						<!-- fix atribut -->
 						<div class="row">
+							<div class="col-md-5">
+								<div class="table-responsive">
+									<table class="table table-striped">
+										<thead>
+											<tr>
+												<th>ID</th>
+												<th>Nama Atribut</th>
+												<th>Detail Atribut</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<?php foreach ($atribut as $i): ?>
+											<tr>
+												<td><?php echo $i->id ?></td>
+												<td><?php echo $i->attr ?></td>
+												<td><?php echo $i->detail ?></td>
+											</tr>
+											<?php endforeach ?>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<hr>
+						
+
+						<!-- Jumlah Kemampuan -->
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Jumlah Kemampuan</label>
@@ -121,17 +150,6 @@
 									<input type="number" class="form-control" name="jlh_kemampuan2" id="jlh_kemampuan2">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_kemampuan1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
@@ -146,22 +164,11 @@
 									<input type="number" class="form-control" name="jlh_kemampuan4" id="jlh_kemampuan4">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_kemampuan2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- Range Umur -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Range Umur</label>
@@ -172,19 +179,6 @@
 								<div class="form-group">
 									<input type="number" class="form-control" name="range_umur1" id="range_umur1">
 									<small class="form-text">below</small>
-								</div>
-							</div>
-
-							<div class="col-md-2"></div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_umur1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
 								</div>
 							</div>
 						</div>
@@ -203,16 +197,6 @@
 								</div>
 							</div>
 
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_umur2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
@@ -223,24 +207,11 @@
 									<small class="form-text">max</small>
 								</div>
 							</div>
-
-							<div class="col-md-2"></div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_umur3">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- pengalaman -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Pengalaman</label>
@@ -251,19 +222,6 @@
 								<div class="form-group">
 									<input type="number" class="form-control" name="pengalaman1" id="pengalaman1">
 									<small class="form-text">below</small>
-								</div>
-							</div>
-
-							<div class="col-md-2"></div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_pengalaman1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
 								</div>
 							</div>
 						</div>
@@ -281,17 +239,6 @@
 									<input type="number" class="form-control" name="pengalaman3" id="pengalaman3">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_pengalaman2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
@@ -302,24 +249,11 @@
 									<small class="form-text">max</small>
 								</div>
 							</div>
-
-							<div class="col-md-2"></div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_pengalaman3">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- Status -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Status</label>
@@ -331,18 +265,6 @@
 									<input type="text" class="form-control" name="status1" id="status1">
 								</div>
 							</div>
-
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_pernikahan1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
@@ -351,22 +273,11 @@
 									<input type="text" class="form-control" name="status2" id="status2">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_pernikahan2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- Pendidikan -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Pendidikan</label>
@@ -379,34 +290,12 @@
 								</div>
 							</div>
 
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_education1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-4 offset-md-3">
 								<div class="form-group">
 									<input type="text" class="form-control" name="pendidikan2" id="pendidikan2">
-								</div>
-							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_education2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
 								</div>
 							</div>
 						</div>
@@ -417,17 +306,6 @@
 									<input type="text" class="form-control" name="pendidikan3" id="pendidikan3">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_education3">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
@@ -436,22 +314,11 @@
 									<input type="text" class="form-control" name="pendidikan4" id="pendidikan4">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_education4">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- Nilai Tes Online -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Nilai Tes Online</label>
@@ -469,17 +336,6 @@
 									<input type="number" class="form-control" name="n_online2" id="n_online2">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_online1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
@@ -492,17 +348,6 @@
 							<div class="col-md-2">
 								<div class="form-group">
 									<input type="number" class="form-control" name="n_online4" id="n_online4">
-								</div>
-							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_online2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
 								</div>
 							</div>
 						</div>
@@ -519,22 +364,11 @@
 									<input type="number" class="form-control" name="n_online6" id="n_online6">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_online3">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- Nilai Tes Langsung -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Nilai Tes Langsung</label>
@@ -552,17 +386,6 @@
 									<input type="number" class="form-control" name="n_langsung2" id="n_langsung2">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_langsung1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
@@ -575,17 +398,6 @@
 							<div class="col-md-2">
 								<div class="form-group">
 									<input type="number" class="form-control" name="n_langsung4" id="n_langsung4">
-								</div>
-							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_langsung2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
 								</div>
 							</div>
 						</div>
@@ -602,22 +414,11 @@
 									<input type="number" class="form-control" name="n_langsung6" id="n_langsung6">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_langsung3">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- Nilai Sikap -->
-						<div class="row">
+						<!-- <div class="row">
 							<div class="col-md-3">
 								<div class="form-group">
 									<label class="col-form-label require">Nilai Sikap</label>
@@ -629,35 +430,12 @@
 									<input type="text" class="form-control" name="n_sikap1" id="n_sikap1">
 								</div>
 							</div>
-
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_sikap1">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-4 offset-md-3">
 								<div class="form-group">
 									<input type="text" class="form-control" name="n_sikap2" id="n_sikap2">
-								</div>
-							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_sikap2">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
 								</div>
 							</div>
 						</div>
@@ -668,19 +446,8 @@
 									<input type="text" class="form-control" name="n_sikap3" id="n_sikap3">
 								</div>
 							</div>
-
-							<div class="col-md-2">
-								<div class="form-group">
-									<select class="form-control" name="p_sikap3">
-										<option value="1">1</option>
-										<option value="2">2</option>
-										<option value="3">3</option>
-									</select>
-									<small class="form-text">priority</small>
-								</div>
-							</div>
 						</div>
-						<hr>
+						<hr> -->
 
 						<!-- Buta Warna -->
 						<!-- <div class="row">

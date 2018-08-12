@@ -14,11 +14,11 @@ $cart = $this->session->userdata('data_testing_cart');
 					</div>
 						
 					<div class="card-body">
-						<a href="<?php echo site_url('algoritma/detail/c45') ?>" target="_blank" class="btn btn-outline-info btn-sm">
+						<a href="<?php echo site_url('algoritma/detail/c45') ?>" target="_blank" class="btn btn-outline-primary btn-sm">
 							<i class="fas fa-info-circle"></i> Detail C4.5
 						</a>
 
-						<a href="<?php echo site_url('algoritma/detail/cart') ?>" target="_blank" class="btn btn-outline-info btn-sm">
+						<a href="<?php echo site_url('algoritma/detail/cart') ?>" target="_blank" class="btn btn-outline-primary btn-sm">
 							<i class="fas fa-info-circle"></i> Detail Cart
 						</a>
 					</div>

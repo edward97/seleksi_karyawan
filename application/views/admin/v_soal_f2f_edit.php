@@ -65,7 +65,7 @@
 												<input type="radio" name="correct" value="a" <?php if ($i->answer_a == $i->correct_ans) echo "checked"; ?>>
 											</div>
 										</div>
-										<input type="text" class="form-control" name="ans_a" id="ans_a" value="<?php echo $i->answer_a ?>">
+										<input type="text" class="form-control" name="ans_a" id="ans_a" value="<?php echo $i->answer_a ?>" required>
 									</div>
 								</div>
 							</div>
@@ -79,7 +79,7 @@
 												<input type="radio" name="correct" value="b" <?php if ($i->answer_b == $i->correct_ans) echo "checked"; ?>>
 											</div>
 										</div>
-										<input type="text" class="form-control" name="ans_b" id="ans_b" value="<?php echo $i->answer_b ?>">
+										<input type="text" class="form-control" name="ans_b" id="ans_b" value="<?php echo $i->answer_b ?>" required>
 									</div>
 								</div>
 							</div>
@@ -93,7 +93,7 @@
 												<input type="radio" name="correct" value="c" <?php if ($i->answer_c == $i->correct_ans) echo "checked"; ?>>
 											</div>
 										</div>
-										<input type="text" class="form-control" name="ans_c" id="ans_c" value="<?php echo $i->answer_c ?>">
+										<input type="text" class="form-control" name="ans_c" id="ans_c" value="<?php echo $i->answer_c ?>" required>
 									</div>
 								</div>
 							</div>
@@ -107,7 +107,7 @@
 												<input type="radio" name="correct" value="d" <?php if ($i->answer_d == $i->correct_ans) echo "checked"; ?>>
 											</div>
 										</div>
-										<input type="text" class="form-control" name="ans_d" id="ans_d" value="<?php echo $i->answer_d ?>">
+										<input type="text" class="form-control" name="ans_d" id="ans_d" value="<?php echo $i->answer_d ?>" required>
 									</div>
 								</div>
 							</div>

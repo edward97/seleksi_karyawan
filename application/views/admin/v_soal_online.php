@@ -8,8 +8,7 @@
 
 						<div class="card-actions">
 							<a href="#" class="btn text-success" data-toggle="modal" data-target="#addAct">
-								<i class="fa fa-plus"></i>
-								<i class="fa fa-pencil-alt"></i>
+								<i class="fa fa-plus"></i> Add
 							</a>
 						</div>
 					</div>

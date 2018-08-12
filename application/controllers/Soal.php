@@ -119,6 +119,11 @@ class Soal extends CI_Controller
 			$PilD = $this->input->post('ans_d');
 			$correct = $this->input->post('correct');
 
+			if ($soal == NULL) {
+				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal menambah! Deskripsi soal tidak boleh kosong!</div>');
+				redirect('soal/list_soal');
+			}
+
 			if ($correct == "a") {
 				$correct = $pilA;
 			}
@@ -169,6 +174,11 @@ class Soal extends CI_Controller
 			$pilC = $this->input->post('ans_c');
 			$PilD = $this->input->post('ans_d');
 			$correct = $this->input->post('correct');
+
+			if ($soal == NULL) {
+				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal menambah! Deskripsi soal tidak boleh kosong!</div>');
+				redirect('soal/list_soal');
+			}
 
 			if ($correct == "a") {
 				$correct = $pilA;
@@ -260,6 +270,11 @@ class Soal extends CI_Controller
 			$PilD = $this->input->post('ans_d');
 			$correct = $this->input->post('correct');
 
+			if ($soal == NULL) {
+				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal update! Deskripsi soal tidak boleh kosong!</div>');
+				redirect('soal/edit_online/'.$id);
+			}
+
 			if ($correct == "a") {
 				$correct = $pilA;
 			}
@@ -308,6 +323,11 @@ class Soal extends CI_Controller
 			$pilC = $this->input->post('ans_c');
 			$PilD = $this->input->post('ans_d');
 			$correct = $this->input->post('correct');
+
+			if ($soal == NULL) {
+				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal update! Deskripsi soal tidak boleh kosong!</div>');
+				redirect('soal/edit_f2f/'.$id);
+			}
 
 			if ($correct == "a") {
 				$correct = $pilA;

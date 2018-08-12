@@ -65,7 +65,7 @@
 											</div>
 										</div>
 
-										<div class="row">
+										<!-- <div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
 													<label for="file1" class="col-form-label">Upload Karyawan Sesi Sebelumnya</label>
@@ -77,7 +77,7 @@
 													<input type="file" name="file1" id="file1" accept=".csv">
 												</div>
 											</div>
-										</div>
+										</div> -->
 									</div>
 								</div>
 							</div>

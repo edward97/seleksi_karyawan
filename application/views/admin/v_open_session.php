@@ -9,6 +9,7 @@
 						
 					<?php echo form_open('sesi/save_act'); ?>
 					<div class="card-body">
+						<?php echo $this->session->flashdata('msg'); ?>
 						<!-- Partisipasi admin -->
 						<div class="row">
 							<div class="col-md-9">

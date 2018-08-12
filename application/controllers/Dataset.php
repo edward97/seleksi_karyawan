@@ -89,13 +89,95 @@ class Dataset extends CI_Controller
 				$nama_lengkap = $get[0]; // ambil data kolom A di csv
 				$age = $get[1];
 				$experience = $get[2];
-				$last_education = $get[3];
-				$status = $get[4];
+				$last_education = strtolower($get[3]);
+				$status = strtolower($get[4]);
 				$total_ability = $get[5];
 				$nilai_online = $get[6];
 				$nilai_f2f = $get[7];
-				$nilai_sikap = $get[8];
-				$status_passed = $get[9];
+				$nilai_sikap = strtolower($get[8]);
+				$status_passed = strtolower($get[9]);
+
+				$umur = $exp = $pendidikan = $stt = $ttl_abt = $onl = $f2f = $sikap = $pass = false;
+				if (is_numeric($age) == true) {
+					$umur = true;
+				}
+				if ($umur == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [age] baris '.$numrow.' => '.$age.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if (is_numeric($experience) == true) {
+					$exp = true;
+				}
+				if ($exp == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [experience] baris '.$numrow.' => '.$experience.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if ($last_education == 'sma' || $last_education == 'akademi' || $last_education == 'sarjana' || $last_education == 'pasca') {
+					$pendidikan = true;
+				}
+				if ($pendidikan == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [last_education] baris '.$numrow.' => '.$last_education.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if ($status == 'lajang' || $status == 'menikah') {
+					$stt = true;
+				}
+				if ($stt == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [status] baris '.$numrow.' => '.$status.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if (is_numeric($total_ability) == true  && $total_ability >= 5 && $total_ability <= 10) {
+					$ttl_abt = true;
+				}
+				if ($ttl_abt == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [total_ability] baris '.$numrow.' => '.$total_ability.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if (is_numeric($nilai_online) == true  && $nilai_online >= 70 && $nilai_online <= 100) {
+					$onl = true;
+				}
+				if ($onl == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [nilai_online] baris '.$numrow.' => '.$nilai_online.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if (is_numeric($nilai_f2f) == true  && $nilai_f2f >= 70 && $nilai_f2f <= 100) {
+					$f2f = true;
+				}
+				if ($f2f == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [nilai_f2f] baris '.$numrow.' => '.$nilai_f2f.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if ($nilai_sikap == 'cukup baik' || $nilai_sikap == 'baik' || $nilai_sikap == 'sangat baik') {
+					$sikap = true;
+				}
+				if ($sikap == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [nilai_sikap] baris '.$numrow.' => '.$nilai_sikap.'</div>');
+					redirect('algoritma');
+					break;
+				}
+
+				if ($status_passed == 'lulus' || $status_passed == 'gagal') {
+					$pass = true;
+				}
+				if ($pass == false) {
+					$this->session->set_flashdata('msg', '<div class="alert alert-danger">Error [status_passed] baris '.$numrow.' => '.$status_passed.'</div>');
+					redirect('algoritma');
+					break;
+				}
 
 				// push (add)ke variabel data
 				array_push($data, [
@@ -113,10 +195,11 @@ class Dataset extends CI_Controller
 			}
 			$numrow++;
 		}
+		echo "string";
 		$this->dataset_model->delete_dataset('dataset');
 		$this->dataset_model->add_dataset('dataset', $data);
 		$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil diupload dan dihitung!</div>');
 		redirect('algoritma/hitung/'.$id);
-		// redirect('algoritma');
+		redirect('algoritma');
 	}
 }

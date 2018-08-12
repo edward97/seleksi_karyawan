@@ -9,6 +9,10 @@ class Setting_model extends CI_Model
 	function tampil_ability() {
 		return $this->db->get('ability');
 	}
+
+	function tampil_atribut() {
+		return $this->db->get('atribut_detail');
+	}
 	
 	function tampil_job() {
 		return $this->db->get('job');
