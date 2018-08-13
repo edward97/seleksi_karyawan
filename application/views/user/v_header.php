@@ -15,7 +15,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles.css">
 
 		<style type="text/css">
-			
+			input[type=number]::-webkit-inner-spin-button, 
+			input[type=number]::-webkit-outer-spin-button { 
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				margin: 0; 
+			}
 		</style>
 	</head>
 	<body class="sidebar-hidden header-fixed">

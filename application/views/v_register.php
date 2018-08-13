@@ -60,6 +60,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				line-height: 1.428571429;
 				border-radius: 15px;
 			}
+
+			input[type=number]::-webkit-inner-spin-button, 
+			input[type=number]::-webkit-outer-spin-button { 
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				margin: 0; 
+			}
 		</style>
 	</head>
 	<body class="sidebar-hidden header-fixed">
@@ -251,7 +259,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												
 												<div class="col-sm-8">
 													<div class="form-group">
-														<textarea name="address" id="address" class="form-control"></textarea>
+														<textarea name="address" id="address" class="form-control" required></textarea>
 													</div>
 
 													<div class="form-group">

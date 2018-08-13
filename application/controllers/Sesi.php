@@ -44,7 +44,7 @@ class Sesi extends CI_Controller
 	}
 
 	function save_act() {
-		$sekarang = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$sekarang = mdate('%Y/%m/%d %H:%i', now('Asia/Jakarta'));
 
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$divisi = $this->input->post('divisi');
@@ -198,7 +198,7 @@ class Sesi extends CI_Controller
 	}
 
 	function next($id) {
-		$sekarang = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$sekarang = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
 
 		if ($this->session->userdata('akses') == '1') {
 			$data = array('end_stage' => $sekarang);
@@ -254,7 +254,7 @@ class Sesi extends CI_Controller
 	}
 
 	function edit_act() {
-		$sekarang = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$sekarang = mdate('%Y/%m/%d %H:%i', now('Asia/Jakarta'));
 
 		$id_daftar = $this->input->post('id_sesi_daftar');
 		$id_online = $this->input->post('id_sesi_online');
@@ -277,6 +277,7 @@ class Sesi extends CI_Controller
 
 		$start_interview = $this->input->post('sesi_interview1');
 		$end_interview = $this->input->post('sesi_interview2');
+
 
 		if ($start_daftar < $sekarang || $start_online < $sekarang || $start_f2f < $sekarang || $start_interview < $sekarang) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal tidak boleh kurang dari hari ini!</div>');

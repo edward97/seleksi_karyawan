@@ -14,12 +14,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/font-awesome/css/fontawesome-all.min.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/styles.css">
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/icheck-bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/vendor/datetimepicker/jquery.datetimepicker.css">
 
 		<script type="text/javascript">
 			function confirmDialog() {
 				return confirm('Are you sure want to delete this record?')
 			}
 		</script>
+
+		<style type="text/css">
+			input[type=number]::-webkit-inner-spin-button, 
+			input[type=number]::-webkit-outer-spin-button { 
+				-webkit-appearance: none;
+				-moz-appearance: none;
+				appearance: none;
+				margin: 0; 
+			}
+		</style>
 	</head>
 	<body class="sidebar-fixed header-fixed">
 		<div class="page-wrapper">

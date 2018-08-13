@@ -14,6 +14,7 @@ class Interview extends CI_Controller
 			redirect('login');
 		}
 		$this->load->model('user_model');
+		$this->load->model('sesi_model');
 	}
 
 	function index() {
@@ -48,6 +49,20 @@ class Interview extends CI_Controller
 					'id_stage_detail' => $stage+1
 				);
 				$this->user_model->change_user('users', $where, $data_1);
+
+				# +1 KETIKA ADA YANG INTERVIEW
+				$get_id_selection = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $id_stage))->row_array();
+				$label_selection = $this->sesi_model->tampil_seleksi_label('selection_stage', array('id_stage' => $get_id_selection['id_stage']))->row_array();
+				if ($label_selection['lbl_interview'] == NULL) {
+					$data_label = array('lbl_interview' => $this->session->userdata('ses_id'));
+					$where_label = array('id_stage' => $label_selection['id_stage']);
+				}
+				else {
+					$data_label = array('lbl_interview' => $label_selection['lbl_interview'].'~'.$this->session->userdata('ses_id'));
+					$where_label = array('id_stage' => $label_selection['id_stage']);
+				}
+				$this->sesi_model->update_seleksi('selection_stage', $where_label, $data_label);
+				# END
 			}
 		}
 

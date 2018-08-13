@@ -14,6 +14,10 @@ class Sesi_model extends CI_Model
 		return $this->db->get();
 	}
 
+	function tampil_seleksi_label($table, $where) {
+		return $this->db->get_where($table, $where);
+	}
+
 	function tampil_tahapan_detail() {
 		return $this->db->get('selection_stage_detail');
 	}

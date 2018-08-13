@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller
 
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
-		$data['today'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$data['today'] = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
 		$data['judul'] = "Dashboard";
 
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
@@ -28,11 +28,34 @@ class Dashboard extends CI_Controller
 				'status_selesai' => 0
 			);
 			$que = $this->sesi_model->tampil_seleksi($where);
+			$count_user_per_tahap = $que->row_array();
+
+			$data['total_register'] = 0;
+			if ($count_user_per_tahap['lbl_register'] != null) {
+				$total_register = explode('~', $count_user_per_tahap['lbl_register']);
+				$data['total_register'] = count($total_register);
+			}
+			$data['total_online'] = 0;
+			if ($count_user_per_tahap['lbl_online'] != null) {
+				$total_online = explode('~', $count_user_per_tahap['lbl_online']);
+				$data['total_online'] = count($total_online);
+			}
+			$data['total_f2f'] = 0;
+			if ($count_user_per_tahap['lbl_f2f'] != null) {
+				$total_f2f = explode('~', $count_user_per_tahap['lbl_f2f']);
+				$data['total_f2f'] = count($total_f2f);
+			}
+			$data['total_interview'] = 0;
+			if ($count_user_per_tahap['lbl_interview'] != null) {
+				$total_interview = explode('~', $count_user_per_tahap['lbl_interview']);
+				$data['total_interview'] = count($total_interview);
+			}
+			
+
 			$data['seleksi_aktif_ar'] = $que->result();
 			$data['seleksi_aktif_ar_detail'] = $this->sesi_model->tampil_tahapan_detail()->result();
 			$data['count_user'] = $this->user_model->tampil_user()->result();
 			$data['seleksi_aktif'] = $que->num_rows();
-
 
 			$this->load->view('admin/v_header', $data);
 			$this->load->view('admin/v_dashboard');

@@ -2,6 +2,17 @@
 	<?php if ($i->nilai_f2f == null): ?>
 	<div class="container-fluid">
 		<div class="card">
+			<div class="card-header">
+				<div class="row">
+					<div class="col-md-6"><h2>Ujian Tatap Muka - <?php echo $i->label; ?></h2></div>
+					<div class="col-md-6">
+						<div class="form-group text-right">
+							<button type="button" class="btn btn-outline-info"><?php echo $waktu->format('%H:%i:%s'); ?></button>
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div class="card-body">
 				<h2 class="text-center">Ujian Tatap Muka</h2>
 
@@ -85,7 +96,7 @@
 						<?php endforeach ?>
 
 					<?php foreach ($tahapan as $i): ?>
-						<?php if ($i->label == 'Tahap 3' && $i->start_stage >= $today): ?>
+						<?php if ($i->label == 'Tahap 4' && $i->start_stage >= $today): ?>
 							<div class="form-group text-right">
 								<input type="hidden" name="id" value="<?php echo $i->id ?>">
 								<button type="submit" name="submit" class="btn btn-outline-danger" value="onl">Selesai</button>

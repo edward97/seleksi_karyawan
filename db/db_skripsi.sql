@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.0.1
+-- version 4.8.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2018 at 12:05 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.1.16
+-- Generation Time: Aug 13, 2018 at 11:24 AM
+-- Server version: 10.1.32-MariaDB
+-- PHP Version: 7.1.17
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -1772,9 +1772,7 @@ CREATE TABLE `selection_stage` (
 --
 
 INSERT INTO `selection_stage` (`id_stage`, `label_online`, `label_f2f`, `status_selesai`, `created_at`, `updated_at`, `id_std`, `id_job`, `lbl_register`, `lbl_online`, `lbl_f2f`, `lbl_interview`) VALUES
-(1, 'Akuntansi I', 'Akuntansi I', 1, '2018-08-03 01:07:22', '2018-08-05 02:43:04', 1, 7, NULL, NULL, NULL, NULL),
-(2, 'Akuntansi I', 'Akuntansi I', 1, '2018-08-12 07:26:51', '2018-08-12 20:07:37', 1, 8, NULL, NULL, NULL, NULL),
-(3, 'Akuntansi I', 'Akuntansi I', 1, '2018-08-12 08:39:55', '2018-08-12 20:07:38', 2, 3, NULL, NULL, NULL, NULL);
+(5, 'Akuntansi I', 'Akuntansi I', 0, '2018-08-13 12:33:51', '2018-08-13 09:08:34', 1, 7, '13', '13', '13', NULL);
 
 -- --------------------------------------------------------
 
@@ -1785,8 +1783,8 @@ INSERT INTO `selection_stage` (`id_stage`, `label_online`, `label_f2f`, `status_
 CREATE TABLE `selection_stage_detail` (
   `id` int(6) NOT NULL,
   `label` varchar(255) NOT NULL,
-  `start_stage` date NOT NULL,
-  `end_stage` date NOT NULL,
+  `start_stage` datetime NOT NULL,
+  `end_stage` datetime NOT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `id_stage` int(6) NOT NULL
@@ -1797,22 +1795,11 @@ CREATE TABLE `selection_stage_detail` (
 --
 
 INSERT INTO `selection_stage_detail` (`id`, `label`, `start_stage`, `end_stage`, `created_at`, `updated_at`, `id_stage`) VALUES
-(1, 'Tahap 1', '2018-08-03', '2018-08-04', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
-(2, 'Tahap 2', '2018-08-05', '2018-08-05', '2018-08-03 01:07:22', '2018-08-05 02:42:21', 1),
-(3, 'Tahap 3', '2018-08-05', '2018-08-05', '2018-08-03 01:07:22', '2018-08-05 02:42:22', 1),
-(4, 'Tahap 4', '2018-08-05', '2018-08-04', '2018-08-03 01:07:22', '2018-08-05 02:42:57', 1),
-(5, 'Tahap 5', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
-(6, 'Tahap 6', '2018-08-09', '2018-08-10', '2018-08-03 01:07:22', '2018-08-02 18:07:22', 1),
-(7, 'Tahap 1', '2018-08-11', '2018-08-11', '2018-08-12 07:26:52', '2018-08-12 11:54:12', 2),
-(8, 'Tahap 2', '2018-08-12', '2018-08-12', '2018-08-12 07:26:52', '2018-08-12 01:50:32', 2),
-(9, 'Tahap 3', '2018-08-12', '2018-08-12', '2018-08-12 07:26:52', '2018-08-12 12:11:47', 2),
-(10, 'Tahap 4', '2018-08-12', '2018-08-12', '2018-08-12 07:26:52', '2018-08-12 12:15:01', 2),
-(11, 'Tahap 5', '2018-08-15', '2018-08-15', '2018-08-12 07:26:52', '2018-08-12 00:26:52', 2),
-(12, 'Tahap 6', '2018-08-15', '2018-08-15', '2018-08-12 07:26:52', '2018-08-12 00:26:52', 2),
-(13, 'Tahap 1', '2018-08-10', '2018-08-11', '2018-08-12 08:39:55', '2018-08-12 09:55:34', 3),
-(14, 'Tahap 2', '2018-08-12', '2018-08-12', '2018-08-12 08:39:55', '2018-08-12 12:22:57', 3),
-(15, 'Tahap 3', '2018-08-12', '2018-08-12', '2018-08-12 08:39:55', '2018-08-12 01:39:55', 3),
-(16, 'Tahap 4', '2018-08-12', '2018-08-12', '2018-08-12 08:39:55', '2018-08-12 01:39:55', 3);
+(22, 'Tahap 1', '2018-08-12 15:57:00', '2018-08-12 16:00:00', '2018-08-13 12:33:51', '2018-08-13 09:00:05', 5),
+(23, 'Tahap 2', '2018-08-12 00:00:00', '2018-08-12 15:30:00', '2018-08-13 12:33:51', '2018-08-13 09:04:38', 5),
+(24, 'Tahap 3', '2018-08-13 15:30:00', '2018-08-16 15:00:00', '2018-08-13 12:33:51', '2018-08-13 09:08:20', 5),
+(25, 'Tahap 4', '2018-08-17 08:00:00', '2018-08-17 18:00:00', '2018-08-13 12:33:51', '2018-08-13 08:47:55', 5),
+(26, 'Tahap 5', '2018-08-16 00:59:00', '2018-08-16 00:00:00', '2018-08-13 12:33:51', '2018-08-13 07:21:18', 5);
 
 -- --------------------------------------------------------
 
@@ -1858,8 +1845,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `email`, `password`, `confirm_code`, `acc_status`, `created_at`, `updated_at`, `id_job`, `id_stage_detail`) VALUES
-(1, 'edw.suryajaya@gmail.com', '5f0713b7c76ee9285a14984eeb332f43', NULL, 2, '2018-08-03 01:38:10', '2018-08-12 03:56:13', 7, 1),
-(3, 'promptriney@gmail.com', '25d55ad283aa400af464c76d713c07ad', 'u7NNOhcaMc6E0UFp5s1o2Rplj4rTWDXsLfx0WKVGaUWppL8VJFHUwFMhx2EvpkWvG5JDikY6KlMwcQezrdNMyvrALe9n1AZR21KZ', 1, '2018-08-12 18:49:26', '2018-08-12 12:26:15', 8, 11);
+(13, 'edw_shen@yahoo.com', '25d55ad283aa400af464c76d713c07ad', NULL, 1, '2018-08-13 15:59:21', '2018-08-13 09:10:50', 7, 25);
 
 -- --------------------------------------------------------
 
@@ -1880,27 +1866,15 @@ CREATE TABLE `users_ability` (
 --
 
 INSERT INTO `users_ability` (`id`, `created_at`, `updated_at`, `id_ability`, `id_user`) VALUES
-(1, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 2, 1),
-(2, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 10, 1),
-(3, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 17, 1),
-(4, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 18, 1),
-(5, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 20, 1),
-(6, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 21, 1),
-(7, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 22, 1),
-(8, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 23, 1),
-(9, '2018-08-03 01:38:10', '2018-08-02 18:38:10', 24, 1),
-(10, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 2, 2),
-(11, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 10, 2),
-(12, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 17, 2),
-(13, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 18, 2),
-(14, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 20, 2),
-(15, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 21, 2),
-(16, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 22, 2),
-(17, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 23, 2),
-(18, '2018-08-12 16:51:19', '2018-08-12 09:51:19', 24, 2),
-(19, '2018-08-12 18:49:26', '2018-08-12 11:49:26', 10, 3),
-(20, '2018-08-12 18:49:26', '2018-08-12 11:49:26', 17, 3),
-(21, '2018-08-12 18:49:26', '2018-08-12 11:49:26', 23, 3);
+(37, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 2, 13),
+(38, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 10, 13),
+(39, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 17, 13),
+(40, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 18, 13),
+(41, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 20, 13),
+(42, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 21, 13),
+(43, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 22, 13),
+(44, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 23, 13),
+(45, '2018-08-13 15:59:22', '2018-08-13 08:59:22', 24, 13);
 
 -- --------------------------------------------------------
 
@@ -1943,8 +1917,7 @@ CREATE TABLE `users_detail` (
 --
 
 INSERT INTO `users_detail` (`id_d_user`, `full_name`, `no_ktp`, `birth_place`, `birth_date`, `address`, `domisili`, `kode_pos`, `p_number`, `t_number`, `age`, `gender`, `religion`, `last_education`, `status`, `experience`, `nilai_online`, `nilai_f2f`, `nilai_sikap`, `total_ability`, `status_passed`, `nama_kerabat`, `nomor_kerabat`, `hubungan_kerabat`, `created_at`, `updated_at`, `id_user`) VALUES
-(1, 'Edward Surya Jaya', '1411112356789000', 'Serbalawan', '1997-02-02', 'Jl. Damar III', 'Medan', '20011', '085275522020', '', 21, 'pria', 'buddha', 'sarjana', 'lajang', 4, NULL, NULL, NULL, 5, 0, 'Ryan Rajaya', '0614557896', 'teman', '2018-08-03 01:38:10', '2018-08-12 06:17:55', 1),
-(3, 'Christine', '1234567891234567', 'Medan', '1997-02-02', 'Yose Rizal', 'Medan', '20011', '085275522020', '', 21, 'wanita', 'buddha', 'sarjana', 'menikah', 5, 80, 80, 'sangat baik', 7, 0, 'Ryan Rajaya', '061455', 'saudara', '2018-08-12 18:49:26', '2018-08-12 12:26:15', 3);
+(11, 'Edward', '1234567891234567', 'medan', '1997-02-02', 'jl medan', 'medan', '2001', '085275522020', '', 21, 'wanita', 'buddha', 'sarjana', 'menikah', 2, 100, 0, 'baik', 5, 0, 'ryan', '085275522020', 'sepupu', '2018-08-13 15:59:22', '2018-08-13 09:11:26', 13);
 
 -- --------------------------------------------------------
 
@@ -1966,7 +1939,7 @@ CREATE TABLE `users_exam` (
 --
 
 INSERT INTO `users_exam` (`id`, `start_online`, `end_online`, `start_f2f`, `end_f2f`, `id_user`) VALUES
-(0, '2018-08-12 19:02:00', '2018-08-12 19:03:00', '2018-08-12 19:12:08', '2018-08-12 21:12:08', 3);
+(5, '2018-08-13 16:00:59', '2018-08-13 18:00:59', '2018-08-13 16:08:34', '2018-08-13 18:08:34', 13);
 
 --
 -- Indexes for dumped tables
@@ -2202,13 +2175,13 @@ ALTER TABLE `required_ability`
 -- AUTO_INCREMENT for table `selection_stage`
 --
 ALTER TABLE `selection_stage`
-  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_stage` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `selection_stage_detail`
 --
 ALTER TABLE `selection_stage_detail`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `standard_qualification`
@@ -2220,25 +2193,25 @@ ALTER TABLE `standard_qualification`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users_ability`
 --
 ALTER TABLE `users_ability`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `users_detail`
 --
 ALTER TABLE `users_detail`
-  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_d_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `users_exam`
 --
 ALTER TABLE `users_exam`
-  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

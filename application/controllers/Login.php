@@ -56,7 +56,7 @@ class Login extends CI_Controller
 					}
 				}
 				else {
-					$today = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+					$today = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
 
 					$where_user = array(
 						'users.email' => $email,

@@ -22,7 +22,7 @@ class Start extends CI_Controller
 	function online($id) {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		$data['today_time'] = mdate('%Y-%m-%d %H:%i:%s', now('Asia/Jakarta'));
-		$data['today'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$data['today'] = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
 
 		if ($this->session->userdata('akses') == '3') {
 			$where = array(
@@ -33,11 +33,6 @@ class Start extends CI_Controller
 			$interval1 = new DateTime($data['today_time']);
 			$interval2 = new DateTime($waktu['end_online']);
 			$data['waktu'] = $interval1->diff($interval2);
-
-			if ($data['waktu'] == '00:0:0') {
-				
-			}
-
 
 			if ($que_exam->num_rows() == 0) {
 				$end_exam = mdate('%Y-%m-%d %H:%i:%s', strtotime('+2 hours', strtotime($data['today_time'])));
@@ -58,6 +53,20 @@ class Start extends CI_Controller
 					'id_user' => $this->session->userdata('ses_id')
 				);
 				$this->user_model->change_user('users', $where_ar, $data_ar);
+
+				# +1 KETIKA ADA YANG ONLINE
+				$get_id_selection = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $id))->row_array();
+				$label_selection = $this->sesi_model->tampil_seleksi_label('selection_stage', array('id_stage' => $get_id_selection['id_stage']))->row_array();
+				if ($label_selection['lbl_online'] == NULL) {
+					$data_label = array('lbl_online' => $this->session->userdata('ses_id'));
+					$where_label = array('id_stage' => $label_selection['id_stage']);
+				}
+				else {
+					$data_label = array('lbl_online' => $label_selection['lbl_online'].'~'.$this->session->userdata('ses_id'));
+					$where_label = array('id_stage' => $label_selection['id_stage']);
+				}
+				$this->sesi_model->update_seleksi('selection_stage', $where_label, $data_label);
+				# END
 			}
 
 			$where = array(
@@ -78,6 +87,17 @@ class Start extends CI_Controller
 				'label' => $this->session->userdata('label_ses_online')
 			);
 			$data['soal_online'] = $this->soal_model->tampil_soal_user('question_online', $get)->result();
+
+			if ($data['today'] > $interval2) {
+				$data = array('nilai_online' => 0);
+				$where = array('id_user' => $this->session->userdata('ses_id'));
+				$this->user_model->change_user('users_detail', $where, $data);
+
+				$data_ar = array('acc_status' => 2);
+				$where_ar = array('id_user' => $this->session->userdata('ses_id'));
+				$this->user_model->change_user('users', $where_ar, $data_ar);
+				redirect('dashboard/result');
+			}
 
 			$this->load->view('user/v_header', $data);
 			$this->load->view('user/v_online');
@@ -155,15 +175,18 @@ class Start extends CI_Controller
 	function f2f($id) {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		$data['today_time'] = mdate('%Y-%m-%d %H:%i:%s', now('Asia/Jakarta'));
-		$data['today'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$data['today'] = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
 
 		if ($this->session->userdata('akses') == '3') {
 			$where = array(
 				'id_user' => $this->session->userdata('ses_id')
 			);
 			$que_exam = $this->user_model->check('users_exam', $where);
+			$waktu = $que_exam->row_array();
 			$check_null = $que_exam->row_array();
-			$data['waktu'] = $que_exam->result();
+			$interval1 = new DateTime($data['today_time']);
+			$interval2 = new DateTime($waktu['end_f2f']);
+			$data['waktu'] = $interval1->diff($interval2);
 
 			if ($check_null['start_f2f'] == null) {
 				$end_exam = mdate('%Y-%m-%d %H:%i:%s', strtotime('+2 hours', strtotime($data['today_time'])));
@@ -184,6 +207,20 @@ class Start extends CI_Controller
 					'id_user' => $this->session->userdata('ses_id')
 				);
 				$this->user_model->change_user('users', $where_ar, $data_ar);
+
+				# +1 KETIKA ADA YANG F2F
+				$get_id_selection = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $id))->row_array();
+				$label_selection = $this->sesi_model->tampil_seleksi_label('selection_stage', array('id_stage' => $get_id_selection['id_stage']))->row_array();
+				if ($label_selection['lbl_f2f'] == NULL) {
+					$data_label = array('lbl_f2f' => $this->session->userdata('ses_id'));
+					$where_label = array('id_stage' => $label_selection['id_stage']);
+				}
+				else {
+					$data_label = array('lbl_f2f' => $label_selection['lbl_f2f'].'~'.$this->session->userdata('ses_id'));
+					$where_label = array('id_stage' => $label_selection['id_stage']);
+				}
+				$this->sesi_model->update_seleksi('selection_stage', $where_label, $data_label);
+				# END
 			}
 
 			$where = array(
@@ -203,6 +240,17 @@ class Start extends CI_Controller
 				'label' => $this->session->userdata('label_ses_f2f')
 			);
 			$data['soal_f2f'] = $this->soal_model->tampil_soal_user('question_f2f', $get)->result();
+
+			if ($data['today'] > $interval2) {
+				$data = array('nilai_f2f' => 0);
+				$where = array('id_user' => $this->session->userdata('ses_id'));
+				$this->user_model->change_user('users_detail', $where, $data);
+
+				$data_ar = array('acc_status' => 2);
+				$where_ar = array('id_user' => $this->session->userdata('ses_id'));
+				$this->user_model->change_user('users', $where_ar, $data_ar);
+				redirect('dashboard/result');
+			}
 
 			$this->load->view('user/v_header', $data);
 			$this->load->view('user/v_f2f');

@@ -14,10 +14,8 @@
 			</div>
 
 			<div class="card-body">
-
 				<?php echo form_open('start/submit_online'); ?>
 						<?php $count = 1; ?>
-
 						<?php foreach ($soal_online as $j): ?>
 							<?php if ($i->label_online == $j->label): ?>
 								<div class="card">

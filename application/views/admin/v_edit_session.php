@@ -87,13 +87,13 @@
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_pendaftaran1" id="sesi_pendaftaran1" value="<?php echo $i->start_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_pendaftaran1" id="sesi_pendaftaran1" value="<?php echo date('Y/m/d H:i', strtotime($i->start_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_pendaftaran2" id="sesi_pendaftaran2" value="<?php echo $i->end_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_pendaftaran2" id="sesi_pendaftaran2" value="<?php echo date('Y/m/d H:i', strtotime($i->end_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 								</div>
@@ -110,13 +110,13 @@
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_online1" id="sesi_online1" value="<?php echo $i->start_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_online1" id="sesi_online1" value="<?php echo date('Y/m/d H:i', strtotime($i->start_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_online2" id="sesi_online2" value="<?php echo $i->end_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_online2" id="sesi_online2" value="<?php echo date('Y/m/d H:i', strtotime($i->end_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 								</div>
@@ -133,13 +133,13 @@
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_tatap1" id="sesi_tatap1" value="<?php echo $i->start_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_tatap1" id="sesi_tatap1" value="<?php echo date('Y/m/d H:i', strtotime($i->start_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_tatap2" id="sesi_tatap2" value="<?php echo $i->end_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_tatap2" id="sesi_tatap2" value="<?php echo date('Y/m/d H:i', strtotime($i->end_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 								</div>
@@ -156,13 +156,13 @@
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_interview1" id="sesi_interview1" value="<?php echo $i->start_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_interview1" id="sesi_interview1" value="<?php echo date('Y/m/d H:i', strtotime($i->start_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<input type="date" name="sesi_interview2" id="sesi_interview2" value="<?php echo $i->end_stage; ?>" class="form-control" required>
+											<input type="text" name="sesi_interview2" id="sesi_interview2" value="<?php echo date('Y/m/d H:i', strtotime($i->end_stage)); ?>" class="form-control" required>
 										</div>
 									</div>
 								</div>

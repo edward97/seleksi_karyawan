@@ -27,7 +27,7 @@ class Register extends CI_Controller
 	}
 
 	function index() {
-		$data['format'] = mdate('%Y-%m-%d', now('Asia/Jakarta'));
+		$data['format'] = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
 		
 		$data['open_sesi'] = $this->sesi_model->tampil_tahap_1($data['format'])->result();
 		$data['cek'] = $this->sesi_model->tampil_tahap_1($data['format'])->num_rows();
@@ -87,23 +87,23 @@ class Register extends CI_Controller
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor KTP anda tidak valid!</div>');
 			redirect('register');
 		}
-		if (strlen($no_hp) > 12 || strlen($no_hp) < 6) {
+		if (strlen($no_hp) > 12 || strlen($no_hp) < 10) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Hp anda tidak valid!</div>');
 			redirect('register');
 		}
-		if ($no_telp != '' && strlen($no_telp) != 6) {
+		if ($no_telp != '' && strlen($no_telp) != 10) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Telp anda tidak valid!</div>');
 			redirect('register');
 		}
-		if (strlen($no_kerabat) < 6 || strlen($no_kerabat) > 12) {
+		if (strlen($no_kerabat) < 10 || strlen($no_kerabat) > 12) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Hp anda tidak valid!</div>');
 			redirect('register');
 		}
 
-		// if ($target['tar'] == null) {
-		// 	redirect('register');
-		// 	$this->session->set_flashdata('msg', '<div class="alert alert-danger">Jumlah kemampuan tidak boleh kosong!</div>');
-		// }
+		if ($target['tar'] == null) {
+			redirect('register');
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Jumlah kemampuan tidak boleh kosong!</div>');
+		}
 
 		$confirm_code = $this->random_code();
 		$data_user = array(
@@ -114,12 +114,10 @@ class Register extends CI_Controller
 			'id_job' => $job,
 			'id_stage_detail' => $stage
 		);
-		// insert data user dan ambil last_id
+		# INSERT DATA USER DAN AMBIL LAST_ID
 		$idInsert = $this->user_model->add_user('users', $data_user);
 
-		
-
-		// array 2D u/ simpan ability
+		# ARRAY 2D U/ INSERT ABILITY
 		$val = array();
 		foreach ($target['tar'] as $i) {
 			array_push($val, array(
@@ -130,7 +128,7 @@ class Register extends CI_Controller
 		}
 		$this->user_model->add_user_ability('users_ability', $val);
 
-		// total ability user yg sama dengan required ability
+		# TOTAL ABILITY USER YANG SAMA DENGAN REQUIRED ABILITY
 		$id_std_usr = $this->user_model->get_id_std_user_spec($idInsert)->row_array();
 		$total_sama = $this->user_model->compare_ability_spec($id_std_usr['id_std'], $id_std_usr['id_user'])->num_rows();
 
@@ -159,14 +157,28 @@ class Register extends CI_Controller
 		);
 		$this->user_model->add_user_detail('users_detail', $detail_user);
 
+		# +1 KETIKA ADA YANG REGISTER
+		$get_id_selection = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $stage))->row_array();
+		$label_selection = $this->sesi_model->tampil_seleksi_label('selection_stage', array('id_stage' => $get_id_selection['id_stage']))->row_array();
+
+		if ($label_selection['lbl_register'] == NULL) {
+			$data_label = array('lbl_register' => $idInsert);
+			$where_label = array('id_stage' => $label_selection['id_stage']);
+		}
+		else {
+			$data_label = array('lbl_register' => $label_selection['lbl_register'].'~'.$idInsert);
+			$where_label = array('id_stage' => $label_selection['id_stage']);
+		}
+		$this->sesi_model->update_seleksi('selection_stage', $where_label, $data_label);
+
 		$config = [
 			'useragent' => 'CodeIgniter',
 			'protocol'  => 'smtp',
 			'mailpath'  => '/usr/sbin/sendmail',
 			// 'smtp_host' => 'ssl://smtp.gmail.com',
 			'smtp_host' => 'ssl://smtp.mail.yahoo.com',
-			'smtp_user' => 'edw_shen@yahoo.com', // email
-			'smtp_pass' => 'esj04121972', // password
+			'smtp_user' => '', // email
+			'smtp_pass' => '', // password
 			'smtp_port' => 465,
 			'smtp_keepalive' => TRUE,
 			'smtp_crypto' => 'SSL',
@@ -180,7 +192,7 @@ class Register extends CI_Controller
 		];
 
 		$this->email->initialize($config);
-		$this->email->from('edw_shen@yahoo.com', 'Edward');
+		$this->email->from('', 'Edward');
 		$this->email->to($email);
 		$this->email->subject('Verifikasi Akun');
 		$this->email->message('Terima kasih telah melakukan verifikasi. Silahkan klik link verifikasi berikut.<br>'.site_url('register/verification/'.$confirm_code)."<br><br><br>Selamat Beraktivitas, Edward Surya Jaya - Selection Team");
@@ -196,12 +208,8 @@ class Register extends CI_Controller
 	}
 
 	function verification($key) {
-		$data = array(
-			'acc_status' => 1
-		);
-		$where = array(
-			'confirm_code' => $key
-		);
+		$data = array('acc_status' => 1);
+		$where = array('confirm_code' => $key);
 		$this->user_model->change_user('users', $where, $data);
 
 		$this->session->set_flashdata('msg', '<div class="alert alert-info"><strong>Verifikasi berhasil!</strong> Silahkan Login.</div>');

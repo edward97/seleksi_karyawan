@@ -4,6 +4,7 @@
 		<script src="<?php echo base_url(); ?>assets/vendor/jquery/jquery.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/vendor/popper.js/popper.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<script src="<?php echo base_url(); ?>assets/vendor/datetimepicker/jquery.datetimepicker.full.js"></script>
 		<script src="<?php echo base_url(); ?>assets/vendor/tinymce/js/tinymce.min.js"></script>
 		<script src="<?php echo base_url(); ?>assets/js/carbon.js"></script>
 
@@ -91,6 +92,36 @@
 					modal.find('#telp_kerabat').attr("value",div.data('telp_kerabat'));
 					modal.find('#hubungan_kerabat').attr("value",div.data('hubungan_kerabat'));
 				});
+			});
+
+			$.datetimepicker.setLocale('en');
+			$('#sesi_pendaftaran1').datetimepicker({
+				mask:'9999/19/39 29:59'
+			});
+			$('#sesi_pendaftaran2').datetimepicker({
+				mask:'9999/19/39 29:59'
+			});
+
+			$('#sesi_online1').datetimepicker({
+				mask:'9999/19/39 29:59'
+			});
+
+			$('#sesi_online2').datetimepicker({
+				mask:'9999/19/39 29:59'
+			});
+
+			$('#sesi_tatap1').datetimepicker({
+				mask:'9999/19/39 29:59'
+			});
+			$('#sesi_tatap2').datetimepicker({
+				mask:'9999/19/39 29:59'
+			});
+
+			$('#sesi_interview1').datetimepicker({
+				mask:'9999/19/39 29:59'
+			});
+			$('#sesi_interview2').datetimepicker({
+				mask:'9999/19/39 29:59'
 			});
 		</script>
 	</body>
