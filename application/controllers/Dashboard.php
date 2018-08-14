@@ -176,6 +176,56 @@ class Dashboard extends CI_Controller
 		}
 	}
 
+	function detail() {
+		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
+		$data['judul'] = "Dashboard - Detail";
+		$check = $this->uri->segment(3);
+		$data['check'] = $check;
+		$id = $this->uri->segment(4);
+
+		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') && $check != NULL && $id != 0) {
+			$data['user'] = $this->user_model->get_id_std_user()->result();
+
+			$where = array('id_stage' => $id);
+			$seleksi = $this->sesi_model->tampil_seleksi_label('selection_stage', $where)->row_array();
+
+			if ($check == 'register') {
+				$data['pecah'] = explode('~', $seleksi['lbl_register']);
+
+				$this->load->view('admin/v_header', $data);
+				$this->load->view('admin/v_dashboard_detail');
+				$this->load->view('admin/v_footer');
+			}
+			elseif ($check == 'online') {
+				$data['pecah'] = explode('~', $seleksi['lbl_online']);
+
+				$this->load->view('admin/v_header', $data);
+				$this->load->view('admin/v_dashboard_detail');
+				$this->load->view('admin/v_footer');
+			}
+			elseif ($check == 'f2f') {
+				$data['pecah'] = explode('~', $seleksi['lbl_f2f']);
+
+				$this->load->view('admin/v_header', $data);
+				$this->load->view('admin/v_dashboard_detail');
+				$this->load->view('admin/v_footer');
+			}
+			elseif ($check == 'interview') {
+				$data['pecah'] = explode('~', $seleksi['lbl_interview']);
+
+				$this->load->view('admin/v_header', $data);
+				$this->load->view('admin/v_dashboard_detail');
+				$this->load->view('admin/v_footer');
+			}
+			else {
+				$this->load->view('errors/404.html');
+			}
+		}
+		else {
+			$this->load->view('errors/404.html');
+		}
+	}
+
 	function result() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		$this->load->view('user/v_dashboard_tidak_lulus.php', $data);

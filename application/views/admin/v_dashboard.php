@@ -25,7 +25,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<a class="card-link font-weight-bold" data-toggle="collapse" href="#collapse<?php echo $i->id_stage; ?>">
-												Session <?php echo $i->nm_job; ?> &nbsp;<i class="fas fa-angle-down"></i>
+												Session <?php echo $i->nm_job.' | '.$i->created_at; ?> &nbsp;<i class="fas fa-angle-down"></i>
 											</a>
 										</div>
 
@@ -58,7 +58,7 @@
 											</div>
 
 											<div class="col-md-6 text-right">
-												<a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
+												<a href="dashboard/detail/register/<?php echo $i->id_stage; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
 												<!-- <?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
 													<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>
 												<?php endif ?> -->
@@ -80,7 +80,7 @@
 											</div>
 
 											<div class="col-md-6 text-right">
-												<a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
+												<a href="dashboard/detail/online/<?php echo $i->id_stage; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
 
 												<!-- <?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
 													<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>
@@ -103,7 +103,7 @@
 											</div>
 
 											<div class="col-md-6 text-right">
-												<a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
+												<a href="dashboard/detail/f2f/<?php echo $i->id_stage; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
 
 												<!-- <?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
 													<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>
@@ -126,7 +126,7 @@
 											</div>
 
 											<div class="col-md-6 text-right">
-												<a href="#" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
+												<a href="dashboard/detail/interview/<?php echo $i->id_stage; ?>" class="btn btn-outline-primary btn-sm"><i class="fas fa-info-circle"></i> Detail</a>
 
 												<!-- <?php if ($j->start_stage <= $today && $j->end_stage > $today): ?>
 													<a href="<?php echo site_url('sesi/next/').$j->id; ?>" class="btn btn-outline-info"><i class="fas fa-arrow-right"></i> Next Step</a>

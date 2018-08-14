@@ -74,22 +74,21 @@
 
 										<tfoot class="text-danger">
 											<?php
-												$akurasi = ($tp + $tn) / ($tp + $tn + $fp + $fn);
+												$akurasi = 0;
+												if (($tp + $tn + $fp + $fn) != 0) {
+													$akurasi = ($tp + $tn) / ($tp + $tn + $fp + $fn);
+												}
 												$accuracy = $akurasi * 100;
 
+												$recall = 0;
 												if (($tp + $fn) != 0) {
 													$recall = $tp / ($tp + $fn) * 100;
 												}
-												else {
-													$recall = 0;
-												}
+
+												$precision = 0;
 												if (($tp + $fp) != 0) {
 													$precision = $tp / ($tp + $fp) * 100;
 												}
-												else {
-													$precision = 0;
-												}
-
 
 												$total_akurasi+=$accuracy;
 												$total_recall+=$recall;
@@ -205,20 +204,20 @@
 
 										<tfoot class="text-danger">
 											<?php
-												$akurasi = ($tp + $tn) / ($tp + $tn + $fp + $fn);
+												$akurasi = 0;
+												if (($tp + $tn + $fp + $fn) != 0) {
+													$akurasi = ($tp + $tn) / ($tp + $tn + $fp + $fn);
+												}
 												$accuracy = $akurasi * 100;
 
+												$recall = 0;
 												if (($tp + $fn) != 0) {
 													$recall = $tp / ($tp + $fn) * 100;
 												}
-												else {
-													$recall = 0;
-												}
+
+												$precision = 0;
 												if (($tp + $fp) != 0) {
 													$precision = $tp / ($tp + $fp) * 100;
-												}
-												else {
-													$precision = 0;
 												}
 
 

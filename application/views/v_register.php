@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_ktp" class="col-sm-4 col-form-label require">No. KTP</label>
 												
 												<div class="col-sm-8">
-													<input type="number" class="form-control" name="no_ktp" id="no_ktp" required>
+													<input type="number" class="form-control" name="no_ktp" id="no_ktp" max="9999999999999999" required>
 												</div>
 											</div>
 										</div>
