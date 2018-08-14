@@ -28,8 +28,8 @@
 											<?php if ($i->id_user == $value): ?>
 												<tr>
 													<td><?php echo $no; ?></td>
-													<td><?php echo $i->no_ktp ?></td>
 													<td><?php echo $i->id_user ?></td>
+													<td><?php echo $i->no_ktp ?></td>
 													<td><?php echo $i->full_name ?></td>
 													<td><?php echo $i->email ?></td>
 													<td><?php echo $i->label ?></td>
