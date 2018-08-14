@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_ktp" class="col-sm-4 col-form-label require">No. KTP</label>
 												
 												<div class="col-sm-8">
-													<input type="number" class="form-control" name="no_ktp" id="no_ktp" max="9999999999999999" required>
+													<input type="number" class="form-control" name="no_ktp" id="no_ktp" max="9999999999999999" maxlength="16" oninput="maxLengthCheck(this)" required>
 												</div>
 											</div>
 										</div>
@@ -271,7 +271,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															</div>
 
 															<div class="col-md-6">
-																<input type="number" class="form-control" name="pos" id="pos" required>
+																<input type="number" class="form-control" name="pos" id="pos" maxlength="5" oninput="maxLengthCheck(this)" required>
 																<small class="form-text">Kode Pos</small>
 															</div>
 														</div>
@@ -287,7 +287,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_hp" class="col-sm-4 col-form-label require">Nomor Handphone</label>
 												
 												<div class="col-sm-8">
-													<input type="number" class="form-control" name="no_hp" id="no_hp" required>
+													<input type="number" class="form-control" name="no_hp" id="no_hp" maxlength="12" oninput="maxLengthCheck(this)" required>
 												</div>
 											</div>
 										</div>
@@ -299,7 +299,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_telp" class="col-sm-4 col-form-label">Nomor Telepon</label>
 												
 												<div class="col-sm-8">
-													<input type="number" class="form-control" name="no_telp" id="no_telp" maxlength="6">
+													<input type="number" class="form-control" name="no_telp" id="no_telp" maxlength="10" oninput="maxLengthCheck(this)">
 												</div>
 											</div>
 										</div>
@@ -329,7 +329,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="no_kerabat" class="col-sm-4 col-form-label require">No. Hp / Telp</label>
 																
 																<div class="col-sm-8">
-																	<input type="number" class="form-control" name="no_kerabat" id="no_kerabat" required>
+																	<input type="number" class="form-control" name="no_kerabat" id="no_kerabat" minlength = "10" maxlength="16" oninput="maxLengthCheck(this)" required>
 																</div>
 															</div>
 														</div>
@@ -483,6 +483,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 		<script>
+		function maxLengthCheck(object)
+		  {
+		    if (object.value.length > object.maxLength)
+		      object.value = object.value.slice(0, object.maxLength)
+		  }
+
 		$(document).ready(function () {
 			var navListItems = $('div.setup-panel div a'),
 			allWells = $('.setup-content'),
