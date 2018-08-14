@@ -133,10 +133,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</a>
 							</li>
 
-							<li class="nav-item">
-								<a href="<?php echo site_url('kualifikasi'); ?>" class="nav-link <?php echo active_link('kualifikasi'); ?>">
-									<i class="icon icon-doc"></i> Kualifikasi
+							<li class="nav-item nav-dropdown">
+								<a href="#" class="nav-link nav-dropdown-toggle">
+									<i class="icon icon-graph"></i> Kualifikasi <i class="fa fa-caret-left"></i>
 								</a>
+
+								<ul class="nav-dropdown-items">
+									<li class="nav-item">
+										<a href="<?php echo site_url('kualifikasi/list'); ?>" class="nav-link <?php echo active_link('kualifikasi/list'); ?>">
+											<i class="icon icon-doc"></i> List Kualifikasi
+										</a>
+									</li>
+
+									<li class="nav-item">
+										<a href="<?php echo site_url('kualifikasi'); ?>" class="nav-link <?php echo active_link('kualifikasi'); ?>">
+											<i class="icon icon-doc"></i> Input Kualifikasi
+										</a>
+									</li>
+								</ul>
 							</li>
 
 							<li class="nav-item">

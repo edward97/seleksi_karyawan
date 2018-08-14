@@ -25,7 +25,7 @@
 									<div class="row">
 										<div class="col-md-6">
 											<a class="card-link font-weight-bold" data-toggle="collapse" href="#collapse<?php echo $i->id_stage; ?>">
-												Session <?php echo $i->nm_job.' | '.$i->created_at; ?> &nbsp;<i class="fas fa-angle-down"></i>
+												Session <?php echo 'ID '.$i->id_stage.' | '.$i->nm_job; ?> &nbsp;<i class="fas fa-angle-down"></i>
 											</a>
 										</div>
 

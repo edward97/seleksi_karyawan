@@ -30,10 +30,10 @@
 												<th>Pendidikan Terakhir</th>
 												<th>Status</th>
 												<th>Total Kemampuan</th>
-												<th>Nilai Ujian Online</th>
-												<th>Nilai Ujian Tatap Muka</th>
+												<th class="text-nowrap">Nilai Ujian Online</th>
+												<th class="text-nowrap">Nilai Ujian Tatap Muka</th>
 												<th>Nilai Sikap</th>
-												<th>Hasil</th>
+												<th>Hasil Keputusan</th>
 												<th>Hasil Akurasi</th>
 											</tr>
 										</thead>
@@ -96,18 +96,23 @@
 											?>
 
 											<tr>
-												<td>Total Accuracy</td>
-												<td><?php echo $accuracy; ?>%</td>
+												<td colspan="2">Total</td>
+												<td colspan="2">TP : <?php echo $tp; ?>; FN : <?php echo $fn; ?>; FP : <?php echo $fp; ?>; TN : <?php echo $tn; ?>;</td>
 											</tr>
 
 											<tr>
-												<td>Total Recall</td>
-												<td><?php echo $recall; ?>%</td>
+												<td colspan="2">Total Accuracy</td>
+												<td colspan="2"><?php echo $accuracy; ?>%</td>
 											</tr>
 
 											<tr>
-												<td>Total Precision</td>
-												<td><?php echo $precision; ?>%</td>
+												<td colspan="2">Total Recall</td>
+												<td colspan="2"><?php echo $recall; ?>%</td>
+											</tr>
+
+											<tr>
+												<td colspan="2">Total Precision</td>
+												<td colspan="2"><?php echo $precision; ?>%</td>
 											</tr>
 										</tfoot>
 									</table>
@@ -160,10 +165,10 @@
 												<th>Pendidikan Terakhir</th>
 												<th>Status</th>
 												<th>Total Kemampuan</th>
-												<th>Nilai Ujian Online</th>
-												<th>Nilai Ujian Tatap Muka</th>
+												<th class="text-nowrap">Nilai Ujian Online</th>
+												<th class="text-nowrap">Nilai Ujian Tatap Muka</th>
 												<th>Nilai Sikap</th>
-												<th>Hasil</th>
+												<th>Hasil Keputusan</th>
 												<th>Hasil Akurasi</th>
 											</tr>
 										</thead>
@@ -227,18 +232,23 @@
 											?>
 
 											<tr>
-												<td>Total Accuracy</td>
-												<td><?php echo $accuracy; ?>%</td>
+												<td colspan="2">Total</td>
+												<td colspan="2">TP : <?php echo $tp; ?>; FN : <?php echo $fn; ?>; FP : <?php echo $fp; ?>; TN : <?php echo $tn; ?>;</td>
 											</tr>
 
 											<tr>
-												<td>Total Recall</td>
-												<td><?php echo $recall; ?>%</td>
+												<td colspan="2">Total Accuracy</td>
+												<td colspan="2"><?php echo $accuracy; ?>%</td>
 											</tr>
 
 											<tr>
-												<td>Total Precision</td>
-												<td><?php echo $precision; ?>%</td>
+												<td colspan="2">Total Recall</td>
+												<td colspan="2"><?php echo $recall; ?>%</td>
+											</tr>
+
+											<tr>
+												<td colspan="2">Total Precision</td>
+												<td colspan="2"><?php echo $precision; ?>%</td>
 											</tr>
 										</tfoot>
 									</table>

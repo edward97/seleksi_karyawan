@@ -298,9 +298,9 @@ class Algoritma extends CI_Controller
 			if ($a_l == 0 && $b_l != 0) {
 				$temp_fix_keputusan_left[$i->detail] = 'gagal';
 			}
-			// if ($a_l == 0 && $b_l == 0) {
-			// 	$w_kiri = '#SKIP';
-			// }
+			if ($a_l == 0 && $b_l == 0) {
+				$w_kiri = '#SKIP';
+			}
 			# --------------------------------------------------
 			$where_right_lulus = array(
 				$i->attr.' !=' => $i->detail,
@@ -449,7 +449,7 @@ class Algoritma extends CI_Controller
 						'right_keputusan' => '!="'.$right.'"',
 						'keputusan' => NULL,
 						'link' => $id,
-						'status_hitung' => $w_kanan,
+						'status_hitung' => $w_kiri,
 						'atribut_cek' => $last_atribut.'~'.$root.'~',
 						'label_kanan' => $label.'~!="'.$right.'"~',
 					);
@@ -1238,9 +1238,9 @@ class Algoritma extends CI_Controller
 			if ($a_l == 0 && $b_l != 0) {
 				$temp_fix_keputusan_left[$i->detail] = 'gagal';
 			}
-			// if ($a_l == 0 && $b_l == 0) {
-			// 	$w_kiri = '#SKIP';
-			// }
+			if ($a_l == 0 && $b_l == 0) {
+				$w_kiri = '#SKIP';
+			}
 			# --------------------------------------------------
 			$where_right_lulus = array(
 				$i->attr.' !=' => $i->detail,
@@ -1390,7 +1390,7 @@ class Algoritma extends CI_Controller
 						'right_keputusan' => '!="'.$right.'"',
 						'keputusan' => NULL,
 						'link' => $id,
-						'status_hitung' => $w_kanan,
+						'status_hitung' => $w_kiri,
 						'atribut_cek' => $last_atribut.'~'.$root.'~',
 						'label_kanan' => $label.'~!="'.$right.'"~',
 					);

@@ -27,7 +27,7 @@
 										<select name="sesi" id="sesi" class="form-control" required>
 											<option value="">Choose...</option>
 											<?php foreach ($seleksi_aktif_ar as $i): ?>
-												<option value="<?php echo $i->id_stage; ?>"><?php echo $i->nm_job;; ?></option>
+												<option value="<?php echo $i->id_stage; ?>"><?php echo 'ID '.$i->id_stage.' | '.$i->nm_job; ?></option>
 											<?php endforeach ?>
 										</select>
 									</div>

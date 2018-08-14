@@ -24,10 +24,27 @@ class Kualifikasi extends CI_Controller
 			$data['ability'] = $this->setting_model->tampil_ability()->result();
 			$data['atribut'] = $this->setting_model->tampil_atribut()->result();
 			$data['job'] = $this->setting_model->tampil_job()->result();
-			$data['judul'] = 'List Kualifikasi';
+			$data['judul'] = 'Input Kualifikasi';
 
 			$this->load->view('admin/v_header', $data);
 			$this->load->view('admin/v_input_kualifikasi');
+			$this->load->view('admin/v_footer');
+		}
+		else {
+			$this->load->view('errors/404.html');
+		}
+	}
+
+	function list() {
+		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
+
+		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+			$data['ability'] = $this->kualifikasi_model->tampil_required_ability()->result();
+			$data['list'] = $this->kualifikasi_model->tampil_kualifikasi()->result();
+			$data['judul'] = 'List Kualifikasi';
+
+			$this->load->view('admin/v_header', $data);
+			$this->load->view('admin/v_list_kualifikasi');
 			$this->load->view('admin/v_footer');
 		}
 		else {

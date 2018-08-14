@@ -159,7 +159,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="no_ktp" class="col-sm-4 col-form-label require">No. KTP</label>
 												
 												<div class="col-sm-8">
-													<input type="number" class="form-control" name="no_ktp" id="no_ktp" max="9999999999999999" maxlength="16" oninput="maxLengthCheck(this)" required>
+													<input type="number" class="form-control" name="no_ktp" id="no_ktp" maxlength="16" oninput="maxLengthCheck(this)" required>
 												</div>
 											</div>
 										</div>
@@ -397,7 +397,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												<label for="pengalaman" class="col-sm-4 col-form-label require">Pengalaman</label>
 												
 												<div class="col-sm-8">
-													<input type="number" min="0" class="form-control" name="pengalaman" id="pengalaman" required>
+													<input type="number" class="form-control" name="pengalaman" id="pengalaman" minlength = "2" maxlength="2" oninput="maxLengthCheck(this)" required>
+
 												</div>
 											</div>
 										</div>
@@ -424,7 +425,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											</div>
 										</div>
 
-										<!-- Modal Tambah Admin -->
+										<!-- Modal Tambah Ability -->
 										<div class="modal fade" id="addAct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 											<div class="modal-dialog modal-lg" role="document">
 												<div class="modal-content">
@@ -466,7 +467,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</label>
 									</div>
 
-									<button type="submit" name="submit" value="register" class="btn btn-success"><i class="far fa-save"></i> Register</button>
+									<button type="submit" id="submit" name="submit" value="register" class="btn btn-success"><i class="far fa-save"></i> Register</button>
 								</div>
 							</div>
 						<?php echo form_close(); ?>
@@ -483,11 +484,58 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<script src="<?php echo base_url(); ?>assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 
 		<script>
+		document.getElementById("submit").onclick = function () {
+			if (CheckBoxCount()) {
+				document.forms[0].submit();
+			};
+		};
+		
+		function CheckBoxCount() {
+			var inputList = document.getElementsByTagName("input");
+			var numChecked = 0;
+
+			for (var i = 0; i < inputList.length; i++) {
+				if (inputList[i].type == "checkbox" && inputList[i].checked) {
+					numChecked = numChecked + 1;
+				}
+			}
+			if (numChecked < 5) {
+				alert("Minimum Kemampuan 5!"); return false;
+			}
+			// else if (numChecked > 3) {
+			//     alert("Maximum 3 !"); return false;
+			// }
+			// alert("selected count: " + numChecked);
+			return true;
+		}
+
+		$("input[name='kemampuan[]']").change(function(){
+			var max= 10;
+			x = $("input[name='kemampuan[]']:checked").length;
+			if( $("input[name='kemampuan[]']:checked").length == max ){
+				$("input[name='kemampuan[]']").attr('disabled', 'disabled');
+				$("input[name='kemampuan[]']:checked").removeAttr('disabled');
+			}else{
+				$("input[name='kemampuan[]']").removeAttr('disabled');
+			}
+		});
+
+		function checkForm(form) {
+			if (!form.terms.checked) {
+				alert("Please that you accept the Terms and Conditions");
+				form.terms.focus();
+				return false;
+			}
+			else {
+				return true;
+			}
+		};
+
 		function maxLengthCheck(object)
-		  {
-		    if (object.value.length > object.maxLength)
-		      object.value = object.value.slice(0, object.maxLength)
-		  }
+		{
+			if (object.value.length > object.maxLength)
+			object.value = object.value.slice(0, object.maxLength)
+		};
 
 		$(document).ready(function () {
 			var navListItems = $('div.setup-panel div a'),
@@ -528,19 +576,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			});
 			$('div.setup-panel div a.btn-success').trigger('click');
 		});
-		</script>
-
-		<script>
-			function checkForm(form) {
-				if (!form.terms.checked) {
-					alert("Please that you accept the Terms and Conditions");
-					form.terms.focus();
-					return false;
-				}
-				else {
-					return true;
-				}
-			}
 		</script>
 	</body>
 </html>
