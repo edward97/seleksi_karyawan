@@ -16,7 +16,8 @@
 								
 								<div class="col-sm-8">
 									<input type="hidden" name="id_user" value="<?php echo $i->id_user; ?>">
-									<input type="number" class="form-control" name="no_ktp" id="no_ktp" value="<?php echo $i->no_ktp; ?>" required>
+									<input type="number" class="form-control" name="no_ktp" id="no_ktp" maxlength="16" oninput="maxLengthCheck(this)" value="<?php echo $i->no_ktp; ?>" required>
+									<small class="form-text">16 digits</small>
 								</div>
 							</div>
 						</div>
@@ -128,7 +129,7 @@
 											</div>
 
 											<div class="col-md-6">
-												<input type="number" class="form-control" name="pos" id="pos" value="<?php echo $i->kode_pos; ?>" required>
+												<input type="number" class="form-control" name="pos" id="pos" min="0" maxlength="5" oninput="maxLengthCheck(this)" value="<?php echo $i->kode_pos; ?>" required>
 												<small class="form-text">Kode Pos</small>
 											</div>
 										</div>
@@ -144,7 +145,7 @@
 								<label for="no_hp" class="col-sm-4 col-form-label require">Nomor Handphone</label>
 								
 								<div class="col-sm-8">
-									<input type="number" class="form-control" name="no_hp" id="no_hp" value="<?php echo $i->p_number; ?>" required>
+									<input type="number" class="form-control" name="no_hp" id="no_hp" maxlength="12" oninput="maxLengthCheck(this)" value="<?php echo $i->p_number; ?>" required>
 								</div>
 							</div>
 						</div>
@@ -156,7 +157,7 @@
 								<label for="no_telp" class="col-sm-4 col-form-label">Nomor Telepon</label>
 								
 								<div class="col-sm-8">
-									<input type="number" class="form-control" name="no_telp" id="no_telp" value="<?php echo $i->t_number; ?>">
+									<input type="number" class="form-control" name="no_telp" id="no_telp" maxlength="10" oninput="maxLengthCheck(this)" value="<?php echo $i->t_number; ?>">
 								</div>
 							</div>
 						</div>
@@ -186,7 +187,7 @@
 												<label for="no_kerabat" class="col-sm-4 col-form-label require">No. Hp / Telp</label>
 												
 												<div class="col-sm-8">
-													<input type="number" class="form-control" name="no_kerabat" id="no_kerabat" value="<?php echo $i->nomor_kerabat; ?>" required>
+													<input type="number" class="form-control" name="no_kerabat" id="no_kerabat" maxlength="12" oninput="maxLengthCheck(this)" value="<?php echo $i->nomor_kerabat; ?>" required>
 												</div>
 											</div>
 										</div>
@@ -283,3 +284,10 @@
 		<?php endforeach; ?>
 	</div>
 </div>
+
+<script>
+	function maxLengthCheck(object) {
+		if (object.value.length > object.maxLength)
+		object.value = object.value.slice(0, object.maxLength)
+	};
+</script>

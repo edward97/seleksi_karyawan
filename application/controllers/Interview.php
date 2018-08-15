@@ -72,7 +72,7 @@ class Interview extends CI_Controller
 		$this->user_model->change_user('users_detail', $where, $data_2);
 
 
-		$this->session->set_flashdata('msg_interview', '<div class="alert alert-info">Data berhasil diupdate!</div>');
+		$this->session->set_flashdata('msg_interview', '<div class="alert alert-info">Data ID ['.$id.'] berhasil diupdate!</div>');
 		redirect('interview');
 	}
 

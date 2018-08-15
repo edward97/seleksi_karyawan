@@ -10,7 +10,7 @@
 					<?php foreach ($soal as $i): ?>
 					<?php echo form_open('soal/upt_online_act') ?>
 					<div class="card-body">
-						<?php echo $this->session->flashdata('msg_online') ?>
+						<?php echo $this->session->flashdata('msg') ?>
 
 						<div class="row">
 							<div class="col-md-2">
@@ -22,25 +22,20 @@
 
 							<div class="col-md-5">
 								<div class="form-group">
-									<label for="divisi" class="require">Divisi</label>
-									<select name="divisi" id="divisi" class="form-control">
+									<label for="divisi">Divisi</label>
 									<?php foreach ($divisi as $j): ?>
-										<?php if ($i->id_job == $j->id_job) {
-											$val = "selected";
-										} else {
-											$val = "";
-										} ?>
-
-										<option <?php echo $val; ?> value="<?php echo $j->id_job ?>"><?php echo $j->nm_job ?></option>
+										<?php if ($i->id_job == $j->id_job): ?>
+											<input type="text" name="divisi" id="divisi" class="form-control" value="<?php echo $j->nm_job ?>" readonly>
+											<?php break; ?>
+										<?php endif ?>
 									<?php endforeach ?>
-									</select>
 								</div>
 							</div>
 
 							<div class="col-md-5">
 								<div class="form-group">
-								<label for="nama_soal" class="require">Nama Soal</label>
-									<input type="text" name="nama_soal" id="nama_soal" class="form-control" value="<?php echo $i->label ?>" required>
+								<label for="nama_soal">Nama Soal</label>
+									<input type="text" name="nama_soal" id="nama_soal" class="form-control" value="<?php echo $i->label ?>" readonly>
 									<small class="form-text">[ Akuntansi I, Akuntansi II ]</small>
 								</div>
 							</div>

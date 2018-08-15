@@ -95,6 +95,7 @@
 			});
 
 			$.datetimepicker.setLocale('en');
+			
 			$('#sesi_pendaftaran1').datetimepicker({
 				mask:'9999/19/39 29:59'
 			});

@@ -20,7 +20,7 @@ class Dashboard extends CI_Controller
 
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
-		$data['today'] = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
+		$data['today'] = mdate('%Y-%m-%d %H:%i:%s', now('Asia/Jakarta'));
 		$data['judul'] = "Dashboard";
 
 		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {

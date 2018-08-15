@@ -99,19 +99,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<li class="nav-item">
 								<a href="<?php echo site_url('sesi'); ?>" class="nav-link <?php echo active_link('sesi'); ?>">
-									<i class="icon icon-calendar"></i> Open Session
+									<i class="icon icon-calendar"></i> Buka Sesi
 								</a>
 							</li>
 
 							<li class="nav-item">
 								<a href="<?php echo site_url('admin'); ?>" class="nav-link <?php echo active_link('admin'); ?>">
-									<i class="icon icon-user"></i> Manage Admin
+									<i class="icon icon-user"></i> Mengelola Admin
 								</a>
 							</li>
 
 							<li class="nav-item">
 								<a href="<?php echo site_url('user'); ?>" class="nav-link <?php echo active_link('user'); ?>">
-									<i class="icon icon-people"></i> Profile User
+									<i class="icon icon-people"></i> Profil Pelamar
 								</a>
 							</li>
 
@@ -155,7 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 							<li class="nav-item">
 								<a href="<?php echo site_url('setting'); ?>" class="nav-link <?php echo active_link('setting'); ?>">
-									<i class="icon icon-briefcase"></i> Abilites & Jobs
+									<i class="icon icon-briefcase"></i> Kemampuan & Pekerjaan
 								</a>
 							</li>
 

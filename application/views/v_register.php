@@ -160,6 +160,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												
 												<div class="col-sm-8">
 													<input type="number" class="form-control" name="no_ktp" id="no_ktp" maxlength="16" oninput="maxLengthCheck(this)" required>
+													<small class="form-text">16 digits</small>
 												</div>
 											</div>
 										</div>
@@ -271,7 +272,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															</div>
 
 															<div class="col-md-6">
-																<input type="number" class="form-control" name="pos" id="pos" maxlength="5" oninput="maxLengthCheck(this)" required>
+																<input type="number" class="form-control" name="pos" id="pos" min="0" maxlength="5" oninput="maxLengthCheck(this)" required>
 																<small class="form-text">Kode Pos</small>
 															</div>
 														</div>
@@ -329,7 +330,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 																<label for="no_kerabat" class="col-sm-4 col-form-label require">No. Hp / Telp</label>
 																
 																<div class="col-sm-8">
-																	<input type="number" class="form-control" name="no_kerabat" id="no_kerabat" minlength = "10" maxlength="16" oninput="maxLengthCheck(this)" required>
+																	<input type="number" class="form-control" name="no_kerabat" id="no_kerabat" minlength = "6" maxlength="12" oninput="maxLengthCheck(this)" required>
 																</div>
 															</div>
 														</div>
@@ -447,6 +448,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 															</div>
 															<?php endforeach ?>
 														</div>
+														<small class="form-text">Min : 5 | Max : 10</small>
 													</div>
 
 													<div class="modal-footer border-0">
@@ -500,13 +502,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			}
 			if (numChecked < 5) {
-				alert("Minimum Kemampuan 5!"); return false;
+				alert("Minimum Kemampuan 5!");
+				form.terms.focus();
+				return false;
 			}
 			// else if (numChecked > 3) {
 			//     alert("Maximum 3 !"); return false;
 			// }
 			// alert("selected count: " + numChecked);
-			return true;
 		}
 
 		$("input[name='kemampuan[]']").change(function(){
@@ -526,13 +529,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				form.terms.focus();
 				return false;
 			}
-			else {
-				return true;
-			}
 		};
 
-		function maxLengthCheck(object)
-		{
+		function maxLengthCheck(object) {
 			if (object.value.length > object.maxLength)
 			object.value = object.value.slice(0, object.maxLength)
 		};

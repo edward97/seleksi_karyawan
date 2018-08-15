@@ -331,6 +331,6 @@ class Kualifikasi extends CI_Controller
 		// );
 		// $this->kualifikasi_model->add_buta_warna('standard_buta_warna', $data9);
 		$this->session->set_flashdata('msg', '<div class="alert alert-success">Standar Kualifikasi berhasil ditambah!</div>');
-		redirect('dashboard');
+		redirect('sesi/list');
 	}
 }

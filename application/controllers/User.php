@@ -86,11 +86,11 @@ class User extends CI_Controller
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Nomor KTP anda tidak valid!</div>');
 			redirect('user/edit/'.$id);
 		}
-		if (strlen($no_hp) > 12 || strlen($no_hp) < 6) {
+		if (strlen($no_hp) > 12 || strlen($no_hp) < 10) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Nomor Hp anda tidak valid!</div>');
 			redirect('user/edit/'.$id);
 		}
-		if ($no_telp != '' && strlen($no_telp) != 6) {
+		if ($no_telp != '' && strlen($no_telp) < 6) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Nomor Telp anda tidak valid!</div>');
 			redirect('user/edit/'.$id);
 		}

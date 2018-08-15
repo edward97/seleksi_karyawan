@@ -10,6 +10,8 @@
 					<div class="card-body">
 						<div class="row">
 							<div class="col-md-12">
+								<?php echo $this->session->userdata('msg'); ?>
+
 								<div class="table-responsive">
 									<table class="table table-hover">
 										<thead>
@@ -23,7 +25,7 @@
 										</thead>
 
 										<tbody>
-											<?php $no = 1; $no_1 = 1; ?>
+											<?php $no = 1; ?>
 											<?php foreach ($list as $i): ?>
 											<tr>
 												<td><?php echo $no; ?></td>
@@ -50,6 +52,7 @@
 														</div>
 														
 														<div class="modal-body p-5">
+															<?php $no_1 = 1; ?>
 															<?php foreach ($ability as $j): ?>
 																<?php if ($i->id_std == $j->id_std): ?>
 																	<p><?php echo $no_1.') '.$j->nm_ability ?></p>

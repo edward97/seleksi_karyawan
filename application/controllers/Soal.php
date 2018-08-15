@@ -120,7 +120,7 @@ class Soal extends CI_Controller
 			$correct = $this->input->post('correct');
 
 			if ($soal == NULL) {
-				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal menambah! Deskripsi soal tidak boleh kosong!</div>');
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal menambah! Deskripsi soal tidak boleh kosong!</div>');
 				redirect('soal/list_soal');
 			}
 
@@ -151,7 +151,7 @@ class Soal extends CI_Controller
 			);
 
 			$this->soal_model->add_online('question_online', $data);
-			$this->session->set_flashdata('msg_online', '<div class="alert alert-success">Data berhasil ditambah!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil ditambah!</div>');
 
 			$this->session->set_userdata('session_label', $label);
 			$this->session->set_userdata('session_divisi', $divisi);
@@ -176,7 +176,7 @@ class Soal extends CI_Controller
 			$correct = $this->input->post('correct');
 
 			if ($soal == NULL) {
-				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal menambah! Deskripsi soal tidak boleh kosong!</div>');
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal menambah! Deskripsi soal tidak boleh kosong!</div>');
 				redirect('soal/list_soal');
 			}
 
@@ -207,7 +207,7 @@ class Soal extends CI_Controller
 			);
 
 			$this->soal_model->add_online('question_f2f', $data);
-			$this->session->set_flashdata('msg_f2f', '<div class="alert alert-success">Data berhasil ditambah!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil ditambah!</div>');
 
 			$this->session->set_userdata('session_label', $label);
 			$this->session->set_userdata('session_divisi', $divisi);
@@ -271,7 +271,7 @@ class Soal extends CI_Controller
 			$correct = $this->input->post('correct');
 
 			if ($soal == NULL) {
-				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal update! Deskripsi soal tidak boleh kosong!</div>');
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Deskripsi soal tidak boleh kosong!</div>');
 				redirect('soal/edit_online/'.$id);
 			}
 
@@ -302,7 +302,7 @@ class Soal extends CI_Controller
 			$where = array('id_question' => $id);
 
 			$this->soal_model->update_online('question_online', $data, $where);
-			$this->session->set_flashdata('msg_online', '<div class="alert alert-info">Data berhasil diupdate!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diupdate!</div>');
 
 			redirect('soal/edit_online/'.$id);
 		}
@@ -325,7 +325,7 @@ class Soal extends CI_Controller
 			$correct = $this->input->post('correct');
 
 			if ($soal == NULL) {
-				$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Gagal update! Deskripsi soal tidak boleh kosong!</div>');
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Deskripsi soal tidak boleh kosong!</div>');
 				redirect('soal/edit_f2f/'.$id);
 			}
 
@@ -356,7 +356,7 @@ class Soal extends CI_Controller
 			$where = array('id_question' => $id);
 
 			$this->soal_model->update_f2f('question_f2f', $data, $where);
-			$this->session->set_flashdata('msg_f2f', '<div class="alert alert-info">Data berhasil diupdate!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diupdate!</div>');
 
 			redirect('soal/edit_f2f/'.$id);
 
@@ -391,7 +391,7 @@ class Soal extends CI_Controller
 			'id_question' => $id
 		);
 		$this->soal_model->delete_question('question_online', $where);
-		$this->session->set_flashdata('msg_online', '<div class="alert alert-danger">Data berhasil dihapus!</div>');
+		$this->session->set_flashdata('msg', '<div class="alert alert-danger">Data berhasil dihapus!</div>');
 		redirect('soal/list_soal');
 	}
 
@@ -400,7 +400,7 @@ class Soal extends CI_Controller
 			'id_question' => $id
 		);
 		$this->soal_model->delete_question('question_f2f', $where);
-		$this->session->set_flashdata('msg_f2f', '<div class="alert alert-danger">Data berhasil dihapus!</div>');
+		$this->session->set_flashdata('msg', '<div class="alert alert-danger">Data berhasil dihapus!</div>');
 		redirect('soal/list_soal');
 	}
 

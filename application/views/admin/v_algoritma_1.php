@@ -53,7 +53,7 @@ $cart = $this->session->userdata('data_testing_cart');
 										<th>Ujian Online</th>
 										<th>Ujian F2f</th>
 										<th>Nilai Sikap</th>
-										<th>Hasil</th>
+										<th>Hasil Keputusan</th>
 									</tr>
 								</thead>
 
@@ -95,7 +95,7 @@ $cart = $this->session->userdata('data_testing_cart');
 										<th>Ujian Online</th>
 										<th>Ujian F2f</th>
 										<th>Nilai Sikap</th>
-										<th>Hasil</th>
+										<th>Hasil Keputusan</th>
 									</tr>
 								</thead>
 

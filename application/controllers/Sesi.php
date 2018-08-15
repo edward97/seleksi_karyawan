@@ -198,7 +198,7 @@ class Sesi extends CI_Controller
 	}
 
 	function next($id) {
-		$sekarang = mdate('%Y-%m-%d %H:%i', now('Asia/Jakarta'));
+		$sekarang = mdate('%Y-%m-%d %H:%i:%s', now('Asia/Jakarta'));
 
 		if ($this->session->userdata('akses') == '1') {
 			$data = array('end_stage' => $sekarang);
@@ -209,7 +209,7 @@ class Sesi extends CI_Controller
 			$where = array('id' => $id+1);
 			$row = $this->sesi_model->update_tahapan_detail_where('selection_stage_detail', $where)->row_array();
 
-			if ($row['label'] == 'Tahap 4') {
+			if ($row['label'] == 'Tahap 5') {
 				$data = array(
 					'start_stage' => $sekarang,
 					'end_stage' => $sekarang

@@ -91,13 +91,17 @@ class Register extends CI_Controller
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Hp anda tidak valid!</div>');
 			redirect('register');
 		}
-		if ($no_telp != '' && strlen($no_telp) != 10) {
+		if ($no_telp != '' && strlen($no_telp) < 6) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Telp anda tidak valid!</div>');
 			redirect('register');
 		}
-		if (strlen($no_kerabat) < 10 || strlen($no_kerabat) > 12) {
+		if (strlen($no_kerabat) < 6 || strlen($no_kerabat) > 12) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor Hp anda tidak valid!</div>');
 			redirect('register');
+		}
+		if (strlen($password) != NULL && strlen($password) < 8) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Password anda tidak valid!</div>');
+			redirect('user/edit/'.$id);
 		}
 
 		if ($target['tar'] == null) {
