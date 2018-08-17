@@ -118,7 +118,7 @@ class Setting extends CI_Controller
 	}
 
 	function delete_act_abt($id) {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '1') {
 			$where = array('id_ability' => $id);
 
 			$this->setting_model->delete_ability('ability', $where);
@@ -132,7 +132,7 @@ class Setting extends CI_Controller
 	}
 
 	function delete_act_job($id) {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '1') {
 			$where = array('id_job' => $id);
 
 			$this->setting_model->delete_job('job', $where);

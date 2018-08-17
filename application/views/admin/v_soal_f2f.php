@@ -31,9 +31,11 @@
 								<i class="fa fa-cog"></i> Edit
 							</a>
 
-							<a href="<?php echo site_url('soal/delete_f2f/')."$i->id_question"; ?>" class="btn text-danger" onclick="return confirmDialog();">
-								<i class="fa fa-trash-alt"></i> Delete
-							</a>
+							<?php if ($this->session->userdata('akses') ==  '1'): ?>
+								<a href="<?php echo site_url('soal/delete_f2f/')."$i->id_question"; ?>" class="btn text-danger" onclick="return confirmDialog();">
+									<i class="fa fa-trash-alt"></i> Delete
+								</a>
+							<?php endif ?>
 						</div>
 					</div>
 

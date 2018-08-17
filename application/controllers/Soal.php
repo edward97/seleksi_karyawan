@@ -108,7 +108,7 @@ class Soal extends CI_Controller
 	}
 
 	function input_online_act() {
-		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2')) {
+		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');
 
@@ -164,7 +164,7 @@ class Soal extends CI_Controller
 	}
 
 	function input_f2f_act() {
-		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2')) {
+		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');
 
@@ -258,7 +258,7 @@ class Soal extends CI_Controller
 	}
 
 	function upt_online_act() {
-		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2')) {
+		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$id = $this->input->post('id');
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');
@@ -312,7 +312,7 @@ class Soal extends CI_Controller
 	}
 
 	function upt_f2f_act() {
-		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2')) {
+		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$id = $this->input->post('id');
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');

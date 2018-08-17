@@ -97,17 +97,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<ul class="nav">
 							<li class="nav-title">Navigation</li>
 
-							<li class="nav-item">
-								<a href="<?php echo site_url('sesi'); ?>" class="nav-link <?php echo active_link('sesi'); ?>">
-									<i class="icon icon-calendar"></i> Buka Sesi
-								</a>
-							</li>
+							<?php if ($this->session->userdata('akses') == '1'): ?>
+								<li class="nav-item">
+									<a href="<?php echo site_url('sesi'); ?>" class="nav-link <?php echo active_link('sesi'); ?>">
+										<i class="icon icon-calendar"></i> Buka Sesi
+									</a>
+								</li>
+							<?php endif ?>
 
-							<li class="nav-item">
-								<a href="<?php echo site_url('admin'); ?>" class="nav-link <?php echo active_link('admin'); ?>">
-									<i class="icon icon-user"></i> Mengelola Admin
-								</a>
-							</li>
+							<?php if ($this->session->userdata('akses') == '1'): ?>
+								<li class="nav-item">
+									<a href="<?php echo site_url('admin'); ?>" class="nav-link <?php echo active_link('admin'); ?>">
+										<i class="icon icon-user"></i> Mengelola Admin
+									</a>
+								</li>
+							<?php endif ?>
 
 							<li class="nav-item">
 								<a href="<?php echo site_url('user'); ?>" class="nav-link <?php echo active_link('user'); ?>">

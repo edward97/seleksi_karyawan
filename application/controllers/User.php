@@ -36,7 +36,7 @@ class User extends CI_Controller
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		$check = $this->uri->segment(3);
 
-		if ($check != NULL && ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2')) {
+		if ($check != NULL && $this->session->userdata('akses') == '1') {
 			$where = array('users.id_user' => $check);
 			$data['user'] = $this->user_model->edit_detail_user($where)->result();
 			$data['judul'] = "Edit Users";

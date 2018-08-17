@@ -33,7 +33,7 @@ class Admin extends CI_Controller
 	}
 
 	function add_act() {
-		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') && $this->input->post('submit') == 'save') {
+		if ($this->session->userdata('akses') == '1' && $this->input->post('submit') == 'save') {
 			$name = $this->input->post('username');
 			$email = htmlspecialchars($this->input->post('email', TRUE), ENT_QUOTES);
 			$pass = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
@@ -75,7 +75,7 @@ class Admin extends CI_Controller
 	}
 
 	function update_act() {
-		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') && $this->input->post('submit') == 'update') {
+		if ($this->session->userdata('akses') == '1' && $this->input->post('submit') == 'update') {
 			$id = $this->input->post('id');
 			$name = $this->input->post('username');
 			$email = htmlspecialchars($this->input->post('email', TRUE), ENT_QUOTES);
@@ -119,10 +119,15 @@ class Admin extends CI_Controller
 	}
 
 	function delete($id) {
-		$where = array('id_admin' => $id);
-		$this->admin_model->delete_admin('admins', $where);
-		$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Data berhasil dihapus!</div>');
+		if ($this->session->userdata('akses') == '1') {
+			$where = array('id_admin' => $id);
+			$this->admin_model->delete_admin('admins', $where);
+			$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Data berhasil dihapus!</div>');
 
-		redirect('admin');
+			redirect('admin');
+		}
+		else {
+			$this->load->view('errors/404.html');
+		}
 	}
 }

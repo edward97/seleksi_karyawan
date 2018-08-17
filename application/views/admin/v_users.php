@@ -63,7 +63,9 @@
 													<i class="fa fa-info-circle" aria-hidden="true"></i> Detail
 											</a>
 
-											<a href="user/edit/<?php echo $i->id_user; ?>" class="btn btn-outline-info btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+											<?php if ($this->session->userdata('akses') ==  '1'): ?>
+												<a href="user/edit/<?php echo $i->id_user; ?>" class="btn btn-outline-info btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+											<?php endif ?>
 										</td>
 									</tr>
 									<?php $no++; ?>

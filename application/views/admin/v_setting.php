@@ -44,7 +44,9 @@
 													<i class="fa fa-edit" aria-hidden="true"></i> Edit
 											</a>
 
-											<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('setting/delete_act_abt/').$i->id_ability ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+											<?php if ($this->session->userdata('akses') == '1'): ?>
+												<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('setting/delete_act_abt/').$i->id_ability ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+											<?php endif ?>
 										</td>
 									</tr>
 									<?php $no++; ?>
@@ -99,7 +101,9 @@
 													<i class="fa fa-edit" aria-hidden="true"></i> Edit
 											</a>
 
-											<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('setting/delete_act_job/').$i->id_job ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+											<?php if ($this->session->userdata('akses') == '1'): ?>
+												<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('setting/delete_act_job/').$i->id_job ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+											<?php endif ?>
 										</td>
 									</tr>
 									<?php $no++; ?>

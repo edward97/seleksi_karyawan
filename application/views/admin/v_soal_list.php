@@ -37,7 +37,10 @@
 													<td><?php echo $i->label; ?></td>
 													<td>
 														<a href="<?php echo site_url('soal/show_onl/').$i->label."/".$i->id_job; ?>" class="btn btn-outline-info btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
-														<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('soal/delete_online_label/').$i->label; ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+
+														<?php if ($this->session->userdata('akses') == '1'): ?>
+															<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('soal/delete_online_label/').$i->label; ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+														<?php endif ?>
 													</td>
 												</tr>
 												<?php $no++; ?>
@@ -68,7 +71,10 @@
 													<td><?php echo $i->label; ?></td>
 													<td>
 														<a href="<?php echo site_url('soal/show_f2f/').$i->label."/".$i->id_job; ?>" class="btn btn-outline-info btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
-														<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('soal/delete_f2f_label/').$i->label; ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+
+														<?php if ($this->session->userdata('akses') == '1'): ?>
+															<a class="btn btn-outline-danger btn-sm" href="<?php echo site_url('soal/delete_f2f_label/').$i->label; ?>" onclick="return confirmDialog();"><i class="fa fa-trash-alt" aria-hidden="true"></i> Delete</a>
+														<?php endif ?>
 													</td>
 												</tr>
 												<?php $no++; ?>

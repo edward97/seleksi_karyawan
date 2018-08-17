@@ -23,7 +23,7 @@ class Sesi extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '1') {
 			$data['job'] = $this->setting_model->tampil_job()->result();
 			$data['admin'] = $this->admin_model->tampil_admin()->result();
 
@@ -46,7 +46,7 @@ class Sesi extends CI_Controller
 	function save_act() {
 		$sekarang = mdate('%Y/%m/%d %H:%i', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '1') {
 			$divisi = $this->input->post('divisi');
 			$kualifikasi = $this->input->post('kualifikasi');
 			$ujian_online = $this->input->post('ujian_online');
@@ -59,6 +59,15 @@ class Sesi extends CI_Controller
 			$end_tatap = $this->input->post('sesi_tatap2');
 			$start_interview = $this->input->post('sesi_interview1');
 			$end_interview = $this->input->post('sesi_interview2');
+
+			if ($start_pendaftaran == '____/__/__ __:__' || $end_pendaftaran == '____/__/__ __:__' ||
+				$start_online == '____/__/__ __:__' || $end_online == '____/__/__ __:__' ||
+				$start_f2f == '____/__/__ __:__' || $end_f2f == '____/__/__ __:__' ||
+				$start_interview == '____/__/__ __:__' || $end_interview == '____/__/__ __:__')
+			{
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal tidak boleh NULL!</div>');
+				redirect('sesi');
+			}
 
 			if ($start_pendaftaran < $sekarang || $start_online < $sekarang || $start_tatap < $sekarang || $start_interview < $sekarang) {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal tidak boleh kurang dari hari ini!</div>');
@@ -136,7 +145,7 @@ class Sesi extends CI_Controller
 			);
 			$this->sesi_model->update_admin_sesi('admins_sesi', $data_admin_where, $data_admin);
 
-			$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil ditambah!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-success">Sesi berhasil ditambah!</div>');
 			redirect('dashboard');
 		}
 		else {
@@ -145,7 +154,7 @@ class Sesi extends CI_Controller
 	}
 
 	function edit() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '1') {
 			$id = $this->input->post('admin');
 			$keterangan = $this->input->post('keterangan');
 
@@ -159,7 +168,7 @@ class Sesi extends CI_Controller
 			$where = array('id_admin' => $id);
 
 			$this->admin_model->add_admin('admins_sesi', $data);
-			$this->session->set_flashdata('msg', '<div class="alert alert-success">Data berhasil ditambah!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-success">Admin sesi berhasil ditambah!</div>');
 
 			redirect('sesi');
 		}
@@ -169,11 +178,11 @@ class Sesi extends CI_Controller
 	}
 
 	function delete($id) {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '1') {
 			$where = array('id' => $id);
 
 			$this->admin_model->delete_admin('admins_sesi', $where);
-			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diubah!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Admin sesi berhasil dihapus!</div>');
 
 			redirect('sesi');
 		}
@@ -188,7 +197,7 @@ class Sesi extends CI_Controller
 			$where = array('id_stage' => $id);
 
 			$this->sesi_model->update_seleksi('selection_stage', $where, $data);
-			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diubah!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-info">Sesi berhasil closing!</div>');
 
 			redirect('dashboard');
 		}
@@ -222,7 +231,7 @@ class Sesi extends CI_Controller
 				$where = array('id' => $id+1);
 				$this->sesi_model->update_tahapan_detail('selection_stage_detail', $where, $data);
 			}
-			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diubah!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-info">Nextstep berhasil diubah!</div>');
 			redirect('dashboard');
 		}
 		else {
@@ -233,13 +242,14 @@ class Sesi extends CI_Controller
 	function edit_sesi() {
 		$check = $this->uri->segment(3);
 
-		if ($check != NULL && ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2')) {
+		if ($check != NULL && $this->session->userdata('akses') == '1') {
 			$where = array('id_stage' => $check);
 			$data['judul_sesi'] = $this->sesi_model->edit_sesi('selection_stage', $where)->result();
 			$data['edit'] = $this->sesi_model->edit_sesi_detail('selection_stage_detail', $where)->result();
 			$this->session->set_userdata('ses_sesi', $check);
 
 			$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
+			$data['today'] = mdate('%Y-%m-%d %H:%i:%s', now('Asia/Jakarta'));
 
 			$data['judul'] = "Edit Session";
 
@@ -256,76 +266,115 @@ class Sesi extends CI_Controller
 	function edit_act() {
 		$sekarang = mdate('%Y/%m/%d %H:%i', now('Asia/Jakarta'));
 
-		$id_daftar = $this->input->post('id_sesi_daftar');
-		$id_online = $this->input->post('id_sesi_online');
-		$id_f2f = $this->input->post('id_sesi_f2f');
-		$id_interview = $this->input->post('id_sesi_interview');
+		if ($this->session->userdata('akses') == '1') {
+			$id_daftar = $this->input->post('id_sesi_daftar');
+			$id_online = $this->input->post('id_sesi_online');
+			$id_f2f = $this->input->post('id_sesi_f2f');
+			$id_interview = $this->input->post('id_sesi_interview');
+
+			$start_daftar = $this->input->post('sesi_pendaftaran1');
+			$end_daftar = $this->input->post('sesi_pendaftaran2');
+			$data_daftar = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $id_daftar))->row_array();
+			
+
+			$start_online = $this->input->post('sesi_online1');
+			$end_online = $this->input->post('sesi_online2');
+			$data_online = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $id_online))->row_array();
 
 
+			$start_f2f = $this->input->post('sesi_tatap1');
+			$end_f2f = $this->input->post('sesi_tatap2');
+			$data_f2f = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $id_f2f))->row_array();
 
-		$start_daftar = $this->input->post('sesi_pendaftaran1');
-		$end_daftar = $this->input->post('sesi_pendaftaran2');
-		
+			$start_interview = $this->input->post('sesi_interview1');
+			$end_interview = $this->input->post('sesi_interview2');
+			$data_interview = $this->sesi_model->tampil_seleksi_label('selection_stage_detail', array('id' => $id_interview))->row_array();
 
-		$start_online = $this->input->post('sesi_online1');
-		$end_online = $this->input->post('sesi_online2');
-		
+			if (($start_daftar		!= NULL && $start_daftar 	< $sekarang) || ($end_daftar	!= NULL && $end_daftar 		< $sekarang) ||
+				($start_online		!= NULL && $start_online	< $sekarang) || ($end_online	!= NULL && $end_online		< $sekarang) ||
+				($start_f2f			!= NULL && $start_f2f		< $sekarang) || ($end_f2f		!= NULL && $end_f2f			< $sekarang) ||
+				($start_interview	!= NULL && $start_interview < $sekarang) || ($end_interview	!= NULL && $end_interview	< $sekarang))
+			{
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal tidak boleh kurang dari hari ini!</div>');
+				redirect('sesi/edit_sesi/'.$this->session->userdata('ses_sesi'));
+				$this->session->unset_userdata('ses_sesi');
+			}
 
-		$start_f2f = $this->input->post('sesi_tatap1');
-		$end_f2f = $this->input->post('sesi_tatap2');
-		
+			# --------------------------------------
 
-		$start_interview = $this->input->post('sesi_interview1');
-		$end_interview = $this->input->post('sesi_interview2');
+			if ($start_daftar == NULL) {
+			 $start_daftar = $data_daftar['start_stage'];
+			}
+			if ($end_daftar == NULL) {
+			 $end_daftar = $data_daftar['end_stage'];
+			}
+			if ($start_online == NULL) {
+			 $start_online = $data_online['start_stage'];
+			}
+			if ($end_online == NULL) {
+			 $end_online = $data_online['end_stage'];
+			}
+			if ($start_f2f == NULL) {
+			 $start_f2f = $data_f2f['start_stage'];
+			}
+			if ($end_f2f == NULL) {
+			 $end_f2f = $data_f2f['end_stage'];
+			}
+			if ($start_interview == NULL) {
+			 $start_interview = $data_interview['start_stage'];
+			}
+			if ($end_interview == NULL) {
+			 $end_interview = $data_interview['end_stage'];
+			}
+
+			# --------------------------------------
+
+			if ($start_daftar > $end_daftar || $start_online > $end_online || $start_f2f > $end_f2f || $start_interview > $end_interview) {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal berakhir tidak boleh kurang dari tanggal mulai!</div>');
+				redirect('sesi/edit_sesi/'.$this->session->userdata('ses_sesi'));
+				$this->session->unset_userdata('ses_sesi');
+			}
+			if (($end_daftar > $start_online || $end_daftar > $start_f2f || $end_daftar > $end_interview) || ($end_online > $start_f2f || $end_online > $start_interview) || ($end_f2f > $start_interview)) {
+				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal mulai tidak boleh kurang dari tanggal sesi sebelumnya!</div>');
+				redirect('sesi/edit_sesi/'.$this->session->userdata('ses_sesi'));
+				$this->session->unset_userdata('ses_sesi');
+			}
+
+			$data = array(
+				'start_stage' => $start_daftar,
+				'end_stage' => $end_daftar
+			);
+			$where = array('id' => $id_daftar);
+			$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
+
+			$data = array(
+				'start_stage' => $start_online,
+				'end_stage' => $end_online
+			);
+			$where = array('id' => $id_online);
+			$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
+
+			$data = array(
+				'start_stage' => $start_f2f,
+				'end_stage' => $end_f2f
+			);
+			$where = array('id' => $id_f2f);
+			$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
+
+			$data = array(
+				'start_stage' => $start_interview,
+				'end_stage' => $end_interview
+			);
+			$where = array('id' => $id_interview);
+			$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
 
 
-		// if ($start_daftar < $sekarang || $start_online < $sekarang || $start_f2f < $sekarang || $start_interview < $sekarang) {
-		// 	$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal tidak boleh kurang dari hari ini!</div>');
-		// 	redirect('sesi/edit_sesi/'.$this->session->userdata('ses_sesi'));
-		// 	$this->session->unset_userdata('ses_sesi');
-		// }
-		if ($start_daftar > $end_daftar || $start_online > $end_online || $start_f2f > $end_f2f || $start_interview > $end_interview) {
-			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal berakhir tidak boleh kurang dari tanggal mulai!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diubah!</div>');
 			redirect('sesi/edit_sesi/'.$this->session->userdata('ses_sesi'));
 			$this->session->unset_userdata('ses_sesi');
 		}
-		if (($end_daftar > $start_online || $end_daftar > $start_f2f || $end_daftar > $end_interview) || ($end_online > $start_f2f || $end_online > $start_interview) || ($end_f2f > $start_interview)) {
-			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal mulai tidak boleh kurang dari tanggal sesi sebelumnya!</div>');
-			redirect('sesi/edit_sesi/'.$this->session->userdata('ses_sesi'));
-			$this->session->unset_userdata('ses_sesi');
+		else {
+			$this->load->view('errors/404.html');
 		}
-
-		$data = array(
-			'start_stage' => $start_daftar,
-			'end_stage' => $end_daftar
-		);
-		$where = array('id' => $id_daftar);
-		$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
-
-		$data = array(
-			'start_stage' => $start_online,
-			'end_stage' => $end_online
-		);
-		$where = array('id' => $id_online);
-		$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
-
-		$data = array(
-			'start_stage' => $start_f2f,
-			'end_stage' => $end_f2f
-		);
-		$where = array('id' => $id_f2f);
-		$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
-
-		$data = array(
-			'start_stage' => $start_interview,
-			'end_stage' => $end_interview
-		);
-		$where = array('id' => $id_interview);
-		$this->sesi_model->update_sesi('selection_stage_detail', $data, $where);
-
-
-		$this->session->set_flashdata('msg', '<div class="alert alert-info">Data berhasil diubah!</div>');
-		redirect('sesi/edit_sesi/'.$this->session->userdata('ses_sesi'));
-		$this->session->unset_userdata('ses_sesi');
 	}
 }
