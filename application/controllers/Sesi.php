@@ -68,7 +68,6 @@ class Sesi extends CI_Controller
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal tidak boleh NULL!</div>');
 				redirect('sesi');
 			}
-
 			if ($start_pendaftaran < $sekarang || $start_online < $sekarang || $start_tatap < $sekarang || $start_interview < $sekarang) {
 				$this->session->set_flashdata('msg', '<div class="alert alert-danger">Tanggal tidak boleh kurang dari hari ini!</div>');
 				redirect('sesi');

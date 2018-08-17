@@ -53,28 +53,86 @@ class User extends CI_Controller
 	function update() {
 		$id = $this->input->post('id_user');
 		$full_name = $this->input->post('nama_lengkap');
+		# CEK APAKAH USERNAME MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alpha(str_replace(' ', '', $full_name))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Nama lengkap hanya boleh huruf!</div>');
+			redirect('user/edit/'.$id);
+		}
+
 		$ktp = $this->input->post('no_ktp');
+		# CEK APAKAH KTP SUDAH DIGUNAKAN ATAU BELUM
+		$where_ktp = array(
+			'no_ktp' => $ktp,
+		);
+		$cek_ktp = $this->user_model->check('users_detail', $where_ktp)->num_rows();
+		# CEK KTP USER SEBELUMYA
+		$where_before_ktp = array(
+			'no_ktp' => $ktp,
+			'id_user' => $id,
+		);
+		$cek_before = $this->user_model->check('users_detail', $where_before_ktp)->row_array();
+		if ($cek_before['no_ktp'] != $ktp && $cek_ktp != 0) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! No. KTP sudah terdaftar!</div>');
+			redirect('user/edit/'.$id);
+		}
+
 		$email = $this->input->post('email');
+		# CEK APAKAH EMAIL SUDAH DIGUNAKAN ATAU BELUM
+		$where_email = array(
+			'email' => $email,
+		);
+		$cek_email = $this->user_model->check('users', $where_email)->num_rows();
+		# CEK EMAIL USER SEBELUMYA
+		$where_before_email = array(
+			'email' => $email,
+			'id_user' => $id,
+		);
+		$cek_before = $this->user_model->check('users', $where_before_email)->row_array();
+		if ($cek_before['email'] != $email && $cek_email != 0) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Email sudah terdaftar!</div>');
+			redirect('user/edit/'.$id);
+		}
+
 		$password = $this->input->post('password');
 		$tempat_lahir = $this->input->post('tempat_lahir');
+		# CEK APAKAH NAMA KERABAT MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alnum(str_replace(' ', '', $tempat_lahir))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Tempat lahir hanya boleh huruf & angka!</div>');
+			redirect('user/edit/'.$id);
+		}
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$post_time = strtotime($this->input->post('tgl_lahir'));
 
-		// get age
 		$now = time();
 		$units = 1;
 		$year = timespan($post_time, $now, $units);
 		$number = preg_replace("/[^0-9]/", '', $year);
-		// end
+		# CEK UMUR TIDAK LEBIH 50 TAHUN
+		if ($number > 50) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Umur Maksimal hanya bisa 50 Tahun!</div>');
+			redirect('user/edit/'.$id);
+		}
+		# END
 
 		$jenis_kelamin = $this->input->post('jenis_kelamin');
 		$agama = $this->input->post('agama');
 		$address = $this->input->post('address');
 		$kota = $this->input->post('kota');
+		$kota = $this->input->post('kota');
+		# CEK APAKAH KOTA MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alnum(str_replace(' ', '', $kota))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Nama Kota hanya boleh huruf & angka!</div>');
+			redirect('user/edit/'.$id);
+		}
 		$pos = $this->input->post('pos');
 		$no_hp = $this->input->post('no_hp');
 		$no_telp = $this->input->post('no_telp');
 		$nama_kerabat = $this->input->post('nama_kerabat');
+		# CEK APAKAH NAMA KERABAT MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alpha(str_replace(' ', '', $nama_kerabat))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal update! Nama kerabat hanya boleh huruf!</div>');
+			redirect('user/edit/'.$id);
+		}
 		$no_kerabat = $this->input->post('no_kerabat');
 		$hubungan_kerabat = $this->input->post('hubungan_kerabat');
 		$status = $this->input->post('status');

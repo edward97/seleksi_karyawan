@@ -41,7 +41,7 @@
 								<label for="email" class="col-sm-4 col-form-label require">Email</label>
 								
 								<div class="col-sm-8">
-									<input type="email" class="form-control" name="email" id="email" value="<?php echo $i->email; ?>" readonly>
+									<input type="email" class="form-control" name="email" id="email" value="<?php echo $i->email; ?>" required>
 								</div>
 							</div>
 						</div>
@@ -69,7 +69,7 @@
 								</div>
 
 								<div class="col-sm-4">
-									<input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" value="<?php echo $i->birth_date; ?>" required>
+									<input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" min="1968-01-01" max="2005-12-01" value="<?php echo $i->birth_date; ?>" required>
 								</div>
 							</div>
 						</div>

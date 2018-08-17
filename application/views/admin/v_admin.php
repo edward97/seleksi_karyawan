@@ -85,7 +85,7 @@
 						<div class="col-md-2">
 							<div class="form-group">
 								<label for="id">ID</label>
-								<input type="text" name="id" id="id" class="form-control" readonly>
+								<input type="text" name="id" id="id" class="form-control" value="[Auto]" disabled>
 							</div>
 						</div>
 

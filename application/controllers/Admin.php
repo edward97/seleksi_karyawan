@@ -35,10 +35,19 @@ class Admin extends CI_Controller
 	function add_act() {
 		if ($this->session->userdata('akses') == '1' && $this->input->post('submit') == 'save') {
 			$name = $this->input->post('username');
+			if (!ctype_alnum($name)) {
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Menambah! Username hanya bisa Huruf & Angka!</div>');
+				redirect('admin');
+			}
+
 			$email = htmlspecialchars($this->input->post('email', TRUE), ENT_QUOTES);
 			$pass = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
 			$level = $this->input->post('level');
 			$profesi = $this->input->post('profesi');
+			if (!ctype_alnum($profesi)) {
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Menambah! Profesi hanya bisa Huruf & Angka!</div>');
+				redirect('admin');
+			}
 
 			# CEK EMAIL SUDAH DIGUNAKAN ATAU BELUM
 			$where = array(
@@ -78,13 +87,21 @@ class Admin extends CI_Controller
 		if ($this->session->userdata('akses') == '1' && $this->input->post('submit') == 'update') {
 			$id = $this->input->post('id');
 			$name = $this->input->post('username');
+			if (!ctype_alnum($name)) {
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">['.$id.'] Gagal Update! Username hanya bisa Huruf & Angka!</div>');
+				redirect('admin');
+			}
 			$email = htmlspecialchars($this->input->post('email', TRUE), ENT_QUOTES);
 			$pass = htmlspecialchars($this->input->post('password', TRUE), ENT_QUOTES);
 			$level = $this->input->post('level');
 			$profesi = $this->input->post('profesi');
+			if (!ctype_alnum(str_replace(' ', '', $profesi))) {
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">['.$id.'] Gagal Update! Profesi hanya bisa Huruf & Angka!</div>');
+				redirect('admin');
+			}
 
 			if (strlen($pass) < 8 && $pass != NULL) {
-				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Update! Password Minimal 8 Karakter!</div>');
+				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">['.$id.'] Gagal Update! Password Minimal 8 Karakter!</div>');
 				redirect('admin');
 			}
 			elseif ($pass != NULL) {
@@ -109,7 +126,7 @@ class Admin extends CI_Controller
 			);
 
 			$this->admin_model->update_admin('admins', $where, $data);
-			$this->session->set_flashdata('msg_admin', '<div class="alert alert-info">Data berhasil diubah!</div>');
+			$this->session->set_flashdata('msg_admin', '<div class="alert alert-info">['.$id.'] Data berhasil diubah!</div>');
 
 			redirect('admin');
 		}
@@ -122,7 +139,7 @@ class Admin extends CI_Controller
 		if ($this->session->userdata('akses') == '1') {
 			$where = array('id_admin' => $id);
 			$this->admin_model->delete_admin('admins', $where);
-			$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Data berhasil dihapus!</div>');
+			$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">['.$id.'] Data berhasil dihapus!</div>');
 
 			redirect('admin');
 		}

@@ -22,7 +22,6 @@ class Register extends CI_Controller
 		for ($i = 0; $i < $length; $i++) {
 			$randomString .= $characters[rand(0, $charactersLength - 1)];
 		}
-
 		return $randomString;
 	}
 
@@ -40,28 +39,64 @@ class Register extends CI_Controller
 
 	function register_act() {
 		$full_name = $this->input->post('nama_lengkap');
+		# CEK APAKAH USERNAME MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alpha(str_replace(' ', '', $full_name))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nama lengkap hanya boleh huruf!</div>');
+			redirect('register');
+		}
+
 		$ktp = $this->input->post('no_ktp');
+		# CEK APAKAH KTP SUDAH DIGUNAKAN ATAU BELUM
+		$where_ktp = array(
+			'no_ktp' => $ktp,
+		);
+		$cek_ktp = $this->user_model->check('users_detail', $where_ktp)->num_rows();
+		if ($cek_ktp != 0) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! No. KTP sudah terdaftar!</div>');
+			redirect('register');
+		}
+
 		$email = $this->input->post('email');
 		$password = $this->input->post('password');
 		$tempat_lahir = $this->input->post('tempat_lahir');
+		# CEK APAKAH NAMA KERABAT MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alnum(str_replace(' ', '', $tempat_lahir))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Tempat lahir hanya boleh huruf & angka!</div>');
+			redirect('register');
+		}
 		$tgl_lahir = $this->input->post('tgl_lahir');
 		$post_time = strtotime($this->input->post('tgl_lahir'));
-
-		// get age
+		# GET AGE
 		$now = time();
 		$units = 1;
 		$year = timespan($post_time, $now, $units);
 		$number = preg_replace("/[^0-9]/", '', $year);
-		// end
+		# CEK UMUR TIDAK LEBIH 50 TAHUN
+		if ($number > 50) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Umur Maksimal hanya bisa 50 Tahun!</div>');
+			redirect('register');
+		}
+		# END
 
 		$jenis_kelamin = $this->input->post('jenis_kelamin');
 		$agama = $this->input->post('agama');
 		$address = $this->input->post('address');
 		$kota = $this->input->post('kota');
+		# CEK APAKAH KOTA MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alnum(str_replace(' ', '', $kota))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nama Kota hanya boleh huruf & angka!</div>');
+			redirect('register');
+		}
+
 		$pos = $this->input->post('pos');
 		$no_hp = $this->input->post('no_hp');
 		$no_telp = $this->input->post('no_telp');
 		$nama_kerabat = $this->input->post('nama_kerabat');
+		# CEK APAKAH NAMA KERABAT MENGANDUNG KARAKTER KHUSUS
+		if (!ctype_alpha(str_replace(' ', '', $nama_kerabat))) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nama kerabat hanya boleh huruf!</div>');
+			redirect('register');
+		}
 		$no_kerabat = $this->input->post('no_kerabat');
 		$hubungan_kerabat = $this->input->post('hubungan_kerabat');
 		$status = $this->input->post('status');
@@ -73,16 +108,18 @@ class Register extends CI_Controller
 		$target['tar'] = $this->input->post('kemampuan');
 
 		# CEK EMAIL SUDAH DIGUNAKAN ATAU BELUM
-		$where = array(
+		$where_email = array(
 			'email' => $email,
 			'acc_status !=' => 3
 		);
-		$cek_email = $this->user_model->check('users', $where)->num_rows();
-
+		$cek_email = $this->user_model->check('users', $where_email)->num_rows();
 		if ($cek_email != 0) {
-			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Email sudah pernah digunakan!</div>');
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Email sudah terdaftar!</div>');
 			redirect('register');
 		}
+
+		# VALIDASI FORM
+		# -------------
 		if (strlen($ktp) != 16 || !is_numeric($ktp) ) {
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Nomor KTP anda tidak valid!</div>');
 			redirect('register');
@@ -103,15 +140,14 @@ class Register extends CI_Controller
 			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Gagal register! Password anda tidak valid!</div>');
 			redirect('user/edit/'.$id);
 		}
-
-		if ($target['tar'] == null) {
+		if (count($target['tar']) < 5) {
+			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Jumlah kemampuan minimal 5!</div>');
 			redirect('register');
-			$this->session->set_flashdata('msg', '<div class="alert alert-danger">Jumlah kemampuan tidak boleh kosong!</div>');
 		}
 
 		$confirm_code = $this->random_code();
 		$data_user = array(
-			'id_user' => null,
+			'id_user' => NULL,
 			'email' => $email,
 			'password' => md5($password),
 			'confirm_code' => $confirm_code,
@@ -125,7 +161,7 @@ class Register extends CI_Controller
 		$val = array();
 		foreach ($target['tar'] as $i) {
 			array_push($val, array(
-				'id' =>  null,
+				'id' =>  NULL,
 				'id_ability' => $i,
 				'id_user' => $idInsert
 			));
@@ -137,7 +173,7 @@ class Register extends CI_Controller
 		$total_sama = $this->user_model->compare_ability_spec($id_std_usr['id_std'], $id_std_usr['id_user'])->num_rows();
 
 		$detail_user = array(
-			'id_d_user' => null,
+			'id_d_user' => NULL,
 			'full_name' => $full_name,
 			'no_ktp' => $ktp,
 			'birth_place' => $tempat_lahir,
@@ -179,10 +215,10 @@ class Register extends CI_Controller
 			'useragent' => 'CodeIgniter',
 			'protocol'  => 'smtp',
 			'mailpath'  => '/usr/sbin/sendmail',
-			// 'smtp_host' => 'ssl://smtp.gmail.com',
-			'smtp_host' => 'ssl://smtp.mail.yahoo.com',
-			'smtp_user' => '', // email
-			'smtp_pass' => '', // password
+			# 'smtp_host' => 'ssl:#smtp.gmail.com',
+			'smtp_host' => 'ssl:#smtp.mail.yahoo.com',
+			'smtp_user' => '', # email
+			'smtp_pass' => '', # password
 			'smtp_port' => 465,
 			'smtp_keepalive' => TRUE,
 			'smtp_crypto' => 'SSL',
