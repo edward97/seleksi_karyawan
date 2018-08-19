@@ -16,8 +16,12 @@ class Cart_model extends CI_Model
 		$this->db->insert($table, $data);
 	}
 
-	function tampil_atribut_detail() {
-		return $this->db->get('atribut_detail');
+	function tampil_atribut($table) {
+		return $this->db->get($table);
+	}
+
+	function tampil_atribut_detail($table, $where) {
+		return $this->db->get_where($table, $where);
 	}
 
 	function truncate($table) {
