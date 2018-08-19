@@ -25,7 +25,7 @@
 									<label for="divisi">Divisi</label>
 									<?php foreach ($divisi as $j): ?>
 										<?php if ($i->id_job == $j->id_job): ?>
-											<input type="text" name="divisi" id="divisi" class="form-control" value="<?php echo $j->nm_job ?>" readonly>
+											<input type="text" name="divisi" id="divisi" class="form-control" value="<?php echo $j->id_job ?>" readonly>
 											<?php break; ?>
 										<?php endif ?>
 									<?php endforeach ?>
