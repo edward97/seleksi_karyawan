@@ -37,7 +37,7 @@
 										<td><?php echo $i->nilai_f2f ?></td>
 										<td><?php echo $i->nilai_sikap ?></td>
 
-										<?php if ($i->nilai_f2f != null): ?>
+										<?php if ($i->nilai_f2f != null && $i->acc_status == 1): ?>
 											<td>
 												<a
 													href="javascript:;" 
@@ -49,6 +49,10 @@
 													class="btn btn-outline-info btn-sm">
 														<i class="fa fa-edit" aria-hidden="true"></i> Edit
 												</a>
+											</td>
+										<?php elseif ($i->nilai_f2f != null && $i->acc_status == 2): ?>
+											<td>
+												<button type="button" class="btn btn-outline-danger btn-sm" disabled><i class="fa fa-edit" aria-hidden="true"></i> Tidak Lulus</button>
 											</td>
 										<?php else: ?>
 											<td>

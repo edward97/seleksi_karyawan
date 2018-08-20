@@ -7,7 +7,7 @@
 					<div class="col-md-6"><h2>Ujian Tatap Muka - <?php echo $i->label; ?></h2></div>
 					<div class="col-md-6">
 						<div class="form-group text-right">
-							<button type="button" class="btn btn-outline-info"><?php echo $waktu->format('%H:%i:%s'); ?></button>
+							<button type="button" class="btn btn-outline-info" id="demo"></button>
 						</div>
 					</div>
 				</div>
@@ -111,3 +111,36 @@
 	</div>
 	<?php endif ?>
 <?php endforeach ?>
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("<?php echo $end ?>").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+    // Get todays date and time
+    var now = new Date().getTime();
+    
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+    
+    // Time calculations for days, hours, minutes and seconds
+    // var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+    // Output the result in an element with id="demo"
+    // document.getElementById("demo").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+    document.getElementById("demo").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+    
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        alert('Waktu Habis!');
+        // document.getElementById("demo").innerHTML = "EXPIRED";
+        window.location.replace('<?php echo site_url('start/submit_f2f'); ?>');
+    }
+}, 1000);
+</script>

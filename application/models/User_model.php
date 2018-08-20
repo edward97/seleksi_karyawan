@@ -17,6 +17,14 @@ class User_model extends CI_Model
 		return $this->db->get();
 	}
 
+	function tampil_detail_user_where() {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->join('users_detail', 'users_detail.id_user = users.id_user', 'inner');
+		$this->db->where('users.acc_status', 1);
+		return $this->db->get();
+	}
+
 	function tampil_detail_user_stage($where) {
 		$this->db->select('*');
 		$this->db->from('users');

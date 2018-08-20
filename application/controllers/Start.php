@@ -33,6 +33,7 @@ class Start extends CI_Controller
 			$interval1 = new DateTime($data['today_time']);
 			$interval2 = new DateTime($waktu['end_online']);
 			$data['waktu'] = $interval1->diff($interval2);
+			$data['end'] = $waktu['end_online'];
 
 			if ($que_exam->num_rows() == 0) {
 				$end_exam = mdate('%Y-%m-%d %H:%i:%s', strtotime('+2 hours', strtotime($data['today_time'])));
@@ -136,7 +137,7 @@ class Start extends CI_Controller
 		foreach ($tar as $i) {
 			foreach ($soal as $j) {
 				if ($i == $j->correct_ans) {
-					$hasil ++;
+					$hasil++;
 				}
 			}
 			$total_soal++;
@@ -187,6 +188,7 @@ class Start extends CI_Controller
 			$interval1 = new DateTime($data['today_time']);
 			$interval2 = new DateTime($waktu['end_f2f']);
 			$data['waktu'] = $interval1->diff($interval2);
+			$data['end'] = $waktu['end_f2f'];
 
 			if ($check_null['start_f2f'] == null) {
 				$end_exam = mdate('%Y-%m-%d %H:%i:%s', strtotime('+2 hours', strtotime($data['today_time'])));
@@ -289,7 +291,7 @@ class Start extends CI_Controller
 		foreach ($tar as $i) {
 			foreach ($soal as $j) {
 				if ($i == $j->correct_ans) {
-					$hasil ++;
+					$hasil++;
 				}
 			}
 			$total_soal++;
