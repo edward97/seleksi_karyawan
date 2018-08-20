@@ -11,7 +11,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header bg-light">
-						Open Session
+						Algoritma
 					</div>
 						
 					<?php echo form_open_multipart('dataset/form_preview'); ?>

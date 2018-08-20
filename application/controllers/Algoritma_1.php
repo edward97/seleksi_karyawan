@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Algoritma
+ * Algoritma_1
  */
-class Algoritma extends CI_Controller
+class Algoritma_1 extends CI_Controller
 {
 	function __construct()
 	{
