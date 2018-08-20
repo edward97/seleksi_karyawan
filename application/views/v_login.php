@@ -34,13 +34,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<div class="row">
 							<div class="col-md-8" style="padding: 50px;">
 								<h1>Seleksi Karyawan</h1>
-
-								<p style="text-align: justify;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-								consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-								cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-								proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+								  <div class="quote" style="background:#fff;padding:10px;border-left:5px solid black;">
+								    <h5 style="font-style:italic;color:gray;">Pleasure in the job puts perfection in the work.</h5>
+								    <p style="color:lightgray;">- Aristotle</p>
+								  </div>
 							</div>
 							
 							<div class="col-md-4">
@@ -89,24 +86,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 						<div class="row">
 							<div class="col-md-4">
-								<h3>Lorem Ipsum</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<h3 class="text-center"><strong>Daftar dimana saja</strong></h3>
+								<p>Seleksi Karyawan memudahkan pelamar untuk mendaftarkan dirinya dimanapun dan kapanpun.
+								</p>
 							</div>
 
 							<div class="col-md-4">
-								<h3>Lorem Ipsum</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<h3 class="text-center"><strong>Mudah dan Cepat</strong></h3>
+								<p>Pelamar cukup mengisi formulir data diri, lalu mengikuti proses perekrutan sesuai yang telah dijadwalkan</p>
 							</div>
 
 							<div class="col-md-4">
-								<h3>Lorem Ipsum</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-								quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</p>
+								<h3 class="text-center"><strong>Penyeleksian yang Adil</strong></h3>
+								<p>Hasil penyeleksian calon karyawan diproses oleh sistem, sehingga tidak akan ada kecurangan yang disebabkan oleh pihak perusahaan </p>
 							</div>
 
 						</div>
