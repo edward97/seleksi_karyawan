@@ -91,11 +91,11 @@
 							</div>
 						</div>
 
-						<!-- Pilih Soal Ujian Online -->
+						<!-- Pilih Soal Ujian Periode I -->
 						<div class="row">
 							<div class="col-md-3 col-sm-6">
 								<div class="form-group">
-									<label for="ujian_online" class="col-form-label require">Pilih Soal Ujian Online</label>
+									<label for="ujian_online" class="col-form-label require">Pilih Soal Ujian Periode I</label>
 								</div>
 							</div>
 
@@ -111,11 +111,11 @@
 							</div>
 						</div>
 
-						<!-- Pilih Soal Ujian Tatap Muka -->
+						<!-- Pilih Soal Ujian Periode II -->
 						<div class="row">
 							<div class="col-md-3 col-sm-6">
 								<div class="form-group">
-									<label for="ujian_f2f" class="col-form-label require">Pilih Soal Ujian Tatap Muka</label>
+									<label for="ujian_f2f" class="col-form-label require">Pilih Soal Ujian Periode II</label>
 								</div>
 							</div>
 
@@ -152,11 +152,11 @@
 							</div>
 						</div>
 
-						<!-- Sesi Ujian Online -->
+						<!-- Sesi Ujian Periode I -->
 						<div class="row">
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<label class="col-form-label require">Sesi Ujian Online</label>
+									<label class="col-form-label require">Sesi Ujian Periode I</label>
 								</div>
 							</div>
 
@@ -173,11 +173,11 @@
 							</div>
 						</div>
 
-						<!-- Sesi Ujian Tatap Muka -->
+						<!-- Sesi Ujian Periode II -->
 						<div class="row">
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
-									<label class="col-form-label require">Sesi Ujian Tatap Muka</label>
+									<label class="col-form-label require">Sesi Ujian Periode II</label>
 								</div>
 							</div>
 
@@ -211,6 +211,20 @@
 							<div class="col-md-3 col-sm-4">
 								<div class="form-group">
 									<input type="text" name="sesi_interview2" id="sesi_interview2" class="form-control" required>
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="col-md-3 col-sm-4">
+								<div class="form-group">
+									<label class="col-form-label require">Keterangan</label>
+								</div>
+							</div>
+
+							<div class="col-md-6 col-sm-4">
+								<div class="form-group">
+									<textarea name="catatan" id="catatan" class="form-control" required></textarea>
 								</div>
 							</div>
 						</div>

@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller
 		$data['today'] = mdate('%Y-%m-%d %H:%i:%s', now('Asia/Jakarta'));
 		$data['judul'] = "Dashboard";
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$where = array(
 				'status_selesai' => 0
 			);
@@ -183,7 +183,7 @@ class Dashboard extends CI_Controller
 		$data['check'] = $check;
 		$id = $this->uri->segment(4);
 
-		if (($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') && $check != NULL && $id != 0) {
+		if (($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') && $check != NULL && $id != 0) {
 			$data['user'] = $this->user_model->get_id_std_user()->result();
 
 			$where = array('id_stage' => $id);
@@ -227,6 +227,9 @@ class Dashboard extends CI_Controller
 	}
 
 	function result() {
+		$where = array('id_user' => $this->session->userdata('ses_id'));
+		$data['user'] = $this->user_model->get_id_std_user()->result();
+
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		$this->load->view('user/v_dashboard_tidak_lulus.php', $data);
 	}

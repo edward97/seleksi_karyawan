@@ -20,7 +20,7 @@ class Soal extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['divisi'] = $this->setting_model->tampil_job()->result();
 			$data['s_online'] = $this->soal_model->tampil_online_label()->result();
 			$data['s_f2f'] = $this->soal_model->tampil_f2f_label()->result();
@@ -73,7 +73,7 @@ class Soal extends CI_Controller
 	function list_soal() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['label'] = $this->session->userdata('session_label');
 			$data['divisi'] = $this->session->userdata('session_divisi');
 			$data['jenis_ujian'] = $this->session->userdata('session_jenis');
@@ -108,7 +108,7 @@ class Soal extends CI_Controller
 	}
 
 	function input_online_act() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');
 
@@ -164,7 +164,7 @@ class Soal extends CI_Controller
 	}
 
 	function input_f2f_act() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');
 
@@ -222,7 +222,7 @@ class Soal extends CI_Controller
 	function edit_online($id) {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$where = array('id_question' => $id);
 
 			$data['divisi'] = $this->setting_model->tampil_job()->result();
@@ -241,7 +241,7 @@ class Soal extends CI_Controller
 	function edit_f2f($id) {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$where = array('id_question' => $id);
 
 			$data['divisi'] = $this->setting_model->tampil_job()->result();
@@ -258,7 +258,7 @@ class Soal extends CI_Controller
 	}
 
 	function upt_online_act() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$id = $this->input->post('id');
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');
@@ -312,7 +312,7 @@ class Soal extends CI_Controller
 	}
 
 	function upt_f2f_act() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$id = $this->input->post('id');
 			$divisi = $this->input->post('divisi');
 			$label = $this->input->post('nama_soal');

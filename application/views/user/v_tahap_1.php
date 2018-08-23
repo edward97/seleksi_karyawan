@@ -179,7 +179,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Online
+											Ujian Periode I
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -189,7 +189,7 @@
 									<?php foreach ($tahapan as $j): ?>
 										<?php if ($j->label == 'Tahap 2' && $j->start_stage <= $today): ?>
 											<div class="form-group text-center">
-												<a href="start/online/<?php echo $j->id; ?>" class="form-control btn btn-outline-info">Ujian Online - Mulai</a>
+												<a href="start/online/<?php echo $j->id; ?>" class="form-control btn btn-outline-info">Ujian Periode I - Mulai</a>
 											</div>
 								</div>
 
@@ -199,7 +199,7 @@
 
 										<?php elseif ($j->label == 'Tahap 2' && $j->start_stage > $today): ?>
 											<div class="form-group text-center">
-												<button type="button" class="form-control btn btn-outline-warning" disabled>Ujian Online - Pending</button>
+												<button type="button" class="form-control btn btn-outline-warning" disabled>Ujian Periode I - Pending</button>
 											</div>
 								</div>
 

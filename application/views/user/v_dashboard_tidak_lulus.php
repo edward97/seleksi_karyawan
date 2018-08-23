@@ -63,8 +63,186 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<div class="main-container">
 				<div class="content">
-					<div class="container-fluid text-center">
-						<h1>GAGAL</h1>
+					<div class="container">
+						<div class="row">
+							<?php foreach ($user as $i): ?>
+								<?php if ($i->id_user == $this->session->userdata('ses_id') && $i->label == 'Tahap 1'): ?>
+									<div class="col-md-4">
+										<div class="card">
+											<div class="card-body">
+												<h4 class="text-center">Step 1</h4>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
+													<label class="form-check-label" for="defaultCheck1">
+														Isi formulir pendaftaran
+													</label>
+												</div>
+
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
+													<label class="form-check-label" for="defaultCheck2">
+														Tunggu hasil pendafataran
+													</label>
+												</div>
+												<hr>
+
+												<p class="text-center">Status</p>
+												<div class="form-group text-center">
+													<button type="button" class="form-control btn btn-danger" disabled>Register Failed</button>
+												</div>
+											</div>
+
+											<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+												Maaf anda tidak lulus pada Tahap Register !
+											</div>
+										</div>
+									</div>
+
+								<?php elseif ($i->id_user == $this->session->userdata('ses_id') && $i->label == 'Tahap 2'): ?>
+									<div class="col-md-4">
+										<div class="card">
+											<div class="card-body">
+												<h4 class="text-center">Step 1</h4>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
+													<label class="form-check-label" for="defaultCheck1">
+														Isi formulir pendaftaran
+													</label>
+												</div>
+
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
+													<label class="form-check-label" for="defaultCheck2">
+														Tunggu hasil pendafataran
+													</label>
+												</div>
+												<hr>
+
+												<p class="text-center">Status</p>
+
+												<div class="form-group text-center">
+													<button type="button" class="form-control btn btn-success" disabled>Register Success</button>
+												</div>
+											</div>
+
+											<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+												Lulus!
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="card">
+											<div class="card-body">
+												<h4 class="text-center">Step 2</h4>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
+													<label class="form-check-label" for="defaultCheck2">
+														Ujian Periode I
+													</label>
+												</div>
+												<div>&nbsp;</div>
+												<hr>
+
+												<p class="text-center">Status</p>
+												<div class="form-group text-center">
+													<button type="button" class="form-control btn btn-danger" disabled>Ujian Periode I - Failed</button>
+												</div>
+											</div>
+
+											<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+												Maaf anda tidak lulus pada Tahap Ujian Periode I !
+											</div>
+										</div>
+									</div>
+
+								<?php elseif ($i->id_user == $this->session->userdata('ses_id') && $i->label == 'Tahap 3'): ?>
+									<div class="col-md-4">
+										<div class="card">
+											<div class="card-body">
+												<h4 class="text-center">Step 1</h4>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked disabled>
+													<label class="form-check-label" for="defaultCheck1">
+														Isi formulir pendaftaran
+													</label>
+												</div>
+
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
+													<label class="form-check-label" for="defaultCheck2">
+														Tunggu hasil pendafataran
+													</label>
+												</div>
+												<hr>
+
+												<p class="text-center">Status</p>
+												<div class="form-group text-center">
+													<button type="button" class="form-control btn btn-success" disabled>Register Success</button>
+												</div>
+											</div>
+
+											<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+												Lulus!
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="card">
+											<div class="card-body">
+												<h4 class="text-center">Step 2</h4>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
+													<label class="form-check-label" for="defaultCheck2">
+														Ujian Periode I (Selesai)
+													</label>
+												</div>
+												<div>&nbsp;</div>
+												<hr>
+
+												<p class="text-center">Status</p>
+
+												<div class="form-group text-center">
+													<button type="button" class="form-control btn btn-success" disabled>Ujian Periode I - Success</button>
+												</div>
+
+											</div>
+
+											<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+												Lulus!
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4">
+										<div class="card">
+											<div class="card-body">
+												<h4 class="text-center">Step 3</h4>
+												<div class="form-check">
+													<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+													<label class="form-check-label" for="defaultCheck2">
+														Ujian Periode II
+													</label>
+												</div>
+												<div>&nbsp;</div>
+												<hr>
+
+												<p class="text-center">Status</p>
+												<div class="form-group text-center">
+													<button type="button" class="form-control btn btn-danger" disabled>Ujian Periode II - Failed</button>
+												</div>
+											</div>
+
+											<div class="card-footer border border-left-0 border-right-0 border-bottom-0 text-right">
+												Maaf anda tidak lulus pada Tahap Ujian Periode II !
+
+											</div>
+										</div>
+									</div>
+								<?php endif ?>
+							<?php endforeach ?>
+						</div>
 					</div>
 				</div>
 			</div>

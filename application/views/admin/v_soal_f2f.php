@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header bg-light">
-						List Ujian Tatap Muka
+						List Ujian Periode II
 
 						<div class="card-actions">
 							<a href="#" class="btn text-success" data-toggle="modal" data-target="#addAct">

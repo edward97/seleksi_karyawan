@@ -19,7 +19,7 @@ class Setting extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['ability'] = $this->setting_model->tampil_ability()->result();
 			$data['job'] = $this->setting_model->tampil_job()->result();
 			$data['judul'] = "Abilites & Jobs";
@@ -34,7 +34,7 @@ class Setting extends CI_Controller
 	}
 
 	function add_act_abt() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$nm = $this->input->post('nm_abt');
 
 			$data = array(
@@ -53,7 +53,7 @@ class Setting extends CI_Controller
 	}
 
 	function add_act_job() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$nm = $this->input->post('nm_job');
 
 			$data = array(
@@ -72,7 +72,7 @@ class Setting extends CI_Controller
 	}
 
 	function update_act_abt() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$id = $this->input->post('id');
 			$nama = $this->input->post('nm_abt');
 
@@ -95,7 +95,7 @@ class Setting extends CI_Controller
 	}
 
 	function update_act_job() {
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$id = $this->input->post('id');
 			$nama = $this->input->post('nm_job');
 
@@ -118,7 +118,7 @@ class Setting extends CI_Controller
 	}
 
 	function delete_act_abt($id) {
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$where = array('id_ability' => $id);
 
 			$this->setting_model->delete_ability('ability', $where);
@@ -132,7 +132,7 @@ class Setting extends CI_Controller
 	}
 
 	function delete_act_job($id) {
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$where = array('id_job' => $id);
 
 			$this->setting_model->delete_job('job', $where);

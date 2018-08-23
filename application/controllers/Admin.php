@@ -19,7 +19,7 @@ class Admin extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0') {
 			$data['admin'] = $this->admin_model->tampil_admin()->result();
 			$data['judul'] = "Admin";
 
@@ -33,7 +33,7 @@ class Admin extends CI_Controller
 	}
 
 	function add_act() {
-		if ($this->session->userdata('akses') == '1' && $this->input->post('submit') == 'save') {
+		if ($this->session->userdata('akses') == '0' && $this->input->post('submit') == 'save') {
 			$name = $this->input->post('username');
 			if (!ctype_alnum($name)) {
 				$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">Gagal Menambah! Username hanya bisa Huruf & Angka!</div>');
@@ -84,7 +84,7 @@ class Admin extends CI_Controller
 	}
 
 	function update_act() {
-		if ($this->session->userdata('akses') == '1' && $this->input->post('submit') == 'update') {
+		if ($this->session->userdata('akses') == '0' && $this->input->post('submit') == 'update') {
 			$id = $this->input->post('id');
 			$name = $this->input->post('username');
 			if (!ctype_alnum($name)) {
@@ -136,7 +136,7 @@ class Admin extends CI_Controller
 	}
 
 	function delete($id) {
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0') {
 			$where = array('id_admin' => $id);
 			$this->admin_model->delete_admin('admins', $where);
 			$this->session->set_flashdata('msg_admin', '<div class="alert alert-danger">['.$id.'] Data berhasil dihapus!</div>');

@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header bg-light">
-						Edit Soal Online
+						Edit Soal Ujian Periode I
 					</div>
 
 					<?php foreach ($soal as $i): ?>

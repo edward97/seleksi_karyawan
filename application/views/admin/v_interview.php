@@ -18,8 +18,8 @@
 										<th>ID User</th>
 										<th>ID Stage</th>
 										<th>nama Lengkap</th>
-										<th>Nilai Ujian Online</th>
-										<th>Nilai Ujian Tatap Muka</th>
+										<th>Nilai Ujian Periode I</th>
+										<th>Nilai Ujian Periode II</th>
 										<th>Nilai Sikap</th>
 										<th>Action</th>
 									</tr>

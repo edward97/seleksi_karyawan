@@ -21,7 +21,7 @@ class Interview extends CI_Controller
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		$data['judul'] = "Interview";
 
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['usr'] = $this->user_model->tampil_detail_user()->result();
 
 			$this->load->view('admin/v_header', $data);

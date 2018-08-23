@@ -83,7 +83,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Online (sedang berlangsung)
+											Ujian Periode I (sedang berlangsung)
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -91,7 +91,7 @@
 
 									<p class="text-center">Status</p>
 									<div class="form-group text-center">
-										<a href="start/online/lanjut" class="form-control btn btn-outline-info">Ujian Online - Lanjut</a>
+										<a href="start/online/lanjut" class="form-control btn btn-outline-info">Ujian Periode I - Lanjut</a>
 									</div>
 								</div>
 
@@ -209,7 +209,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Online (Selesai)
+											Ujian Periode I (Selesai)
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -218,7 +218,7 @@
 									<p class="text-center">Status</p>
 
 									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-success" disabled>Ujian Online - Success</button>
+										<button type="button" class="form-control btn btn-success" disabled>Ujian Periode I - Success</button>
 									</div>
 
 								</div>
@@ -236,7 +236,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Tatap Muka
+											Ujian Periode II
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -246,12 +246,12 @@
 									<?php foreach ($tahapan as $j): ?>
 										<?php if ($j->label == 'Tahap 3' && $j->start_stage <= $today): ?>
 											<div class="form-group text-center">
-												<a href="start/f2f/<?php echo $j->id; ?>" class="form-control btn btn-outline-info">Ujian Tatap Muka - Mulai</a>
+												<a href="start/f2f/<?php echo $j->id; ?>" class="form-control btn btn-outline-info">Ujian Periode II - Mulai</a>
 											</div>
 
 										<?php elseif ($j->label == 'Tahap 3' && $j->start_stage > $today): ?>
 											<div class="form-group text-center">
-												<button type="button" class="form-control btn btn-outline-warning" disabled>Ujian Tatap Muka - Pending</button>
+												<button type="button" class="form-control btn btn-outline-warning" disabled>Ujian Periode II - Pending</button>
 											</div>
 
 											<?php break; ?>

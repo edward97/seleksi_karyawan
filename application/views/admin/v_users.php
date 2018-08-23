@@ -19,6 +19,7 @@
 										<th>Nama Lengkap</th>
 										<th>Job Dilamar</th>
 										<th>No. Hp / Telp</th>
+										<th>Kemampuan</th>
 										<th>Action</th>
 									</tr>
 								</thead>
@@ -34,6 +35,15 @@
 										<td><?php echo $i->full_name ?></td>
 										<td><?php echo $i->nm_job ?></td>
 										<td><?php echo $i->p_number ?></td>
+										<td>
+											<ul style="padding: 0;">
+												<?php foreach ($usr_abt as $j): ?>
+													<?php if ($j->id_user == $i->id_user): ?>
+														<li><?php echo $j->nm_ability; ?></li>
+													<?php endif ?>
+												<?php endforeach ?>
+											</ul>
+										</td>
 										<td>
 											<a
 												href="javascript:;" 
@@ -63,7 +73,7 @@
 													<i class="fa fa-info-circle" aria-hidden="true"></i> Detail
 											</a>
 
-											<?php if ($this->session->userdata('akses') ==  '1'): ?>
+											<?php if ($this->session->userdata('akses') ==  '0' || $this->session->userdata('akses') ==  '1'): ?>
 												<a href="user/edit/<?php echo $i->id_user; ?>" class="btn btn-outline-info btn-sm"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
 											<?php endif ?>
 										</td>

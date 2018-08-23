@@ -19,8 +19,10 @@ class User extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$data['user'] = $this->user_model->get_id_std_user()->result();
+			$data['abt'] = $this->user_model->req_ability()->result();
+			$data['usr_abt'] = $this->user_model->usr_ability()->result();
 			$data['judul'] = "Users";
 
 			$this->load->view('admin/v_header', $data);
@@ -36,7 +38,7 @@ class User extends CI_Controller
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		$check = $this->uri->segment(3);
 
-		if ($check != NULL && $this->session->userdata('akses') == '1') {
+		if ($check != NULL && ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1')) {
 			$where = array('users.id_user' => $check);
 			$data['user'] = $this->user_model->edit_detail_user($where)->result();
 			$data['judul'] = "Edit Users";

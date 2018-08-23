@@ -7,7 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin_model extends CI_Model
 {
 	function tampil_admin() {
-		return $this->db->get('admins');
+		return $this->db->get_where('admins', array('level !=' => 0));
 	}
 
 	function check($table, $where) {

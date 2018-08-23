@@ -4,7 +4,7 @@
 			<div class="col-md-12">
 				<div class="card">
 					<div class="card-header bg-light">
-						Edit Soal Tatap Muka
+						Edit Soal Ujian Periode II
 					</div>
 
 					<?php foreach ($soal as $i): ?>

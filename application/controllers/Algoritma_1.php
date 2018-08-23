@@ -23,7 +23,7 @@ class Algoritma_1 extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$where = array( 'status_selesai' => 1 );
 			$que = $this->sesi_model->tampil_seleksi($where);
 

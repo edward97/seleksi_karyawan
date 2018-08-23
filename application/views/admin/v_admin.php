@@ -224,7 +224,7 @@
 			alert('Level tidak boleh String!');
 			return false;
 		}
-		else if (v > 2) {
+		else if (v < 1 || v > 2) {
 			alert('Level 1 | 2 only!');
 			return false;
 		}

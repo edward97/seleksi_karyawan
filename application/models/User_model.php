@@ -74,10 +74,17 @@ class User_model extends CI_Model
 		return $this->db->get();
 	}
 
-	function compare_ability() {
+	function req_ability() {
 		$this->db->select('*');
 		$this->db->from('required_ability');
-		$this->db->join('users_ability', 'users_ability.id_ability = required_ability.id_ability', 'inner');
+		$this->db->join('ability', 'ability.id_ability = required_ability.id_ability', 'inner');
+		return $this->db->get();
+	}
+
+	function usr_ability() {
+		$this->db->select('*');
+		$this->db->from('users_ability');
+		$this->db->join('ability', 'ability.id_ability = users_ability.id_ability', 'inner');
 		return $this->db->get();
 	}
 

@@ -2,9 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 /**
- * Cart_model_2
+ * Cart_model_1
  */
-class Cart_model_2 extends CI_Model
+class Cart_model_1 extends CI_Model
 {
 	function tampil_data($table, $where) {
 		$this->db->where($where);
@@ -20,8 +20,8 @@ class Cart_model_2 extends CI_Model
 		return $this->db->get($table);
 	}
 
-	function tampil_atribut_detail($table, $where) {
-		return $this->db->get_where($table, $where);
+	function tampil_atribut_detail() {
+		return $this->db->get('atribut_detail');
 	}
 
 	function truncate($table) {

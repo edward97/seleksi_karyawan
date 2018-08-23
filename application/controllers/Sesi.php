@@ -23,7 +23,7 @@ class Sesi extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$data['job'] = $this->setting_model->tampil_job()->result();
 			$data['admin'] = $this->admin_model->tampil_admin()->result();
 
@@ -46,7 +46,7 @@ class Sesi extends CI_Controller
 	function save_act() {
 		$sekarang = mdate('%Y/%m/%d %H:%i', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$divisi = $this->input->post('divisi');
 			$kualifikasi = $this->input->post('kualifikasi');
 			$ujian_online = $this->input->post('ujian_online');
@@ -59,6 +59,7 @@ class Sesi extends CI_Controller
 			$end_tatap = $this->input->post('sesi_tatap2');
 			$start_interview = $this->input->post('sesi_interview1');
 			$end_interview = $this->input->post('sesi_interview2');
+			$catatan = $this->input->post('catatan');
 
 			if ($start_pendaftaran == '____/__/__ __:__' || $end_pendaftaran == '____/__/__ __:__' ||
 				$start_online == '____/__/__ __:__' || $end_online == '____/__/__ __:__' ||
@@ -87,7 +88,8 @@ class Sesi extends CI_Controller
 				'label_f2f' => $ujian_f2f,
 				'status_selesai' => 0,
 				'id_std' => $kualifikasi,
-				'id_job' => $divisi
+				'id_job' => $divisi,
+				'catatan' => $catatan
 			);
 			$idSelection = $this->sesi_model->add_session('selection_stage', $data_selection);
 
@@ -153,7 +155,7 @@ class Sesi extends CI_Controller
 	}
 
 	function edit() {
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$id = $this->input->post('admin');
 			$keterangan = $this->input->post('keterangan');
 
@@ -177,7 +179,7 @@ class Sesi extends CI_Controller
 	}
 
 	function delete($id) {
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$where = array('id' => $id);
 
 			$this->admin_model->delete_admin('admins_sesi', $where);
@@ -191,7 +193,7 @@ class Sesi extends CI_Controller
 	}
 
 	function closing($id) {
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$data = array('status_selesai' => 1);
 			$where = array('id_stage' => $id);
 
@@ -208,7 +210,7 @@ class Sesi extends CI_Controller
 	function next($id) {
 		$sekarang = mdate('%Y-%m-%d %H:%i:%s', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$data = array('end_stage' => $sekarang);
 			$where = array('id' => $id);
 
@@ -241,7 +243,7 @@ class Sesi extends CI_Controller
 	function edit_sesi() {
 		$check = $this->uri->segment(3);
 
-		if ($check != NULL && $this->session->userdata('akses') == '1') {
+		if ($check != NULL && ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1')) {
 			$where = array('id_stage' => $check);
 			$data['judul_sesi'] = $this->sesi_model->edit_sesi('selection_stage', $where)->result();
 			$data['edit'] = $this->sesi_model->edit_sesi_detail('selection_stage_detail', $where)->result();
@@ -265,7 +267,7 @@ class Sesi extends CI_Controller
 	function edit_act() {
 		$sekarang = mdate('%Y/%m/%d %H:%i', now('Asia/Jakarta'));
 
-		if ($this->session->userdata('akses') == '1') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1') {
 			$id_daftar = $this->input->post('id_sesi_daftar');
 			$id_online = $this->input->post('id_sesi_online');
 			$id_f2f = $this->input->post('id_sesi_f2f');

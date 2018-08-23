@@ -42,11 +42,11 @@
 								</div>
 							</div>
 
-							<!-- Pilih Soal Ujian Online -->
+							<!-- Pilih Soal Ujian Periode I -->
 							<div class="row">
 								<div class="col-md-3 col-sm-6">
 									<div class="form-group">
-										<label for="ujian_online" class="col-form-label require">Pilih Soal Ujian Online</label>
+										<label for="ujian_online" class="col-form-label require">Pilih Soal Ujian Periode I</label>
 									</div>
 								</div>
 
@@ -57,17 +57,32 @@
 								</div>
 							</div>
 
-							<!-- Pilih Soal Ujian Tatap Muka -->
+							<!-- Pilih Soal Ujian Periode II -->
 							<div class="row">
 								<div class="col-md-3 col-sm-6">
 									<div class="form-group">
-										<label for="ujian_f2f" class="col-form-label require">Pilih Soal Ujian Tatap Muka</label>
+										<label for="ujian_f2f" class="col-form-label require">Pilih Soal Ujian Periode II</label>
 									</div>
 								</div>
 
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
 										<input type="text" name="ujian_f2f" class="form-control" value="<?php echo $i->label_f2f ?>" readonly>
+									</div>
+								</div>
+							</div>
+
+							<!-- Catatan -->
+							<div class="row">
+								<div class="col-md-3 col-sm-6">
+									<div class="form-group">
+										<label class="col-form-label">Catatan</label>
+									</div>
+								</div>
+
+								<div class="col-md-6 col-sm-6">
+									<div class="form-group">
+										<textarea class="form-control" readonly><?php echo $i->catatan; ?></textarea>
 									</div>
 								</div>
 							</div>
@@ -98,11 +113,11 @@
 									</div>
 								</div>
 							<?php elseif ($i->label == 'Tahap 2'): ?>
-								<!-- Sesi Ujian Online -->
+								<!-- Sesi Ujian Periode I -->
 								<div class="row">
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<label class="col-form-label require">Sesi Ujian Online</label>
+											<label class="col-form-label require">Sesi Ujian Periode I</label>
 											<input type="hidden" name="id_sesi_online" value="<?php echo $i->id; ?>">
 
 										</div>
@@ -121,11 +136,11 @@
 									</div>
 								</div>
 							<?php elseif ($i->label == 'Tahap 3'): ?>
-								<!-- Sesi Ujian Tatap Muka -->
+								<!-- Sesi Ujian Periode II -->
 								<div class="row">
 									<div class="col-md-3 col-sm-4">
 										<div class="form-group">
-											<label class="col-form-label require">Sesi Ujian Tatap Muka</label>
+											<label class="col-form-label require">Sesi Ujian Periode II</label>
 											<input type="hidden" name="id_sesi_f2f" value="<?php echo $i->id; ?>">
 
 										</div>

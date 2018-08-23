@@ -97,7 +97,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<ul class="nav">
 							<li class="nav-title">Navigation</li>
 
-							<?php if ($this->session->userdata('akses') == '1'): ?>
+							<?php if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1'): ?>
 								<li class="nav-item">
 									<a href="<?php echo site_url('sesi'); ?>" class="nav-link <?php echo active_link('sesi'); ?>">
 										<i class="icon icon-calendar"></i> Buka Sesi
@@ -105,7 +105,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								</li>
 							<?php endif ?>
 
-							<?php if ($this->session->userdata('akses') == '1'): ?>
+							<?php if ($this->session->userdata('akses') == '0'): ?>
 								<li class="nav-item">
 									<a href="<?php echo site_url('admin'); ?>" class="nav-link <?php echo active_link('admin'); ?>">
 										<i class="icon icon-user"></i> Mengelola Admin

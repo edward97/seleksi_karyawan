@@ -40,7 +40,14 @@ class Login extends CI_Controller
 					$this->session->set_userdata('masuk', TRUE);
 					$data = $cek_admin->row_array();
 
-					if ($data['level'] == '1') {
+					if ($data['level'] == '0') {
+						$this->session->set_userdata('akses', '0');
+						$this->session->set_userdata('ses_id', $data['id_admin']);
+						$this->session->set_userdata('ses_nm', $data['nm_admin']);
+
+						redirect('dashboard');
+					}
+					elseif ($data['level'] == '1') {
 						$this->session->set_userdata('akses', '1');
 						$this->session->set_userdata('ses_id', $data['id_admin']);
 						$this->session->set_userdata('ses_nm', $data['nm_admin']);

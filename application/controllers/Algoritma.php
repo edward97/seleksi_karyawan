@@ -23,7 +23,7 @@ class Algoritma extends CI_Controller
 	function index() {
 		$data['format'] = mdate('%d-%M-%Y %H:%i %a', now('Asia/Jakarta'));
 		
-		if ($this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
+		if ($this->session->userdata('akses') == '0' || $this->session->userdata('akses') == '1' || $this->session->userdata('akses') == '2') {
 			$where = array( 'status_selesai' => 1 );
 			$que = $this->sesi_model->tampil_seleksi($where);
 
@@ -241,12 +241,12 @@ class Algoritma extends CI_Controller
 		$_atribut = array(
 			'atribut_detail.flag' => 0
 		);
-		$atribut = $this->cart_model->tampil_atribut_detail()->result();
+		$atribut = $this->cart_model->tampil_atribut_detail('atribut_detail', $_atribut)->result();
 
 		$temp_fix_keputusan_left = $temp_fix_keputusan_right = $pl = $pr = $pj_l_lulus = $pj_l_gagal = $pj_r_lulus = $pl_pr_2 = $q = $hasil = [];
-
+		$skip_kiri = $skip_kanan = [];
+		
 		foreach ($atribut as $i) {
-			$w_kiri = $w_kanan = 'next';
 
 			$where_left = array(
 				$i->attr => $i->detail,
@@ -287,7 +287,6 @@ class Algoritma extends CI_Controller
 				$a_l = 0;
 				$b_l = 0;
 			}
-			
 
 			$pj_l_lulus[] = $a_l;
 			$pj_l_gagal[] = $b_l;
@@ -299,8 +298,9 @@ class Algoritma extends CI_Controller
 				$temp_fix_keputusan_left[$i->detail] = 'gagal';
 			}
 			if ($a_l == 0 && $b_l == 0) {
-				$w_kiri = '#SKIP';
+				$skip_kiri[$i->detail] = '#SKIP';
 			}
+
 			# --------------------------------------------------
 			$where_right_lulus = array(
 				$i->attr.' !=' => $i->detail,
@@ -330,9 +330,9 @@ class Algoritma extends CI_Controller
 			if ($a_r == 0 && $b_r != 0) {
 				$temp_fix_keputusan_right[$i->detail] = 'gagal';
 			}
-			// if ($a_r == 0 && $b_r == 0) {
-			// 	$w_kanan = '#SKIP';
-			// }
+			if ($a_r == 0 && $b_r == 0) {
+				$skip_kanan[$i->detail] = '#SKIP';
+			}
 
 			$dua = 0;
 			if ($total_data != 0) {
@@ -376,14 +376,40 @@ class Algoritma extends CI_Controller
 			}
 		}
 
+		$lanjut_kiri = '="'.$left.'"';
+		$lab_kiri = $label.'~="'.$left.'"~';
+		foreach ($skip_kiri as $key => $value) {
+			if ($key == $left) {
+				$lanjut_kiri = NULL;
+				$lab_kiri = '';
+			}
+		}
+
+		$lanjut_kanan = '!="'.$right.'"';
+		$lab_kanan = $label.'~'.'!="'.$right.'"~';
+		foreach ($skip_kanan as $key => $value) {
+			if ($key == $right) {
+				$lanjut_kanan = NULL;
+				$lab_kanan = '';
+			}
+		}
+
+		$kpt = 'next';
+		if ($maxx == 0) {
+			$kpt = '#DataTidakJelas';
+		}
+		if ($total_data == 0) {
+			$kpt = '#SKIP';
+		}
+
 		# CEK APAKAH RULE KOSONG
 		$rule = $this->cart_model->cek_rule('cart_rule')->num_rows();
 		if ($rule == 0) {
 			$root_ar = array(
 				'atribut' => $root,
 				'label' => $root,
-				'left_keputusan' => '="'.$left.'"',
-				'right_keputusan' => '!="'.$right.'"',
+				'left_keputusan' => $lanjut_kiri,
+				'right_keputusan' => $lanjut_kanan,
 				'status_hitung' => 'root'
 			);
 			$id = $this->cart_model->insert_rule('cart_rule', $root_ar);
@@ -409,12 +435,12 @@ class Algoritma extends CI_Controller
 				$left_ar = array(
 					'atribut' => $root,
 					'label' => $keputusan,
-					'left_keputusan' => '="'.$left.'"',
+					'left_keputusan' => $lanjut_kiri,
 					'keputusan' => NULL,
 					'link' => $id,
-					'status_hitung' => $w_kiri,
+					'status_hitung' => $kpt,
 					'atribut_cek' => $last_atribut.'~'.$root.'~',
-					'label_kiri' => $label.'~="'.$left.'"~',
+					'label_kiri' => $lab_kiri,
 				);
 				$in_check = $this->cart_model->insert_rule('cart_rule', $left_ar);
 			}
@@ -436,8 +462,8 @@ class Algoritma extends CI_Controller
 			if ($fix_right == NULL) {
 				if ($in_check != 0) {
 					$right_ar = array(
-						'right_keputusan' => '!="'.$right.'"',
-						'label_kanan' => $label.'~'.'!="'.$right.'"~',
+						'right_keputusan' => $lanjut_kanan,
+						'label_kanan' => $lab_kanan,
 					);
 					$yy = array( 'id' => $in_check );
 					$in_check = $this->cart_model->update_rule('cart_rule', $yy, $right_ar);
@@ -446,12 +472,12 @@ class Algoritma extends CI_Controller
 					$right_ar = array(
 						'atribut' => $root,
 						'label' => $keputusan,
-						'right_keputusan' => '!="'.$right.'"',
+						'right_keputusan' => $lanjut_kanan,
 						'keputusan' => NULL,
 						'link' => $id,
-						'status_hitung' => $w_kiri,
+						'status_hitung' => $kpt,
 						'atribut_cek' => $last_atribut.'~'.$root.'~',
-						'label_kanan' => $label.'~!="'.$right.'"~',
+						'label_kanan' => $lab_kanan,
 					);
 					$in_check = $this->cart_model->insert_rule('cart_rule', $right_ar);
 				}
@@ -491,6 +517,8 @@ class Algoritma extends CI_Controller
 	*/
 	function _loopTree() {
 		$tree = $this->cart_model->tampil_tree('cart_rule')->result();
+		$atr = $this->cart_model->tampil_atribut('atribut_detail')->result();
+
 		foreach ($tree as $i) {
 			if ($i->status_hitung == 'next') {
 				if ($i->left_keputusan != NULL && $i->right_keputusan != NULL) {
@@ -500,13 +528,18 @@ class Algoritma extends CI_Controller
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kiri);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array( 'flag' => 1 );
-							$_tt = array( 'attr' => $value );
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
+
 					foreach ($pecah_atribut as $key_1 => $value_1) {
 						foreach ($pecah_label as $key_2 => $value_2) {
 							if ($key_1 == $key_2 && $value_1 != NULL) {
@@ -519,18 +552,23 @@ class Algoritma extends CI_Controller
 					$this->_hitungCart($i->id, $i->atribut_cek, $i->label_kiri, $i->left_keputusan);
 
 					# HITUNG ROOT KANAN
-					$this->resetData();
+					$this->resetData_1();
 					$str = '';
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kanan);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array( 'flag' => 1 );
-							$_tt = array( 'attr' => $value );
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
+
 					foreach ($pecah_atribut as $key_1 => $value_1) {
 						foreach ($pecah_label as $key_2 => $value_2) {
 							if ($key_1 == $key_2 && $value_1 != NULL) {
@@ -552,13 +590,18 @@ class Algoritma extends CI_Controller
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kiri);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array('flag' => 1);
-							$_tt = array('attr' => $value);
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
+
 					foreach ($pecah_atribut as $key_1 => $value_1) { 
 						foreach ($pecah_label as $key_2 => $value_2) {
 							if ($key_1 == $key_2 && $value_1 != NULL) {
@@ -575,18 +618,23 @@ class Algoritma extends CI_Controller
 				}
 				elseif ($i->left_keputusan == NULL && $i->right_keputusan != NULL) {
 					# HITUNG ROOT KANAN
-					$this->resetData();
+					$this->resetData_1();
 					$str = '';
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kanan);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array('flag' => 1);
-							$_tt = array('attr' => $value);
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
+					
 					foreach ($pecah_atribut as $key_1 => $value_1) {
 						foreach ($pecah_label as $key_2 => $value_2) {
 							if ($key_1 == $key_2 && $value_1 != NULL) {
@@ -600,6 +648,10 @@ class Algoritma extends CI_Controller
 
 					# STOP STATUS KETIKA LEFT ATAURIGHT SUDAH DI HITUNG
 					$this->db->query('UPDATE cart_rule SET status_hitung = "stop" WHERE id = '.$i->id);
+				}
+				else {
+					# STOP STATUS KETIKA LEFT ATAURIGHT SUDAH DI HITUNG
+					$this->db->query('UPDATE cart_rule SET status_hitung = "#SKIP" WHERE id = '.$i->id);
 				}
 			}
 		}
@@ -1183,12 +1235,12 @@ class Algoritma extends CI_Controller
 		$_atribut = array(
 			'atribut_detail.flag' => 0
 		);
-		$atribut = $this->cart_model->tampil_atribut_detail()->result();
+		$atribut = $this->cart_model->tampil_atribut_detail('atribut_detail', $_atribut)->result();
 
 		$temp_fix_keputusan_left = $temp_fix_keputusan_right = $pl = $pr = $pj_l_lulus = $pj_l_gagal = $pj_r_lulus = $pl_pr_2 = $q = $hasil = [];
+		$skip_kiri = $skip_kanan = [];
 
 		foreach ($atribut as $i) {
-			$w_kiri = $w_kanan = 'next';
 			$where_left = array(
 				$i->attr => $i->detail,
 				'flag' => 0
@@ -1239,7 +1291,7 @@ class Algoritma extends CI_Controller
 				$temp_fix_keputusan_left[$i->detail] = 'gagal';
 			}
 			if ($a_l == 0 && $b_l == 0) {
-				$w_kiri = '#SKIP';
+				$skip_kiri[$i->detail] = '#SKIP';
 			}
 			# --------------------------------------------------
 			$where_right_lulus = array(
@@ -1270,15 +1322,14 @@ class Algoritma extends CI_Controller
 			if ($a_r == 0 && $b_r != 0) {
 				$temp_fix_keputusan_right[$i->detail] = 'gagal';
 			}
-			// if ($a_r == 0 && $b_r == 0) {
-			// 	$w_kanan = '#SKIP';
-			// }
+			if ($a_r == 0 && $b_r == 0) {
+				$skip_kanan[$i->detail] = '#SKIP';
+			}
 
 			$dua = 0;
 			if ($total_data != 0) {
 				$dua = 2 * ($x/$total_data) * ($y/$total_data);
 			}
-
 			$pl_pr_2[] = $dua;
 
 			$tiga = abs($a_l-$a_r)+abs($b_l-$b_r);
@@ -1317,14 +1368,40 @@ class Algoritma extends CI_Controller
 			}
 		}
 
+		$lanjut_kiri = '="'.$left.'"';
+		$lab_kiri = $label.'~="'.$left.'"~';
+		foreach ($skip_kiri as $key => $value) {
+			if ($key == $left) {
+				$lanjut_kiri = NULL;
+				$lab_kiri = '';
+			}
+		}
+
+		$lanjut_kanan = '!="'.$right.'"';
+		$lab_kanan = $label.'~'.'!="'.$right.'"~';
+		foreach ($skip_kanan as $key => $value) {
+			if ($key == $right) {
+				$lanjut_kanan = NULL;
+				$lab_kanan = '';
+			}
+		}
+
+		$kpt = 'next';
+		if ($maxx == 0) {
+			$kpt = '#DataTidakJelas';
+		}
+		if ($total_data == 0) {
+			$kpt = '#SKIP';
+		}
+
 		# CEK APAKAH RULE KOSONG
 		$rule = $this->cart_model->cek_rule('akurasi_cart_rule')->num_rows();
 		if ($rule == 0) {
 			$root_ar = array(
 				'atribut' => $root,
 				'label' => $root,
-				'left_keputusan' => '="'.$left.'"',
-				'right_keputusan' => '!="'.$right.'"',
+				'left_keputusan' => $lanjut_kiri,
+				'right_keputusan' => $lanjut_kanan,
 				'status_hitung' => 'root'
 			);
 			$id = $this->cart_model->insert_rule('akurasi_cart_rule', $root_ar);
@@ -1350,12 +1427,12 @@ class Algoritma extends CI_Controller
 				$left_ar = array(
 					'atribut' => $root,
 					'label' => $keputusan,
-					'left_keputusan' => '="'.$left.'"',
+					'left_keputusan' => $lanjut_kiri,
 					'keputusan' => NULL,
 					'link' => $id,
-					'status_hitung' => $w_kiri,
+					'status_hitung' => $kpt,
 					'atribut_cek' => $last_atribut.'~'.$root.'~',
-					'label_kiri' => $label.'~="'.$left.'"~',
+					'label_kiri' => $lab_kiri,
 				);
 				$in_check = $this->cart_model->insert_rule('akurasi_cart_rule', $left_ar);
 			}
@@ -1377,8 +1454,8 @@ class Algoritma extends CI_Controller
 			if ($fix_right == NULL) {
 				if ($in_check != 0) {
 					$right_ar = array(
-						'right_keputusan' => '!="'.$right.'"',
-						'label_kanan' => $label.'~'.'!="'.$right.'"~',
+						'right_keputusan' => $lanjut_kanan,
+						'label_kanan' => $lab_kanan,
 					);
 					$yy = array( 'id' => $in_check );
 					$in_check = $this->cart_model->update_rule('akurasi_cart_rule', $yy, $right_ar);
@@ -1390,9 +1467,9 @@ class Algoritma extends CI_Controller
 						'right_keputusan' => '!="'.$right.'"',
 						'keputusan' => NULL,
 						'link' => $id,
-						'status_hitung' => $w_kiri,
+						'status_hitung' => $kpt,
 						'atribut_cek' => $last_atribut.'~'.$root.'~',
-						'label_kanan' => $label.'~!="'.$right.'"~',
+						'label_kanan' => $lab_kanan,
 					);
 					$in_check = $this->cart_model->insert_rule('akurasi_cart_rule', $right_ar);
 				}
@@ -1432,6 +1509,8 @@ class Algoritma extends CI_Controller
 	*/
 	function akurasi__loopTree() {
 		$tree = $this->cart_model->tampil_tree('akurasi_cart_rule')->result();
+		$atr = $this->cart_model->tampil_atribut('atribut_detail')->result();
+
 		foreach ($tree as $i) {
 			if ($i->status_hitung == 'next') {
 				if ($i->left_keputusan != NULL && $i->right_keputusan != NULL) {
@@ -1441,11 +1520,15 @@ class Algoritma extends CI_Controller
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kiri);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array( 'flag' => 1 );
-							$_tt = array( 'attr' => $value );
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
 					foreach ($pecah_atribut as $key_1 => $value_1) {
@@ -1460,16 +1543,20 @@ class Algoritma extends CI_Controller
 					$this->akurasi__hitungCart($i->id, $i->atribut_cek, $i->label_kiri, $i->left_keputusan);
 
 					# HITUNG ROOT KANAN
-					$this->akurasi_resetData();
+					$this->akurasi_resetData_1();
 					$str = '';
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kanan);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array( 'flag' => 1 );
-							$_tt = array( 'attr' => $value );
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
 					foreach ($pecah_atribut as $key_1 => $value_1) {
@@ -1493,11 +1580,15 @@ class Algoritma extends CI_Controller
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kiri);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array('flag' => 1);
-							$_tt = array('attr' => $value);
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
 					foreach ($pecah_atribut as $key_1 => $value_1) { 
@@ -1516,16 +1607,20 @@ class Algoritma extends CI_Controller
 				}
 				elseif ($i->left_keputusan == NULL && $i->right_keputusan != NULL) {
 					# HITUNG ROOT KANAN
-					$this->akurasi_resetData();
+					$this->akurasi_resetData_1();
 					$str = '';
 					$pecah_atribut = explode('~', $i->atribut_cek);
 					$pecah_label = explode('~', $i->label_kanan);
 
-					foreach ($pecah_atribut as $key => $value) {
-						if ($value != NULL) {
-							$_zz = array('flag' => 1);
-							$_tt = array('attr' => $value);
-							$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+					foreach ($atr as $j) {
+						foreach ($pecah_atribut as $key_1 => $value_1) {
+							foreach ($pecah_label as $key_2 => $value_2) {
+								if ($j->attr == $value_1 && $j->detail == $value_2 && $value_1 != NULL) {
+									$_zz = array( 'flag' => 1 );
+									$_tt = array( 'attr' => $value );
+									$this->cart_model->update_atribut_detail('atribut_detail', $_tt, $_zz);
+								}
+							}
 						}
 					}
 					foreach ($pecah_atribut as $key_1 => $value_1) {
@@ -1539,6 +1634,10 @@ class Algoritma extends CI_Controller
 					$this->db->query('UPDATE akurasi_data SET flag = 0 WHERE '.$newarraynama);
 					$this->akurasi__hitungCart($i->id, $i->atribut_cek, $i->label_kanan, $i->right_keputusan);
 
+					# STOP STATUS KETIKA LEFT ATAURIGHT SUDAH DI HITUNG
+					$this->db->query('UPDATE akurasi_cart_rule SET status_hitung = "stop" WHERE id = '.$i->id);
+				}
+				else {
 					# STOP STATUS KETIKA LEFT ATAURIGHT SUDAH DI HITUNG
 					$this->db->query('UPDATE akurasi_cart_rule SET status_hitung = "stop" WHERE id = '.$i->id);
 				}

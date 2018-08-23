@@ -82,7 +82,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Online (Selesai)
+											Ujian Periode I (Selesai)
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -91,7 +91,7 @@
 									<p class="text-center">Status</p>
 
 									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-success" disabled>Ujian Online - Success</button>
+										<button type="button" class="form-control btn btn-success" disabled>Ujian Periode I - Success</button>
 									</div>
 
 								</div>
@@ -109,7 +109,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Tatap Muka (sedang berlangsung)
+											Ujian Periode II (sedang berlangsung)
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -117,7 +117,7 @@
 
 									<p class="text-center">Status</p>
 									<div class="form-group text-center">
-										<a href="start/f2f/none" class="form-control btn btn-outline-info">Ujian Tatap Muka - Lanjut</a>
+										<a href="start/f2f/none" class="form-control btn btn-outline-info">Ujian Periode II - Lanjut</a>
 									</div>
 								</div>
 
@@ -229,7 +229,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Online (Selesai)
+											Ujian Periode I (Selesai)
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -237,7 +237,7 @@
 
 									<p class="text-center">Status</p>
 									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-success" disabled>Ujian Online - Success</button>
+										<button type="button" class="form-control btn btn-success" disabled>Ujian Periode I - Success</button>
 									</div>
 
 								</div>
@@ -255,7 +255,7 @@
 									<div class="form-check">
 										<input class="form-check-input" type="checkbox" value="" id="defaultCheck2" checked disabled>
 										<label class="form-check-label" for="defaultCheck2">
-											Ujian Tatap Muka (Selesai)
+											Ujian Periode II (Selesai)
 										</label>
 									</div>
 									<div>&nbsp;</div>
@@ -263,7 +263,7 @@
 
 									<p class="text-center">Status</p>
 									<div class="form-group text-center">
-										<button type="button" class="form-control btn btn-success" disabled>Ujian Tatap Muka - Success</button>
+										<button type="button" class="form-control btn btn-success" disabled>Ujian Periode II - Success</button>
 									</div>
 
 								</div>

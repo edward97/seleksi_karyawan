@@ -212,7 +212,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 												</div>
 
 												<div class="col-sm-4">
-													<input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" min="1968-01-01" max="2005-01-01" required>
+													<input type="date" class="form-control" name="tgl_lahir" id="tgl_lahir" min="1968-01-01" max="2000-12-30" required>
 												</div>
 											</div>
 										</div>
