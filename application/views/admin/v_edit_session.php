@@ -82,7 +82,7 @@
 
 								<div class="col-md-6 col-sm-6">
 									<div class="form-group">
-										<textarea class="form-control" readonly><?php echo $i->catatan; ?></textarea>
+										<textarea class="form-control" rows="8" readonly><?php echo $i->catatan; ?></textarea>
 									</div>
 								</div>
 							</div>

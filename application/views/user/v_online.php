@@ -4,7 +4,7 @@
 		<div class="card">
 			<div class="card-header">
 				<div class="row">
-					<div class="col-md-6"><h2>Ujian Online - <?php echo $i->label; ?></h2></div>
+					<div class="col-md-6"><h2>Ujian Periode I - <?php echo $i->label; ?></h2></div>
 					<div class="col-md-6">
 						<div class="form-group text-right">
 							<button type="button" class="btn btn-outline-info" id="demo"></button>

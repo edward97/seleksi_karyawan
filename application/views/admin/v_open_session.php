@@ -224,7 +224,7 @@
 
 							<div class="col-md-6 col-sm-4">
 								<div class="form-group">
-									<textarea name="catatan" id="catatan" class="form-control" required></textarea>
+									<textarea name="catatan" id="catatan" rows="8" class="form-control" required></textarea>
 								</div>
 							</div>
 						</div>

@@ -286,7 +286,10 @@
 													Tahap Interview (sedang berlangsung)
 												</label>
 											</div>
-											<div>&nbsp;</div>
+											
+											<div>
+												<textarea rows="8" class="form-control" readonly><?php echo $i->catatan ?></textarea>
+											</div>
 											<hr>
 
 											<p class="text-center">Status</p>
