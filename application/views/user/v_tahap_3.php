@@ -126,7 +126,7 @@
 	<?php else: ?>
 		<div class="container text-center">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card text-white">
 						<div class="card-body bg-success">
 							Tahap Register <i class="icon icon-badge"></i>
@@ -134,7 +134,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card text-white">
 						<div class="card-body bg-success">
 							Tahap Ujian <i class="icon icon-badge"></i>
@@ -144,7 +144,7 @@
 
 				<?php foreach ($tahapan as $j): ?>
 					<?php if ($j->label == 'Tahap 4' && $j->start_stage <= $today): ?>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="card text-white">
 								<div class="card-body bg-info">
 									Tahap Interview <i class="icon icon-pin"></i>
@@ -153,7 +153,7 @@
 						</div>
 
 					<?php elseif ($j->label == 'Tahap 4' && $j->start_stage > $today): ?>
-						<div class="col-md-3">
+						<div class="col-md-4">
 							<div class="card text-white">
 								<div class="card-body bg-warning">
 									Tahap Interview <i class="icon icon-hourglass"></i>
@@ -164,14 +164,6 @@
 						<?php break; ?>
 					<?php endif ?>
 				<?php endforeach ?>
-
-				<div class="col-md-3">
-					<div class="card">
-						<div class="card-body">
-							Result
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 
