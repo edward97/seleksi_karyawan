@@ -30,8 +30,8 @@
 												<th>Pendidikan Terakhir</th>
 												<th>Status</th>
 												<th>Total Kemampuan</th>
-												<th class="text-nowrap">Ujian Online</th>
-												<th class="text-nowrap">Ujian F2F</th>
+												<th class="text-nowrap">Ujian Periode I</th>
+												<th class="text-nowrap">Ujian Periode II</th>
 												<th>Nilai Sikap</th>
 												<th>Hasil Keputusan</th>
 												<th>Hasil Akurasi</th>
@@ -165,8 +165,8 @@
 												<th>Pendidikan Terakhir</th>
 												<th>Status</th>
 												<th>Total Kemampuan</th>
-												<th class="text-nowrap">Ujian Online</th>
-												<th class="text-nowrap">Ujian F2F</th>
+												<th class="text-nowrap">Ujian Periode I</th>
+												<th class="text-nowrap">Ujian Periode II</th>
 												<th>Nilai Sikap</th>
 												<th>Hasil Keputusan</th>
 												<th>Hasil Akurasi</th>

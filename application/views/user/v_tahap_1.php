@@ -2,7 +2,7 @@
 	<?php if ($i->end_stage >= $today): ?>
 		<div class="container text-center">
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card text-white">
 						<div class="card-body bg-warning">
 							Tahap Register <i class="icon icon-hourglass"></i>
@@ -10,7 +10,7 @@
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card">
 						<div class="card-body">
 							Tahap Ujian
@@ -18,18 +18,10 @@
 					</div>
 				</div>
 
-				<div class="col-md-3">
+				<div class="col-md-4">
 					<div class="card">
 						<div class="card-body">
 							Tahap Interview
-						</div>
-					</div>
-				</div>
-
-				<div class="col-md-3">
-					<div class="card">
-						<div class="card-body">
-							Result
 						</div>
 					</div>
 				</div>

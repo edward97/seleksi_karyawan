@@ -50,8 +50,8 @@ $cart = $this->session->userdata('data_testing_cart');
 										<th>Pendidikan</th>
 										<th>Status</th>
 										<th>Total Kemampuan</th>
-										<th>Ujian Online</th>
-										<th>Ujian F2f</th>
+										<th>UJian Periode I</th>
+										<th>Ujian Periode II</th>
 										<th>Nilai Sikap</th>
 										<th>Hasil Keputusan</th>
 									</tr>
@@ -92,8 +92,8 @@ $cart = $this->session->userdata('data_testing_cart');
 										<th>Pendidikan</th>
 										<th>Status</th>
 										<th>Total Kemampuan</th>
-										<th>Ujian Online</th>
-										<th>Ujian F2f</th>
+										<th>UJian Periode I</th>
+										<th>Ujian Periode II</th>
 										<th>Nilai Sikap</th>
 										<th>Hasil Keputusan</th>
 									</tr>
