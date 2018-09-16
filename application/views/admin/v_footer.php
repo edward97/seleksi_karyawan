@@ -124,6 +124,14 @@
 			$('#sesi_interview2').datetimepicker({
 				mask:'9999/19/39 29:59'
 			});
+
+			function myTimer() {
+				var d = new Date();
+				var x = "<?php echo $this->session->userdata('ses_nm'); ?>";
+
+				document.getElementById('timer').innerHTML = x + ' | ' + d.toLocaleString();
+			}
+			var myVar = setInterval(myTimer, 0);
 		</script>
 	</body>
 </html>
